@@ -130,7 +130,7 @@ const removeZero = (item) => {
   return item !== "";
 };
 
-//input user
+//input - user
 const fraseRecebida = prompt("Digite um frase");
 
 // removendo espacos em branco antes de
