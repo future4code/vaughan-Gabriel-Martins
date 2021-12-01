@@ -45,78 +45,78 @@ Qual será o valor impresso no console se a entrada do usuário for: `"Subi num 
 //  SUBI NUM ÔNIBUS EM MIRROCOS   27
 //
 
-// ////*********   Exercicios de escrito  ***************************/
+////*********   Exercicios de escrito  ***************************/
 
-// // Faça um programa que pergunte ao usuário seu nome e seu e-mail.
-// // Em seguida, Imprima no console a seguinte mensagem:
+// Faça um programa que pergunte ao usuário seu nome e seu e-mail.
+// Em seguida, Imprima no console a seguinte mensagem:
 
-// const nomeDoUsuario = prompt("Entre como o seu nome").trim();
-// const emailDoUsuario = prompt("Entre como o seu e-mail").trim();
+const nomeDoUsuario = prompt("Entre como o seu nome").trim();
+const emailDoUsuario = prompt("Entre como o seu e-mail").trim();
 
-// console.log(`${emailDoUsuario} foi cadastrado com sucesso. `);
-// console.log(`Seja bem-vindo(a), ${nomeDoUsuario}`);
+console.log(`${emailDoUsuario} foi cadastrado com sucesso. `);
+console.log(`Seja bem-vindo(a), ${nomeDoUsuario}`);
 
-// /// 2 Faça um programa que contenha um array com 5 das suas
-// //comidas preferidas,
-// //armazenado em uma variável. Em seguida, siga os passos:
+/// 2 Faça um programa que contenha um array com 5 das suas
+//comidas preferidas,
+//armazenado em uma variável. Em seguida, siga os passos:
 
-// const comidasPreferidas = ["feijoada", "beef", "churrasco", "curry", "feijão"];
+const comidasPreferidas = ["feijoada", "beef", "churrasco", "curry", "feijão"];
 
-// //a) Imprima no console o array completo
+//a) Imprima no console o array completo
 
-// comidasPreferidas.forEach((comida) => {
-//   console.log(comida);
-// });
+comidasPreferidas.forEach((comida) => {
+  console.log(comida);
+});
 
-// //b) Imprima no console a mensagem "Essas são as minhas comidas preferidas: ",
-// // seguida por cada uma das comidas,uma embaixo da outra.
+//b) Imprima no console a mensagem "Essas são as minhas comidas preferidas: ",
+// seguida por cada uma das comidas,uma embaixo da outra.
 
-// comidasPreferidas.forEach((comida) => {
-//   console.log(`Esta é minha comida favorita: ${comida}.`);
-// });
+comidasPreferidas.forEach((comida) => {
+  console.log(`Esta é minha comida favorita: ${comida}.`);
+});
 
-// //c) Aqui vai um desafio: pergunte ao usuário uma comida preferida.
-// //Troque a segunda comida da sua lista pela inserida pelo usuário.
-// //Imprima no consolea nova lista
+//c) Aqui vai um desafio: pergunte ao usuário uma comida preferida.
+//Troque a segunda comida da sua lista pela inserida pelo usuário.
+//Imprima no consolea nova lista
 
-// comidasPreferidas[1] = prompt("Entre com a sua comida favorita");
+comidasPreferidas[1] = prompt("Entre com a sua comida favorita");
 
-// comidasPreferidas.forEach((comida) => {
-//   console.log(`Esta é minha comida favorita: ${comida}.`);
-// });
+comidasPreferidas.forEach((comida) => {
+  console.log(`Esta é minha comida favorita: ${comida}.`);
+});
 
-// ///////////
-// //3. Faça um programa, seguindo os passos:
+///////////
+//3. Faça um programa, seguindo os passos:
 
-// //a) Crie um array vazio e guarde-o em uma variável, chamada `listaDeTarefas`
+//a) Crie um array vazio e guarde-o em uma variável, chamada `listaDeTarefas`
 
-// const arrayTarefas = [];
+const arrayTarefas = [];
 
-// //b) Pergunte ao usuário 3 tarefas que ele precise realizar no dia e armazene-as, uma por uma, no array
+//b) Pergunte ao usuário 3 tarefas que ele precise realizar no dia e armazene-as, uma por uma, no array
 
-// arrayTarefas[0] = prompt("Entre com a primeira tarefa do dia ");
-// arrayTarefas[1] = prompt("Entre com a segunda tarefa do dia ");
-// arrayTarefas[2] = prompt("Entre com a terceira tarefa do dia ");
+arrayTarefas[0] = prompt("Entre com a primeira tarefa do dia ");
+arrayTarefas[1] = prompt("Entre com a segunda tarefa do dia ");
+arrayTarefas[2] = prompt("Entre com a terceira tarefa do dia ");
 
-// //c) Imprima o array no console
+//c) Imprima o array no console
 
-// arrayTarefas.forEach((tarefa) => {
-//   console.log(tarefa);
-// });
-// //ou
+arrayTarefas.forEach((tarefa) => {
+  console.log(tarefa);
+});
+//ou
 
-// console.log(arrayTarefas);
+console.log(arrayTarefas);
 
-// //d) Peça ao usuário que digite o índice de uma tarefa que ele já realizou: 0, 1 ou 2
-// //e) Remova da lista o item de índice que o usuário escolheu.
+//d) Peça ao usuário que digite o índice de uma tarefa que ele já realizou: 0, 1 ou 2
+//e) Remova da lista o item de índice que o usuário escolheu.
 
-// const indice = prompt("Entre com um indice 1, 2, 3");
+const indice = prompt("Entre com um indice 1, 2, 3");
 
-// console.log("tarefa removida", arrayTarefas.splice(indice - 1, 1));
+console.log("tarefa removida", arrayTarefas.splice(indice - 1, 1));
 
-// //f) Imprima o array no consoleImprima no console
+//f) Imprima o array no consoleImprima no console
 
-// console.log("Tarefas remanescentes :", arrayTarefas);
+console.log("Tarefas remanescentes :", arrayTarefas);
 
 // /****************************** DESAFIO  *****************************/
 
