@@ -115,23 +115,51 @@ function trocaPrimeiroEUltimo(array) {
 
 }
 
+// // EXERCÍCIO 12
+// function checaIgualdadeDesconsiderandoCase(string1, string2) {
+//   // implemente sua lógica aqui
+
+//      string1 = string1.toUpperCase(); 
+//      string2 = string2.toUpperCase(); 
+     
+//     //  const tamanho = string2.length === string1.length;
+//      const letra0 = string1[0] ===string2[0];
+//      const letra1 = string1[1] ===string2[1];
+    
+//      if( string1 == string2  && letra0 && letra1)
+//      return true;
+//      return false;
+
+
+// }
+
 // EXERCÍCIO 12
 function checaIgualdadeDesconsiderandoCase(string1, string2) {
   // implemente sua lógica aqui
-
-     string1 = string1.toUpperCase(); 
-     string2 = string2.toUpperCase(); 
-     
-    //  const tamanho = string2.length === string1.length;
-     const letra0 = string1[0] ===string2[0];
-     const letra1 = string1[1] ===string2[1];
     
-     if( string1 == string2  && letra0 && letra1)
-     return true;
-     return false;
+     string1 =string1.toUpperCase() ;
+     string2 =string2.toUpperCase() ;
+ 
+    let stringArray1 = string1.split('');
+    let stringArray2 = string2.split('');
+    let i=0;
+    let iguais =0;
+     
+   console.log(stringArray2.length)
+    
+    while( i < stringArray2.length) { 
 
+      if(stringArray2[i]==stringArray1[i])
+      iguais++;
+      i++;
+    }
+       console.log(iguais, i );
+       if (iguais === i )
+       return true; 
+       return false;
 
-}
+    }
+
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
