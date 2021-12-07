@@ -144,40 +144,40 @@
 
 //  //////////////*************************** Escrita de codigo  *************///////////////////////////////////
 
-//  //a) Crie um objeto. Ele deve conter duas propriedades: nome (string) e apelidos (um array que sempre 
-//  //terá exatamente três apelidos). 
-//  //Depois, escreva uma função que recebe como entrada um objeto e imprime uma mensagem no modelo abaixo: 
+ //a) Crie um objeto. Ele deve conter duas propriedades: nome (string) e apelidos (um array que sempre 
+ //terá exatamente três apelidos). 
+ //Depois, escreva uma função que recebe como entrada um objeto e imprime uma mensagem no modelo abaixo: 
 
-//    const apelidos = { 
-//        nome : 'Gabriel',
-//        apelidos: ['Gaga' , 'Biel', 'Ga']
-//    }
+   const apelidos = { 
+       nome : 'Gabriel',
+       apelidos: ['Gaga' , 'Biel', 'Ga']
+   }
 
    
-// const imprimiApelidos = objetoEntrada  => { 
-//    return  console.log(`Eu sou ${objetoEntrada.nome}, mas pode me chamar de: ${objetoEntrada.apelidos[0]},
-// ${objetoEntrada.apelidos[1]} ou ${objetoEntrada.apelidos[2]} ` );
-// }
+const imprimiApelidos = objetoEntrada  => { 
+   return  console.log(`Eu sou ${objetoEntrada.nome}, mas pode me chamar de: ${objetoEntrada.apelidos[0]},
+${objetoEntrada.apelidos[1]} ou ${objetoEntrada.apelidos[2]} ` );
+}
 
     
-// // imprimiApelidos(apelidos);
+// imprimiApelidos(apelidos);
 
 
-// // b)  Agora, usando o operador spread, crie um novo objeto mantendo o valor da propriedade nome, 
-// //mas com uma nova lista de três apelidos. 
-// //Depois, chame a função feita no item anterior passando como argumento o novo objeto
+// b)  Agora, usando o operador spread, crie um novo objeto mantendo o valor da propriedade nome, 
+//mas com uma nova lista de três apelidos. 
+//Depois, chame a função feita no item anterior passando como argumento o novo objeto
 
 
-// const maisApelidos ={ 
-//     ...apelidos, 
-//     apelidos: ['Jose', 'Ze', 'Zeca']
-// }
+const maisApelidos ={ 
+    ...apelidos, 
+    apelidos: ['Jose', 'Ze', 'Zeca']
+}
 
-// // imprimiApelidos(maisApelidos);
+// imprimiApelidos(maisApelidos);
 
-//////////////
+////////////
 // 2 Resolva os passos a seguir: 
-/////a) Crie dois objetos diferentes com as seguintes propriedades: nome, idade e profissão. 
+///a) Crie dois objetos diferentes com as seguintes propriedades: nome, idade e profissão. 
 
 
 
