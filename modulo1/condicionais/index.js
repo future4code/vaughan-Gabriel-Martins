@@ -169,77 +169,56 @@ e "Aproveite o seu [LANCHINHO]", trocando [LANCHINHO] pelo que o usuário coloco
 
 ///4)  
 
-/* 
-nome completo 
-tipo de jogo   IN    or DO 
-
-Etapa do jogo   SF    DT   FI 
-
-Cat 1 , 2 ,3 ou 4
-
-quantidad de ingressos 
 
 
 
 // */
 
  const nomeCompleto = prompt('Entre com seu nome completo');
-//  const tipoDeJogo = prompt('IN indica internacional e DO indica doméstico').trim().toUpperCase();
-//  const  categoria = "categoria" +prompt("Entre com a categoria de 1-4.");
+ const tipoDeJogo = prompt('IN indica internacional e DO indica doméstico').trim().toUpperCase();
+ const  categoria = prompt("Entre com a categoria de 1-4.");
  const etapaDoJogo = prompt( 'SF indica semi-final; DT indica decisão de terceiro lugar; e FI indica final').trim().toUpperCase();
-//  const quantidadeIngressos= Number(prompt("Entre com o numero de inrgressos, "));
+ const quantidadeIngressos= Number(prompt("Entre com o numero de inrgressos, "));
 
 
-
-
-
- const jogo ={ 
-    //  jogo: [ 'SF' , 'DT', 'FI'],
-     categoria1 : [ 1320.00 , 660.00 , 1980.00],
-     categoria2 : [ 880.00 , 440.00 , 1320.00],
-     categoria3 : [ 550.00 , 330.00 , 880.00],
-     categoria4 : [ 220.00 , 170.00 , 330.00],
- }
-   
-
-   // SF = 0    DT = 1  FT =2 
-
-
- 
-     let nomeJogo;
-     let numero;
-
+    const semifinais = [1320.00, 880.00, 550.00, 220.00]
+    const decisaoTerceiro = [660.00,  440.00, 330.00, 170.00]
+    const finais = [1980.00, 1320.00, 880.00, 330.00]
+    
+    
+    let nomeJogo;
+    let numero;
+    let precoTipo;
+    let preco;   
+    const dolar = 4.10;
+  
      switch (etapaDoJogo){
               case'SF':
-                     numero = 0 ;
-                     nomeJogo = "Semifinais";
+                 precoTipo = 'semifinais';
+                 nomeJogo = "Semifinais";
+                 preco = semifinais[categoria - 1]; 
                  break;   
-              case'DT':
-                 
-                  numero = 1 ;
+              case'DT':  
+                  precoTipo ='decisaoTerceiro';             
                   nomeJogo = "Decisao de 3 lugar";
+                  preco = decisaoTerceiro[categoria - 1]; 
                  break;
-              case'SF':
-                  numero = 2 ;
-                  nomeJogo = "Semifinais";
+              case'FI':
+                  precoTipo ="final";
+                  nomeJogo = "Finais";
+                  preco = finais[categoria - 1]; 
                   break;
-              default: 
-                  nomeJogo ="Entrou errrado";
-                  break;
-        
-     } 
-
-
- console.log(numero,nomeJogo);
-
-
- console.log ( `---Dados da compra--- 
- Nome do cliente: ${nomeCompleto} 
- Tipo do jogo:  ${etapaDoJogo ==="DO" ? 'Nacional'  : 'Internacional' }
-//  Etapa do jogo:  Final  
- Categoria: {categoria}
- Quantidade de Ingressos: {quantidadeIngressos}
- ---Valores--- 
- Valor do ingresso:  R$ {jogo['categoria'][jogo]}
- Valor total:  R$ 19800   {    quantidadeIngressos} `);
- 
+                } 
+       
+                console.log ( `---Dados da compra--- 
+                Nome do cliente: ${nomeCompleto} 
+                Tipo do jogo:  ${tipoDeJogo ==="DO" ? 'Nacional'  : 'Internacional' }
+                Etapa do jogo: ${nomeJogo}
+                Categoria: ${categoria}
+                Quantidade de Ingressos: ${quantidadeIngressos} ingressos
+                ---Valores--- 
+                Valor do ingresso: R$ ${tipoDeJogo === "DO" ? preco.toFixed(2)  :  (preco * dolar).toFixed(2)  }
+                Valor total: R$ ${tipoDeJogo === "DO" ? (preco * quantidadeIngressos).toFixed(2)  :  (preco* quantidadeIngressos * dolar ).toFixed(2)  } `);
+                
+                
+      
