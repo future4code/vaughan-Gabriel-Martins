@@ -77,7 +77,7 @@ a) Faça um `prompt` para receber a idade do usuário e guarde em uma variável.
 b) Garanta que essa variável é do tipo `Number`, você deve usar o cast para number para isso.
 */
 
-// const idadeParaDirigir = Number(prompt('Entre com a sua idade'));
+const idadeParaDirigir = Number(prompt('Entre com a sua idade'));
 
 /*
 c) Agora veja se essa idade do usuário corresponde à idade mínima que permite dirigir. Se sim,
@@ -90,7 +90,7 @@ c) Agora veja se essa idade do usuário corresponde à idade mínima que permite
      return retorno; 
  }
  
-//  console.log(legalDirigir(idadeParaDirigir));
+ console.log(legalDirigir(idadeParaDirigir));
 
 
  // 2) Agora faça um programa que verifica que turno do dia um aluno estuda. 
@@ -99,15 +99,15 @@ c) Agora veja se essa idade do usuário corresponde à idade mínima que permite
 
 
   
-//  const turnoM = prompt('Entre com o seu tunro M (matutino) ou V (Vespertino) ou N (Noturno)').trim(); 
+ const turnoM = prompt('Entre com o seu tunro M (matutino) ou V (Vespertino) ou N (Noturno)').trim(); 
     
 
-//  const turno = turnoM.toLocaleUpperCase();
-//  console.log(turno);
+ const turno = turnoM.toLocaleUpperCase();
+ console.log(turno);
  
-//     if (turno === 'M') { console.log('Bom Dia! ')
-//         }else if ( turno === "V"){ console.log('Boa Tarde!');
-//             }else if ( turno ==='N') { console.log('Boa Noite!')}
+    if (turno === 'M') { console.log('Bom Dia! ')
+        }else if ( turno === "V"){ console.log('Boa Tarde!');
+            }else if ( turno ==='N') { console.log('Boa Noite!')}
   
     
 
@@ -115,34 +115,34 @@ c) Agora veja se essa idade do usuário corresponde à idade mínima que permite
 
    // mostrando que foi capitlizada e trimmed  na questao anterior 
 
-//   console.log(turno);
+  console.log(turno);
 
-//    let menssagem;
-//    switch(turno){ 
-//        case 'M':
-//            menssagem = 'Bom dia!'
-//             break;
-//         case 'V':
-//             menssagem = "Boa Tarde!" 
-//             break;
-//         case 'N':
-//             menssagem ="Boa Noite"
-//             break;
-//         default: 
-//             menssagem= "Entrada errada"
-//             break;               
-//    }
-//     console.log(menssagem);
+   let menssagem;
+   switch(turno){ 
+       case 'M':
+           menssagem = 'Bom dia!'
+            break;
+        case 'V':
+            menssagem = "Boa Tarde!" 
+            break;
+        case 'N':
+            menssagem ="Boa Noite"
+            break;
+        default: 
+            menssagem= "Entrada errada"
+            break;               
+   }
+    console.log(menssagem);
    
 
 //////// 4) Considere 
 
 
-//  const genero = prompt("Qual genero de filme vão assistir? ").trim().toLowerCase();
-//  const preco = Number(prompt('Qual custa o ingresso?'));
+ const genero = prompt("Qual genero de filme vão assistir? ").trim().toLowerCase();
+ const preco = Number(prompt('Qual custa o ingresso?'));
 
 
-// console.log(( genero == 'fantasia' && preco < 15 ) ?  `Bom Filme!`  : `Escolha outro filme :( ` );
+console.log(( genero == 'fantasia' && preco < 15 ) ?  `Bom Filme!`  : `Escolha outro filme :( ` );
 
 
 
@@ -157,14 +157,14 @@ e "Aproveite o seu [LANCHINHO]", trocando [LANCHINHO] pelo que o usuário coloco
 
 
 
-// const genero = prompt("Qual genero de filme vão assistir? ").trim().toLowerCase();
-// const preco = Number(prompt('Qual custa o ingresso?'));
+const genero = prompt("Qual genero de filme vão assistir? ").trim().toLowerCase();
+const preco = Number(prompt('Qual custa o ingresso?'));
 
-//  if (genero === 'fantasia' && preco < 15 ) {
-//     const comida = prompt('O que vai comprar para comer?');
-//     console.log( "Bom Filme!")
-//     console.log("Aproveita a sua" ,comida);
-// } else console.log(`Escolha outro filme :( ` );
+ if (genero === 'fantasia' && preco < 15 ) {
+    const comida = prompt('O que vai comprar para comer?');
+    console.log( "Bom Filme!")
+    console.log("Aproveita a sua" ,comida);
+} else console.log(`Escolha outro filme :( ` );
 
 
 ///4)  
