@@ -181,9 +181,9 @@ e "Aproveite o seu [LANCHINHO]", trocando [LANCHINHO] pelo que o usuário coloco
  const quantidadeIngressos= Number(prompt("Entre com o numero de inrgressos, "));
 
 
-    const semifinais = [1320.00, 880.00, 550.00, 220.00]
-    const decisaoTerceiro = [660.00,  440.00, 330.00, 170.00]
-    const finais = [1980.00, 1320.00, 880.00, 330.00]
+  const semifinais = [1320.00, 880.00, 550.00, 220.00]
+  const decisaoTerceiro = [660.00,  440.00, 330.00, 170.00]
+  const finais = [1980.00, 1320.00, 880.00, 330.00]
     
     
     let nomeJogo;
