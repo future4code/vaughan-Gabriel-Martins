@@ -243,3 +243,4 @@ Vai imprimir os nomes de cada objeto em um array com 3 nomes no total/
 
    console.log(arrayFinal);
    
+   
