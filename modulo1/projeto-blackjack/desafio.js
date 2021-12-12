@@ -122,16 +122,19 @@ Deseja comprar mais uma carta?`
            compraAdicionalCart(userObject);
            console.log('122', userObject);
 
+//  alguma coisa errada aki quand cancelo esta comprando mais uma carta e perdendo. 
              resposta = confirm(
             `Line 125 Suas cartas são ${userObject.cardsText.map((item) => item )}. 
 A carta revelada do computador é ${computerObject.cardsText[0]}. 
 \n ${(userObject.cardsValoresSoma > 21) ? 'Game Over ' : 'Deseja comprar mais uma carta?' }`);
-             if (userObject.cardsValoresSoma > 21 || !resposta){ 
+             
+             
+            if (userObject.cardsValoresSoma > 21 || !resposta){ 
                  break;
              } 
               resposta = confirm(` 132 Suas cartas são ${userObject.cardsText.map((item) => item )}. Sua pontuação é ${userObject.cardsValoresSoma}
 Deseja comprar mais Carta? `); 
-                if (resposta){
+                if (resposta && userObject.cardsValoresSoma < 21){
                 compraAdicionalCart(userObject);
                 console.log('138', userObject);
                 }
@@ -145,13 +148,13 @@ Deseja comprar mais Carta? `);
 
 
               if ( computerObject.cardsValoresSoma < userObject.cardsValoresSoma &&  userObject.cardsValoresSoma <= 21)
-               alert ( `152 Usuaria Ganhou ,computer ${computerObject.cardsValoresSoma},user ${userObject.cardsValoresSoma} `)
-               else if ( computerObject.cardsValoresSoma > 21){
-                   alert ( ` 153 Usuaria Ganhou' , computer ${computerObject.cardsValoresSoma}, user ${userObject.cardsValoresSoma} `)
+               alert ( `150 Usuario Ganhou ,computer ${computerObject.cardsValoresSoma},user ${userObject.cardsValoresSoma} `)
+               else if ( computerObject.cardsValoresSoma > 21 && userObject.cardsValoresSoma <= 21){
+                   alert ( ` 152 Usuario Ganhou' , computer ${computerObject.cardsValoresSoma}, user ${userObject.cardsValoresSoma} `)
                 }else if ( computerObject.cardsValoresSoma > userObject.cardsValoresSoma && computerObject.cardsValoresSoma <=21){
                  alert ( ` 155 Computer Ganhou' , Computer ${computerObject.cardsValoresSoma},  user ${userObject.cardsValoresSoma} `)
                  
-                }else alert ( ` 154 Empate' , Computer ${computerObject.cardsValoresSoma},  user ${userObject.cardsValoresSoma} `)
+                }else if (computerObject.cardsValoresSoma === userObject.cardsValoresSoma) alert ( ` 154 Empate' , Computer ${computerObject.cardsValoresSoma},  user ${userObject.cardsValoresSoma} `)
 
              
               
@@ -163,18 +166,4 @@ Deseja comprar mais Carta? `);
 
    
         
-     
-            
-
-            
-            
-        
-        
-   //    else {const compraDeCartaAdicionais2 =  comprarCarta()
-   //    userObject.cards.cards4 = { ...compraDeCartaAdicionais2 };
-   //    userObject.cardsText.push(userObject.cards.cards4.texto);
-   //    userObject.cardsValor.push(userObject.cards.cards4.valor);
-   //   userObject.cardsValoresSoma =( userObject.cardsValoresSoma + userObject.cards.cards4.valor)
-   //    }
-    
 
