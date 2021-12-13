@@ -5,8 +5,6 @@
 
 
 
-
-
   //Question 8 
   // Comprando cartas e checando se pelo menos uma é diferente de A.     
   // Declarei este Objeto para retornar os valores das cartas. 
@@ -81,9 +79,13 @@ console.log(computerObject);
 
 // Perguntando ao jogador se eles quer comprar mais uma carta. 
 
+
+let teste = userObject.cardsText.map((item) => item);
+const teste1 =  teste;
+console.log(teste1);
  
 const quererComprarCarta = confirm(
-`Line 86 Suas cartas são ${userObject.cardsText.map((item) => item )}. 
+`Line 86 Suas cartas são ${(userObject.cardsText.map((item) => item))}. 
  A carta revelada do computador é ${computerObject.cardsText[0]}. 
 \n
 Deseja comprar mais uma carta?`
@@ -115,7 +117,7 @@ Deseja comprar mais uma carta?`
             
             
             if(userObject.cardsValoresSoma > 21 ) { 
-                
+                document.querySelector('.box').innerHTML = 'Game Over!!!'
             alert(` 119 Suas cartas são ${userObject.cardsText.map((item) => item )}. Sua pontuação é ${userObject.cardsValoresSoma}
             Game Over \n \n O Computador Ganhou !!!` )   }  
 
@@ -138,7 +140,7 @@ Deseja comprar mais Carta? `);
                 compraAdicionalCart(userObject);
                 console.log('138', userObject);
                 }
-            }
+        }
 
              while (computerObject.cardsValoresSoma <= 21  && computerObject.cardsValoresSoma < userObject.cardsValoresSoma  ) { 
                 compraAdicionalCart(computerObject);
@@ -150,17 +152,22 @@ Deseja comprar mais Carta? `);
               if ( computerObject.cardsValoresSoma < userObject.cardsValoresSoma &&  userObject.cardsValoresSoma <= 21)
                alert ( `150 Usuario Ganhou ,computer ${computerObject.cardsValoresSoma},user ${userObject.cardsValoresSoma} `)
                else if ( computerObject.cardsValoresSoma > 21 && userObject.cardsValoresSoma <= 21){
+                document.querySelector('.box').innerHTML = 'Usuario Ganhou'
                    alert ( ` 152 Usuario Ganhou' , computer ${computerObject.cardsValoresSoma}, user ${userObject.cardsValoresSoma} `)
                 }else if ( computerObject.cardsValoresSoma > userObject.cardsValoresSoma && computerObject.cardsValoresSoma <=21){
+                   document.querySelector('.box').innerHTML = ' Computador Ganhou';
                  alert ( ` 155 Computer Ganhou' , Computer ${computerObject.cardsValoresSoma},  user ${userObject.cardsValoresSoma} `)
                  
-                }else if (computerObject.cardsValoresSoma === userObject.cardsValoresSoma) alert ( ` 154 Empate' , Computer ${computerObject.cardsValoresSoma},  user ${userObject.cardsValoresSoma} `)
+                }else if (computerObject.cardsValoresSoma === userObject.cardsValoresSoma) {
+                     document.querySelector('.box').innerHTML = 'Empate!!!'
+                    alert ( ` 154 Empate' , Computer ${computerObject.cardsValoresSoma},  user ${userObject.cardsValoresSoma} `)
+                }
 
              
               
-
+           
              
-                    
+            
 
 
 
