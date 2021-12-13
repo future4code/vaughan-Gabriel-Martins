@@ -30,7 +30,7 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-
+  return  retornaNumerosPares(array).map( numero=> numero **2 );
 
 }
 
