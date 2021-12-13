@@ -130,7 +130,17 @@ return permissao;
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
 
+  let soma =0;
 
+
+  return  contas.map(item => {
+
+   let soma =0;
+   for ( numero of item.compras){ 
+       soma +=numero;
+   }
+
+  return  {...item, saldoTotal : item.saldoTotal - soma, compras:[]  } })
 
  
 }
