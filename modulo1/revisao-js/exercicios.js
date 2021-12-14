@@ -148,7 +148,7 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+  // fiz um array apartir do objeto e depois no arry usei sort para organizar alfeticamente pelos nomes e retornei os objectos dentro de um array usando map.
  const nomesAlfabeticamente = consultas.map( (item, index) =>  [item.nome, item.dataDaConsulta]).sort().map(item => { return {nome: item[0], dataDaConsulta: item[1]}})
 
  
@@ -159,4 +159,7 @@ return nomesAlfabeticamente;
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
    
-}
+    const consultasDatas = consultas.map(item =>  [new Date(item.dataDaConsulta) , item.nome  , item.dataDaConsulta   ]).sort().map(item => { return {nome: item[1], dataDaConsulta: item[2] }})
+     return consultasDatas;
+    
+    }
