@@ -50,6 +50,23 @@ function retornaMaiorNumero(array) {
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
+  const obj = {};
+  let maiorObjeto = {};
+
+  let maior=null;
+  // numero menor dividido por maior da sempre o proprio numero de resto   5 % 10 = 5 e etc... mas vou usar ternary operator 
+  // usando ternary quando os numeros forem iguais serao armazenados na condicao false;
+  ( num1 > num2 ? maiorObjeto = {maior: num1, menor:num2  }: maiorObjeto = {maior : num2, menor: num1});
+  console.log(maiorObjeto);
+  console.log(maior);
+   
+  
+  obj.maiorNumero = maiorObjeto.maior;
+  obj.maiorDivisivelPorMenor =  maiorObjeto.maior % maiorObjeto.menor === 0;
+  obj.diferenca = maiorObjeto.maior - maiorObjeto.menor;
+
+   return obj;
+
 
 }
 
