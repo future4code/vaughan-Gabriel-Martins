@@ -53,7 +53,7 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
   const obj = {};
   let maiorObjeto = {};
 
-  let maior=null;
+  let maior=0;
   // numero menor dividido por maior da sempre o proprio numero de resto   5 % 10 = 5 e etc... mas vou usar ternary operator 
   // usando ternary quando os numeros forem iguais serao armazenados na condicao false;
   ( num1 > num2 ? maiorObjeto = {maior: num1, menor:num2  }: maiorObjeto = {maior : num2, menor: num1});
