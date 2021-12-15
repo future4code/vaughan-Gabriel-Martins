@@ -1,0 +1,104 @@
+body{ 
+    background: rgb(212, 198, 198);
+    margin: 0;
+    padding: 0;
+}
+
+.navegation { 
+    display: inline-block;
+    background: rgb(112, 107, 107);
+    top:0;
+    Left:0;
+    width: 100%;
+    padding-bottom: 1rem;
+} 
+
+.navegation-titulo{ 
+    margin: 0.3rem 0.8rem;
+}
+
+.navegation--links--div{ 
+    margin-left: 0.5rem;
+}
+.navegation--links{ 
+    margin: 0.5rem 0.5rem;
+
+    font-size: 1rem;
+    color:white;
+    text-decoration: none;
+    
+}
+
+footer{ 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer-div{
+background:rgb(112, 107, 107);
+width: 100%;
+margin: 0;
+padding: 0;
+}
+
+.footer--img{
+    width: 1.3rem;
+    padding:0 0.3rem;
+}
+
+.footer-div p{ 
+    color:white;
+    padding:0 0.3rem;
+    margin:  0.4rem 0; 
+}
+
+/*  paginacontrole de estoque */
+
+
+.tabela-estoque{ 
+
+    padding: 0 2rem;
+    margin: 0 1px;
+
+}
+.tabela--img{ 
+    width:10rem;
+    border-radius: 2.5rem;
+    padding: 0.3rem;
+
+}
+
+
+
+
+/* add produto   */
+
+
+
+form{ 
+    display: inline-block;
+    background: white;
+    padding: 1.2rem ;
+    margin: 0 5%;
+    border-radius: 10px;
+    box-shadow: 2px 3px  rgba(0, 0, 0, 0.836);
+}
+
+.form--div{ 
+    padding: 2rem;
+    margin: 4rem;
+}
+form input{ 
+    display: block;
+    margin: 0.5rem;
+}
+form button{ 
+    margin-top: 0.8rem ;
+    background: rgba(22, 21, 21, 0.329);
+    border-radius: 4px;
+    color:rgba(0, 0, 0, 0.836);
+}
+
+/* pagina de vendas  */

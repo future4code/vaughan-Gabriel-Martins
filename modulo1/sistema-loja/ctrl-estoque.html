@@ -1,77 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Controle de Estoque</title>
+    <title>Loja das Coisas</title>
+    <link rel="stylesheet" type="text/css" href="./sheetstyle.css"> 
 </head>
 <body>
-    <div>
-        <p>Nome da lojinha</p>
-    </div>
+    <header class="navegation">
+        <div>
+            <h1 class="navegation-h1 navegation-titulo" > Vendas </h1>
+         </div>
     
-    <div>
-        <a href="index.html">Página Inicial</a>
-        <a href="ctrl-estoque.html">Controle de Estoque</a>
-        <a href="add-produto.html">Adicionar Produto</a>
-        <a href="funcionarios.html">Funcionários</a>
+    <div class="navegation--links--div">
+        <a class="navegation--links" href="index.html">Página Inicial</a>
+        <a class="navegation--links" href="ctrl-estoque.html">Controle de Estoque</a>
+        <a class="navegation--links" href="add-produto.html">Adicionar Produto</a>
+        <a class="navegation--links" href="funcionarios.html">Funcionários</a>
+        <a class="navegation--links" href="pag--historico.html">Historico de Vendas</a>
+        <a class="navegation--links" href="pag--vendas.html">Vendas</a>
     </div>
-
+    </header>
 
     <h2>Controle de Estoque</h2>
 
-    <table>
+    <table class="tabela-estoque">
         <tr>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Preço (R$)</th>
-            <th>Quantidade disponível</th>
+            <th class="tabela-estoque">Foto</th>
+            <th class="tabela-estoque">Descrição</th>
+            <th class="tabela-estoque">Preço (R$)</th>
+            <th class="tabela-estoque">Quantidade disponível</th>
         </tr>
 
         <tr>
-            <td><img width= 200px src="./imagens/colherdemadeira.jpg" alt="Foto colher de madeira"/></td>
-            <td> Colher de madeira   </td>
-            <td> R$:10,00 </td>
-            <td> 100 </td>
+            <td class="tabela-estoque"><img class="tabela--img" src="./imagens/colherdemadeira.jpg" alt="Foto colher de madeira"/></td>
+            <td class="tabela-estoque"> Colher de madeira   </td>
+            <td class="tabela-estoque"> R$ 10,00 </td>
+            <td class="tabela-estoque"> 100 </td>
         </tr>
 
         <tr>
-            <td><img width= 200px src="./imagens/cd.jpeg" alt="Foto CD"/></td>
-            <td> CD </td>
-            <td> R$:12,00</td>
-            <td> 1000 </td>
+            <td class="tabela-estoque"><img class="tabela--img" src="./imagens/cd.jpeg" alt="Foto CD"/></td>
+            <td class="tabela-estoque"> CD </td>
+            <td class="tabela-estoque"> R$ 12,00</td>
+            <td class="tabela-estoque"> 1000 </td>
         </tr>
 
         <tr>
-            <td><img width= 200px src="./imagens/computer.jpeg" alt="Foto computador"/></td>
-            <td> Computador </td>
-            <td> R$:1000,00 </td>
-            <td> 5 </td>
+            <td class="tabela-estoque"><img class="tabela--img" src="./imagens/computer.jpeg" alt="Foto computador"/></td>
+            <td class="tabela-estoque"> Computador </td>
+            <td class="tabela-estoque"> R$ 1000,00 </td>
+            <td class="tabela-estoque"> 5 </td>
         </tr>
 
         <tr>
-            <td><img width= 200px src="./imagens/redcar.jpeg" alt="foto carro vermelho"/></td>
-            <td> Carro Vermelho</td>
-            <td> R$:100.000 </td>
-            <td> 2 </td>
+            <td class="tabela-estoque"><img class="tabela--img" src="./imagens/redcar.jpeg" alt="foto carro vermelho"/></td>
+            <td class="tabela-estoque"> Carro Vermelho</td>
+            <td class="tabela-estoque"> R$100.000 </td>
+            <td class="tabela-estoque"> 2 </td>
         </tr>
         
         <!-- Crie mais uma linha desta tabela abaixo \/ -->
       
         <tr>
-            <td><img width= 200px src="./imagens/pao.jpeg" alt=" foto Pao"/></td>
-            <td> Pão de forma </td>
-            <td> R$:10,00 </td>
-            <td> 45 </td>
+            <td class="tabela-estoque"><img class="tabela--img" src="./imagens/pao.jpeg" alt=" foto Pao"/></td>
+            <td class="tabela-estoque"> Pão de forma </td>
+            <td class="tabela-estoque"> R$ 10,00 </td>
+            <td class="tabela-estoque"> 45  </td>
         </tr>
         
 
         <tr>
-            <td><img width= 200px src="./imagens/guarana.jpeg" alt='foto Guarana'/></td>
-            <td>Guarana 2L</td>
-            <td>R$:8,00</td>
-            <td>450</td>
+            <td class="tabela-estoque"><img class="tabela--img" src="./imagens/guarana.jpeg" alt='foto Guarana'/></td>
+            <td class="tabela-estoque">Guarana 2L</td>
+            <td class="tabela-estoque">R$ 8,00</td>
+            <td class="tabela-estoque">450</td>
         </tr>
 
     </table>
