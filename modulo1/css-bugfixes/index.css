@@ -117,7 +117,7 @@ td button {
 }
 
 .container-do-search {
-    margin-top: 20px;
+    margin-top: 20px ;
     height: 100px;
 }
 
@@ -134,4 +134,20 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+.div-tabela{ 
+    width: 70%;
+    margin: 0 auto;
+}
+.div-tabela>table{ 
+    width: 80%;
+    margin:0 auto;
+    padding-bottom: 20%;
+}
+
+.div-tabela tbody{ 
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
 }
