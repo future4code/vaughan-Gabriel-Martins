@@ -39,8 +39,17 @@ div>p:first-child {
 }
 
 div img {
-    background: rgba(0, 0, 0, 0);
+    background: rgba(200, 200, 200, 200);
 }
+
+div img:hover{
+    background: rgba(200, 200, 255, 0 );
+}
+div img:active{ 
+    
+    background: rgba(200, 200, 200, 200);
+}
+
 
 .botao-amarelo {
     background-color: #ffaf43;
