@@ -2,28 +2,42 @@ body{
     background: rgb(212, 198, 198);
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .navegation { 
     display: inline-block;
     background: rgb(112, 107, 107);
+    color: rgba(31, 30, 30, 0.699);
     top:0;
     Left:0;
     width: 100%;
-    padding-bottom: 1rem;
+    padding-bottom: 0.2rem;
 } 
 
 .navegation-titulo{ 
-    margin: 0.3rem 0.8rem;
+    margin: 0.5rem 0.7rem 0.9rem 0.9rem;
+    text-align: center;
+    font-size: 3rem;
 }
+
+.navegation p{ 
+    padding-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.658);
+    text-align: center;
+    font-size: 1.2rem;
+    
+} 
 
 .navegation--links--div{ 
-    margin-left: 0.5rem;
+    
+    text-align: center;
+    margin-top: 0.7rem;
 }
 .navegation--links{ 
-    margin: 0.5rem 0.5rem;
+    margin: 0 1.2rem;
 
-    font-size: 1rem;
+    font-size: 1.5rem;
     color:white;
     text-decoration: none;
     
@@ -61,7 +75,7 @@ padding: 0;
 
     padding: 0 2rem;
     margin: 0 1px;
-
+    text-align:center;
 }
 .tabela--img{ 
     width:10rem;
@@ -71,34 +85,66 @@ padding: 0;
 }
 
 
-
-
-/* add produto   */
+/* //////////// add produto     ////////////////////////// */
 
 
 
 form{ 
     display: inline-block;
+  
+    width:40%;
     background: white;
     padding: 1.2rem ;
-    margin: 0 5%;
+    margin: 0 10%;
     border-radius: 10px;
     box-shadow: 2px 3px  rgba(0, 0, 0, 0.836);
 }
 
 .form--div{ 
-    padding: 2rem;
-    margin: 4rem;
+
+    padding: 0.1rem;
+    margin:1%;
+  
 }
-form input{ 
+form input{
     display: block;
-    margin: 0.5rem;
+    margin: 0.8rem 0.5rem;
+    width: 90%;
+    height: 1.5rem;
+    font-size: 1.0rem;
 }
+form label{ 
+    font-weight: bold ;
+    margin: 0 1rem;
+
+}
+
 form button{ 
-    margin-top: 0.8rem ;
+    margin:1rem 2rem;
+    padding: 0.5rem;
     background: rgba(22, 21, 21, 0.329);
     border-radius: 4px;
     color:rgba(0, 0, 0, 0.836);
+    font-weight: bold ;
 }
 
 /* pagina de vendas  */
+
+h2{ 
+    margin: 2% 0 5% 5%;
+}
+
+
+/* Funcionarios */
+
+
+.employers-lista{ 
+    font-size: 1.5rem;
+    margin:5%;
+    list-style: none;
+    
+}
+
+.employers-lista li{ 
+    margin-top: 2%;
+}
