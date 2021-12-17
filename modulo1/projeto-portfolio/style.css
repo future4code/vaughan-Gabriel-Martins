@@ -1,0 +1,87 @@
+*{ 
+    margin:0;
+    padding: 0;
+
+}
+
+header{
+    position: sticky;
+    top:0;
+    background: black;
+    color: rgb(255, 251, 251);
+    z-index: 1;
+    padding: 0.4% 3%;
+}
+
+header>div{ 
+    text-align: right;
+}
+
+
+div>a{
+    color:rgb(245, 242, 237);
+    text-decoration: none;
+    padding: 0 4% ;
+    font-size: 1.2rem;
+
+}
+
+#projeto{ 
+    background: rgb(153, 141, 156);
+    color: white;  
+    height: 100vh;  
+}
+
+.responsivo--div{ 
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+}
+.responsivo{ 
+    height: 40vh;
+
+    padding:1%;
+}
+
+
+
+#educacao{ 
+    background: rgb(174, 89, 196);
+    height: 100vh;
+}
+
+.linguagens{ 
+    text-align: center;
+    position: relative;
+    top:78vh;
+  
+}
+.linguagens>img{ 
+    background: white;
+    border-radius: 30%;
+    width: 100px;
+    padding:  1%;
+    margin: 0.1%;
+}
+
+#contato{ 
+    background: rgb(180, 175, 182);
+    height: 100vh;
+   
+}
+
+footer{ 
+    display: block;
+    position: fixed;
+    background: blue;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2%;
+}
+
+h2{ 
+    position: sticky;
+    top: 10%;
+    padding: 1%;
+}
