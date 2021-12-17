@@ -39,7 +39,7 @@ div>p:first-child {
 }
 
 div img {
-    background: black;
+    background: rgba(0, 0, 0, 0);
 }
 
 .botao-amarelo {
