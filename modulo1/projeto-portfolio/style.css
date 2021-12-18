@@ -1,87 +1,177 @@
-*{ 
-    margin:0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  border: 1px solid red;
 
+  font-family: Helvetica, sans-serif;
 }
 
-header{
-    position: sticky;
-    top:0;
-    background: black;
-    color: rgb(255, 251, 251);
-    z-index: 1;
-    padding: 0.4% 3%;
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(245, 245, 245, 0.99);
+  color: rgb(19, 16, 16);
+  z-index: 99;
+  padding: 0.4% 3%;
 }
 
-header>div{ 
-    text-align: right;
+header > div {
+  text-align: right;
 }
 
-
-div>a{
-    color:rgb(245, 242, 237);
-    text-decoration: none;
-    padding: 0 4% ;
-    font-size: 1.2rem;
-
+a {
+  color: rgb(18, 20, 20);
+  padding: 0 4%;
+  font-size: 1.2rem;
 }
 
-#projeto{ 
-    background: rgb(153, 141, 156);
-    color: white;  
-    height: 100vh;  
+#projeto {
+  background: rgba(207, 206, 206, 0.808);
+  /* height: 100vh; */
+  color: rgb(18, 20, 20);
+}
+.projeto-titleh3 {
+  position: sticky;
+  top: 14vh;
+  padding: 1%;
+  background: rgb(239, 240, 243);
+  border-bottom: 0.09rem solid black;
+}
+.projeto-titleh3 > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.774);
 }
 
-.responsivo--div{ 
-    width: 95%;
-    margin: 0 auto;
-    text-align: center;
+.screen--size {
+  height: 75vh;
 }
-.responsivo{ 
-    height: 40vh;
-
-    padding:1%;
+.responsivoImagens {
+  width: 95%;
+  margin: 1% 1%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.responsivoImagens p {
+  max-width: 20vw;
+  padding: 3rem;
+}
+.responsivo1 {
+  height: 32vh;
+  padding: 1%;
+  margin: 0 3%;
+}
+.responsivo--1--2 {
+  height: 35vh;
+  width: 15vw;
+  padding: 1%;
+  margin: 0 3%;
+}
+.responsivo2 {
+  width: 19%;
+  height: 90%;
+  padding: 1%;
+  margin: 0 3%;
+}
+.responsivo3 {
+  height: 40vh;
+  padding: 1%;
+  margin: 8% 3%;
 }
 
-
-
-#educacao{ 
-    background: rgb(174, 89, 196);
-    height: 100vh;
+#educacao {
+  background: rgb(209, 221, 243);
+  height: 100vh;
 }
 
-.linguagens{ 
-    text-align: center;
-    position: relative;
-    top:78vh;
+#educacao > div {
+  display: flex;
+  width: 90%;
+  margin: 1% auto;
+}
+
+.educacao--box {
+  width: 40vw;
+  margin: 10% 3%;
+  text-align: center;
+  background: rgba(223, 232, 248, 0.993);
+  box-shadow: 0.15rem 0.15rem rgba(0, 0, 0, 0.863);
+  border-radius: 3%;
+}
+
+.educacao--box--tres span {
+  width: 90%;
+  height: 30%;
+  padding: 3%;
+  margin: 1%;
+  background: rgba(223, 232, 248, 0.993);
+  border-radius: 6%;
+}
+
+.educacao--box > p,
+.educacao--box > h3 {
+  width: 90%;
+  padding: 5%;
+}
+
+.educacao--box > ul {
+  text-align: justify;
+  padding: 10px;
+  list-style: none;
+}
+.educacao--box li {
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.linguagens {
+  position: relative;
+  top: 4vh;
+  left: 2vw;
+  justify-content: right;
+  width: 50vw;
+  z-index: 2;
+}
+.linguagens > img {
+  display: inline;
+  background: white;
+  box-shadow: 2px 2px black;
+  border-radius: 25%;
+  width: 70px;
+  padding: 0.7rem 0.5rem;
+  margin: 0.1%;
+}
+
+#contato {
+  background: rgb(180, 175, 182);
+  height: 100vh;
+}
+
+footer {
+  /* display: block; */
+  position: fixed;
+  background: rgb(1, 1, 24);
+  color: white;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6%;
+}
+
+h2 {
+  position: sticky;
+  top: 7.7vh;
+  padding: 1rem 3%;
+  margin: 0;
+  color: white;
+  background: rgba(0, 0, 0, 0.938);
   
 }
-.linguagens>img{ 
-    background: white;
-    border-radius: 30%;
-    width: 100px;
-    padding:  1%;
-    margin: 0.1%;
-}
 
-#contato{ 
-    background: rgb(180, 175, 182);
-    height: 100vh;
-   
-}
 
-footer{ 
-    display: block;
-    position: fixed;
-    background: blue;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2%;
-}
-
-h2{ 
-    position: sticky;
-    top: 10%;
-    padding: 1%;
+h6{ 
+  
 }
