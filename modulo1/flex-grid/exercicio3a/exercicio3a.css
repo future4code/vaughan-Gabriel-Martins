@@ -27,12 +27,21 @@ body {
     flex:3;
     padding: 20px;
     text-align: center;
+    Align-items: center;
+    Justify-content: center;
+    Align-items: center;
+    Justify-content: center;
 }
 
 .pink-background {
     background-color: fuchsia;
+    display: flex;
     height: 60vh;
     padding: 0% 10%;
+    Align-items: center;
+    Justify-content: center;
+    Align-items: center;
+    Justify-content: center;
 
 }
 
@@ -41,6 +50,9 @@ body {
     width:50vw; 
     height: 30vh;
     flex: 2;
+    Align-items: center;
+    Justify-content: center;
+    display: flex;
     
 }
 
@@ -48,16 +60,28 @@ body {
     background-color: red;
     width: 25vw;
     height: 15vh;
+     display: flex; 
+    Align-items: center;
+
+    Justify-content: center;
 }
+
 
 .lightgreen-background {
     background-color: lightgreen;
     height: 15vh;
     flex:1;
+    display: flex; 
+    Align-items: center;
+    Justify-content: center;
+
 }
 
 .purple-background {
     background-color: purple;
+    display: flex; 
+    Align-items: center;
+    Justify-content: center;
     height: 5vh;
 }
 #middle-container{ 
@@ -72,3 +96,10 @@ body {
     display: flex;
     flex-direction: column;
 } 
+
+
+.aligment { 
+    display: flex; 
+    Align-items: center;
+    Justify-content: center;
+}
