@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: Helvetica, sans-serif;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(245, 245, 245, 0.99);
+  color: rgb(19, 16, 16);
+  z-index: 99;
+  padding: 0.4% 3%;
+}
+
+header > div {
+  text-align: right;
+}
+
+a {
+  color: rgb(18, 20, 20);
+  padding: 0 4%;
+  font-size: 1.2rem;
+}
+
+a:hover {
+  color: rgb(151, 140, 140);
+}
+
+h2 {
+  position: sticky;
+  top: 7.7vh;
+  padding: 1rem 3%;
+  margin: 0;
+  color: white;
+  background: rgba(0, 0, 0, 0.938);
+}
+#projeto {
+  background: rgba(207, 206, 206, 0.808);
+  /* height: 100vh; */
+  color: rgb(18, 20, 20);
+}
+.projeto-titleh3 {
+  position: sticky;
+  top: 14vh;
+  padding: 1%;
+  background: rgb(239, 240, 243);
+  border-bottom: 0.09rem solid black;
+}
+.projeto-titleh3 > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.774);
+}
+
+.screen--size {
+  height: 75vh;
+}
+.workspaces--responsivoImagens {
+  width: 80%;
+  margin: 0% 0% 0 8%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.workspaces--responsivoImagens > div {
+  margin: 0 3.5%;
+}
+
+.responsivoImagens {
+  width: 95%;
+  margin: 10% 10% 0 1%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.workspaces--responsivoImagens p {
+  max-width: 20vw;
+  padding: 3rem 8rem 3rem 10rem;
+  font-family: "Montserrat";
+  text-align: right;
+}
+
+.responsivoImagens p,
+.responsivoImagens a,
+.workspaces--responsivoImagens a {
+  max-width: 20vw;
+  padding: 5rem 3rem;
+  font-family: "Montserrat";
+}
+.responsivo1 {
+  height: 32vh;
+  padding: 1%;
+  margin: 0 3%;
+}
+.responsivo--1--2 {
+  height: 30vh;
+  width: 15vw;
+  padding: 1%;
+  margin: 0 3%;
+}
+.responsivo2 {
+  width: 22%;
+  height: 70%;
+  padding: 1%;
+  margin: 5% 3%;
+}
+.responsivo3 {
+  height: 50vh;
+  padding: 1%;
+  margin: 4% 3%;
+}
+
+/******Educacao **********************/
+#educacao {
+  background: rgb(209, 221, 243);
+  height: 100vh;
+}
+
+#educacao > div {
+  display: flex;
+  width: 90%;
+  margin: 1% auto;
+}
+
+.educacao--box {
+  width: 40vw;
+  margin: 10% 3%;
+  text-align: center;
+  background: rgba(223, 232, 248, 0.993);
+  box-shadow: 0.15rem 0.15rem rgba(0, 0, 0, 0.863);
+  border-radius: 3%;
+}
+
+.educacao--box > p,
+.educacao--box > h3 {
+  width: 90%;
+  padding: 5%;
+}
+
+.educacao--box > ul {
+  text-align: justify;
+  padding: 10px;
+  list-style: none;
+}
+.educacao--box li {
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.linguagens {
+  position: relative;
+  top: 4vh;
+  left: 2vw;
+  justify-content: right;
+  width: 50vw;
+  z-index: 2;
+}
+.linguagens > img {
+  display: inline;
+  background: white;
+  box-shadow: 2px 2px black;
+  border-radius: 25%;
+  width: 70px;
+  padding: 0.7rem 0.5rem;
+  margin: 0.1%;
+}
+/******Contato **********************/
+#contato {
+  background: rgb(180, 175, 182);
+  height: 100vh;
+}
+
+#contato form {
+  position: relative;
+  margin: 9% auto;
+  display: flex;
+  width: 40vw;
+  height: 45vh;
+  padding: 5%;
+  text-align: center;
+  background: rgba(177, 177, 177, 0.979);
+  border-radius: 4%;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.411);
+  border-right: 2.1px solid black;
+  border-left: 0.9px solid rgba(56, 74, 236, 0.212);
+  border-top: 0.9px solid rgba(28, 40, 214, 0.233);
+}
+
+.label > label {
+  display: block;
+  text-align: right;
+  padding: 32% 0;
+}
+/* 
+#contato label{
+width: 20% ;
+height: 2rem;
+margin: 1% 1%;
+} */
+
+#contato input {
+  width: 90%;
+  height: 2rem;
+  margin: 4% 1px 0 0;
+  font-size: 1rem;
+}
+#detalhes {
+  width: 90%;
+  margin: 3.8% 1px 0 0;
+  font-size: 1rem;
+}
+
+#contato button {
+  padding: 6px 8px;
+  font-size: 1.1rem;
+  position: absolute;
+  bottom: 8%;
+  right: 20%;
+  border-radius: 10%;
+}
+
+/******* Footer*******/
+
+footer {
+  /* display: block; */
+  position: fixed;
+  background: rgba(5, 5, 5, 0.973);
+  color: white;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6%;
+}
+
+.sns {
+  position: fixed;
+  width: 15%;
+  bottom: 0;
+  right: 2%;
+  padding: 0 0.2vw;
+  text-align: right;
+}
+
+footer img {
+  height: 40px;
+  margin: -3px 4px;
+  border: 0.05px solid white;
+  border-radius: 10px;
+}
+footer img:hover {
+  background: whitesmoke;
+}
+
+footer .developed {
+  position: fixed;
+  bottom: 0.2%;
+  left: 2%;
+  color: rgba(245, 245, 245, 0.534);
+  font-size: 0.8rem;
+}
+
+footer a:hover {
+  color: rgb(239, 240, 243);
+}
