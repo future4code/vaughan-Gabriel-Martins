@@ -60,14 +60,37 @@ main {
 }
     
 
-@media screen  and  (max-width: 380px) {
+@media screen  and  (max-width: 600px) {
 main { 
-    grid: repeat(4,1fr) /  1fr
+    grid: repeat(4,1fr) /  1fr;
+    /* gap:0; */
 }
 
 #search{ 
     width: 6rem;
     margin-left: 2rem;
+
+}
+}
+@media screen  and  (max-width: 420px) {
+main { 
+    grid: repeat(4,1fr) /  1fr;
+    min-width: 350px;
+    
+}
+
+header{ 
+    min-width: 350px;
+}
+
+footer{ 
+    min-width: 350px;
+
+}
+#search{ 
+    width: 6rem;
+    margin-left: 2rem;
+
 }
 }
     
