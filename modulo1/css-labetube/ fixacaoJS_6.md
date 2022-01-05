@@ -1,28 +1,4 @@
-function criarArrayNomesAnimais() {
-    const animais = [
-      { nome: "Cachorro", classificacao: "mamífero" },
-      { nome: "Papagaio", classificacao: "ave" },
-      { nome: "Gato", classificacao: "mamífero" },
-      { nome: "Carpa", classificacao: "peixe" },
-      { nome: "Pomba", classificacao: "ave" }
-    ]
-
- // Escreva seu código aqui
-
-     return  animais.map( animal  => animal.nome )
-
-}
-
-
-// exercicios de fixacao 6 
-
-// Enunciado
-// Temos um array de tarefas, onde cada tarefa é um objeto com as propriedades: titulo, status e tempo.
-// O status tem três valores possíveis: todo (tarefa não iniciada), doing (tarefa em progresso) e done (tarefa terminada).
-// Crie um novo array que tenha apenas o nome das atividades terminadas
-// Observação: não altere o array de tarefas! Apenas o utilize para criar seu novo array utilizando as funnções filter e map.
-
-
+```
 function filtraTarefas() {
   const tarefas = [
     { titulo: "Fazer Remember", status: "done", tempo: 30 },
@@ -44,4 +20,4 @@ function filtraTarefas() {
      return tarefas.filter(tarefa =>  tarefa.status === "done").map(tarefa =>  tarefa.titulo)
 
 }
-
+```

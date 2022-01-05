@@ -45,6 +45,34 @@ main{
     
 }
 
+@media screen and (max-width:1200px  ){ 
+main { 
+    grid-template-columns: repeat(3,1fr );
+    grid-template-rows: 1fr 1fr 1fr;
+}
+    
+}
+
+@media screen  and  (max-width: 680px) {
+main { 
+    grid: repeat(4,1fr) / repeat(2, 1fr)
+}
+}
+    
+
+@media screen  and  (max-width: 380px) {
+main { 
+    grid: repeat(4,1fr) /  1fr
+}
+
+#search{ 
+    width: 6rem;
+    margin-left: 2rem;
+}
+}
+    
+
+
 .film-box{ 
     display: flex;
     flex-direction: column;
