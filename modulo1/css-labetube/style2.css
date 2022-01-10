@@ -1,0 +1,65 @@
+* { 
+    padding:0; 
+    margin:0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+body{ 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+header{ 
+    box-shadow: 2px 2px 2px #9b870c;
+    z-index: 1;
+    background: rgba(233, 229, 229, 0.856);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0 0 2.5rem;
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 1.4rem;
+    /* flex:1; */
+}
+    
+
+a{ 
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+a:hover, a:active{ 
+    color:#9b870c;
+}
+
+section{ 
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section h1{ 
+ padding:  20px 0 ;
+}
+
+.video-australia { 
+   
+    width: 75vw;
+    height: 80vh;    /* display: block; */
+    
+}
+
+
+footer{ 
+    flex:.5;
+    box-shadow: -2px -2px 1.5px rgb(0, 0, 2);
+    background:rgb(234, 236, 236);
+    color: black;
+}
+ 
