@@ -51,6 +51,11 @@ input{
     box-shadow: 0 0 1px 1px rgba(102, 102, 101, 0.219);
     font-size: 1rem;
     padding: 5px 1rem;
+    outline: none;
+}
+
+input:hover, input:active{ 
+    outline: 0.5px  solid rgba(119, 119, 119, 0.555);
 }
 
 main {
@@ -133,13 +138,20 @@ hr{
 }
 
 
+h4{ 
+    font-weight: 400;
+}
+
+h4:active, h4:hover{ 
+    color:rgba(119, 119, 119, 0.555);
+}
+
 footer {
     height: 3%;
     background-color: grey;
     margin: 0;
     padding: 0;
     display: flex;
-
     align-items: center;
 }
 
