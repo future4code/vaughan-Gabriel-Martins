@@ -1,0 +1,166 @@
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: rgb(248, 241, 230);
+    font-family: 'inter';
+}
+
+
+.tela-inteira {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    background: rgba(0, 0, 0, 0.87);
+    box-shadow: 0 0 1px 1px rgba(102, 102, 101, 0.219);
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 50px; 
+    height: 10%;
+}
+
+header h1{ 
+    color: rgb(218, 27, 27);
+}
+
+.logo{ 
+    margin: 10px;
+    width: 40px;
+}
+
+.svg-menu{ 
+    width:20px;
+}
+
+li{ 
+    margin: 20px;
+    /* font-size: rem; */
+    font-weight: 200px;
+}
+input{ 
+
+    background: rgba(0, 0, 0, 0.164);
+    width: 45%;
+    height: 25px;
+    margin: auto;
+    border: none;
+    box-shadow: 0 0 1px 1px rgba(102, 102, 101, 0.219);
+    font-size: 1rem;
+    padding: 5px 1rem;
+    outline: none;
+}
+
+input:hover, input:active{ 
+    outline: 0.5px  solid rgba(119, 119, 119, 0.555);
+}
+
+main {
+    min-height: 80%;
+    display: flex;
+}
+
+hr{ 
+    border: 0.5px solid rgba(199, 197, 197, 0.089) ;
+}
+.menu-vertical {
+
+    background: rgba(0, 0, 0, 0.87);
+    flex-basis: 200px;
+
+}
+
+.botoes-meunu-vertical {
+    list-style-type: none;
+}
+
+.painel-de-videos {
+    padding-left: 20px;
+    padding-top: 20px;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 24.8% 0.2%);
+    grid-template-rows: repeat(4, 270px 20px);
+    background: rgba(0, 0, 0, 0.911);
+}
+
+.media1 {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.media2 {
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.media3 {
+    grid-column-start: 5;
+    grid-row-start: 1;
+}
+
+.media4 {
+    grid-column-start: 7;
+    grid-row-start: 1;
+}
+
+.media5 {
+    grid-column-start: 1;
+    grid-row-start: 3;
+}
+
+.media6 {
+    grid-column-start: 3;
+    grid-row-start: 3;
+}
+
+.media7 {
+    grid-column-start: 5;
+    grid-row-start: 3;
+}
+
+.media8 {
+    grid-column-start: 7;
+    grid-row-start: 3;
+}
+
+
+.box-pagina-principal {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    grid-template-columns: 1fr;
+    gap:10px;
+    align-items: start;
+    justify-items: stretch;
+}
+
+
+h4{ 
+    font-weight: 400;
+}
+
+h4:active, h4:hover{ 
+    color:rgba(119, 119, 119, 0.555);
+}
+
+footer {
+    height: 3%;
+    background-color: grey;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.box-pagina-principal > img {
+    width: 95%;
+    height: 200px;
+}
+
+h4 {
+    margin-left: 20px;
+}
+
