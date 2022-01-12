@@ -20,6 +20,10 @@ const ImgCompartilhar = styled.img`
 height:100%;
 widht:px;/
 margin: 0;
+couser: pointer; 
+&:hover, &:active {  
+ background: red;
+}
 `
 
 const clickHandler = (e) => { 
