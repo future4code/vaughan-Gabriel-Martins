@@ -7,6 +7,8 @@ import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import iconeCompartilhar  from '../../img/share.svg'
+import star_white from "../../img/star_white.svg"
+import star_black from "../../img/star_black.svg"
 
 
 
@@ -62,7 +64,8 @@ class Post extends React.Component {
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0,
-    compartilhar:false
+    compartilhar:false, 
+    star: false
   }
 
   onClickCurtida = () => {
@@ -89,12 +92,18 @@ class Post extends React.Component {
   }
 
   onClickCompartilhar = () => { 
-    console.log(this.state.compartilhar);
     this.setState({
       compartilhar:!this.state.compartilhar
     })
   }
 
+  onClickSave = () => { 
+    this.setState({ 
+      star:!this.state.star
+    })
+
+  }
+   
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
@@ -110,6 +119,11 @@ class Post extends React.Component {
     } else {
       iconeCurtida = iconeCoracaoBranco
     }
+
+     
+     let starSave;
+     
+     (this.state.star ? starSave = star_black : starSave = star_white );
 
     
     let componenteCompartilhar
@@ -140,6 +154,10 @@ class Post extends React.Component {
           icone={iconeCurtida}
           onClickIcone={this.onClickCurtida}
           valorContador={this.state.numeroCurtidas}
+        />
+        <IconeComContador
+          icone={starSave}
+          onClickIcone={this.onClickSave}
         />
 
         <IconeComContador
