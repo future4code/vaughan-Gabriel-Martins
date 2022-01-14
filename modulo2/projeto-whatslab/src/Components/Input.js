@@ -1,4 +1,6 @@
-import React from "react";
+// import React from "react";
+import React, { Component } from 'react';
+import Select from 'react-select';
 import styled from "styled-components";
 
 
@@ -7,19 +9,19 @@ display: flex;
 width:100%;
 // height:200px;
 border:1px solid red;
-align-items: flex-end;
+align-items: center;
 justify-content: space-around;
 padding:20px 5px;
 position: absolute;
 bottom: 0;
 `
 
-const InputUser = styled.select`
-width:16%;
-height:
-font-size:1.0rem;
-padding: 4px 0;
-`
+// const InputUser = styled.select`
+// width:16%;
+// height:
+// font-size:1.0rem;
+// padding: 4px 0;
+// `
 const InputMessage = styled.input`
 width:80%;
 // height:100px;
@@ -68,18 +70,34 @@ class Input extends React.Component{
 
     }
     
+
+    
+    
     
     render() {
+    
+        const options = [
+            { value: 'Gabriel', label: 'Eu' },
+            { value: 'Outro', label: 'Outro' },
+            
+        ]
+        console.log(options.value)
+
+
+            this.onClickOption =(e) => { 
+        
+                console.log('teste')
+            }
         
        this.chatMessagem  = this.state.messagens.map(item => { 
-           return (
-                <>
-                <ChatDiv>   
-                  {item}
-                </ChatDiv>
-                <br/>
-                </>
-                )
+        return (
+            <>
+            <ChatDiv>   
+                {item}
+            </ChatDiv>
+            <br/>
+            </>
+        )
             
        
        })
@@ -94,11 +112,11 @@ class Input extends React.Component{
 
           <InputBox>
             {/* <InputUser  value={this.inputUser} onChange={this.onChangeInputUser}  /> */}
-             <InputUser name="select">
-                <option value="valor1">Outro</option>
-                <option value="valor2" selected>Eu</option>
-            </InputUser>         
- 
+             {/* <InputUser name="select"> */}
+                {/* <option onSelect={this.onClickOption} value='1' >Outro</option>
+                <option onSelect={this.onClickOption} value='2' selected>Eu</option> */}
+            {/* </InputUser>          */}
+            <Select options={options} />
             <InputMessage value={this.state.inputMessage}  onChange={this.onChangeInputMessage} />
             <button onClick={this.onClickSend}>en</button>
         </InputBox>
