@@ -54,6 +54,15 @@ const UserHilight = styled.p`
   display: inline;
 `;
 
+
+const OutroUserStyle = styled.span`
+ font-weight:bold;
+ font-size: 0.8em;
+ color: rgba(172, 170, 170, 1);
+ margin-bottom:5px;  
+ display: inline-block;
+`
+
 class Input extends React.Component {
   state = {
     inputMessage: "",
@@ -118,16 +127,11 @@ class Input extends React.Component {
       })
       console.log(this.state.deleteMessage);
       let messagens2
-      // if( this.state.deleteMessage){
-        // const messagensTeste = this.state.messagens.filter(item => item.id === );
+ 
         this.setState({
           messagens : this.state.messagens.filter(item => item.id != e.target.id )
         })
-    // }
-   
-    // this.setState({ 
-    //   messagens : messagens2
-    // })
+
   }
     
     console.log(this.messagens)
@@ -155,7 +159,7 @@ class Input extends React.Component {
       } else {
         return (
           <div key={item.id} id={item.id} className="left box" onClick={this.onClickDelete}>
-            {item.user}
+            <OutroUserStyle>{item.user}:</OutroUserStyle>
             <br /> {item.message}
             <br />
           </div>
