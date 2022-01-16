@@ -8,12 +8,12 @@ import send from "../img/send.svg";
 
 let hover = 0;
 const ButtonEnviar = styled.button`
-border: none;
-height:2.2rem;
-background: rgba(220, 226, 192, 0.849);
+  border: none;
+  height: 2.2rem;
+  background: rgba(220, 226, 192, 0.849);
 
-&:hover,
-&:active {
+  &:hover,
+  &:active {
     border: 1px solid black;
   }
 `;
@@ -32,19 +32,26 @@ const InputBox = styled.div`
   justify-content: space-around;
   padding: 20px 5px;
   bottom: 0;
- 
 `;
-
 
 const InputMessage = styled.input`
   width: 60%;
-  height:2.2rem;
+  height: 2.2rem;
   font-size: 1rem;
   padding: 4px 0;
 `;
 
-const ChatDiv = styled.div`
-  
+const NoUser = styled.div`
+  font-size: 1.4rem;
+  //  color: red;
+  margin: 2px 10px;
+  display: inline;
+`;
+
+const UserHilight = styled.p`
+  font-size: 1.4rem;
+  color: red;
+  display: inline;
 `;
 
 class Input extends React.Component {
@@ -52,8 +59,10 @@ class Input extends React.Component {
     inputMessage: "",
     inputUser: "",
     messagens: [],
+    messagens1: [],
     user: "Selecione um usuario",
-    isUserSelected: false
+    isUserSelected: false,
+    deleteMessage: false
   };
 
   onChangeInputUser = (e) => {
@@ -64,18 +73,18 @@ class Input extends React.Component {
     this.setState({ inputMessage: e.target.value });
   };
 
-  onKeyPressEnter =(e)=>{ 
-      if(e.key === "Enter" ) {
-
-          this.onClickSend();
-      }
-  } 
-
+  onKeyPressEnter = (e) => {
+    if (e.key === "Enter") {
+      this.onClickSend();
+    }
+  };
   onClickSend = () => {
-    if (this.state.inputMessage.length < 1 || this.state.inputMessage === " " )
+    if (this.state.inputMessage.length < 1 || this.state.inputMessage === " ")
       return;
-    if (  this.state.user ==="Selecione um usuario" ){
-        const isUserSelected = false;
+    if (this.state.user === "Selecione um usuario") {
+      const isUserSelected = false;
+
+      return;
     }
     const message = {
       id: Math.random(),
@@ -95,8 +104,36 @@ class Input extends React.Component {
   onChangeSelect = (e) => {
     this.setState({
       user: e.value,
-      isUserSelected:true
+      isUserSelected: true,
     });
+  };
+
+  onClickDelete = (e) => {
+ 
+    const idMessageToDeleted = e.target.id;
+
+    if (e.detail >= 2) {
+      this.setState({ 
+        deleteMessage : window.confirm("Are you sure that you want delete it?"),
+      })
+      console.log(this.state.deleteMessage);
+      let messagens2
+      // if( this.state.deleteMessage){
+        // const messagensTeste = this.state.messagens.filter(item => item.id === );
+        this.setState({
+          messagens : this.state.messagens.filter(item => item.id != e.target.id )
+        })
+    // }
+   
+    // this.setState({ 
+    //   messagens : messagens2
+    // })
+  }
+    
+    console.log(this.messagens)
+    // console.log(this.messagensTeste)
+    console.log(idMessageToDeleted)
+
   };
 
   render() {
@@ -105,26 +142,21 @@ class Input extends React.Component {
       { value: "Outro", label: "Outro" },
     ];
     // console.log(options);
-
-  
     // console.log(this.state.user);
     // console.log(this.messagePosition);
 
     this.chatMessagem = this.state.messagens.map((item) => {
       if (item.user === "Eu") {
         return (
-          <div className="right box">
-            <div key={item.id}>
+          <div  key={item.id} id={item.id} className="right box" onClick={this.onClickDelete}>
             {item.message}
-            </div>
-
-            <br />
           </div>
         );
       } else {
         return (
-          <div key={item.id} className="left box">
-            {item.user}<br/> {item.message}
+          <div key={item.id} id={item.id} className="left box" onClick={this.onClickDelete}>
+            {item.user}
+            <br /> {item.message}
             <br />
           </div>
         );
@@ -133,12 +165,16 @@ class Input extends React.Component {
     //   console.log(this.state.isUserSelected);
     return (
       <>
-      <>
         {this.chatMessagem}
-      </>
-         <div>{ this.state.isUserSelected ||  "Please select a User"}</div> 
+
+        <div>
+          {this.state.isUserSelected || (
+            <NoUser>
+              Please select a <UserHilight>User</UserHilight> below !
+            </NoUser>
+          )}
+        </div>
         <InputBox>
-         
           <Select onChange={this.onChangeSelect} options={options} />
           <InputMessage
             value={this.state.inputMessage}
