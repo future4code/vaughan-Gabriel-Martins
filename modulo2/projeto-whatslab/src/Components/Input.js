@@ -6,7 +6,7 @@ import styled from "styled-components";
 import "../App.css";
 import send from "../img/send.svg";
 
-let hover = 0;
+
 const ButtonEnviar = styled.button`
   border: none;
   height: 2.2rem;
@@ -54,14 +54,13 @@ const UserHilight = styled.p`
   display: inline;
 `;
 
-
 const OutroUserStyle = styled.span`
- font-weight:bold;
- font-size: 0.8em;
- color: rgba(172, 170, 170, 1);
- margin-bottom:5px;  
- display: inline-block;
-`
+  font-weight: bold;
+  font-size: 0.8em;
+  color: rgba(172, 170, 170, 1);
+  margin-bottom: 5px;
+  display: inline-block;
+`;
 
 class Input extends React.Component {
   state = {
@@ -71,7 +70,7 @@ class Input extends React.Component {
     messagens1: [],
     user: "Selecione um usuario",
     isUserSelected: false,
-    deleteMessage: false
+    deleteMessage: false,
   };
 
   onChangeInputUser = (e) => {
@@ -92,9 +91,9 @@ class Input extends React.Component {
       return;
     if (this.state.user === "Selecione um usuario") {
       const isUserSelected = false;
-
       return;
     }
+
     const message = {
       id: Math.random(),
       user: this.state.user,
@@ -118,47 +117,60 @@ class Input extends React.Component {
   };
 
   onClickDelete = (e) => {
- 
     const idMessageToDeleted = e.target.id;
-
+     //! double click check for delete the message 
     if (e.detail >= 2) {
-      this.setState({ 
-        deleteMessage : window.confirm("Are you sure that you want delete it?"),
-      })
+      this.setState({
+        deleteMessage: window.confirm("Are you sure that you want delete it?"),
+      });
       console.log(this.state.deleteMessage);
-      let messagens2
- 
-        this.setState({
-          messagens : this.state.messagens.filter(item => item.id != e.target.id )
-        })
 
-  }
-    
-    console.log(this.messagens)
+
+     //!  Using filter to filter the one that should be deleted. 
+      this.setState({
+        messagens: this.state.messagens.filter(
+          (item) => item.id != e.target.id
+        ),
+      });
+    }
+
+    console.log(this.messagens);
     // console.log(this.messagensTeste)
-    console.log(idMessageToDeleted)
-
+    console.log(idMessageToDeleted);
   };
+  //! Selector form 
+  options = [
+    { value: "Eu", label: "Eu" },
+    { value: "Outro", label: "Outro" },
+  ];
+  // console.log(options);
+  // console.log(this.state.user);
+  // console.log(this.messagePosition);
 
   render() {
-    const options = [
-      { value: "Eu", label: "Eu" },
-      { value: "Outro", label: "Outro" },
-    ];
-    // console.log(options);
-    // console.log(this.state.user);
-    // console.log(this.messagePosition);
 
+    //! Render the chat message - I have divided into two different CSS class. 
+    //! That is divide it int left and right  "Eu "  and "Outro".
     this.chatMessagem = this.state.messagens.map((item) => {
       if (item.user === "Eu") {
         return (
-          <div  key={item.id} id={item.id} className="right box" onClick={this.onClickDelete}>
+          <div
+            key={item.id}
+            id={item.id}
+            className='right box'
+            onClick={this.onClickDelete}
+          >
             {item.message}
           </div>
         );
       } else {
         return (
-          <div key={item.id} id={item.id} className="left box" onClick={this.onClickDelete}>
+          <div
+            key={item.id}
+            id={item.id}
+            className='left box'
+            onClick={this.onClickDelete}
+          >
             <OutroUserStyle>{item.user}:</OutroUserStyle>
             <br /> {item.message}
             <br />
@@ -170,7 +182,6 @@ class Input extends React.Component {
     return (
       <>
         {this.chatMessagem}
-
         <div>
           {this.state.isUserSelected || (
             <NoUser>
@@ -179,7 +190,7 @@ class Input extends React.Component {
           )}
         </div>
         <InputBox>
-          <Select onChange={this.onChangeSelect} options={options} />
+          <Select onChange={this.onChangeSelect} options={this.options} />
           <InputMessage
             value={this.state.inputMessage}
             onChange={this.onChangeInputMessage}
