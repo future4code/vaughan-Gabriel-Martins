@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-
+import PerguntaAberta from './PerguntaAberta'; 
+import PerguntaOpcoes from './PerguntaOpcoes'; 
 
 // const SectionEtapa3 = styled.div`
 // display:flex;
@@ -11,28 +12,34 @@ import styled from "styled-components";
 
 
 
-class Etapa3 extends React.Component{
+class Etapa3 extends React.Component {
 
-  render(){ 
+  optionChild = (data) => { 
+    console.log('optionChild- Etapa3.js',data)
+    this.props.optionChildEtapa(data)
+  }
+
+  render() {
 
 
-    return( 
+    return (
 
-        <>
+      <>
         <h1>Etapa 3 - INFORMAÇOES GERAIS DE ENSINO</h1>
-        <h2>5. Porque você não terminou um curso de graduação?</h2>
-        <input/>
-        <h2>Você fez algum curso complementar?</h2>
-        <select name="cursos" id="cursos">
-                
-            <option value="Nenhum">Nenhum</option>
-            <option value="Curso técnico">Curso técnico</option>
-            <option value="Curso de linguas">Curso de linguas</option>
-                </select>
-        </>
-    )
+        {/* <h2>5. Porque você não terminou um curso de graduação?</h2> */}
+        <PerguntaAberta pergunta={'5. Porque você não terminou um curso de graduação?'} />
+        
+        {/* <PerguntaOpcoes optionChild={this.optionChild}  pergunta={"6. Você fez algum curso complementar?"} */}
+        <PerguntaOpcoes optionChild={this.optionChild}  pergunta={"6. Você fez algum curso complementar?"}
+         perguntaOpcoesName={'cursos'}
+         optionsPerguntaOptions={[ "Nenhum",
+          "Curso técnico",
+          "Curso de linguas"
+          ]}/>       
+      </>
+        )
   }
 
 }
 
-export default Etapa3;
+        export default Etapa3;

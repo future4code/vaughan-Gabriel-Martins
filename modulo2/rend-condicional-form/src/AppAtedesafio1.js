@@ -24,33 +24,15 @@ paddin:10px;
 margin-top: 5%;
 `
 
-// defasio 2 
-// ? this functions is calling data from etapa 1 / etapa 3  
-//? taking data ai component optionselector  data.
-
-
-
 
 
 class App extends React.Component{ 
   state={ 
-    etapa:1,
-    userSelectionAnswer: '',
-    isUnderGranded: false,
+     etapa:1
   }
+ 
+   etapaNumero = 1;
   
-  etapaNumero = 1;
-  
-  optionChildEtapa = (data) => { 
-  
-
-    if(data === "Ensino superior completo" 
-      ||data === "Ensino superior incompleto" ){
-        
-      this.setState({isUnderGranded:true, })
-      }
-  }
-
   onClickNextStep =()=>{
   
     {this.setState({ 
@@ -64,10 +46,12 @@ class App extends React.Component{
     switch (this.state.etapa) {
      
       case 1:
-          this.etapaNumero = ( this.state.isUnderGranded == true?  <Etapa3  optionChildEtapa={this.optionChildEtapa} /> : <Etapa2/> )
+          this.etapaNumero = <Etapa2/>
         break;
-
       case 2:
+          this.etapaNumero =  <Etapa3/>
+        break;
+      case 3:
           this.etapaNumero =  <Final/>
         break;
       default:
@@ -77,10 +61,11 @@ class App extends React.Component{
     }
     
     render(){ 
+      console.log( this.state.etapa)
       return (
         <MainDiv>
-        {(this.state.etapa === 1? <Etapa1  optionChildEtapa={this.optionChildEtapa}   /> :this.etapaNumero)}
-        { this.state.etapa===3 || <ButtonNextStep onClick={this.onClickNextStep}>Próxima etapa</ButtonNextStep>}
+        {(this.state.etapa === 1? <Etapa1/> :this.etapaNumero)}
+        { this.state.etapa===4 ||<ButtonNextStep onClick={this.onClickNextStep}>Próxima etapa</ButtonNextStep>}
       </MainDiv>
     );
   }

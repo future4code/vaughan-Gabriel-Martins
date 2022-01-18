@@ -10,11 +10,9 @@ import styled from "styled-components";
 
 
 
-
 class Final extends React.Component{
 
   render(){ 
-
 
     return( 
 
