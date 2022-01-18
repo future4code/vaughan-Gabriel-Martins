@@ -82,6 +82,7 @@ class Input extends React.Component {
   };
 
   onKeyPressEnter = (e) => {
+    console.log(e);
     if (e.key === "Enter") {
       this.onClickSend();
     }
