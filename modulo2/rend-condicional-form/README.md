@@ -1,27 +1,18 @@
 ## Renderização condicional. 
 
-Projeto: 
+Tudo do exercisio normal feito mais desafios 1 e 2
 
-**ETAPA 1: Dados gerais**
 
-1. Nome [pergunta aberta]
-2. Idade [pergunta aberta]
-3. Email [pergunta aberta]
-4. Qual o grau de escolaridade [pergunta com seleção]
-    - Ensino Médio Incompleto
-    - Ensino Médio Completo
-    - Ensino Superior Incompleto
-    - Ensino Superior Completo
+https://unhealthy-skin.surge.sh/
 
-**ETAPA 2: Informações educacionais para quem está cursando (ou já terminou) o ensino superior**
 
-1. Qual o curso? [pergunta aberta]
-2. Qual a unidade de ensino? [pergunta aberta]
 
-**ETAPA 3: Informações sobre quem não se formou no ensino superior nem está cursando**
 
-1. Por que você não terminou um curso de graduação? [pergunta aberta]
-2. Você fez algum curso complementar? [pergunta com seleção]
-    - Curso técnico
-    - Cursos de inglês
-    - Não fiz curso complementar
+Projeto: https://unhealthy-skin.surge.sh/![Screen Shot 2022-01-18 at 5 39 34 pm](https://user-images.githubusercontent.com/87931081/149911369-c385a065-6ba9-48a4-9be6-8b7e867981ab.png)
+![Screen Shot 2022-01-18 at 5 39 43 pm](https://user-images.githubusercontent.com/87931081/149911392-6a3a41e9-3cf4-4ea7-8715-f89da12218fa.png)
+![Screen Shot 2022-01-18 at 5 39 57 pm](https://user-images.githubusercontent.com/87931081/149911399-c230aa4e-cfc2-4361-b0b1-8d0e9ef94060.png)
+![Screen Shot 2022-01-18 at 5 40 04 pm](https://user-images.githubusercontent.com/87931081/149911407-77955c28-3cf1-47af-b2d1-0e1656e07fe5.png)
+![Screen Shot 2022-01-18 at 5 40 14 pm](https://user-images.githubusercontent.com/87931081/149911417-fe4b4e30-da25-41b2-a57c-3ac032f6c0cb.png)
+
+
+
