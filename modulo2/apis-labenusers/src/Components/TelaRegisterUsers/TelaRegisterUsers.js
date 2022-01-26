@@ -40,21 +40,28 @@ class TelaRegisterUsers extends React.Component {
   render() {
 
     return (
-      <FormBox  onSubmit={(e)=>this.props.onSubmitNomeEmail(e)} >
-        <label>Nome: </label>
-        <input id={this.props.idNome}
-           value={this.props.value1}
-          onChange={(e) => this.props.onChangeHandlerNome(e.target.value)}
-          placeholder={this.props.placeholder1} />
+      <>
 
-        <label>Email: </label>
-        <input id={this.props.idEmail}
-          value={this.props.value2}
-          onChange={(e) => this.props.onChangeHandlerEmail(e.target.value)}
-          placeholder={this.props.placeholder2} />
-        <button>Criar Usuário</button>
-      </FormBox>
+        <button onClick={this.props.ChangingScreen}>Troca Tela</button>
+
+        <FormBox onSubmit={(e) => this.props.onSubmitNomeEmail(e)} >
+          <label>Nome: </label>
+          <input id={this.props.idNome}
+            value={this.props.value1}
+            onChange={(e) => this.props.onChangeHandlerNome(e.target.value)}
+            placeholder={this.props.placeholder1} />
+
+          <label>Email: </label>
+          <input id={this.props.idEmail}
+            value={this.props.value2}
+            onChange={(e) => this.props.onChangeHandlerEmail(e.target.value)}
+            placeholder={this.props.placeholder2} />
+          <button>Criar Usuário</button>
+        </FormBox>
+
+      </>
     );
+
   }
 }
 
