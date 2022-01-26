@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import TelaListUsers from './Components/TelaListUsers/TelaListUsers';
 import TelaRegisterUsers from './Components/TelaRegisterUsers/TelaRegisterUsers';
+import DetalhesUsuarios from './Components/DetalhesUsuarios/DetalhesUsuarios';
 
 class App extends React.Component {
   state = {
@@ -72,12 +73,8 @@ class App extends React.Component {
         { this.state.nextScreen ?
         
         <TelaListUsers
-     
-        nextScreen={this.nextScreen}
-
-        
+        nextScreen={this.state.nextScreen}
         /> :
-
         <TelaRegisterUsers
           placeholder1='Nome'
           placeholder2='E-mail'
