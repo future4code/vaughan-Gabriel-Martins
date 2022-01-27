@@ -5,11 +5,16 @@ import DetalhesUsuarios from '../DetalhesUsuarios/DetalhesUsuarios';
 
 
 const BoxUserNames = styled.div`
-  margin: 10px 100px;
+  margin: 40px 100px;
   border: 1px solid black;
-  width: 100px;
+  width: 200px;
   display: flex;
   justify-content: space-between;
+`;
+const SearchedUserbox = styled.div`
+  margin: 100px 100px;
+  border: 1px solid black;
+  width: 200px;
 `;
 
 class TelaListUsers extends React.Component {
@@ -19,7 +24,8 @@ class TelaListUsers extends React.Component {
     trocarTela: true,
     getUserByIdState: "",
     apagado: false,
-    seacherUserValue:'',
+    seacherUserValue: '',
+    erroOut:'',
   };
 
   componentDidMount() {
@@ -45,13 +51,11 @@ class TelaListUsers extends React.Component {
   id;
   onClickApagar = (id) => {
     if (window.confirm("Deseja deletar o usuario?")) {
-      // console.log(this.state.id)
       this.deleteUser(id);
     }
     return;
   };
   onClickApagarUserEmail = (id) => {
-    console.log(id)
     if (window.confirm("Deseja deletar o usuario?")) {
       this.deleteUser(id);
       this.setState({ apagado: true });
@@ -84,29 +88,37 @@ class TelaListUsers extends React.Component {
         this.setState({
           getUserByIdState: response.data,
         });
+
       })
       .catch((erro) => console.log(erro.response.data.message));
   };
 
-  searchUsers = (name, email) =>{ 
-     const url =`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${name}&email=${email}`
-     const axiosConfig ={ 
-       headers:{Authorization: "gabriel-martins-vaughan"},
-      }; 
-  
-      axios
-        .get(url, axiosConfig)
-        .then((response)=> { 
-          this.setState({
-            getSearchUsersState: response.data,
-          })
+  searchUsers = (name) => {
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${name}`
+    const axiosConfig = {
+      headers: { Authorization: "gabriel-martins-vaughan" },
+    };
+
+    axios
+      .get(url, axiosConfig)
+      .then((response) => {
+        this.setState({
+          getSearchUsersState: response.data,
         })
-        .catch((erro)=> console.log( erro.response.data.message));
+        this.getUserById(this.state.getSearchUsersState[0].id)
+        this.setState({
+          seacherUserValue:''
+        })
 
-  } 
- 
+      })
+      .catch((erro) => { 
+        alert(erro)
+        this.setState({erroOut: erro})
+      }
+    );
 
-  
+  }
+
   usuarioClicado = (id) => {
     this.setState({ trocarTela: !this.state.trocarTela });
     this.getUserById(id);
@@ -117,12 +129,13 @@ class TelaListUsers extends React.Component {
     this.setState({ trocarTela: true });
   };
 
-  onChangeUserSearch =(e) => { 
-     this.setState({seacherUserValue: e.target.value})
+  onChangeUserSearch = (e) => {
+    this.setState({ seacherUserValue: e.target.value })
   }
 
-  searchButton =(name,email)=> { 
-    
+  searchButton = (name, email) => {
+    this.searchUsers(this.state.seacherUserValue)
+
   }
 
   renderScreenOption = () => {
@@ -131,10 +144,9 @@ class TelaListUsers extends React.Component {
         return (
           <>
             <button onClick={this.props.ChangingScreen}>Troca Tela</button>
-
-            <input value={this.state.seacherUserValue} 
-            onChange={this.onChangeUserSearch} 
-            placeholder='Buscar usuario - nome'/>
+            <input value={this.state.seacherUserValue}
+              onChange={this.onChangeUserSearch}
+              placeholder='Buscar usuario - nome' />
 
             <button onClick={this.searchButton}>Buscar</button>
 
@@ -148,6 +160,15 @@ class TelaListUsers extends React.Component {
                 </BoxUserNames>
               );
             })}
+            { this.state.getUserByIdState.name? 
+             <SearchedUserbox>
+            <p>
+              {this.state.getUserByIdState.name}
+            </p>
+            <p>
+              {this.state.getUserByIdState.email}
+            </p>
+            </SearchedUserbox> : ''}
           </>
         );
       case false:
@@ -160,8 +181,7 @@ class TelaListUsers extends React.Component {
               nameData={this.state.getUserByIdState.name}
               idData={this.state.getUserByIdState.id}
               onClickApagarUserEmail={this.onClickApagarUserEmail}
-              getUserById ={this.getUserById}
-          
+              getUserById={this.getUserById}
 
             />
           </>
@@ -170,8 +190,6 @@ class TelaListUsers extends React.Component {
   };
 
   render() {
-
-    console.log(this.state.seacherUserValue)
     return <div>{this.renderScreenOption()}</div>;
   }
 }

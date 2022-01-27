@@ -26,7 +26,8 @@ class DetalhesUsuarios extends React.Component {
   funcao = (id)=>(id)=>this.props.funcao(id)
   
   editUser = (id) => {
-    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`;
+    const url = 
+    `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`;
     const body = { name: this.state.nomeEdited, email: this.state.emailEdited }
     const axiosConfig = {
       headers: { Authorization: "gabriel-martins-vaughan" },
