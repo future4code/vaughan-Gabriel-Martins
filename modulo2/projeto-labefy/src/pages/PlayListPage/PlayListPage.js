@@ -64,8 +64,8 @@ class PlayListPage extends React.Component {
   render() {
     console.log('playslist', this.state.playLists)
     const playListToScreen = this.state.playLists.map(item => {
-      return<PlayListToScreenBox><div
-        key={item.name}
+      return<PlayListToScreenBox key={item.name}><div
+       
         onClick={() => this.props.onClickChangingPageToDetail(item.id)}
       > 
         {item.name} 

@@ -20,8 +20,8 @@ class PlayListDetailPage extends React.Component  {
     console.log('didmount')
   }
    
-  getPlaylistTracks =(id)=>{ 
-    const url= `${BASE_URL}/${id}/tracks`
+  getPlaylistTracks =(idList)=>{ 
+    const url= `${BASE_URL}/${idList}/tracks`
     const axiosConfig ={headers:{Authorization: AuthorizationUser}}
     axios
       .get(url, axiosConfig)
@@ -36,8 +36,8 @@ class PlayListDetailPage extends React.Component  {
       .catch( err => console.log(err))
   }
 
-  addTrackToPlaylist = (id)=> { 
-    const url= `${BASE_URL}/${id}/tracks`
+  addTrackToPlaylist = (idPlaylist)=> { 
+    const url= `${BASE_URL}/${idPlaylist}/tracks`
     const axiosConfig ={headers:{Authorization: AuthorizationUser}}
     const body ={ name:this.state.nameMusic , artist:this.state.nameArtist , url:this.state.url }
 
@@ -47,6 +47,20 @@ class PlayListDetailPage extends React.Component  {
         console.log(res)
          this.getPlaylistTracks(this.props.listId);
          alert('Musica Adicionada');
+      })
+      .catch(err => console.log(err))
+  }
+
+  removeTrackFromPlaylist = (idlist ,idMusic)=> { 
+    const url = `${BASE_URL}/${idlist}/tracks/${idMusic}`;
+    const axiosConfig ={headers:{Authorization: AuthorizationUser}};
+
+    axios
+      .delete(url, axiosConfig)
+      .then(res => { 
+        console.log(res)
+         this.getPlaylistTracks(this.props.listId);
+         alert('Musica deletada');
       })
       .catch(err => console.log(err))
   }
@@ -70,20 +84,18 @@ class PlayListDetailPage extends React.Component  {
   //   console.log(this.state.music)
   // }
   
-  onClickPlay = ()=> { 
-    console.log('play clicado')
-    // this.state.music.play()
+  onClickDelete = (idMusic)=> { 
+    console.log('Delete clicado', idMusic)
+    this.removeTrackFromPlaylist( this.props.listId,idMusic)
+  
   }
-  onClickPause = ()=> { 
-    // this.state.music.pause()
-    console.log('pause clicado')
 
-  }
   render(){ 
-    // console.log(this.state.playlistTracks)
-    console.log(this.props.listId)
+    console.log(this.state.playlistTracks)
+    // console.log(this.props.listId)
      const tracks = this.state.playlistTracks.map(item => { 
        return<TracksBox key={item.id} >
+         <button onClick={()=>this.onClickDelete(item.id)}>Deletar</button>
           <p>{item.name}</p>
           <p>{item.artist}</p>
           <p>{item.url} </p>
@@ -102,7 +114,6 @@ class PlayListDetailPage extends React.Component  {
           
         <div>
         <button onClick={this.props.onClickGotoList}>Voltar</button>
-
         <h1>PlayListDetailPage</h1>
         <input value={this.state.nameMusic} onChange={this.onChangeNameMusic} 
         placeholder="Nome da musica"/>

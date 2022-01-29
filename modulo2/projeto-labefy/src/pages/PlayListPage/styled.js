@@ -1,7 +1,7 @@
 import styled from 'styled-components'; 
 
 
-export const PlayListToScreenBox = styled.p`
+export const PlayListToScreenBox = styled.div`
     margin: 10px; 
     border: 1px solid black;
     width:300px;
