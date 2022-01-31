@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import { BASE_URL,  AuthorizationUser } from "../../constants/urls";
-import {TracksBox} from './styled'
+import {TracksBox, MainBoxPlayListDetail} from './styled'
 
 
 
@@ -95,11 +95,10 @@ class PlayListDetailPage extends React.Component  {
     // console.log(this.props.listId)
      const tracks = this.state.playlistTracks.map(item => { 
        return<TracksBox key={item.id} >
-         <button onClick={()=>this.onClickDelete(item.id)}>Deletar</button>
-          <p>{item.name}</p>
-          <p>{item.artist}</p>
-          <p>{item.url} </p>
-          <p>{item.id}</p>
+         
+          <p>{item.name} {item.artist} <button onClick={()=>this.onClickDelete(item.id)}>Deletar</button></p>
+          {/* <p>{item.url} </p>
+          <p>{item.id}</p> */}
         {/* <ReactAudioPlayer src={item.url}  controls/> */}
 
         <audio id="Test_Audio" controls>
@@ -112,17 +111,17 @@ class PlayListDetailPage extends React.Component  {
 
     return(  
           
-        <div>
+        <MainBoxPlayListDetail>
         <button onClick={this.props.onClickGotoList}>Voltar</button>
-        <h1>PlayListDetailPage</h1>
+        <h1>Play Detail Page</h1>
         <input value={this.state.nameMusic} onChange={this.onChangeNameMusic} 
         placeholder="Nome da musica"/>
         <input value={this.state.nameArtist} onChange={this.onChangeNameSinger} 
-        placeholder="Nome da cantor"/>
+        placeholder="Nome da Banda"/>
         <input value={this.state.url} onChange={this.onChangeURL} placeholder="URL"/>
         <button onClick={this.addMusic}>Add Music</button>
         {tracks}
-        </div>
+        </MainBoxPlayListDetail>
     )
   }
 

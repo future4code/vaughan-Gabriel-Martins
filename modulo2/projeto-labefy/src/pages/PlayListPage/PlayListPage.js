@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import { AuthorizationUser, BASE_URL } from '../../constants/urls';
-import { PlayListToScreenBox } from './styled';
+import { PlayListToScreenBox, MainBox } from './styled';
 
 import  CreatePlaylist  from "../../components/CreatePlaylist/CreatePlaylist";
 
@@ -76,14 +76,14 @@ class PlayListPage extends React.Component {
       
     })
     return (
-      <>
-        <h1>PlayListPage</h1>
+      <MainBox>
+        <h1>PlayLists</h1>
         <button onClick={this.createPlaylistEdit}>Criar PlayList</button>
         <div>{playListToScreen}</div>
         {this.state.isedit || <CreatePlaylist
         getAllPlaylists={this.getAllPlaylists}
         />}
-      </>
+      </MainBox>
     )
   }
 }

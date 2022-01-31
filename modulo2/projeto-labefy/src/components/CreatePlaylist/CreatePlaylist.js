@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { AuthorizationUser, BASE_URL } from "../../constants/urls";
 
+import {CreatePlaylistBox} from "./styled"
+
 
 export default class CreatePlaylist extends React.PureComponent{ 
     state={ 
@@ -34,12 +36,12 @@ export default class CreatePlaylist extends React.PureComponent{
 
     render(){
         return( 
-            <>
-            <h1> Create PlayList</h1> 
+            <CreatePlaylistBox>
+            <h1> Create a PlayList</h1> 
             <input value={this.state.createPlaylist} 
             onChange={this.createPlaylistInput}/>
             <button onClick={this.onClickAdd}>Adicionar</button>
-           </>
+           </CreatePlaylistBox>
         )
     }
 }
