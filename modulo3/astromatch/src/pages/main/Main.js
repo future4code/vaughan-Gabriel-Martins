@@ -22,13 +22,22 @@ import { UrlBase } from '../../constants/constants';
 
 import imagem from "../../assets/img/imagem.jpeg";
 
-const DivBtn = styled.div`
-  display: flex;
-  background: red;
+const DivWords = styled.div`
+  position: absolute;
+  color:white;
+  top:430px;
+  left:0px;
+  width: 90%;
+  padding:10px;
+  margin:0 5%;
+  height: 120px;
+  box-sizing: border-box;
+  background: rgba(50,50, 50, 0.837);
 `;
 
 const useStyles = makeStyles({
   mainContainer: {
+    position:'relative',
     maxWidth: "400px",
     margin: "20% auto",
     boxShadow: "0 0 1px 1px  black ",
@@ -84,13 +93,18 @@ const Main = () => {
   const [profile, setProfile] = useState('');
 
 
-  const onClickHandlerLiked =() => { 
+  const onClickHandlerLiked =(id) => { 
     console.log('liked')
+    setLiked(true);
+    console.log(id)
+    choosePert(id ,true)
     
   }
-  const onClickHandlerNotLiked =()=>{ 
+  const onClickHandlerNotLiked =(id)=>{ 
     console.log('notliked')
-
+    console.log(id)
+    setLiked(false);
+    choosePert(id, false)
   }
 
 
@@ -111,6 +125,18 @@ const Main = () => {
       .catch(err => console.log(err))
 
   }
+
+
+  const choosePert =(idP, option) => { 
+    const url = `${UrlBase}choose-person`;
+    const body = { "id": `${idP}` , 'choice': `${option}` }
+    Axios
+      .post(url,body)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
+  console.log(liked)
 
   return (
     <Card className={classes.mainContainer} align='center'>
@@ -136,22 +162,22 @@ const Main = () => {
       <CardMedia
         className={classes.media}
         // image="imagem"
-        image={profile.photo}
+        image={profile.photo || imagem}
         title='Profile Photo'
       />
-      <div><Typography>{profile.name}</Typography>
-        <Typography>
+      <DivWords><Typography variant="h6">
+          {profile.name} &nbsp;{profile.id}&nbsp;
           {profile.age}
         </Typography>
-        <Typography>{profile.bio}</Typography> </div>
+        <Typography>{profile.bio}</Typography> </DivWords>
       <CardActions className={classes.cardBtn}>
         <IconButton
-          onClick={onClickHandlerNotLiked}
+          onClick={() =>onClickHandlerNotLiked(profile.id)}
           className={clsx(classes.BtnLikeNot, classes.btnNo)}>
           <CloseOutlinedIcon className={classes.icon} />
         </IconButton>
         <IconButton
-          onClick={onClickHandlerLiked}
+          onClick={()=>onClickHandlerLiked(profile.id)}
           className={clsx(classes.BtnLikeNot, classes.btnYes)}
         >
           <FavoriteIcon className={classes.icon} />

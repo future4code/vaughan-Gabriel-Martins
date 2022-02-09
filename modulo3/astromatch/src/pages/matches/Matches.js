@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{ useState , useEffect} from "react";
 import {
   Card,
   CardContent,
@@ -8,17 +8,32 @@ import {
 } from "@material-ui/core";
 import { red, green, blue } from "@material-ui/core/colors";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
+import Axios from 'axios';
 import clsx from "clsx";
 import styled from "styled-components";
+import Avatar from '@material-ui/core/Avatar';
+import {UrlBase} from '../../constants/constants';
 
 const DivBtn = styled.div`
   display: flex;
   background: red;
 `;
 
+const DivPerfil = styled.div`
+display: flex;
+align-items: center;
+border-bottom: 1px solid black;
+padding:8px;
+span{ 
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+`;
+
 const useStyles = makeStyles({
   mainContainer: {
     maxWidth: "400px",
+    height: 500,
     margin: "20% auto",
     boxShadow: "0 0 1px 1px  black ",
   },
@@ -51,19 +66,55 @@ const useStyles = makeStyles({
 
 const Main = () => {
   const classes = useStyles();
+  const [match, setMatch] = useState([]);
+  useEffect(()=> { 
+    getMatches();
+  }, [])
+
+  const onClickReturn =( )=> { 
+    console.log('onClickReturn')
+  }
+
+  const getMatches = () =>{ 
+
+    const url = `${UrlBase}matches`
+
+    Axios
+      .get(url)
+      .then(res => { 
+        console.log(res)
+        setMatch(res.data.matches)
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <Card className={classes.mainContainer} align='center'>
       <CardContent className={classes.cardHeaderClass}>
         <>
-          <IconButton aria-label='Go back' className={classes.return}>
-            <ArrowBackOutlinedIcon className={classes.icon} />
+          <IconButton aria-label='Go back' className={classes.return}
+           onClick={onClickReturn}
+          >
+            <ArrowBackOutlinedIcon 
+              className={classes.icon}
+             
+              />
           </IconButton>
         </>
         <Typography align='center'>astromatch </Typography>
       </CardContent>
+      <CardContent>
 
-      <CardContent >nada</CardContent>
+      {match.map((item) =>  {return <DivPerfil key={item.name}>
+        <Avatar  sizes="large" alt={item.name} src={item.photo} />
+        <span>{item.name}</span><span>{item.age} anos</span>
+        <hr/>
+        </DivPerfil>
+      } )
+      }
+      </CardContent>
     </Card>
   );
+
 };
 export default Main;

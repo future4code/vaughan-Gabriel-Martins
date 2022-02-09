@@ -6,8 +6,8 @@ import Matches from './pages/matches/Matches';
 const App = () =>  {
   return (
     <div> 
-      <Main/>
-      {/* <Matches/> */}
+      {/* <Main/> */}
+      <Matches/>
     </div>
   );
 }
