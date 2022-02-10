@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Axios from 'axios';
+import Axios from "axios";
 
 import {
   Card,
@@ -11,36 +11,39 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { red, green, blue } from "@material-ui/core/colors";
+import { red, green , blueGrey } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 import clsx from "clsx";
 import styled from "styled-components";
 
-import { UrlBase } from '../../constants/constants';
+import { UrlBase } from "../../constants/constants";
+import {getProfileToChooseApi , choosePerfApi} from '../../services/apiendpoints';
 
 import imagem from "../../assets/img/imagem.jpeg";
 
 const DivWords = styled.div`
   position: absolute;
-  color:white;
-  top:430px;
-  left:0px;
-  width: 90%;
-  padding:10px;
-  margin:0 5%;
+  color: white;
+  top: 380px;
+  left: 0px;
+  width: 88%;
+  padding: 8px 8px;
+  margin: 0 5.9%;
   height: 120px;
   box-sizing: border-box;
-  background: rgba(50,50, 50, 0.837);
+  background: rgba(50, 50, 50, 0.837);
 `;
 
 const useStyles = makeStyles({
   mainContainer: {
-    position:'relative',
+    position: "relative",
     maxWidth: "400px",
+    // height: 600,
     margin: "20% auto",
     boxShadow: "0 0 1px 1px  black ",
+    background: blueGrey[50],
   },
   cardHeaderClass: {
     borderBottom: "1px solid black",
@@ -48,6 +51,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     padding: 0,
+    background: red[500],
   },
   media: {
     height: 448,
@@ -70,7 +74,6 @@ const useStyles = makeStyles({
   btnNo: {
     margin: "1rem 0  1rem  3rem",
     color: red[700],
-    // background: red[0],
     "&:hover": {
       background: red[800],
       color: red[100],
@@ -87,56 +90,30 @@ const useStyles = makeStyles({
   },
 });
 
-const Main = () => {
+const Main = (props) => {
   const classes = useStyles();
-  const [liked, setLiked] = useState('');
-  const [profile, setProfile] = useState('');
+  const [liked, setLiked] = useState("");
+  const [pushed, setPushed] = useState(false);
+  const [profile, setProfile] = useState("");
+ 
 
+  const onClickHandlerLiked = (id) => {
+    setPushed(!pushed)
+    // setLiked(true);
+    choosePerfApi(id);
+  };
+  const onClickHandlerNotLiked = (id) => {
+    setPushed(!pushed)
+    // setLiked(false);
+  };
 
-  const onClickHandlerLiked =(id) => { 
-    console.log('liked')
-    setLiked(true);
-    console.log(id)
-    choosePert(id ,true)
-    
-  }
-  const onClickHandlerNotLiked =(id)=>{ 
-    console.log('notliked')
-    console.log(id)
-    setLiked(false);
-    choosePert(id, false)
-  }
+  const saveProfile =(data) =>setProfile(data)
 
 
   useEffect(() => {
-    getProfileToChoose()
-  }, [liked])
+    getProfileToChooseApi(setProfile);
+  }, [pushed]);
 
-  const getProfileToChoose = () => {
-
-    const url = `${UrlBase}person`
-
-    Axios
-      .get(url)
-      .then(res => {
-        console.log(res.data.profile)
-        setProfile(res.data.profile)
-      })
-      .catch(err => console.log(err))
-
-  }
-
-
-  const choosePert =(idP, option) => { 
-    const url = `${UrlBase}choose-person`;
-    const body = { "id": `${idP}` , 'choice': `${option}` }
-    Axios
-      .post(url,body)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-  }
-
-  console.log(liked)
 
   return (
     <Card className={classes.mainContainer} align='center'>
@@ -145,19 +122,14 @@ const Main = () => {
         title='astromatch'
         action={
           <>
-            <IconButton aria-label='matches'>
+            <IconButton aria-label='matches'
+              onClick={()=>props.changingePage()}
+            >
               <MoreVertIcon />
             </IconButton>
           </>
         }
       />
-
-      <CardContent className={classes.cardHeaderClass}>
-        <Typography>Oi</Typography>
-        <IconButton aria-label='matches'>
-          <MoreVertIcon />
-        </IconButton>
-      </CardContent>
 
       <CardMedia
         className={classes.media}
@@ -165,19 +137,23 @@ const Main = () => {
         image={profile.photo || imagem}
         title='Profile Photo'
       />
-      <DivWords><Typography variant="h6">
-          {profile.name} &nbsp;{profile.id}&nbsp;
+      <DivWords>
+        <Typography variant='h6'>
+          {profile.name} &nbsp;
           {profile.age}
         </Typography>
-        <Typography>{profile.bio}</Typography> </DivWords>
+        <Typography>{profile.bio}</Typography>
+      </DivWords>
+
       <CardActions className={classes.cardBtn}>
         <IconButton
-          onClick={() =>onClickHandlerNotLiked(profile.id)}
-          className={clsx(classes.BtnLikeNot, classes.btnNo)}>
+          onClick={() => onClickHandlerNotLiked(profile.id)}
+          className={clsx(classes.BtnLikeNot, classes.btnNo)}
+        >
           <CloseOutlinedIcon className={classes.icon} />
         </IconButton>
         <IconButton
-          onClick={()=>onClickHandlerLiked(profile.id)}
+          onClick={() => onClickHandlerLiked(profile.id)}
           className={clsx(classes.BtnLikeNot, classes.btnYes)}
         >
           <FavoriteIcon className={classes.icon} />
