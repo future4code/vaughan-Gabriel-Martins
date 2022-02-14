@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import "./Main.css";
 
 import {
   Card,
@@ -11,7 +12,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { red, green , blueGrey } from "@material-ui/core/colors";
+import { red, green, blueGrey } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
@@ -19,22 +20,12 @@ import clsx from "clsx";
 import styled from "styled-components";
 
 import { UrlBase } from "../../constants/constants";
-import {getProfileToChooseApi , choosePerfApi} from '../../services/apiendpoints';
+import {
+  getProfileToChooseApi,
+  choosePerfApi,
+} from "../../services/apiendpoints";
 
 import imagem from "../../assets/img/imagem.jpeg";
-
-const DivWords = styled.div`
-  position: absolute;
-  color: white;
-  top: 380px;
-  left: 0px;
-  width: 88%;
-  padding: 8px 8px;
-  margin: 0 5.9%;
-  height: 120px;
-  box-sizing: border-box;
-  background: rgba(50, 50, 50, 0.837);
-`;
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -54,10 +45,11 @@ const useStyles = makeStyles({
     background: red[500],
   },
   media: {
-    height: 448,
+    height: 450,
     margin: "10px 24px",
     borderRadius: 5,
     boxShadow: "0 0 4px 1px black ",
+    objectFit: "scale-down",
   },
   BtnLikeNot: {
     boxShadow: "0 0 2px 1px  ",
@@ -70,6 +62,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
+    border: "1px solid black",
   },
   btnNo: {
     margin: "1rem 0  1rem  3rem",
@@ -90,30 +83,63 @@ const useStyles = makeStyles({
   },
 });
 
+const DivWords = styled.div`
+  position: absolute;
+  color: white;
+  top: 340px;
+  left: 0px;
+  width: 88%;
+  padding: 8px 8px;
+  margin: 0 5.9%;
+  height: 120px;
+  box-sizing: border-box;
+  background: rgba(50, 50, 50, 0.837);
+`;
+
+const DivMediaText = styled.div`
+  position: relative;
+  top: 0;
+  border: 1px solid black;
+`;
+
 const Main = (props) => {
   const classes = useStyles();
+
   const [liked, setLiked] = useState("");
   const [pushed, setPushed] = useState(false);
   const [profile, setProfile] = useState("");
- 
+  const [teste10, setTeste10] = useState("");
 
   const onClickHandlerLiked = (id) => {
-    setPushed(!pushed)
-    // setLiked(true);
+    setPushed(!pushed);
+    setTeste10("toRight");
+    setLiked(true);
     choosePerfApi(id);
+
+    setTimeout(() => {
+      choosePerfApi(id);
+    }, 2000);
+
+    setTimeout(() => {
+      setTeste10("");
+    }, 1000);
   };
   const onClickHandlerNotLiked = (id) => {
-    setPushed(!pushed)
-    // setLiked(false);
+    setPushed(!pushed);
+    setTeste10(`toLeft`);
+    setTimeout(() => {
+      choosePerfApi(id);
+    }, 2000);
+
+    setTimeout(() => {
+      setTeste10("");
+    }, 1000);
+    setLiked(false);
   };
-
-  const saveProfile =(data) =>setProfile(data)
-
 
   useEffect(() => {
     getProfileToChooseApi(setProfile);
   }, [pushed]);
-
 
   return (
     <Card className={classes.mainContainer} align='center'>
@@ -122,8 +148,9 @@ const Main = (props) => {
         title='astromatch'
         action={
           <>
-            <IconButton aria-label='matches'
-              onClick={()=>props.changingePage()}
+            <IconButton
+              aria-label='matches'
+              onClick={() => props.changingePage()}
             >
               <MoreVertIcon />
             </IconButton>
@@ -131,19 +158,21 @@ const Main = (props) => {
         }
       />
 
-      <CardMedia
-        className={classes.media}
-        // image="imagem"
-        image={profile.photo || imagem}
-        title='Profile Photo'
-      />
-      <DivWords>
-        <Typography variant='h6'>
-          {profile.name} &nbsp;
-          {profile.age}
-        </Typography>
-        <Typography>{profile.bio}</Typography>
-      </DivWords>
+      <DivMediaText className={teste10}>
+        <CardMedia
+          className={classes.media}
+          // image="imagem"
+          image={profile.photo || imagem}
+          title='Profile Photo'
+        />
+        <DivWords>
+          <Typography variant='h6'>
+            {profile.name} &nbsp;
+            {profile.age}
+          </Typography>
+          <Typography>{profile.bio}</Typography>
+        </DivWords>
+      </DivMediaText>
 
       <CardActions className={classes.cardBtn}>
         <IconButton

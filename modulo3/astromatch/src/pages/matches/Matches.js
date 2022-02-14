@@ -35,7 +35,7 @@ const DivPerfil = styled.div`
 const useStyles = makeStyles({
   mainContainer: {
     maxWidth: "400px",
-    height: 662,
+    minHeight: 600,
     margin: "20% auto",
     boxShadow: "0 0 1px 1px  black ",
     background: blueGrey[50],
