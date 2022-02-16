@@ -4,8 +4,14 @@ import styled from "styled-components";
 import { MainContainer } from "./Style";
 import { Bobydiv, StyledContainerButtons } from "../ListTripsPage/Style";
 import { Button, Typography } from "@material-ui/core";
+import {DataCountries } from "./Data";
+
+
+
 
 const ApplicationFormPage = () => {
+
+  console.log(DataCountries)
   return (
     <Bobydiv> 
       <MainContainer>
@@ -32,11 +38,11 @@ const ApplicationFormPage = () => {
               native: true,
             }}
           >
-            {/* {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+            {['eu', 'vc'].map((option) => (
+            <option key={option} value={option}>
+              {option}
             </option>
-          ))} */}
+          ))} 
           </TextField>
           <TextField
             fullWidth
@@ -75,23 +81,23 @@ const ApplicationFormPage = () => {
             />
           <TextField
             margin="normal"
-            id='standard-select-currency-native'
             fullWidth
             variant='outlined'
             select
             required
             label='Escolha um Pais'
-            //   value=""
+            value=" "
             //   onChange=
             SelectProps={{
               native: true,
             }}
           >
-            {/* {currencies.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+            {DataCountries.map((option) => (
+            <option  key={option.ordem} 
+            value={option.nome}>
+              {option.nome}
             </option>
-          ))} */}
+          ))}
           </TextField>
         </form>
         <StyledContainerButtons>

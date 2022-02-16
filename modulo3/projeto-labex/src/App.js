@@ -1,21 +1,16 @@
-import './App.css';
-import { ThemeProvider} from 'styled-components';
+import "./App.css";
+import { ThemeProvider } from "styled-components";
 
-import HomePage from './pages/HomePage/HomePage';
-import ListTripsPage from './pages/ListTripsPage/ListTripsPage';
-import { theme , GlobalStyles } from './Theme';
-import ApplicationFormPage from './pages/ApplicationFormPage/ApplicationFormPage';
+import RoutePage from "./pages/Route/RoutePage";
 
-
-
+import { theme, GlobalStyles } from "./Theme";
+import ApplicationFormPage from "./pages/ApplicationFormPage/ApplicationFormPage";
 
 function App() {
   return (
-    <ThemeProvider  theme={theme}>
-      <GlobalStyles/>
-        {/* <HomePage/> */}
-        {/* <ListTripsPage/> */}
-        <ApplicationFormPage/>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <RoutePage />
     </ThemeProvider>
   );
 }

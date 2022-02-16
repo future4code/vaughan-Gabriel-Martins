@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { red } from "@material-ui/core/colors";
 
 
 
@@ -23,8 +24,10 @@ a {
 export const theme = { 
 
     colors: { 
-       primaryText: "000", 
-       secondaryText: 'gray', 
+       primaryText: red[500], 
+       primary: red[500], 
+       secondaryText: "#000", 
+       secondary: 'gray', 
     }
     *{ 
         margin: 0,
