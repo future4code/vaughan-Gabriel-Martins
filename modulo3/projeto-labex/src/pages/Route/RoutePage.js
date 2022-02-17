@@ -6,6 +6,7 @@ import LoginPage from "../LoginPage/Index";
 import ApplicationFormPage from "../ApplicationFormPage/ApplicationFormPage";
 import AdminHomePage from "../AdminHomePage/Index";
 import ErroPage from "../ErroPage/ErroPage";
+import CreateTripPage from "../CreateTripPage/Index";
 
 const RoutePage = () => {
   return (
@@ -16,7 +17,7 @@ const RoutePage = () => {
         <Route exact path={"/trips/application"} element={<ApplicationFormPage />} />
         <Route exact path={"/login"} element={<LoginPage />} />
         <Route path={"/admin/trips/list"} element={<AdminHomePage/>} />
-        {/* <Route path={"/admin/trips/create"} element={<CreateTripPage/>} /> */}
+        <Route path={"/admin/trips/create"} element={<CreateTripPage/>} />
         {/* <Route path={"/admin/trips/:id"} element={<Admin/>} /> */}
         <Route path={"/*"} element={<ErroPage />} />
       </Routes>
