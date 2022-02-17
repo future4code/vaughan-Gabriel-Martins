@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import HomePage from "../HomePage/HomePage";
-import ListTripsPage from "../ListTripsPage/ListTripsPage";
+import ListTripsPage from "../ListTripsPage/Index";
 import LoginPage from "../LoginPage/Index";
 import ApplicationFormPage from "../ApplicationFormPage/ApplicationFormPage";
 import AdminHomePage from "../AdminHomePage/Index";

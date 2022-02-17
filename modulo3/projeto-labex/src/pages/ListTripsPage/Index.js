@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { StyledContainer, StyledContainerButtons, Bobydiv } from "./Style";
 
 import { Button, CardContent, Typography } from "@material-ui/core";
 import SimpleCard from "./SimpleCard";
-import GetTrips from "../../assets/GetTrips";
+import GetTrips from "../../Hooks/GetTrips";
 
 const ListTripsPage = () => {
   const [list, setList] = useState([]);
