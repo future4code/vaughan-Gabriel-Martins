@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router";
-import styled from "styled-components";
 import { MainContainer } from "./Style";
+import PostApllyToTrip from "../../Hooks/PostApllytoTrip";
 import { Bobydiv, StyledContainerButtons } from "../ListTripsPage/Style";
 import { Button, Typography } from "@material-ui/core";
 import { DataCountries } from "./Data";
 import useForm from "../../Hooks/useForm";
 
-const ApplicationFormPage = ({form, onChange}) => {
-   initialState = (
+const ApplicationFormPage = () => {
+   const initialState = (
     {selectCountry:"" , selectViagem:"", 
     nome:"", idade:"", textoCandidatura:"",
     profissao:"" });
   
-    useForm(initialState)
+    const { form, onChange }=  useForm(initialState)
 
 
   const navigate = useNavigate();
@@ -28,16 +28,17 @@ const ApplicationFormPage = ({form, onChange}) => {
   const handlerSubmitEnviar = (e) => {
     e.preventDefault();
 
+    // Id é a viagem escolhida como pegar id trips/list
+    //
+    //!! PostApllyToTrip(id, form)
+
     // Call The right function - API
 
     // Go back to trips list
     navigate("/trips/list");
   };
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setForm({...form, [name]: value })
-  };
+
 
   return (
     <Bobydiv>
