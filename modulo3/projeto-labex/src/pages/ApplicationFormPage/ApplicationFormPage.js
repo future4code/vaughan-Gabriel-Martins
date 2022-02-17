@@ -6,36 +6,37 @@ import { MainContainer } from "./Style";
 import { Bobydiv, StyledContainerButtons } from "../ListTripsPage/Style";
 import { Button, Typography } from "@material-ui/core";
 import { DataCountries } from "./Data";
+import useForm from "../../Hooks/useForm";
 
-const ApplicationFormPage = () => {
-  const [selectCountry, setSelectCountry] = useState("");
-  const [selectViagem, setSelectViagem] = useState("");
-  const [nome, setNome] = useState("");
-  const [idade, setIdade] = useState("");
-  const [profissao, setProfissao] = useState("");
-  const [textoCandidatura, setTextoCandidatura] = useState("");
+const ApplicationFormPage = ({form, onChange}) => {
+   initialState = (
+    {selectCountry:"" , selectViagem:"", 
+    nome:"", idade:"", textoCandidatura:"",
+    profissao:"" });
+  
+    useForm(initialState)
+
 
   const navigate = useNavigate();
 
   // URL return
-
   const handlerClickVoltar = () => {
     navigate("/trips/list");
   };
 
-  // Clicks - Subumit -  Onchanges Handlers local using arrow functions 
-
+  // Clicks - Subumit -  Onchanges Handlers local using arrow functions
   const handlerSubmitEnviar = (e) => {
     e.preventDefault();
-    console.log(idade , profissao , selectCountry , textoCandidatura , nome)
 
-    // Call The right function - API 
+    // Call The right function - API
 
+    // Go back to trips list
+    navigate("/trips/list");
+  };
 
-    
-    // Go back to trips list 
-    navigate("/trips/list")
-
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setForm({...form, [name]: value })
   };
 
   return (
@@ -52,13 +53,14 @@ const ApplicationFormPage = () => {
         </Typography>
         <form noValidate autoComplete='off' onSubmit={handlerSubmitEnviar}>
           <TextField
+            name="selectViagem"
+            value={form.selectViagem}
+            onChange={onChange}
             fullWidth
             variant='outlined'
             select
             required
             label='Escolha uma viagem'
-            value={selectViagem}
-            onChange={(e)=>setSelectViagem(e.target.value)}
             SelectProps={{
               native: true,
             }}
@@ -70,56 +72,56 @@ const ApplicationFormPage = () => {
             ))}
           </TextField>
           <TextField
+            name='nome'
+            value={form.nome}
+            onChange={onChange}
             fullWidth
             required
-            value={nome}
-            // onChange={handlerChangeNome}
-            onChange={(e)=>setNome(e.target.value)}
             label='Nome'
             variant='outlined'
             margin='normal'
           />
           <TextField
+            name='idade'
+            value={form.idade}
+            onChange={onChange}
             margin='normal'
             fullWidth
             required
-            value={idade}
-            // onChange={handlerChangeIdade}
-            onChange={(e)=>setIdade(e.target.value)}
             label='Idade'
             type='number'
             variant='outlined'
           />
           <TextField
+            name="profissao"
+            value={form.profissao}
+            onChange={onChange}
             margin='normal'
             fullWidth
             required
-            value={profissao}
-            // onChange={handlerChangeProfissao}
-            onChange={(e)=>setProfissao(e.target.value)}
             label='Profissão'
             variant='outlined'
-            />
+          />
           <TextField
+            name='textoCandidatura'
+            value={form.textoCandidatura}
+            onChange={onChange}
             margin='normal'
             fullWidth
             required
-            value={textoCandidatura}
-            // onChange={handlerChangetextoCandidatura}
-            onChange={(e)=>setTextoCandidatura(e.target.value)}
             label='Texto de Candidatura'
             variant='outlined'
           />
           <TextField
+            name='selectCountry'
+            value={form.selectCountry}
+            onChange={onChange}
             margin='normal'
             fullWidth
             variant='outlined'
             select
             required
             label='Escolha um Pais'
-            value={selectCountry}
-            // onChange={handlerChangePais}
-            onChange={(e)=>setSelectCountry(e.target.value)}
             SelectProps={{
               native: true,
             }}
@@ -130,14 +132,14 @@ const ApplicationFormPage = () => {
               </option>
             ))}
           </TextField>
-        <StyledContainerButtons>
-          <Button onClick={handlerClickVoltar} variant='contained'>
-            Voltar
-          </Button>
-          <Button 
-          type="submit"
-          variant='contained'>Enviar</Button>
-        </StyledContainerButtons>
+          <StyledContainerButtons>
+            <Button onClick={handlerClickVoltar} variant='contained'>
+              Voltar
+            </Button>
+            <Button type='submit' variant='contained'>
+              Enviar
+            </Button>
+          </StyledContainerButtons>
         </form>
       </MainContainer>
     </Bobydiv>
