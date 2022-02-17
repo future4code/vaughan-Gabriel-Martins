@@ -1,9 +1,20 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import { useNavigate } from "react-router";
 import { StyledDiv, StyledDivButton } from "./style";
 import { Button, Typography } from "@material-ui/core";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const HandlerClickVoltar =() =>{ 
+     navigate("/");
+  }
+
+  const HandlerClickEntrar =() =>{ 
+     navigate("/");
+  }
+
   return (
     <form noValidate >
       <StyledDiv>
@@ -27,8 +38,12 @@ const LoginPage = () => {
           variant='outlined'
         />
         <StyledDivButton>
-          <Button variant='contained'>Voltar</Button>
-          <Button variant='contained'>Entrar</Button>
+          <Button
+          onClick={HandlerClickVoltar}
+          variant='contained'>Voltar</Button>
+          <Button 
+          onClick={HandlerClickEntrar}
+          variant='contained'>Entrar</Button>
         </StyledDivButton>
       </StyledDiv>
     </form>
