@@ -3,13 +3,19 @@ import axios from 'axios';
 
 
 
- const PostApllyToTrip = (id  , data )=> { 
-     const url = `${Url_Base}/trips/${id}/apply`;
+ const PostApllyToTrip = (data)=> { 
+     const url = `${Url_Base}/trips/${data.viagem}/apply`;
      const body  = data;
+     
+     axios
+        .post(url,body)
+        .then(res => { 
+            console.log(res.data.message)
+            alert("Aplicado com Sucesso")
+        })
+        .catch(err => console.log(err))
+   
 
-    return( 
-        <h1>oi </h1> 
-    )
 }
 
 

@@ -10,14 +10,16 @@ import { DataCountries } from "./Data";
 import useForm from "../../Hooks/useForm";
 
 const ApplicationFormPage = () => {
-   const [ dataGetTrips, setDataGetTrips] = useState([])
-   const initialState = (
-    {selectCountry:"" , selectViagem:"", 
-    nome:"", idade:"", textoCandidatura:"",
-    profissao:"" });
-  
-    const { form, onChange }=  useForm(initialState)
-
+  const [dataGetTrips, setDataGetTrips] = useState([]);
+  const initialState = {
+    selectCountry: "",
+    selectViagem: "",
+    nome: "",
+    idade: "",
+    textoCandidatura: "",
+    profissao: "",
+  };
+  const { form, onChange } = useForm(initialState);
 
   const navigate = useNavigate();
 
@@ -25,39 +27,21 @@ const ApplicationFormPage = () => {
   const handlerClickVoltar = () => {
     navigate("/trips/list");
   };
-  
-
-   const saveData =(data)=> { 
- 
+  const saveData = (data) => {
     setDataGetTrips(data);
-    console.log('dataGetTrips', dataGetTrips)
-    console.log("data" , data)
-     
-  }
-
-   useEffect(() => { 
-     GetTrips(saveData)
-    }, [])
-   
-  
-
-  
+    // console.log(data.map(item=> item.id))
+  };
+  useEffect(() => {
+    GetTrips(saveData);
+  }, []);
 
   // Clicks - Subumit -  Onchanges Handlers local using arrow functions
   const handlerSubmitEnviar = (e) => {
     e.preventDefault();
-
-    // Id é a viagem escolhida como pegar id trips/list
-    //
-    //!! PostApllyToTrip(id, form)
-
-    // Call The right function - API
-
-    // Go back to trips list
-    // navigate("/trips/list");
+    // console.log(form)
+    //!! Id é a viagem escolhida esta dentro do form como viagem
+    PostApllyToTrip(form)
   };
-
-
 
   return (
     <Bobydiv>
@@ -71,51 +55,56 @@ const ApplicationFormPage = () => {
         >
           Inscreva-se para uma viagem
         </Typography>
-        <form noValidate autoComplete='off' onSubmit={handlerSubmitEnviar}>
+        <form autoComplete='off' 
+        onSubmit={handlerSubmitEnviar}
+        >
           <TextField
-            name="selectViagem"
-            value={form.selectViagem}
+            name="viagem"
+            value={form.viagem}
             onChange={onChange}
             fullWidth
             variant='outlined'
             select
+            defaultValue={"viagem"}
             required
-            // label='Escolha uma viagem'
+            label='Escolha uma viagem'
             SelectProps={{
               native: true,
             }}
-          >  <option value={""} disabled>Escolha uma uma Viagem</option>
-             {dataGetTrips.map((item) => (
+          > 
+          <option selected disabled > </option>
+            {dataGetTrips.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}
               </option>
             ))}
           </TextField>
           <TextField
-            name='nome'
-            value={form.nome}
+            name='name'
+            value={form.name}
             onChange={onChange}
             fullWidth
             required
+
             label='Nome'
             variant='outlined'
             margin='normal'
           />
           <TextField
-            name='idade'
-            value={form.idade}
+            name='age'
+            value={form.age}
             onChange={onChange}
             margin='normal'
             fullWidth
             required
             type='number'
-            InputProps={{inputProps: { min:18}}}
+            InputProps={{ inputProps: { min: 18 } }}
             label='Idade'
             variant='outlined'
           />
           <TextField
-            name="profissao"
-            value={form.profissao}
+            name='profession'
+            value={form.profession}
             onChange={onChange}
             margin='normal'
             fullWidth
@@ -124,8 +113,8 @@ const ApplicationFormPage = () => {
             variant='outlined'
           />
           <TextField
-            name='textoCandidatura'
-            value={form.textoCandidatura}
+            name='applicationText'
+            value={form.applicationText}
             onChange={onChange}
             margin='normal'
             fullWidth
@@ -134,8 +123,8 @@ const ApplicationFormPage = () => {
             variant='outlined'
           />
           <TextField
-            name='selectCountry'
-            value={form.selectCountry}
+            name='country'
+            value={form.country}
             onChange={onChange}
             margin='normal'
             fullWidth
@@ -146,8 +135,13 @@ const ApplicationFormPage = () => {
             SelectProps={{
               native: true,
             }}
-          > <option value={""} disabled>Escolha um País</option>
-            {DataCountries.map((option) => ( <option key={option.ordem} value={option.nome}>
+          >
+            {" "}
+            <option value={""}  selected disabled>
+              Escolha um País
+            </option>
+            {DataCountries.map((option) => (
+              <option key={option.ordem} value={option.nome}>
                 {option.nome}
               </option>
             ))}
