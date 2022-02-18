@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { Button, ListItem, Typography } from "@material-ui/core";
 import Cards from "./Card";
 import useProtected from "../../Hooks/useProtected";
-import GetTrips from "../../Hooks/GetTrips";
+import GetTrips from "../../Service/GetTrips";
 import { Card, CardHeader, IconButton, CardActions } from "@material-ui/core";
 import { CardStyledDiv, StyledDivButton } from "./style";
 import DeleteIcon from "@material-ui/icons/Delete";

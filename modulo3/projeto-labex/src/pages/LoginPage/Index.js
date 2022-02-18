@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 
-import PostSingup from "../../Hooks/PostSingup";
+import PostSingup from "../../Service/PostSingup";
 
 import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router";
 import { StyledDiv, StyledDivButton } from "./style";
 import { Button, Typography } from "@material-ui/core";
 import useForm from '../../Hooks/useForm';
-import PostLogin from "../../Hooks/PostLogin";
+import PostLogin from "../../Service/PostLogin";
 
 
 const LoginPage = () => {

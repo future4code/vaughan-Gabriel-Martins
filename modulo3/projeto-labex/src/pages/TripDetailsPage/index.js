@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { useNavigate, useParams } from 'react-router-dom';
 import useProtected from '../../Hooks/useProtected';
-import GetTripsDetail from '../../Hooks/GetTripDetail';
+import GetTripsDetail from '../../Service/GetTripDetail';
 
 
 const TripDetailsPage =()=> { 

@@ -5,7 +5,7 @@ import { StyledContainer, StyledContainerButtons, Bobydiv } from "./Style";
 
 import { Button, CardContent, Typography } from "@material-ui/core";
 import SimpleCard from "./SimpleCard";
-import GetTrips from "../../Hooks/GetTrips";
+import GetTrips from "../../Service/GetTrips";
 
 const ListTripsPage = () => {
   const [list, setList] = useState([]);
