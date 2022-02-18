@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useForm from '../../Hooks/useForm';
 import { Typography, Button, TextField, MenuItem } from "@material-ui/core";
 import { Bobydiv, StyledContainerButtons, StyledContainer } from "./Style";
+import PostCreateTrip from "../../Service/PostCreateTrip";
 import { planets } from "./planets";
 
 const CreateTripPage = () => {
-  const [selectPlanet, setSelectPlanet] = useState("");
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [days, setDays] = useState("");
+  const initialValues = {planet:"", name:"", date:"", description:"", durationInDays:""}
+
+  const  {form, onChange} = useForm(initialValues)
 
   const navigate = useNavigate();
 
   const handledSubmit = (e) => {
     e.preventDefault();
-    console.log(name, date, description, days, selectPlanet);
+    console.log("18",form)
+    PostCreateTrip(form)
   };
 
   return (
     <Bobydiv>
-      <form noValidate onSubmit={handledSubmit}>
+      <form  onSubmit={handledSubmit}>
         <StyledContainer>
           <Typography
             align='center'
@@ -32,8 +33,9 @@ const CreateTripPage = () => {
           </Typography>
 
           <TextField
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+          name="name"
+            value={form.name}
+            onChange={onChange}
             margin='normal'
             required
             type='text'
@@ -41,12 +43,13 @@ const CreateTripPage = () => {
             variant='outlined'
           />
           <TextField
+            name="planet"
+            value={form.planet}
+            onChange={onChange}
             required
             margin='normal'
             select
             label='Selecione um planeta'
-            value={selectPlanet}
-            onChange={(e) => setSelectPlanet(e.target.value)}
             variant='outlined'
             SelectProps={{
               native: true,
@@ -56,8 +59,9 @@ const CreateTripPage = () => {
           </TextField>
 
           <TextField
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
+            name="date"
+            value={form.date}
+            onChange={onChange}
             margin='normal'
             aria-label='data'
             required
@@ -65,8 +69,9 @@ const CreateTripPage = () => {
             variant='outlined'
           />
           <TextField
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
+            name="description"
+            value={form.description}
+            onChange={onChange}
             margin='normal'
             required
             type='text'
@@ -74,8 +79,9 @@ const CreateTripPage = () => {
             variant='outlined'
           />
           <TextField
-            onChange={(e) => setDays(e.target.value)}
-            value={days}
+            name="durationInDays"
+            value={form.durationInDays}
+            onChange={onChange}
             margin='normal'
             required
             type='number'

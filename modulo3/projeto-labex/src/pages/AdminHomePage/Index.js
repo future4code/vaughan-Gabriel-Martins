@@ -7,8 +7,9 @@ import GetTrips from "../../Service/GetTrips";
 import { Card, CardHeader, IconButton, CardActions } from "@material-ui/core";
 import { CardStyledDiv, StyledDivButton } from "./style";
 import DeleteIcon from "@material-ui/icons/Delete";
-
+import DeleteTrip from "../../Service/DeleteTrip";
 import { Bobydiv } from "../ListTripsPage/Style";
+
 
 const AdminHomePage = () => {
   const [trips, setTrips] = useState([]);
@@ -18,9 +19,13 @@ const AdminHomePage = () => {
   const saveData = (data) => {
     setTrips(data);
   };
-
+  
+  const deleteTrip = (id , e) => { 
+   e.stopPropagation() 
+   DeleteTrip(id)
+ }
   useEffect(() => {
-    GetTrips(saveData);
+    GetTrips(saveData)
   }, []);
 
   const handlerClickCreate = () => {
@@ -37,11 +42,6 @@ const AdminHomePage = () => {
     console.log(id)
   }
 
-   const deleteTrip = (id , e) => { 
-    e.stopPropagation() 
-    console.log( "deleteTrip",id)
-
-  }
 
   return (
     <Bobydiv>
