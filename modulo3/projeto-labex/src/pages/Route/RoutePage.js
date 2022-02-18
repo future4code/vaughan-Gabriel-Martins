@@ -7,18 +7,19 @@ import ApplicationFormPage from "../ApplicationFormPage/ApplicationFormPage";
 import AdminHomePage from "../AdminHomePage/Index";
 import ErroPage from "../ErroPage/ErroPage";
 import CreateTripPage from "../CreateTripPage/Index";
+import TripDetailsPage from "../TripDetailsPage";
 
 const RoutePage = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path={"/"} element={<HomePage />} />
-        <Route exact path={"/trips/list"} element={<ListTripsPage />} />
-        <Route exact path={"/trips/application"} element={<ApplicationFormPage />} />
-        <Route exact path={"/login"} element={<LoginPage />} />
+        <Route path={"/"} element={<HomePage />} />
+        <Route path={"/trips/list"} element={<ListTripsPage />} />
+        <Route path={"/trips/application"} element={<ApplicationFormPage />} />
+        <Route path={"/login"} element={<LoginPage />} />
         <Route path={"/admin/trips/list"} element={<AdminHomePage/>} />
         <Route path={"/admin/trips/create"} element={<CreateTripPage/>} />
-        {/* <Route path={"/admin/trips/:id"} element={<Admin/>} /> */}
+        <Route path="/admin/trips/:id" element={<TripDetailsPage/>} />
         <Route path={"/*"} element={<ErroPage />} />
       </Routes>
     </BrowserRouter>

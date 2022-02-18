@@ -18,6 +18,7 @@ const AdminHomePage = () => {
   const saveData = (data) => {
     setTrips(data);
   };
+
   useEffect(() => {
     GetTrips(saveData);
   }, []);
@@ -30,6 +31,17 @@ const AdminHomePage = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
+
+  const goToPage =(id)=> { 
+    navigate(`/admin/trips/${id}`)
+    console.log(id)
+  }
+
+   const deleteTrip = (id , e) => { 
+    e.stopPropagation() 
+    console.log( "deleteTrip",id)
+
+  }
 
   return (
     <Bobydiv>
@@ -50,15 +62,15 @@ const AdminHomePage = () => {
         </StyledDivButton>
         {console.log(trips)}
         {trips.map((item) => (
-          <div onClick={console.log("teste")} key={item.id}>
-            {item.name}
+          <Card onClick={()=>goToPage(item.id)} key={item.id}>
+            <p > {item.name}</p>
             <IconButton
               aria-label='Viagem'
-              onClick={() => console.log("teste")}
+              onClick={(e) => deleteTrip( item.id , e  )}
             >
               <DeleteIcon />
             </IconButton>
-          </div>
+          </Card>
         ))}
       </CardStyledDiv>
     </Bobydiv>
