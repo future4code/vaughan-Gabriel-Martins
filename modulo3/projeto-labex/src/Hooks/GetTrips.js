@@ -6,7 +6,7 @@ import {Url_Base} from '../constants/Url_Base';
 
   axios
     .get(url)
-    .then((res) =>  saveData(res.data.trips))
+    .then((res) => saveData(res.data.trips))
     .catch(err => console.log(err))
 
 }

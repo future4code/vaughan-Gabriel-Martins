@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Card, CardHeader,IconButton ,CardActions} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import {Card, CardHeader,IconButton ,CardActions} from '@material-ui/core';
+
 
 
 
@@ -29,7 +30,6 @@ return (
           </IconButton>
         }
         title={props.titulo}
-       
       />
 
     </Card>

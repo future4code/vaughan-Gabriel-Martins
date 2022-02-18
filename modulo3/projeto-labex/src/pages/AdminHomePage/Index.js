@@ -1,17 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Button, Typography } from "@material-ui/core";
+import { Button, ListItem, Typography } from "@material-ui/core";
 import Cards from "./Card";
 import useProtected from "../../Hooks/useProtected";
 import GetTrips from "../../Hooks/GetTrips";
+import { Card, CardHeader, IconButton, CardActions } from "@material-ui/core";
 import { CardStyledDiv, StyledDivButton } from "./style";
+import DeleteIcon from "@material-ui/icons/Delete";
+
 import { Bobydiv } from "../ListTripsPage/Style";
 
 const AdminHomePage = () => {
+  const [trips, setTrips] = useState([]);
   const navigate = useNavigate();
+  useProtected();
 
+  const saveData = (data) => {
+    setTrips(data);
+  };
   useEffect(() => {
-    useProtected();
+    GetTrips(saveData);
   }, []);
 
   const handlerClickCreate = () => {
@@ -40,10 +48,18 @@ const AdminHomePage = () => {
             Logout
           </Button>
         </StyledDivButton>
-        <Cards titulo='teste' />
-        <Cards titulo='teste' />
-        <Cards titulo='teste' />
-        <Cards titulo='teste' />
+        {console.log(trips)}
+        {trips.map((item) => (
+          <div onClick={console.log("teste")} key={item.id}>
+            {item.name}
+            <IconButton
+              aria-label='Viagem'
+              onClick={() => console.log("teste")}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </div>
+        ))}
       </CardStyledDiv>
     </Bobydiv>
   );
