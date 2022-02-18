@@ -1,22 +1,27 @@
-import { Button, Typography } from "@material-ui/core";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
-import React from "react";
-import { Bobydiv } from "../ListTripsPage/Style";
-
+import { Button, Typography } from "@material-ui/core";
 import Cards from "./Card";
+import useProtected from "../../Hooks/useProtected";
+import GetTrips from "../../Hooks/GetTrips";
 import { CardStyledDiv, StyledDivButton } from "./style";
+import { Bobydiv } from "../ListTripsPage/Style";
 
 const AdminHomePage = () => {
   const navigate = useNavigate();
 
-  const handlerClickLogout  =()=> { 
-    navigate("/login");
-  }
-   
-  const handlerClickCreate  =()=> { 
+  useEffect(() => {
+    useProtected();
+  }, []);
+
+  const handlerClickCreate = () => {
     navigate("/admin/trips/create");
-  }
-   
+  };
+
+  const onClickHandlerLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <Bobydiv>
@@ -28,15 +33,12 @@ const AdminHomePage = () => {
           <Button onClick={() => navigate("/")} variant='contained'>
             Voltar
           </Button>
-          <Button
-            variant='contained'
-            onClick={handlerClickCreate}
-          >
+          <Button variant='contained' onClick={handlerClickCreate}>
             Criar Viagem
           </Button>
-          <Button 
-          onClick={handlerClickLogout}
-          variant='contained'>Logout</Button>
+          <Button onClick={onClickHandlerLogout} variant='contained'>
+            Logout
+          </Button>
         </StyledDivButton>
         <Cards titulo='teste' />
         <Cards titulo='teste' />

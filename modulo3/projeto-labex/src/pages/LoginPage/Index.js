@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import PostSingup from "../../Hooks/PostSingup";
 
@@ -6,41 +6,43 @@ import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router";
 import { StyledDiv, StyledDivButton } from "./style";
 import { Button, Typography } from "@material-ui/core";
+import useForm from '../../Hooks/useForm';
+import PostLogin from "../../Hooks/PostLogin";
+
 
 const LoginPage = () => {
-  const [email,setEmail]=useState('');
-  const [password,setPassword]=useState('');
-  const [dataPostSignup, setDataPostSignup]=useState('');
-  const [dataPostSignupErr, setDataPostSignupErr]=useState('');
+  const initialState = {email:'' , password:''}
+  const {form, onChange} = useForm(initialState)
+  const [dataApi, setDataApi]=useState(false);
 
 
   const navigate = useNavigate();
 
   function HandlerClickVoltar() {
     navigate("/");
-    setDataPostSignupErr('');
+  }
+  
+  const respondeApiPostlogin =(data)=> { 
+    localStorage.setItem("token", data.data.token)
+    setDataApi(data.data.success)
+    navigate("/admin/trips/list")
 
   }
+  // useEffect(()=> { 
+  //    const teste = localStorage.getItem("token")
+  //    console.log('teste', teste);
 
+  //  },[])
+   
   const handlerSubmitForm =(e) =>{ 
     e.preventDefault();
-    console.log(email, password);
-    setDataPostSignupErr('');
-
-    
-    PostSingup(email, password, setDataPostSignup, setDataPostSignupErr )
-
-
-    // call login if 
-    // navigate("/");
-    // navigate("/admin/trips/list");
+    PostLogin(form, respondeApiPostlogin)
+   
   }
 
 
   return (
     <form 
-    noValidate 
-    autoComplete="off"
     onSubmit={handlerSubmitForm}
     >
       <StyledDiv>
@@ -52,26 +54,26 @@ const LoginPage = () => {
         </Typography>
        
         <TextField
+          name="email"
           fullWidth
           required
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
+          value={form.email}
+          onChange={onChange}
           margin='normal'
           label='E-mail'
           variant='outlined'
           />
         <TextField
-          value={password}
-          onChange={(e)=>setPassword(e.target.value)}
+          name="password"
+          value={form.password}
+          onChange={onChange}
           fullWidth
+          type="password"
           label='Senha'
           required
           margin='normal'
           variant='outlined'
         />
-          {dataPostSignupErr && <Typography 
-          color="error"
-          >{dataPostSignupErr.data.message}</Typography>}
         <StyledDivButton>
           <Button
           onClick={HandlerClickVoltar}

@@ -17,7 +17,7 @@ const HomePage = ()=> {
       navigate("/trips/list")
     }
     const handlerClickAdmin = () => { 
-      navigate("/login")
+      navigate("/admin/trips/list")
     }
 
 
