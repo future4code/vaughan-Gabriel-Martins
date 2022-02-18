@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { useNavigate } from "react-router";
 import { MainContainer } from "./Style";
-import PostApllyToTrip from "../../Hooks/PostApllytoTrip";
+import PostApllyToTrip from "../../Hooks/PostApplytoTrip";
+import GetTrips from "../../Hooks/GetTrips";
 import { Bobydiv, StyledContainerButtons } from "../ListTripsPage/Style";
 import { Button, Typography } from "@material-ui/core";
 import { DataCountries } from "./Data";
 import useForm from "../../Hooks/useForm";
 
 const ApplicationFormPage = () => {
+   const [ dataGetTrips, setDataGetTrips] = useState([])
    const initialState = (
     {selectCountry:"" , selectViagem:"", 
     nome:"", idade:"", textoCandidatura:"",
@@ -23,6 +25,23 @@ const ApplicationFormPage = () => {
   const handlerClickVoltar = () => {
     navigate("/trips/list");
   };
+  
+
+   const saveData =(data)=> { 
+ 
+    setDataGetTrips(data);
+    console.log('dataGetTrips', dataGetTrips)
+    console.log("data" , data)
+     
+  }
+
+   useEffect(() => { 
+     GetTrips(saveData)
+    }, [])
+   
+  
+
+  
 
   // Clicks - Subumit -  Onchanges Handlers local using arrow functions
   const handlerSubmitEnviar = (e) => {
@@ -35,7 +54,7 @@ const ApplicationFormPage = () => {
     // Call The right function - API
 
     // Go back to trips list
-    navigate("/trips/list");
+    // navigate("/trips/list");
   };
 
 
@@ -61,14 +80,14 @@ const ApplicationFormPage = () => {
             variant='outlined'
             select
             required
-            label='Escolha uma viagem'
+            // label='Escolha uma viagem'
             SelectProps={{
               native: true,
             }}
-          >
-            {["Escolha uma viagem", "eu", "vc"].map((option) => (
-              <option key={option} value={option}>
-                {option}
+          >  <option value={""} disabled>Escolha uma uma Viagem</option>
+             {dataGetTrips.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
               </option>
             ))}
           </TextField>
@@ -89,8 +108,9 @@ const ApplicationFormPage = () => {
             margin='normal'
             fullWidth
             required
-            label='Idade'
             type='number'
+            InputProps={{inputProps: { min:18}}}
+            label='Idade'
             variant='outlined'
           />
           <TextField
@@ -126,9 +146,8 @@ const ApplicationFormPage = () => {
             SelectProps={{
               native: true,
             }}
-          >
-            {DataCountries.map((option) => (
-              <option key={option.ordem} value={option.nome}>
+          > <option value={""} disabled>Escolha um País</option>
+            {DataCountries.map((option) => ( <option key={option.ordem} value={option.nome}>
                 {option.nome}
               </option>
             ))}
