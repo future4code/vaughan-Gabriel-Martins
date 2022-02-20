@@ -3,14 +3,19 @@ import { Url_Base} from "../constants/Url_Base";
 
 
 
-const DeleteTrip =(id)=> { 
+const DeleteTrip =(id,upDatetrips)=> { 
     const url = `${Url_Base}/trips/${id}`
-    const token = localStorage.getItem("token");
-    const axiosAut = {headers:{auth:token}}
+    const axiosConf = {headers:{
+      auth: localStorage.getItem("token")
+    }}
 
     axios
-      .delete(url,axiosAut)
-      .then(res => console.log( res))
+      .delete(url,axiosConf)
+      .then(res => {
+
+        alert("Viagem apagada!")
+        upDatetrips()
+        console.log( res)})
       .catch(err => console.log(err))
 
 }

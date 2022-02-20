@@ -9,14 +9,14 @@ import { planets } from "./planets";
 const CreateTripPage = () => {
   const initialValues = {planet:"", name:"", date:"", description:"", durationInDays:""}
 
-  const  {form, onChange} = useForm(initialValues)
+  const  {form, onChange, clear} = useForm(initialValues)
 
   const navigate = useNavigate();
 
   const handledSubmit = (e) => {
     e.preventDefault();
-    console.log("18",form)
     PostCreateTrip(form)
+    clear()
   };
 
   return (
@@ -55,6 +55,7 @@ const CreateTripPage = () => {
               native: true,
             }}
           >
+          <option  key="empty" value=""></option>,
             {planets}
           </TextField>
 

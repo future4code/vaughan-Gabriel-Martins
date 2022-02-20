@@ -13,7 +13,7 @@ import axios from 'axios';
             console.log(res.data.message)
             alert("Aplicado com Sucesso")
         })
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err.response.data.message));
    
 
 }

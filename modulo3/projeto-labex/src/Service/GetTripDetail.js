@@ -3,12 +3,12 @@ import {Url_Base} from '../constants/Url_Base';
 
  const GetTrips = (id, saveData) => { 
   const url=`${Url_Base}/trip/${id}`
-  const token = localStorage.getItem("token");
-
-  const auth={headers: {auth:token}}
+  const axiosConf = {headers:{
+    auth: localStorage.getItem("token")
+  }}
 
   axios
-    .get(url,auth)
+    .get(url,axiosConf)
     .then((res) => {saveData(res.data.trip)
     })
     .catch(err => console.log(err))

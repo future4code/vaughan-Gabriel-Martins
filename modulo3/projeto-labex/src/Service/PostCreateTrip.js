@@ -6,17 +6,17 @@ const PostCreateTrip = (bodyEntered) => {
   const token = localStorage.getItem("token");
   console.log(token)
   console.log("bodyEntered", bodyEntered)
-  const axiosAut = { headers: { auth: token } };
-//   const body = { bodyEntered };
-  const body = {
-    "name": "Verão em Mercúgfrio",
-    "planet": "Mercúrgfio",
-    "date": "30/03/2029",
-    "description": "Melhor do que verao em duabi  quentinho tipo o Sol!",
-    "durationInDays": 90
-};
+  const axiosAut = {headers:{auth:token}}
+  const body =  bodyEntered ;
+//   const body = {
+//     "name": "Verão em Mercúgfrio",
+//     "planet": "Mercúrgfio",
+//     "date": "30-03-2029",
+//     "description": "Melhor do que verao em DuBai  quentinho tipo o Sol!",
+//     "durationInDays": "9000"
+// };
   axios
-    .post(url,axiosAut, body)
+    .post(url,body, axiosAut )
     .then((res) => { 
         console.log(res)
         alert("Viagem Criada")

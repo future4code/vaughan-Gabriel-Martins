@@ -12,14 +12,14 @@ import useForm from "../../Hooks/useForm";
 const ApplicationFormPage = () => {
   const [dataGetTrips, setDataGetTrips] = useState([]);
   const initialState = {
-    selectCountry: "",
-    selectViagem: "",
-    nome: "",
-    idade: "",
-    textoCandidatura: "",
-    profissao: "",
+    age: "",
+    country: "",
+    name: "",
+    profession: "",
+    applicationText: "",
+    trip: "",
   };
-  const { form, onChange } = useForm(initialState);
+  const { form, onChange, clear } = useForm(initialState);
 
   const navigate = useNavigate();
 
@@ -36,11 +36,13 @@ const ApplicationFormPage = () => {
   }, []);
 
   // Clicks - Subumit -  Onchanges Handlers local using arrow functions
-  const handlerSubmitEnviar = (e) => {
+  const handledSubmit = (e) => {
     e.preventDefault();
     // console.log(form)
     //!! Id é a viagem escolhida esta dentro do form como viagem
-    PostApllyToTrip(form)
+    PostApllyToTrip(form);
+    clear();
+    console.log(form);
   };
 
   return (
@@ -55,11 +57,9 @@ const ApplicationFormPage = () => {
         >
           Inscreva-se para uma viagem
         </Typography>
-        <form autoComplete='off' 
-        onSubmit={handlerSubmitEnviar}
-        >
+        <form autoComplete='off' onSubmit={handledSubmit}>
           <TextField
-            name="viagem"
+            name='viagem'
             value={form.viagem}
             onChange={onChange}
             fullWidth
@@ -71,8 +71,10 @@ const ApplicationFormPage = () => {
             SelectProps={{
               native: true,
             }}
-          > 
-          <option selected disabled > </option>
+          >
+            <option selected disabled>
+              {" "}
+            </option>
             {dataGetTrips.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}
@@ -85,7 +87,6 @@ const ApplicationFormPage = () => {
             onChange={onChange}
             fullWidth
             required
-
             label='Nome'
             variant='outlined'
             margin='normal'
@@ -137,9 +138,10 @@ const ApplicationFormPage = () => {
             }}
           >
             {" "}
-            <option value={""}  selected disabled>
-              Escolha um País
-            </option>
+            {/* <option value={""}  selected disabled> */}
+            <option selected disabled></option>
+            {/*} Escolha um País
+            </option> */}
             {DataCountries.map((option) => (
               <option key={option.ordem} value={option.nome}>
                 {option.nome}

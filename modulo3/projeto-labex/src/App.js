@@ -1,7 +1,7 @@
 import "./App.css";
 import { ThemeProvider } from "styled-components";
 
-import RoutePage from "./pages/Route/RoutePage";
+import RoutePage from "./pages/Routes/RoutePage";
 
 import { theme, GlobalStyles } from "./Theme";
 import ApplicationFormPage from "./pages/ApplicationFormPage/ApplicationFormPage";

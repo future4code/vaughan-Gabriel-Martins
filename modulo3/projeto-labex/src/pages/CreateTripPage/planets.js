@@ -1,7 +1,7 @@
 export const planets = [
   
  
-  <option  key="Terra" value="Terra}">Terra </option>,
+  <option  key="Terra" value="Terra">Terra </option>,
   <option  key="Mercúrio" value="Mercúrio"> Mercúrio </option>,
   <option  key="Vênus" value="Vênus"> Vênus </option>,
   <option  key="Marte" value="Marte}">Marte </option>,

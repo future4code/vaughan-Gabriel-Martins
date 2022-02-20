@@ -20,9 +20,13 @@ const AdminHomePage = () => {
     setTrips(data);
   };
   
+  // const upDatetrips = () => { 
+  //   set
+  // }
   const deleteTrip = (id , e) => { 
    e.stopPropagation() 
    DeleteTrip(id)
+   GetTrips(saveData)
  }
   useEffect(() => {
     GetTrips(saveData)
@@ -61,7 +65,7 @@ const AdminHomePage = () => {
           </Button>
         </StyledDivButton>
         {console.log(trips)}
-        {trips.map((item) => (
+        {trips && trips.map((item) => (
           <Card onClick={()=>goToPage(item.id)} key={item.id}>
             <p > {item.name}</p>
             <IconButton
