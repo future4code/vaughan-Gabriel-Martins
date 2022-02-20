@@ -35,7 +35,7 @@ const ApplicationFormPage = () => {
     GetTrips(saveData);
   }, []);
 
-  // Clicks - Subumit -  Onchanges Handlers local using arrow functions
+  // Clicks - Submit -  Onchanges Handlers local using arrow functions
   const handledSubmit = (e) => {
     e.preventDefault();
     // console.log(form)
@@ -59,8 +59,8 @@ const ApplicationFormPage = () => {
         </Typography>
         <form autoComplete='off' onSubmit={handledSubmit}>
           <TextField
-            name='viagem'
-            value={form.viagem}
+            name='trip'
+            value={form.trip}
             onChange={onChange}
             fullWidth
             variant='outlined'

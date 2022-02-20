@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
  const PostApllyToTrip = (data)=> { 
-     const url = `${Url_Base}/trips/${data.viagem}/apply`;
+     const url = `${Url_Base}/trips/${data.trip}/apply`;
      const body  = data;
      
      axios
