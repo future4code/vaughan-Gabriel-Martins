@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Button, ListItem, Typography } from "@material-ui/core";
-import Cards from "./Card";
+import { Button,Card , ListItem, Typography } from "@material-ui/core";
+// import Cards from "./Card";
 import useProtected from "../../Hooks/useProtected";
 import GetTrips from "../../Service/GetTrips";
-import { Card, CardHeader, IconButton, CardActions } from "@material-ui/core";
+import {  IconButton } from "@material-ui/core";
 import { CardStyledDiv, StyledDivButton } from "./style";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteTrip from "../../Service/DeleteTrip";
@@ -19,14 +19,10 @@ const AdminHomePage = () => {
   const saveData = (data) => {
     setTrips(data);
   };
-  
-  // const upDatetrips = () => { 
-  //   set
-  // }
+
   const deleteTrip = (id , e) => { 
    e.stopPropagation() 
-   DeleteTrip(id)
-   GetTrips(saveData)
+   DeleteTrip(id, saveData)
  }
   useEffect(() => {
     GetTrips(saveData)
@@ -64,10 +60,10 @@ const AdminHomePage = () => {
             Logout
           </Button>
         </StyledDivButton>
-        {console.log(trips)}
         {trips && trips.map((item) => (
-          <Card onClick={()=>goToPage(item.id)} key={item.id}>
-            <p > {item.name}</p>
+          <Card onClick={()=>goToPage(item.id)} 
+            key={item.id}>
+            <p style={{color:'black'}} > {item.name}</p>
             <IconButton
               aria-label='Viagem'
               onClick={(e) => deleteTrip( item.id , e  )}
