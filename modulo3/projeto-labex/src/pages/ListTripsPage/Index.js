@@ -16,7 +16,6 @@ const ListTripsPage = () => {
   }, []);
   const saveData = (data) => {
     setList(data);
-    console.log(data);
   };
 
   const listRender = list.map((item) => {

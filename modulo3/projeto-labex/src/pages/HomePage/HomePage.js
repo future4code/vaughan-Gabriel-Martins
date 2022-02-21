@@ -5,6 +5,8 @@ import {SupervisorAccount , FlightTakeoff} from '@material-ui/icons';
 import {Button1} from "./Styled";
 import {DivContainerPublico, DivContainerPrivado} from "./Styled";
 import { Typography } from "@material-ui/core";
+import star from '../../assets/star.svg';
+import './Home.css';
 
 
 
@@ -26,12 +28,12 @@ const HomePage = ()=> {
 
           <DivContainerPrivado>
           <Button
-          onClick={handlerClickAdmin}
+          onClick={handlerClickAdmin}z
           variant="outlined"
           // color="secondary"
           size="large"
           endIcon={
-          <SupervisorAccount/>}
+            <SupervisorAccount/>}
           >Admin</Button
           >
           </DivContainerPrivado>

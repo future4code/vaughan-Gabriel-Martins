@@ -29,7 +29,6 @@ const ApplicationFormPage = () => {
   };
   const saveData = (data) => {
     setDataGetTrips(data);
-    // console.log(data.map(item=> item.id))
   };
   useEffect(() => {
     GetTrips(saveData);
@@ -38,11 +37,9 @@ const ApplicationFormPage = () => {
   // Clicks - Submit -  Onchanges Handlers local using arrow functions
   const handledSubmit = (e) => {
     e.preventDefault();
-    // console.log(form)
     //!! Id é a viagem escolhida esta dentro do form como viagem
     PostApllyToTrip(form);
     clear();
-    console.log(form);
   };
 
   return (
@@ -54,10 +51,11 @@ const ApplicationFormPage = () => {
           variant='h4'
           component='h1'
           gutterBottom
+          margin='normal'
         >
           Inscreva-se para uma viagem
         </Typography>
-        <form autoComplete='off' onSubmit={handledSubmit}>
+        <form onSubmit={handledSubmit}>
           <TextField
             name='trip'
             value={form.trip}

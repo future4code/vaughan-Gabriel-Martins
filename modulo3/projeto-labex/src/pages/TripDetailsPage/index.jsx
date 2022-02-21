@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Typography } from "@material-ui/core";
+import { Box, Button, Card, Typography } from "@material-ui/core";
+import { ButtonDiv, CandAproContainer, CandPendContainer, CandPendContainer2, MainContainer, TitleContainer } from "./style";
 import { useNavigate, useParams } from "react-router-dom";
 import useProtected from "../../Hooks/useProtected";
 import GetTripsDetail from "../../Service/GetTripDetail";
@@ -18,7 +19,6 @@ const TripDetailsPage = () => {
 
   const saveData = (data) => {
     setData(data)
-    console.log(data);
   };
   
   const {
@@ -38,60 +38,74 @@ const TripDetailsPage = () => {
   };
   
   const Approve =(cadidateId)  => { 
-    console.log("approved ", id)
     DecideCandidate(id, cadidateId, true ,saveData )
-    // GetTripsDetail(id, saveData);
   }
   const Decline =(cadidateId)  => { 
-    console.log("declined ", id)
     DecideCandidate(id, cadidateId, false, saveData)
-    // GetTripsDetail(id, saveData);
   }
  
   
   return (
-    <div>
-      <Card align='center'>
-        <Typography>{name}</Typography>
-        <Typography>{description}</Typography>
-        <Typography>{planet}</Typography>
-        <Typography>{durationInDays}</Typography>
+    <>
+    <MainContainer>
         <Button
           variant='contained'
           aria-label='return button'
           onClick={() => navigate(-1)}
+          style={{alignSelf:"flex-end", margin: "2rem"}}
         >
           Voltar
         </Button>
-      </Card>
-      <Typography variant='h5' component='h2'>
+         <TitleContainer>
+        <Typography variant="h4">{name}</Typography>
+        <Typography>{description}</Typography>
+        <Typography>{planet}</Typography>
+        <Typography>{durationInDays} &#160;dias</Typography>
+        </TitleContainer>
+   
+      <CandPendContainer>
+      <Typography 
+      variant='h5' 
+      component='h2'>
         Candidatos Pendentes
       </Typography>
+
      { candidates && candidates.map((item) => {
-          return <Card key={item.id}>
+          return <CandPendContainer2 key={item.id}>
             <Typography variant="h6" >{item.name}</Typography>
             <Typography>{item.age}</Typography>
             <Typography>{item.profession}</Typography>
             <Typography>{item.applicationText}</Typography>
             <Typography>{item.country}</Typography>
+            <ButtonDiv>
             <Button 
             variant="contained"
              onClick={()=> Approve(item.id) }
              >Aprovar
              </Button>
             <Button 
+            color="secondary"
             variant="contained" 
             onClick={()=> Decline(item.id) }
             >Reprovar
             </Button>
-          </Card>
+            </ButtonDiv>
+          </CandPendContainer2>
         })}
+      </CandPendContainer>
 
-      <Typography variant='h5' component='h2'>
+       
+       <CandAproContainer>
+      <Typography 
+      variant='h5' 
+      component='h2'>
         Candidatos Aprovados
       </Typography>
-        {approved && approved.map(item =>  <Typography key={item.id}> {item.name} </Typography>)}
-    </div>
+        {approved && approved.map(item => 
+           <Typography key={item.id}> {item.name} </Typography>)}
+       </CandAproContainer>
+    </MainContainer>
+    </>
   );
 };
 

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button,Card , ListItem, Typography } from "@material-ui/core";
-// import Cards from "./Card";
 import useProtected from "../../Hooks/useProtected";
 import GetTrips from "../../Service/GetTrips";
-import {  IconButton } from "@material-ui/core";
-import { CardStyledDiv, StyledDivButton } from "./style";
+import { IconButton } from "@material-ui/core";
+import { Cards , CardStyledDiv, StyledDivButton } from "./style";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteTrip from "../../Service/DeleteTrip";
 import { Bobydiv } from "../ListTripsPage/Style";
@@ -14,7 +13,7 @@ import { Bobydiv } from "../ListTripsPage/Style";
 const AdminHomePage = () => {
   const [trips, setTrips] = useState([]);
   const navigate = useNavigate();
-  useProtected();
+  // useProtected();
 
   const saveData = (data) => {
     setTrips(data);
@@ -39,7 +38,6 @@ const AdminHomePage = () => {
 
   const goToPage =(id)=> { 
     navigate(`/admin/trips/${id}`)
-    console.log(id)
   }
 
 
@@ -61,7 +59,7 @@ const AdminHomePage = () => {
           </Button>
         </StyledDivButton>
         {trips && trips.map((item) => (
-          <Card onClick={()=>goToPage(item.id)} 
+          <Cards onClick={()=>goToPage(item.id)} 
             key={item.id}>
             <p style={{color:'black'}} > {item.name}</p>
             <IconButton
@@ -70,7 +68,7 @@ const AdminHomePage = () => {
             >
               <DeleteIcon />
             </IconButton>
-          </Card>
+          </Cards>
         ))}
       </CardStyledDiv>
     </Bobydiv>

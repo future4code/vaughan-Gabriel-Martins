@@ -16,7 +16,7 @@ const useDeleteTrip =(id, saveData)=> {
     .then( res => {
         alert("Viagem apagada!")
         GetTrips(saveData)
-        console.log("res",res)})
+       })
       .catch(err => console.log(err))
     
 
