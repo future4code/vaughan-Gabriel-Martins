@@ -33,7 +33,7 @@ const CreateTripPage = () => {
           </Typography>
 
           <TextField
-          name="name"
+            name="name"
             value={form.name}
             onChange={onChange}
             margin='normal'
