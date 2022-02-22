@@ -13,7 +13,3 @@ justify-content: space-between;
 
 border: 1px solid red;
 `
-
-export const ButtonStyled = styled(Button)`
-font-size: 32px,
-`

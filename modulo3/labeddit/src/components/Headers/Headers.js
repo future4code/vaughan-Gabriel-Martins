@@ -16,12 +16,12 @@ import {HeaderApp, ButtonStyled} from './style';
   
       <AppBar position="static">
         <HeaderApp>
-          <ButtonStyled
+          <Button
           size="large"
-           color="secondary">Login</ButtonStyled>
+           color="secondary">Login</Button>
           <Button 
-          size="large" 
-          >Signin</Button>
+          size="large">
+            Signin</Button>
         </HeaderApp>
       </AppBar>
  

@@ -38,7 +38,7 @@ const FormSignin =() => {
  />
  <Button
  fullWidth
- type="Submit"
+ type="submit"
  onClick={()=> console.log("teste")}
  >Cadastrar</Button>
 </form>)
