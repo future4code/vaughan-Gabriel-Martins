@@ -5,7 +5,7 @@ import PostPage from "../Pages/PostPage/PostPage";
 import SigninPage from "../Pages/SigninPage/SigninPage";
 import LoginPage from "../Pages/LoginPage/LoginPage";
 import NotFound from "../Pages/NotFound/NotFound";
-import Headers from "../components/Headers";
+import Headers from "../components/Headers/Headers";
 
 
 
