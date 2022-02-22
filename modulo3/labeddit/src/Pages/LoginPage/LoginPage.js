@@ -1,14 +1,24 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
+import { goToSignin} from "../../routers/coordenates";
+import Form from "./Form";
 
+const LoginPage = () => {
+  const navigate = useNavigate();
+  
+    
+  return (
+      <>
+      <Form/>
 
- const LoginPage = ()=>  { 
-
-
-    return ( 
-        <h1>LoginPage</h1>
-    )
-}
-
+      <Button
+      fullWidth
+      onClick={()=>goToSignin(navigate)}
+      >Cadastrar</Button>
+      </>
+  );
+};
 
 export default LoginPage;
