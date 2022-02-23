@@ -3,7 +3,7 @@ import {URL_BASE} from '../constants/urls';
 
 
 const PostLogin = () => { 
-    const url = `${URL_BASE}/user`;
+    const url = `${URL_BASE}/users`;
 
     const body = {
         "email": "demo.email@gmail.com",

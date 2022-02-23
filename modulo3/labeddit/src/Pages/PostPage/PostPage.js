@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { AppBar, Button, Fab, Toolbar, TextField } from "@material-ui/core";
 import PostCard  from '../../components/PostCard/PostCard';
+import useNotLogedPage from '../../Hooks/useNotLogedPage';
 import {
   Boxdiv,
   WritePostContainer,
@@ -8,6 +9,7 @@ import {
 
 const PostPage = () => {
     const [postado , setPostado] = useState("");
+    useNotLogedPage();
 
    
         

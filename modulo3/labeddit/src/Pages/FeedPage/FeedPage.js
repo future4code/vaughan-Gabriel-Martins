@@ -1,9 +1,10 @@
 import React from "react";
 import { AppBar, Button, Fab, Toolbar, TextField, Typography } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
-import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
+import IconButton from '@material-ui/core/IconButton';
+import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
+import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 import PostCard from '../../components/PostCard/PostCard';
+import useNotLogedPage from "../../Hooks/useNotLogedPage";
 
 import {
   Boxdiv,
@@ -13,7 +14,8 @@ import {
 } from "./Style";
 
 const FeedPage = () => {
-
+  
+  useNotLogedPage()
     
    const savaData = (data) =>{ 
        console.log(data);
