@@ -12,16 +12,20 @@ import {
   StyledAppBar,
   WritePostContainer,
 } from "./Style";
+import GetPost from "../../Services/GetPost";
 
 const FeedPage = () => {
   
   useNotLogedPage()
-    
-   const savaData = (data) =>{ 
-       console.log(data);
-   }
-     
 
+  const savaData = (data) =>{ 
+      console.log(data);
+  }
+
+  GetPost(savaData);
+    
+     
+  
 
   return (
     <>
