@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState} from "react";
+import { AppBar, Button, Fab, Toolbar, TextField } from "@material-ui/core";
+import PostCard  from '../../components/PostCard/PostCard';
+import {
+  Boxdiv,
+  WritePostContainer,
+} from "./style";
 
+const PostPage = () => {
+    const [postado , setPostado] = useState("");
 
+   
+        
+   const savaData = (data) =>{ 
+    console.log(data);
+}
+  
 
-const PostPage = ()=>  { 
+ 
 
+  return (
+   <PostCard
+   buttonName ={"Comentar"}
+   dataUp={savaData}
+   />
 
-    return ( 
-        <h1>PostPage</h1>
-    )
+  ) 
 }
 
-
-export default PostPage
+export default PostPage;

@@ -9,8 +9,8 @@ const PostCard = (props) => {
     const [postado , setPostado] = useState("");
 
     const onChange = (e)=>{
-    //   setPostado(e.target.value);
-      console.log(postado);
+      setPostado(e.target.value);
+      // console.log(postado);
     }
 
     const onClickHandler = () => { 
@@ -33,7 +33,7 @@ const PostCard = (props) => {
    <Button 
    onClick={ onClickHandler}
    variant='contained' fullWidth>
-     Postar
+     {props.buttonName}
    </Button>
  </Boxdiv>
 

@@ -35,6 +35,7 @@ const FeedPage = () => {
       </Boxdiv> */}
        <PostCard 
        dataUp={savaData}
+       buttonName={"Postar"}
 
        />
 
