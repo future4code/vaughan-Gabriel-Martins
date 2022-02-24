@@ -10,26 +10,28 @@ import {
 
 
 
-const CommentCard = () => { 
+const CommentCard = ({commentsToScreen}) => { 
+  console.log(commentsToScreen)
 
   return (
   <Boxdiv >
 <StyledAppBar color='primary'>
   <StyledToolbar>
     <IconButton edge='end' color='inherit'>
-      <Typography> username </Typography>
+      <Typography> {commentsToScreen.username}  </Typography>
     </IconButton>
   </StyledToolbar>
+      <Typography>  {(new Date(commentsToScreen.createdAt)).toLocaleString()} </Typography>
 </StyledAppBar>
 <WritePostContainer>
-  {/* <Typography> {item.username} </Typography> */}
-  <Typography> oi </Typography>
-  {/* <Typography> {item.commentCount} </Typography> */}
-  <Typography> body </Typography>
+  <Typography>  </Typography>
+  <Typography> {commentsToScreen.username} </Typography>
+  <Typography> {commentsToScreen.commentCount} </Typography>
+  <Typography> {commentsToScreen.body} </Typography>
 </WritePostContainer>
 
 <StyledAppBar color='primary'>
-  <Typography> voteSum </Typography>
+  <Typography> {commentsToScreen.voteSum ? commentsToScreen.voteSum : 0 } </Typography>
   <StyledToolbar>
     <IconButton edge='end' color='inherit'>
       <ArrowDownwardOutlinedIcon />

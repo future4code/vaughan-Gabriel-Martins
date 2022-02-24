@@ -11,40 +11,40 @@ import {
   StyledToolbar,
   StyledAppBar,
   WritePostContainer,
-} from "../FeedPage/Style"
+} from "../FeedPage/Style";
 import GetData from "../../Services/GetPostComments/GetData";
 
 const PostPage = () => {
-  const [comments, setComments] = useState([])
-  const{id} = useParams();
-  console.log("usepara ",id);
+  const [comments, setComments] = useState([]);
+  const { id } = useParams();
   useNotLogedPage();
-  
+
   const saveData = (data) => {
     console.log("Postpage data ", data.data);
     setComments(data.data);
   };
 
   useEffect(() => {
-//As its been used to Commnents and Post , this urlEntred has 
-// been added as a second paraments and it should be also completed 
-// at least with a "" empty string.  GetPost Comments {{baseURL}}/posts/:id/comments
-// Get Posts  {{baseURL}}/posts/
- 
-    GetData(saveData, `${id}/comments` );
+    //As its been used to Commnents and Post , this urlEntred has
+    // been added as a second paraments and it should be also completed
+    // at least with a "" empty string.  GetPost Comments {{baseURL}}/posts/:id/comments
+    // Get Posts  {{baseURL}}/posts/
+
+    GetData(saveData, `${id}/comments`);
   }, []);
 
-
-  return(
-    <>
-
-      <CommentCard/>
-      <PostCard buttonName={"Comentar"} dataUp={saveData} />
-      <CommentCard/>
-
-      </>
     
+  const commentsToScreen = comments.map(item =>  <CommentCard  
+    commentsToScreen = {item}
+    /> )
+
+  return (
+    <>
+     
+      <PostCard buttonName={"Comentar"} dataUp={saveData} />
+       {commentsToScreen}
+    </>
   );
-}
+};
 
 export default PostPage;
