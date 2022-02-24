@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import { IconButton, AppBar, Button, Toolbar, Typography ,  TextField } from "@material-ui/core";
-import PostCard from "../../components/PostCard/PostCard";
+import PostCommnetCard from "./PostCommnetCard";
 import useNotLogedPage from "../../Hooks/useNotLogedPage";
 // import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
 // import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
@@ -20,7 +20,7 @@ const PostPage = () => {
   useNotLogedPage();
 
   const saveData = (data) => {
-    console.log("Postpage data ", data.data);
+    // console.log("Postpage data ", data.data);
     setComments(data.data);
   };
 
@@ -33,16 +33,14 @@ const PostPage = () => {
     GetData(saveData, `${id}/comments`);
   }, []);
 
-    
-  const commentsToScreen = comments.map(item =>  <CommentCard  
-    commentsToScreen = {item}
-    /> )
+  const commentsToScreen = comments.map((item) => (
+    <CommentCard commentsToScreen={item} />
+  ));
 
   return (
     <>
-     
-      <PostCard buttonName={"Comentar"} dataUp={saveData} />
-       {commentsToScreen}
+      <PostCommnetCard buttonName={"Comentar"} dataUp={saveData} />
+      {commentsToScreen}
     </>
   );
 };

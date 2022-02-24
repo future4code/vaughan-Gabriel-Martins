@@ -10,8 +10,9 @@ import {
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
 import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
-import PostCard from "../../components/PostCard/PostCard";
-import useNotLogedPage from "../../Hooks/useNotLogedPage";
+import PostCard from './PostCard';
+import useNotLogedPage from '../../Hooks/useNotLogedPage';
+import CreatePostData from '../../Services/GetPostComments/GetData'
 
 import {
   Boxdiv,
@@ -26,33 +27,36 @@ const FeedPage = () => {
   const navigate = useNavigate();
   useNotLogedPage();
   const [post, setPost] = useState([]);
+  const [creatingAPost, setCreatingAPost] = useState("");
 
   const saveData = (data) => {
-    console.log(data.data);
+    // console.log(data.data);
     setPost(data.data);
+  };
+
+  const dataUpFromPostCard = (data) => {
+    console.log(data);
+    CreatePostData("/posts", data)
   };
 
 
   useEffect(() => {
-//As its been used to Commnents and Post , this urlEntred has 
-// been added as a second paraments and it should be also completed 
-// at least with a "" empty string. 
-    GetData(saveData, '');
-  }, []);
+    //As its been used to Commnents and Post , this urlEntred has
+    // been added as a second paraments and it should be also completed
+    // at least with a "" empty string.
+    GetData(saveData, "");
+  }, [navigate]);
 
-  const onClickHandler = (id)=>{ 
-    console.log(id)
-    goToPost(navigate, id )
-    
-  }
+  const onClickHandler = (id) => {
+    console.log(id);
+    goToPost(navigate, id);
+  };
 
   const Posts =
     post &&
     post.map((item) => {
       return (
-        <Boxdiv 
-        onClick={()=>onClickHandler(item.id)}
-        key={item.id}>
+        <Boxdiv onClick={() => onClickHandler(item.id)} key={item.id}>
           <StyledAppBar color='primary'>
             <StyledToolbar>
               <IconButton edge='end' color='inherit'>
@@ -94,7 +98,7 @@ const FeedPage = () => {
           Postar
         </Button>
       </Boxdiv> */}
-      <PostCard dataUp={saveData} buttonName={"Postar"} />
+      <PostCard dataUp={dataUpFromPostCard} buttonName={"Postar"} />
       {Posts}
     </>
   );

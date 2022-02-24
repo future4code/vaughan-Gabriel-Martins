@@ -11,7 +11,6 @@ import {
 
 
 const CommentCard = ({commentsToScreen}) => { 
-  console.log(commentsToScreen)
 
   return (
   <Boxdiv >
