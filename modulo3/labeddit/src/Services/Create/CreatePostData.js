@@ -8,14 +8,14 @@ import { URL_BASE } from "../../constants/urls";
 // POSTCreate Comment Vote   {{baseURL}}/comments/:id/votes  body 	"direction": 1   /  -1 
 
 const CreatePostData = (urlentred, body )  => { 
-  const url = `${URL_BASE}/posts`;
+  const url = `${URL_BASE}/${urlentred}`;
   const token = localStorage.getItem("token");
 
   const axisConf = { headers: { Authorization: token } } ;
 
 
   axios
-    .post("https://labeddit.herokuapp.com/posts")
+    .post(url, body, axisConf)
     .then(res => console.log(res))
     .catch(err => console.log(err.response))
 

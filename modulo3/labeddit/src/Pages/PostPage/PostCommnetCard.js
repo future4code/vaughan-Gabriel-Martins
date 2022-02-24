@@ -27,7 +27,9 @@ const PostCard = (props) => {
           rows='6'
         />
       </WritePostContainer>
-      <Button onClick={onClickHandler} variant='contained' fullWidth>
+      <Button 
+      onClick={onClickHandler} 
+      variant='contained' fullWidth>
         {props.buttonName}
       </Button>
     </Boxdiv>

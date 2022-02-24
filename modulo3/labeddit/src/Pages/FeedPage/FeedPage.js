@@ -12,7 +12,7 @@ import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined"
 import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
 import PostCard from './PostCard';
 import useNotLogedPage from '../../Hooks/useNotLogedPage';
-import CreatePostData from '../../Services/GetPostComments/GetData'
+import CreatePostData from '../../Services/Create/CreatePostData';
 
 import {
   Boxdiv,
@@ -45,7 +45,7 @@ const FeedPage = () => {
     // been added as a second paraments and it should be also completed
     // at least with a "" empty string.
     GetData(saveData, "");
-  }, [navigate]);
+  }, []);
 
   const onClickHandler = (id) => {
     console.log(id);

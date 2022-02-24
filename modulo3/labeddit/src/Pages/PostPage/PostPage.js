@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { IconButton, AppBar, Button, Toolbar, Typography ,  TextField } from "@material-ui/core";
 import PostCommnetCard from "./PostCommnetCard";
 import useNotLogedPage from "../../Hooks/useNotLogedPage";
-// import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
-// import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
 import CommentCard from "./CommnetCard";
+import CreatePostData from '../../Services/Create/CreatePostData';
 import {
   Boxdiv,
   StyledToolbar,
@@ -20,9 +18,15 @@ const PostPage = () => {
   useNotLogedPage();
 
   const saveData = (data) => {
-    // console.log("Postpage data ", data.data);
     setComments(data.data);
+   
   };
+
+  const dataUpFromPostCommCard =(dataUp)=> { 
+     const data = { "body": dataUp}
+    CreatePostData(`posts/${id}/comments`, data)
+    console.log(data)
+  }
 
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
@@ -39,7 +43,7 @@ const PostPage = () => {
 
   return (
     <>
-      <PostCommnetCard buttonName={"Comentar"} dataUp={saveData} />
+      <PostCommnetCard buttonName={"Comentar"} dataUp={dataUpFromPostCommCard} />
       {commentsToScreen}
     </>
   );
