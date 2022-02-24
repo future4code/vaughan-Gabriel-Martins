@@ -22,11 +22,19 @@ export const WritePostContainer = styled.div`
 
 export const StyledAppBar = styled(AppBar)`
   position: relative;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
   bottom: 0;
   height: 3rem;
+  padding: 5%;
   /* top:auto; */
-`;
+  `;
 export const StyledToolbar = styled.div`
-  border: 1px solid red;
-  height: 1000px;
+justify-content: space-around;
+align-items: center;
+flex-direction: row;
+display: flex;
+width: 30%;
+border: 1px solid red;
 `;

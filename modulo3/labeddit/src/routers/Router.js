@@ -19,7 +19,7 @@ const Router =() => {
    <Routes>
        <Route  path='/' element={<LoginPage/>} />
        <Route path='/signin' element={<SigninPage/>}/>
-       <Route path='/post'  element={<PostPage/>}/>
+       <Route path='/post/:id'  element={<PostPage/>}/>
        <Route path ='/feed' element={<FeedPage/>}/>
        <Route path="*"  element={<NotFound/>}/>
    </Routes>

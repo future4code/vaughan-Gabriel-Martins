@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {URL_BASE} from '../constants/urls';
+import {URL_BASE} from './src/constants/urls';
 
 
 const PostLogin = () => { 
