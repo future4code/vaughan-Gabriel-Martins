@@ -14,6 +14,7 @@ import GetData from "../../Services/GetPostComments/GetData";
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
+  const [upDateDom, setUpDateDom] = useState("");
   const { id } = useParams();
   useNotLogedPage();
 
@@ -21,11 +22,18 @@ const PostPage = () => {
     setComments(data.data);
    
   };
+  const dataOut = (data) => {
+    console.log("dataOUt", data.data);
+    setUpDateDom(data);
+   
+  };
 
   const dataUpFromPostCommCard =(dataUp)=> { 
-     const data = { "body": dataUp}
-    CreatePostData(`posts/${id}/comments`, data)
-    console.log(data)
+    CreatePostData(`posts/${id}/comments`, dataUp, dataOut)
+    console.log(dataUp)
+  }
+  const dataUpFromCommentCard =(dataUp)=> { 
+    setUpDateDom(dataUp)
   }
 
   useEffect(() => {
@@ -35,15 +43,23 @@ const PostPage = () => {
     // Get Posts  {{baseURL}}/posts/
 
     GetData(saveData, `${id}/comments`);
-  }, []);
+    setUpDateDom("");
+  }, [upDateDom]);
 
   const commentsToScreen = comments.map((item) => (
-    <CommentCard commentsToScreen={item} />
+    <CommentCard 
+    dataUp={dataUpFromCommentCard}
+    commentsToScreen={item} 
+    key={item.createdAt}
+  
+    />
   ));
 
   return (
     <>
-      <PostCommnetCard buttonName={"Comentar"} dataUp={dataUpFromPostCommCard} />
+      <PostCommnetCard 
+      buttonName={"Comentar"} 
+      dataUp={dataUpFromPostCommCard} />
       {commentsToScreen}
     </>
   );

@@ -12,6 +12,7 @@ const PostCard = (props) => {
   const onSubmitHandler =(e)=> { 
     e.preventDefault();
     props.dataUp(form)
+    clear()
   };
 
 

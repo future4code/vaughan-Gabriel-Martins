@@ -10,9 +10,10 @@ import {
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
 import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
-import PostCard from './PostCard';
-import useNotLogedPage from '../../Hooks/useNotLogedPage';
-import CreatePostData from '../../Services/Create/CreatePostData';
+import PostCard from "./PostCard";
+import useNotLogedPage from "../../Hooks/useNotLogedPage";
+import CreatePostData from "../../Services/Create/CreatePostData";
+import CreatingVote from "../../Services/Vote/CreatingVote";
 
 import {
   Boxdiv,
@@ -27,6 +28,9 @@ const FeedPage = () => {
   const navigate = useNavigate();
   useNotLogedPage();
   const [post, setPost] = useState([]);
+  const [postCriado, setPostCriado] = useState("");
+  const [postVote, setPostVote] = useState("");
+
   const [creatingAPost, setCreatingAPost] = useState("");
 
   const saveData = (data) => {
@@ -34,22 +38,47 @@ const FeedPage = () => {
     setPost(data.data);
   };
 
-  const dataUpFromPostCard = (data) => {
-    console.log(data);
-    CreatePostData("/posts", data)
+  const dataOut = (data) => {
+    setPostCriado(data);
   };
 
+  const dataUpFromPostCard = (dataIn) => {
+    console.log(dataIn);
+    CreatePostData("posts", dataIn, dataOut);
+  };
 
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
     // been added as a second paraments and it should be also completed
     // at least with a "" empty string.
     GetData(saveData, "");
-  }, []);
+    setPostCriado("");
+  }, [postCriado, postVote]);
 
   const onClickHandler = (id) => {
     console.log(id);
     goToPost(navigate, id);
+  };
+
+  const dataOutCreatPostVote = (dataOut) => {
+    setPostVote(dataOut.data);
+  };
+
+  const onClickHandlerUp = (e, id) => {
+    e.stopPropagation();
+    console.log("up");
+    // Post Create Comment Vote  {{baseURL}}/
+    //{{comments/:id}}   /votes  1  - 1
+    // Post Create Post Vote {{baseURL}}/  {{posts/:id}}
+    //votes     1   - 1
+    CreatingVote(`posts/${id}`, 1, dataOutCreatPostVote);
+    setPostVote("");
+  };
+  const onClickHandlerDown = (e, id) => {
+    e.stopPropagation();
+    CreatingVote(`posts/${id}`, -1, dataOutCreatPostVote);
+    console.log("donw");
+    setPostVote("");
   };
 
   const Posts =
@@ -75,10 +104,21 @@ const FeedPage = () => {
           <StyledAppBar color='primary'>
             <Typography> {item.voteSum} </Typography>
             <StyledToolbar>
-              <IconButton edge='end' color='inherit'>
+            <Typography>
+          {item.voteSum ? item.voteSum : 0}
+        </Typography>
+              <IconButton
+                onClick={(e) => onClickHandlerDown(e, item.id)}
+                edge='end'
+                color='inherit'
+              >
                 <ArrowDownwardOutlinedIcon />
               </IconButton>
-              <IconButton edge='end' color='inherit'>
+              <IconButton
+                onClick={(e) => onClickHandlerUp(e, item.id)}
+                edge='end'
+                color='inherit'
+              >
                 <ArrowUpwardOutlinedIcon />
               </IconButton>
             </StyledToolbar>

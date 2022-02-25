@@ -1,37 +1,38 @@
 import React, { useState } from "react";
 import { AppBar, Button, Fab, Toolbar, TextField } from "@material-ui/core";
+import useForm from "../../Hooks/useForm";
 import { Boxdiv, WritePostContainer } from "./style";
 
 const PostCard = (props) => {
-  const [postado, setPostado] = useState("");
+  // const [postado, setPostado] = useState("");
+  const intialStates = { body: "" };
+  const { form, onChange, clear } = useForm(intialStates);
 
-  const onChange = (e) => {
-    setPostado(e.target.value);
-    // console.log(postado);
-  };
-
-  const onClickHandler = () => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     // console.log("teste")
-    props.dataUp(postado);
-    setPostado("");
+    console.log(form)
+    props.dataUp(form)
+    clear()
   };
 
   return (
     <Boxdiv>
-      <WritePostContainer>
-        <TextField
-          value={postado}
-          onChange={onChange}
-          fullWidth
-          multiline
-          rows='6'
-        />
-      </WritePostContainer>
-      <Button 
-      onClick={onClickHandler} 
-      variant='contained' fullWidth>
-        {props.buttonName}
-      </Button>
+      <form onSubmit={onSubmitHandler}>
+        <WritePostContainer>
+          <TextField
+            name='body'
+            value={form.body}
+            onChange={onChange}
+            fullWidth
+            multiline
+            rows='6'
+          />
+        </WritePostContainer>
+        <Button type="submit" variant='contained' fullWidth>
+          {props.buttonName}
+        </Button>
+      </form>
     </Boxdiv>
   );
 };
