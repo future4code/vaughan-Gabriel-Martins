@@ -8,13 +8,11 @@ const PostCard = (props) => {
   const initialStates = { title: "", body: "" };
   const { form, onChange, clear } = useForm(initialStates);
 
-
-  const onSubmitHandler =(e)=> { 
+  const onSubmitHandler = (e) => {
     e.preventDefault();
-    props.dataUp(form)
-    clear()
+    props.dataUp(form);
+    clear();
   };
-
 
   return (
     <Boxdiv>
@@ -37,7 +35,7 @@ const PostCard = (props) => {
             rows='6'
           />
         </WritePostContainer>
-        <Button type="submit" variant='contained' fullWidth>
+        <Button type='submit' variant='contained' fullWidth>
           {props.buttonName}
         </Button>
       </form>

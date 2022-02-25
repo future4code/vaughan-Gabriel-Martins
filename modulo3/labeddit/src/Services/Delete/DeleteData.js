@@ -6,10 +6,10 @@ import { URL_BASE } from '../../constants/urls';
 //DEL Delete Comment Vote {{baseURL}}/comments/:id/votes
 // id should come into de url 
 
-const DeleteData = (urlEntred) => { 
+const DeleteData = (urlEntred , response) => { 
   const url =`${URL_BASE}/${urlEntred}/votes`
 
-  const axiosConfig = {heards: 
+  const axiosConfig = {headers: 
     {
          Authorization :  (localStorage.getItem("token"))
 
@@ -17,7 +17,9 @@ const DeleteData = (urlEntred) => {
       }
       axios
         .delete(url, axiosConfig)
-        .then(res => console.log(res))
+        .then(res => {
+          response(res)
+          console.log(res)})
         .catch(err => console.log(err.response))
 
 }

@@ -6,6 +6,7 @@ import {
   Toolbar,
   TextField,
   Typography,
+  Container,
 } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
@@ -14,6 +15,7 @@ import PostCard from "./PostCard";
 import useNotLogedPage from "../../Hooks/useNotLogedPage";
 import CreatePostData from "../../Services/Create/CreatePostData";
 import CreatingVote from "../../Services/Vote/CreatingVote";
+import DeleteData from "../../Services/Delete/DeleteData";
 
 import {
   Boxdiv,
@@ -30,6 +32,7 @@ const FeedPage = () => {
   const [post, setPost] = useState([]);
   const [postCriado, setPostCriado] = useState("");
   const [postVote, setPostVote] = useState("");
+  const [upDateDomDelete, setUpDateDomDelete] = useState("");
 
   const [creatingAPost, setCreatingAPost] = useState("");
 
@@ -53,7 +56,7 @@ const FeedPage = () => {
     // at least with a "" empty string.
     GetData(saveData, "");
     setPostCriado("");
-  }, [postCriado, postVote]);
+  }, [postCriado, postVote, upDateDomDelete ]);
 
   const onClickHandler = (id) => {
     console.log(id);
@@ -81,6 +84,19 @@ const FeedPage = () => {
     setPostVote("");
   };
 
+  const responseToUpdateDom =(data)=> { 
+    console.log(data.config.url)
+    setUpDateDomDelete(data.config.url)
+
+  }
+
+  const onClickDeleteLikePost =(e , id) =>{ 
+    e.stopPropagation();
+    console.log("Delete like post")
+    DeleteData(`posts/${id}`, responseToUpdateDom)
+
+  }
+
   const Posts =
     post &&
     post.map((item) => {
@@ -104,9 +120,7 @@ const FeedPage = () => {
           <StyledAppBar color='primary'>
             <Typography> {item.voteSum} </Typography>
             <StyledToolbar>
-            <Typography>
-          {item.voteSum ? item.voteSum : 0}
-        </Typography>
+              <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
               <IconButton
                 onClick={(e) => onClickHandlerDown(e, item.id)}
                 edge='end'
@@ -122,6 +136,10 @@ const FeedPage = () => {
                 <ArrowUpwardOutlinedIcon />
               </IconButton>
             </StyledToolbar>
+                <Button
+                onClick={(e) => onClickDeleteLikePost(e, item.id)}
+                variant="contained"
+                >Deletar like</Button>
           </StyledAppBar>
         </Boxdiv>
       );

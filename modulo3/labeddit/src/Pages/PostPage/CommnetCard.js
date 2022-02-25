@@ -25,14 +25,18 @@ const CommentCard = ({ commentsToScreen , dataUp }) => {
     setUpDateDom(dataOut.data);
     dataUp(updateDom)
   };
+  
+  const response  = (data) => { 
+    console.log(data)
+  }
 
   const onClickHandler = (id) => {
     // How to use it
     //DEL Delete Post Vote     {{baseURL}}/posts/:id/votes
     //DEL Delete Comment Vote {{baseURL}}/comments/:id/votes
     const urlIn = `comments/${id}`;
-    console.log(urlIn);
-    DeleteData(urlIn);
+    console.log(urlIn , response);
+    DeleteData(urlIn, response);
   };
   const onClickHandlerUp = (e, id) => {
     e.stopPropagation();

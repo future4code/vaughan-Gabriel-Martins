@@ -4,28 +4,27 @@ import PostCommnetCard from "./PostCommnetCard";
 import useNotLogedPage from "../../Hooks/useNotLogedPage";
 import CommentCard from "./CommnetCard";
 import CreatePostData from '../../Services/Create/CreatePostData';
-import {
-  Boxdiv,
-  StyledToolbar,
-  StyledAppBar,
-  WritePostContainer,
-} from "../FeedPage/Style";
+// import {
+//   Boxdiv,
+//   StyledToolbar,
+//   StyledAppBar,
+//   WritePostContainer,
+// } from "../FeedPage/Style";
 import GetData from "../../Services/GetPostComments/GetData";
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
-  const [upDateDom, setUpDateDom] = useState("");
+  const [upDateDom, setUpDateDom] = useState("oi");
+  const [upDateDom2, setUpDateDom2] = useState("oi");
   const { id } = useParams();
   useNotLogedPage();
 
   const saveData = (data) => {
     setComments(data.data);
-   
   };
   const dataOut = (data) => {
     console.log("dataOUt", data.data);
-    setUpDateDom(data);
-   
+    setUpDateDom2(data);
   };
 
   const dataUpFromPostCommCard =(dataUp)=> { 
@@ -33,6 +32,7 @@ const PostPage = () => {
     console.log(dataUp)
   }
   const dataUpFromCommentCard =(dataUp)=> { 
+    console.log("up/donw" ,dataUp )
     setUpDateDom(dataUp)
   }
 
@@ -43,8 +43,9 @@ const PostPage = () => {
     // Get Posts  {{baseURL}}/posts/
 
     GetData(saveData, `${id}/comments`);
-    setUpDateDom("");
-  }, [upDateDom]);
+    setUpDateDom("")
+    setUpDateDom2("")
+  }, [upDateDom , upDateDom2]);
 
   const commentsToScreen = comments.map((item) => (
     <CommentCard 
@@ -57,6 +58,7 @@ const PostPage = () => {
 
   return (
     <>
+    { console.log("UpDateDom",upDateDom )}
       <PostCommnetCard 
       buttonName={"Comentar"} 
       dataUp={dataUpFromPostCommCard} />
