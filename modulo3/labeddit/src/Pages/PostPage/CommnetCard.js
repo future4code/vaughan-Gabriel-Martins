@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from "react";
 import {
   IconButton,
   AppBar,
@@ -18,24 +18,24 @@ import {
   WritePostContainer,
 } from "../FeedPage/Style";
 
-const CommentCard = ({ commentsToScreen , dataUp }) => {
-  const [updateDom, setUpDateDom] = useState('');
-  
+const CommentCard = ({ commentsToScreen, dataUp ,isPost }) => {
+  const [updateDom, setUpDateDom] = useState("");
+
   const dataOutCreatPostVote = (dataOut) => {
     setUpDateDom(dataOut.data);
-    dataUp(updateDom)
+    dataUp(updateDom);
   };
-  
-  const response  = (data) => { 
-    console.log(data)
-  }
+
+  const response = (data) => {
+    console.log(data);
+  };
 
   const onClickHandler = (id) => {
     // How to use it
     //DEL Delete Post Vote     {{baseURL}}/posts/:id/votes
     //DEL Delete Comment Vote {{baseURL}}/comments/:id/votes
     const urlIn = `comments/${id}`;
-    console.log(urlIn , response);
+    console.log(urlIn, response);
     DeleteData(urlIn, response);
   };
   const onClickHandlerUp = (e, id) => {
@@ -54,9 +54,6 @@ const CommentCard = ({ commentsToScreen , dataUp }) => {
     console.log("donw");
     setUpDateDom("");
   };
-
-
-
 
   return (
     <Boxdiv>
@@ -82,30 +79,29 @@ const CommentCard = ({ commentsToScreen , dataUp }) => {
           {commentsToScreen.voteSum ? commentsToScreen.voteSum : 0}
         </Typography>
         <StyledToolbar>
-        <IconButton
-                onClick={(e) => onClickHandlerDown(e, commentsToScreen.id)}
-                edge='end'
-                color='inherit'
-              >
-                <ArrowDownwardOutlinedIcon />
-              </IconButton>
-              <IconButton
-                onClick={(e) => onClickHandlerUp(e, commentsToScreen.id)}
-                edge='end'
-                color='inherit'
-              >
-                <ArrowUpwardOutlinedIcon />
-              </IconButton>
+          <IconButton
+            onClick={(e) => onClickHandlerDown(e, commentsToScreen.id)}
+            edge='end'
+            color='inherit'
+          >
+            <ArrowDownwardOutlinedIcon />
+          </IconButton>
+          <IconButton
+            onClick={(e) => onClickHandlerUp(e, commentsToScreen.id)}
+            edge='end'
+            color='inherit'
+          >
+            <ArrowUpwardOutlinedIcon />
+          </IconButton>
         </StyledToolbar>
 
-        
-        <Button
+          {!isPost?   <Button
           name='delete'
           onClick={() => onClickHandler(commentsToScreen.id)}
           variant='contained'
         >
           Delete comment
-        </Button>
+        </Button>:  '' } 
       </StyledAppBar>
     </Boxdiv>
   );
