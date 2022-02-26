@@ -15,7 +15,7 @@ import GetData from "../../Services/GetPostComments/GetData";
 const PostPage = () => {
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [upDateDom, setUpDateDom] = useState("oi");
+  const [upDateDom, setUpDateDom] = useState("");
   const [upDateDom2, setUpDateDom2] = useState("oi");
   const { id } = useParams();
   useNotLogedPage();
@@ -24,21 +24,18 @@ const PostPage = () => {
     setComments(data.data);
   };
   const dataOut = (data) => {
-    console.log("dataOUt", data.data);
     setUpDateDom2(data);
   };
 
-  const dataUpFromPostCommCard = (dataUp) => {
-    CreatePostData(`posts/${id}/comments`, dataUp, dataOut);
-    console.log(dataUp);
+  const dataUpFromPostCommCard = (data) => {
+    CreatePostData(`posts/${id}/comments`, data, dataOut);
   };
   const dataUpFromCommentCard = (dataUp) => {
-    console.log("up/donw", dataUp);
+    console.log("dataUp", dataUp)
     setUpDateDom(dataUp);
   };
 
   const saveDataGetPost = (data) => {
-    console.log(data.data);
     setPosts(data.data);
   };
 
@@ -49,13 +46,16 @@ const PostPage = () => {
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
     // been added as a second paraments and it should be also completed
-    // at least with a "" empty string.  GetPost Comments {{baseURL}}/posts/:id/comments
+    // at least with a "" empty string.  
+    //GetPost Comments {{baseURL}}/posts/:id/comments
     // Get Posts  {{baseURL}}/posts/
-
+    // !! Getting Post 
     GetData(saveData, `${id}/comments`);
+    console.log("Dom atualizado");
     setUpDateDom("");
     setUpDateDom2("");
-  }, [upDateDom, upDateDom2]);
+    }, [upDateDom]);
+
 
   const commentsToScreen = comments.map((item) => (
     <CommentCard
@@ -64,7 +64,6 @@ const PostPage = () => {
       key={item.createdAt}
     />
   ));
-  console.log(posts);
 
   const postClicked =
     posts &&
@@ -73,7 +72,7 @@ const PostPage = () => {
       .filter((item) => item.id == id)
       .map((item) => (
         <CommentCard
-          dataUp={dataUpFromCommentCard}
+          // dataUp={dataUpFromCommentCard}
           commentsToScreen={item}
           key={item.createdAt}
           isPost={true}

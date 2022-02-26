@@ -15,55 +15,56 @@ import {
   Boxdiv,
   StyledToolbar,
   StyledAppBar,
+  StyledAppBarTitle,
   WritePostContainer,
 } from "../FeedPage/Style";
 
-const CommentCard = ({ commentsToScreen, dataUp ,isPost }) => {
-  const [updateDom, setUpDateDom] = useState("");
+const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
+  // const [updateDom, setUpDateDom] = useState("");
 
   const dataOutCreatPostVote = (dataOut) => {
-    setUpDateDom(dataOut.data);
-    dataUp(updateDom);
+    dataUp(dataOut.data);
   };
 
-  const response = (data) => {
-    console.log(data);
-  };
+  // const response = (data) => {
+  //   console.log(data);
+  // };
 
   const onClickHandler = (id) => {
     // How to use it
     //DEL Delete Post Vote     {{baseURL}}/posts/:id/votes
     //DEL Delete Comment Vote {{baseURL}}/comments/:id/votes
     const urlIn = `comments/${id}`;
-    console.log(urlIn, response);
-    DeleteData(urlIn, response);
+    // console.log(urlIn, response);
+    // DeleteData(urlIn, response);
   };
   const onClickHandlerUp = (e, id) => {
     e.stopPropagation();
     console.log("up");
     // Post Create Comment Vote  {{baseURL}}/
     //{{comments/:id}}   /votes  1  - 1
-    // Post Create Post Vote {{baseURL}}/  {{posts/:id}}
-    //votes     1   - 1
+    // Post Create Post Vote {{baseURL}}/  {{posts/:id}} //votes  1   - 1
     CreatingVote(`comments/${id}`, 1, dataOutCreatPostVote);
-    setUpDateDom("");
   };
   const onClickHandlerDown = (e, id) => {
     e.stopPropagation();
     CreatingVote(`comments/${id}`, -1, dataOutCreatPostVote);
-    console.log("donw");
-    setUpDateDom("");
   };
 
   return (
     <Boxdiv>
       <StyledAppBar color='primary'>
-        <StyledToolbar>
+          <Typography 
+          variant="h5"
+          component="h2"
+          // color="primary"
+          align="center">{isPost ? "Post" : "Comentário"} </Typography>
+        <StyledToolbar> 
           <IconButton edge='end' color='inherit'>
             <Typography> {commentsToScreen.username} </Typography>
           </IconButton>
         </StyledToolbar>
-        <Typography>
+        <Typography>{}
           {new Date(commentsToScreen.createdAt).toLocaleString()}
         </Typography>
       </StyledAppBar>
@@ -78,30 +79,36 @@ const CommentCard = ({ commentsToScreen, dataUp ,isPost }) => {
         <Typography>
           {commentsToScreen.voteSum ? commentsToScreen.voteSum : 0}
         </Typography>
-        <StyledToolbar>
-          <IconButton
-            onClick={(e) => onClickHandlerDown(e, commentsToScreen.id)}
-            edge='end'
-            color='inherit'
-          >
-            <ArrowDownwardOutlinedIcon />
-          </IconButton>
-          <IconButton
-            onClick={(e) => onClickHandlerUp(e, commentsToScreen.id)}
-            edge='end'
-            color='inherit'
-          >
-            <ArrowUpwardOutlinedIcon />
-          </IconButton>
-        </StyledToolbar>
+        {!isPost ? (
+          <>
+            <StyledToolbar>
+              <IconButton
+                onClick={(e) => onClickHandlerDown(e, commentsToScreen.id)}
+                edge='end'
+                color='inherit'
+              >
+                <ArrowDownwardOutlinedIcon />
+              </IconButton>
+              <IconButton
+                onClick={(e) => onClickHandlerUp(e, commentsToScreen.id)}
+                edge='end'
+                color='inherit'
+              >
+                <ArrowUpwardOutlinedIcon />
+              </IconButton>
+            </StyledToolbar>
 
-          {!isPost?   <Button
-          name='delete'
-          onClick={() => onClickHandler(commentsToScreen.id)}
-          variant='contained'
-        >
-          Delete comment
-        </Button>:  '' } 
+            <Button
+              name='delete'
+              onClick={() => onClickHandler(commentsToScreen.id)}
+              variant='contained'
+            >
+              Delete comment
+            </Button>
+          </>
+        ) : (
+          ""
+        )}
       </StyledAppBar>
     </Boxdiv>
   );

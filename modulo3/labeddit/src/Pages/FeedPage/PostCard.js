@@ -22,6 +22,7 @@ const PostCard = (props) => {
             name='title'
             value={form.title}
             onChange={onChange}
+            placeholder='Titulo'
             fullWidth
             multiline
             rows='1'
@@ -30,6 +31,7 @@ const PostCard = (props) => {
             name='body'
             value={form.body}
             onChange={onChange}
+            placeholder='Post'
             fullWidth
             multiline
             rows='6'

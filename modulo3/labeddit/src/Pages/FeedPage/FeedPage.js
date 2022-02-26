@@ -16,12 +16,16 @@ import useNotLogedPage from "../../Hooks/useNotLogedPage";
 import CreatePostData from "../../Services/Create/CreatePostData";
 import CreatingVote from "../../Services/Vote/CreatingVote";
 import DeleteData from "../../Services/Delete/DeleteData";
+import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
 
 import {
   Boxdiv,
   StyledToolbar,
-  StyledAppBar,
+  StyledArrows,
   WritePostContainer,
+  StyledAppBar,
+  StyledAppBarBottom,
+  StyledAppBarTop,
 } from "./Style";
 import GetData from "../../Services/GetPostComments/GetData";
 import { goToPost } from "../../routers/coordenates";
@@ -56,7 +60,7 @@ const FeedPage = () => {
     // at least with a "" empty string.
     GetData(saveData, "");
     setPostCriado("");
-  }, [postCriado, postVote, upDateDomDelete ]);
+  }, [postCriado, postVote, upDateDomDelete]);
 
   const onClickHandler = (id) => {
     console.log(id);
@@ -84,62 +88,69 @@ const FeedPage = () => {
     setPostVote("");
   };
 
-  const responseToUpdateDom =(data)=> { 
-    console.log(data.config.url)
-    setUpDateDomDelete(data.config.url)
+  const responseToUpdateDom = (data) => {
+    console.log(data.config.url);
+    setUpDateDomDelete(data.config.url);
+  };
 
-  }
-
-  const onClickDeleteLikePost =(e , id) =>{ 
+  const onClickDeleteLikePost = (e, id) => {
     e.stopPropagation();
-    console.log("Delete like post")
-    DeleteData(`posts/${id}`, responseToUpdateDom)
-
-  }
+    console.log("Delete like post");
+    DeleteData(`posts/${id}`, responseToUpdateDom);
+  };
 
   const Posts =
     post &&
     post.map((item) => {
       return (
         <Boxdiv onClick={() => onClickHandler(item.id)} key={item.id}>
-          <StyledAppBar color='primary'>
-            <StyledToolbar>
-              <IconButton edge='end' color='inherit'>
-                <Typography> {item.username} </Typography>
-              </IconButton>
-            </StyledToolbar>
-          </StyledAppBar>
+          <StyledAppBarTop color='primary'>
+
+          <StyledArrows>
+                <IconButton
+                  onClick={(e) => onClickHandlerUp(e, item.id)}
+                  // edge='end'
+                  color='inherit'
+                  >
+                  <ArrowUpwardOutlinedIcon />
+                </IconButton>
+            
+                    <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
+                   
+                <IconButton
+                  onClick={(e) => onClickHandlerDown(e, item.id)}
+                  // edge='start'
+                  color='inherit'
+                  >
+                  <ArrowDownwardOutlinedIcon />
+                  </IconButton>
+              </StyledArrows>
+      
+
+            <IconButton edge='end' color='inherit'>
+              <Typography> {item.username} </Typography>
+            </IconButton>
+            <Typography>
+              <ModeCommentOutlinedIcon /> {item.commentCount}
+            </Typography>
+          </StyledAppBarTop>
 
           <WritePostContainer>
-            <Typography> {item.username} </Typography>
-            <Typography> {item.title} </Typography>
-            <Typography> {item.commentCount} </Typography>
+            <Typography variant='h5'> {item.title} </Typography>
+
             <Typography> {item.body} </Typography>
           </WritePostContainer>
 
-          <StyledAppBar color='primary'>
-            <StyledToolbar>
-              <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
-              <IconButton
-                onClick={(e) => onClickHandlerDown(e, item.id)}
-                edge='end'
-                color='inherit'
-              >
-                <ArrowDownwardOutlinedIcon />
-              </IconButton>
-              <IconButton
-                onClick={(e) => onClickHandlerUp(e, item.id)}
-                edge='end'
-                color='inherit'
-              >
-                <ArrowUpwardOutlinedIcon />
-              </IconButton>
-            </StyledToolbar>
-                <Button
-                onClick={(e) => onClickDeleteLikePost(e, item.id)}
-                variant="contained"
-                >Deletar like</Button>
-          </StyledAppBar>
+          <StyledAppBarBottom color='primary'>
+        
+              
+            <Button
+              onClick={(e) => onClickDeleteLikePost(e, item.id)}
+              variant='contained'
+            >
+              Deletar like
+            </Button>
+          </StyledAppBarBottom>
         </Boxdiv>
       );
     });

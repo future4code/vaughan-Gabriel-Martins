@@ -4,7 +4,7 @@ import { AppBar, Button, Fab, Toolbar, TextField } from "@material-ui/core";
 
 export const WritePostContainer = styled.div`
 margin: 50px auto;
-max-width: 500px;
+/* max-width: 500px; */
 min-height: 100px;
 border: 1px solid red;
 width: 42vw;
