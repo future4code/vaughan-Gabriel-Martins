@@ -15,7 +15,6 @@
   </WritePostContainer>
 
   <StyledAppBar color='primary'>
-    <Typography> {item.voteSum} </Typography>
     <StyledToolbar>
       <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
       <IconButton

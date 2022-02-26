@@ -14,6 +14,7 @@ export const WritePostContainer = styled.div`
   max-width: 500px;
   min-height: 100px;
   border: 1px solid red;
+  word-wrap: break-word;
   width: 42vw;
   /* display:flex; */
   /* flex-direction: column; */
