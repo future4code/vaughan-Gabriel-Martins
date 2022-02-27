@@ -20,23 +20,19 @@ import {
 } from "../FeedPage/Style";
 
 const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
-  // const [updateDom, setUpDateDom] = useState("");
-
+  // using this function to lift data from votes -1/1 and delete
+  // to update the post page by props using a state in the
+  // using useEffect  in <PostPage>
   const dataOutCreatPostVote = (dataOut) => {
     dataUp(dataOut.data);
   };
-
-  // const response = (data) => {
-  //   console.log(data);
-  // };
 
   const onClickHandler = (id) => {
     // How to use it
     //DEL Delete Post Vote     {{baseURL}}/posts/:id/votes
     //DEL Delete Comment Vote {{baseURL}}/comments/:id/votes
     const urlIn = `comments/${id}`;
-    // console.log(urlIn, response);
-    // DeleteData(urlIn, response);
+    DeleteData(urlIn, dataOutCreatPostVote);
   };
   const onClickHandlerUp = (e, id) => {
     e.stopPropagation();
@@ -54,17 +50,21 @@ const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
   return (
     <Boxdiv>
       <StyledAppBar color='primary'>
-          <Typography 
-          variant="h5"
-          component="h2"
+        <Typography
+          variant='h5'
+          component='h2'
           // color="primary"
-          align="center">{isPost ? "Post" : "Comentário"} </Typography>
-        <StyledToolbar> 
+          align='center'
+        >
+          {isPost ? "Post" : "Comentário"}{" "}
+        </Typography>
+        <StyledToolbar>
           <IconButton edge='end' color='inherit'>
             <Typography> {commentsToScreen.username} </Typography>
           </IconButton>
         </StyledToolbar>
-        <Typography>{}
+        <Typography>
+          {}
           {new Date(commentsToScreen.createdAt).toLocaleString()}
         </Typography>
       </StyledAppBar>

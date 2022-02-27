@@ -28,19 +28,27 @@ const Form = () => {
     <form onSubmit={onSubmitHandler}>
       <TextField
         name='email'
+        placeholder="Email"
         value={form.email}
+        variant="outlined"
+        
         onChange={onChange}
         required
         fullWidth
       />
       <TextField
         name='password'
+        variant="outlined"
+        placeholder='Senha'
         value={form.password}
         onChange={onChange}
         required
         fullWidth
-      />
+        />
       <Button 
+        variant="text"
+        color="primary"
+        variant="contained"
       fullWidth
       type="submit">
         Entrar

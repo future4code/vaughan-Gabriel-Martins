@@ -31,7 +31,6 @@ const PostPage = () => {
     CreatePostData(`posts/${id}/comments`, data, dataOut);
   };
   const dataUpFromCommentCard = (dataUp) => {
-    console.log("dataUp", dataUp)
     setUpDateDom(dataUp);
   };
 
@@ -46,16 +45,14 @@ const PostPage = () => {
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
     // been added as a second paraments and it should be also completed
-    // at least with a "" empty string.  
+    // at least with a "" empty string.
     //GetPost Comments {{baseURL}}/posts/:id/comments
     // Get Posts  {{baseURL}}/posts/
-    // !! Getting Post 
+    // !! Getting Post
     GetData(saveData, `${id}/comments`);
-    console.log("Dom atualizado");
     setUpDateDom("");
     setUpDateDom2("");
-    }, [upDateDom]);
-
+  }, [upDateDom, upDateDom2]);
 
   const commentsToScreen = comments.map((item) => (
     <CommentCard
@@ -72,7 +69,7 @@ const PostPage = () => {
       .filter((item) => item.id == id)
       .map((item) => (
         <CommentCard
-          // dataUp={dataUpFromCommentCard}
+          dataUp={dataUpFromCommentCard}
           commentsToScreen={item}
           key={item.createdAt}
           isPost={true}

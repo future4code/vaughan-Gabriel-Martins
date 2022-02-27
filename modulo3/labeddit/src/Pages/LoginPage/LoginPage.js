@@ -5,6 +5,7 @@ import useLogedPage from "../../Hooks/useLogedPage";
 
 import { goToSignin} from "../../routers/coordenates";
 import Form from "./Form";
+import { StyledBox } from "./Style";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,13 +13,15 @@ const LoginPage = () => {
    
  
   return (
-      <>
+      <StyledBox>
       <Form/>
       <Button
+      
+      variant="contained"
       fullWidth
       onClick={()=>goToSignin(navigate)}
       >Cadastrar</Button>
-      </>
+      </StyledBox>
   );
 };
 

@@ -104,51 +104,50 @@ const FeedPage = () => {
     post.map((item) => {
       return (
         <Boxdiv onClick={() => onClickHandler(item.id)} key={item.id}>
-          <StyledAppBarTop color='primary'>
+          {/* <StyledAppBarTop color='none'> */}
+          <StyledAppBarTop >
+            <StyledArrows>
+              <IconButton
+                onClick={(e) => onClickHandlerUp(e, item.id)}
+                color='inherit'
+              >
+                <ArrowUpwardOutlinedIcon />
+              </IconButton>
 
-          <StyledArrows>
-                <IconButton
-                  onClick={(e) => onClickHandlerUp(e, item.id)}
-                  // edge='end'
-                  color='inherit'
-                  >
-                  <ArrowUpwardOutlinedIcon />
-                </IconButton>
-            
-                    <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
-                   
-                <IconButton
-                  onClick={(e) => onClickHandlerDown(e, item.id)}
-                  // edge='start'
-                  color='inherit'
-                  >
-                  <ArrowDownwardOutlinedIcon />
-                  </IconButton>
-              </StyledArrows>
-      
+              <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
 
-            <IconButton edge='end' color='inherit'>
-              <Typography> {item.username} </Typography>
-            </IconButton>
+              <IconButton
+                onClick={(e) => onClickHandlerDown(e, item.id)}
+                color='inherit'
+              >
+                <ArrowDownwardOutlinedIcon />
+              </IconButton>
+            </StyledArrows>
+
+            {/* <IconButton color='inherit'> */}
+              <Typography>  {
+            (item.username)[0].toUpperCase()+(item.username).substr(1)
+            } </Typography>
+            {/* </IconButton> */}
             <Typography>
-              <ModeCommentOutlinedIcon /> {item.commentCount}
+              <ModeCommentOutlinedIcon  /> {item.commentCount? item.commentCount :0  }
             </Typography>
           </StyledAppBarTop>
 
           <WritePostContainer>
-            <Typography variant='h5'> {item.title} </Typography>
+            <Typography variant='h5'> {
+            (item.title)[0].toUpperCase()+(item.title).substr(1)
+            } </Typography>
 
             <Typography> {item.body} </Typography>
           </WritePostContainer>
 
-          <StyledAppBarBottom color='primary'>
-        
-              
+          <StyledAppBarBottom >
             <Button
               onClick={(e) => onClickDeleteLikePost(e, item.id)}
-              variant='contained'
+              variant='text'
             >
-              Deletar like
+              Remove vote
             </Button>
           </StyledAppBarBottom>
         </Boxdiv>
@@ -157,7 +156,7 @@ const FeedPage = () => {
 
   return (
     <>
-      {/* //!! Saparado com Componetes */}
+      {/* //!! Separando com Componetes */}
       {/* <Boxdiv>
         <WritePostContainer>
           <TextField fullWidth multiline rows='6' />

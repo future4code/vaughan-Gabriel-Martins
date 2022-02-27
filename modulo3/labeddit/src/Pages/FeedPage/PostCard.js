@@ -25,7 +25,6 @@ const PostCard = (props) => {
             placeholder='Titulo'
             fullWidth
             multiline
-            rows='1'
           />
           <TextField
             name='body'
@@ -34,7 +33,6 @@ const PostCard = (props) => {
             placeholder='Post'
             fullWidth
             multiline
-            rows='6'
           />
         </WritePostContainer>
         <Button type='submit' variant='contained' fullWidth>
