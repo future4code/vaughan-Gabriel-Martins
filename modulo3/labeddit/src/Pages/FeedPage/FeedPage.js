@@ -54,13 +54,7 @@ const FeedPage = () => {
     CreatePostData("posts", dataIn, dataOut);
   };
 
-  useEffect(() => {
-    //As its been used to Commnents and Post , this urlEntred has
-    // been added as a second paraments and it should be also completed
-    // at least with a "" empty string.
-    GetData(saveData, "");
-    setPostCriado("");
-  }, [postCriado, postVote, upDateDomDelete]);
+ 
 
   const onClickHandler = (id) => {
     console.log(id);
@@ -89,8 +83,8 @@ const FeedPage = () => {
   };
 
   const responseToUpdateDom = (data) => {
-    console.log(data.config.url);
-    setUpDateDomDelete(data.config.url);
+    console.log(data.statusText);
+    setUpDateDomDelete(data.statusText);
   };
 
   const onClickDeleteLikePost = (e, id) => {
@@ -98,6 +92,17 @@ const FeedPage = () => {
     console.log("Delete like post");
     DeleteData(`posts/${id}`, responseToUpdateDom);
   };
+
+
+  useEffect(() => {
+    //As its been used to Commnents and Post , this urlEntred has
+    // been added as a second paraments and it should be also completed
+    // at least with a "" empty string.
+    GetData(saveData, "");
+    setPostCriado("");
+    setUpDateDomDelete("");
+  }, [postCriado, postVote, upDateDomDelete]);
+
 
   const Posts =
     post &&

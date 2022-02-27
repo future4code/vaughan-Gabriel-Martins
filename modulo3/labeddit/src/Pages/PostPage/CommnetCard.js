@@ -24,7 +24,8 @@ const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
   // to update the post page by props using a state in the
   // using useEffect  in <PostPage>
   const dataOutCreatPostVote = (dataOut) => {
-    dataUp(dataOut.data);
+    // dataUp(dataOut.data);
+    dataUp(dataOut);
   };
 
   const onClickHandler = (id) => {
@@ -36,7 +37,6 @@ const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
   };
   const onClickHandlerUp = (e, id) => {
     e.stopPropagation();
-    console.log("up");
     // Post Create Comment Vote  {{baseURL}}/
     //{{comments/:id}}   /votes  1  - 1
     // Post Create Post Vote {{baseURL}}/  {{posts/:id}} //votes  1   - 1
