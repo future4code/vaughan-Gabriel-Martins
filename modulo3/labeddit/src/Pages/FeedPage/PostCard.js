@@ -19,23 +19,28 @@ const PostCard = (props) => {
       <form onSubmit={onSubmitHandler}>
         <WritePostContainer>
           <TextField
+            size="small"
             name='title'
             value={form.title}
             onChange={onChange}
             placeholder='Titulo'
+            variant="outlined"
             fullWidth
-            multiline
-          />
+            />
           <TextField
             name='body'
             value={form.body}
             onChange={onChange}
             placeholder='Post'
+            variant="outlined"
             fullWidth
             multiline
+            minRows="2"
           />
         </WritePostContainer>
-        <Button type='submit' variant='contained' fullWidth>
+        <Button type='submit' 
+        variant='contained' 
+        fullWidth>
           {props.buttonName}
         </Button>
       </form>

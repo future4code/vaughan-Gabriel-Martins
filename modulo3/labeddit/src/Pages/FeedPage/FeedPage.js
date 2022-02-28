@@ -1,32 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  AppBar,
-  Button,
-  Toolbar,
-  TextField,
-  Typography,
-  Container,
-} from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
-import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
 import PostCard from "./PostCard";
 import useNotLogedPage from "../../Hooks/useNotLogedPage";
 import CreatePostData from "../../Services/Create/CreatePostData";
 import CreatingVote from "../../Services/Vote/CreatingVote";
 import DeleteData from "../../Services/Delete/DeleteData";
-import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
-
-import {
-  Boxdiv,
-  StyledToolbar,
-  StyledArrows,
-  WritePostContainer,
-  StyledAppBar,
-  StyledAppBarBottom,
-  StyledAppBarTop,
-} from "./Style";
+import RecipeReviewCard from "../../components/CardMUI";
 import GetData from "../../Services/GetPostComments/GetData";
 import { goToPost } from "../../routers/coordenates";
 
@@ -41,7 +20,6 @@ const FeedPage = () => {
   const [creatingAPost, setCreatingAPost] = useState("");
 
   const saveData = (data) => {
-    // console.log(data.data);
     setPost(data.data);
   };
 
@@ -50,14 +28,10 @@ const FeedPage = () => {
   };
 
   const dataUpFromPostCard = (dataIn) => {
-    console.log(dataIn);
     CreatePostData("posts", dataIn, dataOut);
   };
 
- 
-
-  const onClickHandler = (id) => {
-    console.log(id);
+  const onClickHandlerGoToPost = (id) => {
     goToPost(navigate, id);
   };
 
@@ -78,7 +52,6 @@ const FeedPage = () => {
   const onClickHandlerDown = (e, id) => {
     e.stopPropagation();
     CreatingVote(`posts/${id}`, -1, dataOutCreatPostVote);
-    console.log("donw");
     setPostVote("");
   };
 
@@ -89,10 +62,8 @@ const FeedPage = () => {
 
   const onClickDeleteLikePost = (e, id) => {
     e.stopPropagation();
-    console.log("Delete like post");
     DeleteData(`posts/${id}`, responseToUpdateDom);
   };
-
 
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
@@ -103,66 +74,25 @@ const FeedPage = () => {
     setUpDateDomDelete("");
   }, [postCriado, postVote, upDateDomDelete]);
 
-
   const Posts =
     post &&
     post.map((item) => {
       return (
-        <Boxdiv onClick={() => onClickHandler(item.id)} key={item.id}>
-          {/* <StyledAppBarTop color='none'> */}
-          <StyledAppBarTop >
-            <StyledArrows>
-              <IconButton
-                onClick={(e) => onClickHandlerUp(e, item.id)}
-                color='inherit'
-              >
-                <ArrowUpwardOutlinedIcon />
-              </IconButton>
-
-              <Typography>{item.voteSum ? item.voteSum : 0}</Typography>
-
-              <IconButton
-                onClick={(e) => onClickHandlerDown(e, item.id)}
-                color='inherit'
-              >
-                <ArrowDownwardOutlinedIcon />
-              </IconButton>
-            </StyledArrows>
-
-            {/* <IconButton color='inherit'> */}
-              <Typography>  {
-            (item.username)[0].toUpperCase()+(item.username).substr(1)
-            } </Typography>
-            {/* </IconButton> */}
-            <Typography>
-              <ModeCommentOutlinedIcon  /> {item.commentCount? item.commentCount :0  }
-            </Typography>
-          </StyledAppBarTop>
-
-          <WritePostContainer>
-            <Typography variant='h5'> {
-            (item.title)[0].toUpperCase()+(item.title).substr(1)
-            } </Typography>
-
-            <Typography> {item.body} </Typography>
-          </WritePostContainer>
-
-          <StyledAppBarBottom >
-            <Button
-              onClick={(e) => onClickDeleteLikePost(e, item.id)}
-              variant='text'
-            >
-              Remove vote
-            </Button>
-          </StyledAppBarBottom>
-        </Boxdiv>
+        <>
+          <RecipeReviewCard
+            item={item}
+            onClickHandlerUp={onClickHandlerUp}
+            onClickHandlerDown={onClickHandlerDown}
+            onClickDeleteLikePost={onClickDeleteLikePost}
+            onClickHandlerGoToPost={onClickHandlerGoToPost}
+            key={item.id}
+          />
+        </>
       );
     });
 
   return (
     <>
-      {/* //!! Separando com Componetes */}
-    
       <PostCard dataUp={dataUpFromPostCard} buttonName={"Postar"} />
       {Posts}
     </>

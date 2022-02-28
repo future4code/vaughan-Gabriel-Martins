@@ -3,6 +3,7 @@ import {primaryColor , neutralColor} from './colors';
 
 
  const theme = createTheme({
+   
   palette: {
     primary: {
       main: primaryColor,

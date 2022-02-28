@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { AppBar, Button, Fab, Toolbar, TextField } from "@material-ui/core";
 import useForm from "../../Hooks/useForm";
-import { Boxdiv, WritePostContainer } from "./style";
+import { Boxdiv, WritePostContainer } from "./Style";
+
 
 const PostCard = (props) => {
   // const [postado, setPostado] = useState("");
