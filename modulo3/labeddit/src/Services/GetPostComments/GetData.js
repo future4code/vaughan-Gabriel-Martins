@@ -17,7 +17,11 @@ const GetData = (saveData, urlEntred) => {
       saveData(res);
       console.log(res);
     })
-    .catch((err) => console.log(err.response));
+    .catch((err) => { 
+      alert(err.response.data)
+      localStorage.removeItem("token")
+      console.log(err.response.data)} 
+      );
 };
 
 export default GetData;

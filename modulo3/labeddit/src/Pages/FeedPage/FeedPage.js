@@ -162,14 +162,7 @@ const FeedPage = () => {
   return (
     <>
       {/* //!! Separando com Componetes */}
-      {/* <Boxdiv>
-        <WritePostContainer>
-          <TextField fullWidth multiline rows='6' />
-        </WritePostContainer>
-        <Button variant='contained' fullWidth>
-          Postar
-        </Button>
-      </Boxdiv> */}
+    
       <PostCard dataUp={dataUpFromPostCard} buttonName={"Postar"} />
       {Posts}
     </>
