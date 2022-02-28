@@ -4,7 +4,7 @@ import { AppBar, Button, Card,Fab, Toolbar, TextField } from "@material-ui/core"
 export const Boxdiv = styled(Card)`
   display: flex;
   max-width: 800px;
-  margin: 10px auto;
+  margin: 5px auto;
   position: relative;
   margin: 50px auto;
   flex-direction: column;
@@ -12,7 +12,6 @@ export const Boxdiv = styled(Card)`
 export const WritePostContainer = styled.div`
   margin: 10px ;
   word-wrap: break-word;
-
 `;
 
 export const StyledAppBar = styled.div`

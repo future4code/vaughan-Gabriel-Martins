@@ -65,8 +65,9 @@ const PostPage = () => {
   const commentsToScreen = comments.map((item) => (
     <CommentCard
       dataUp={dataUpFromCommentCard}
-      commentsToScreen={item}
+      item={item}
       key={item.createdAt}
+   
     />
   ));
 
@@ -101,10 +102,12 @@ const PostPage = () => {
 
             <RecipeReviewCard
             item={item}
+            isComment ={true}
             onClickHandlerUp={onClickHandlerUp}
             onClickHandlerDown={onClickHandlerDown}
             onClickDeleteLikePost={onClickDeleteLikePost}
             key={item.id}
+            
           />
         </>
       ));

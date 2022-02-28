@@ -32,12 +32,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeReviewCard({
   item,
+  isComment, 
   onClickDeleteLikePost,
   onClickHandlerDown,
   onClickHandlerUp,
   onClickHandlerGoToPost,
 }) {
   const classes = useStyles();
+
+
+
+      
+    item.title = item.title  || "Comment"; 
+  
 
   return (
     <Card
@@ -48,25 +55,23 @@ export default function RecipeReviewCard({
       {console.log(item)}
       <CardHeader
         avatar={
-          <Avatar aria-label='recipe' className={classes.avatar}>
-            {item.username[0]}
+          <Avatar aria-label='usuario' className={classes.avatar}>
+            {item.username[0].toUpperCase()}
           </Avatar>
         }
-        action={
-          <IconButton aria-label='comments'>
-            {item.commentCount ? (
-              <ModeCommentIcon style={{ color: "red" }} />
-            ) : (
-              <ModeCommentOutlinedIcon />
-            )}
-            <Typography>{item.commentCount ? item.commentCount : 0}</Typography>
+        action={ 
+            <div> 
+          <IconButton aria-label='comments' >
+          { item.commentCount ? ( <ModeCommentIcon style={{ color: "red" }} /> ) : (<ModeCommentOutlinedIcon />)}
+          <Typography>{item.commentCount ? item.commentCount :   isComment || 0 }</Typography> 
           </IconButton>
+            </div>
         }
-        subheader={item.title[0].toUpperCase() + item.title.substr(1)}
         title={`${
           item.username[0].toUpperCase() + item.username.substr(1)
         } ${new Date(item.createdAt).toLocaleString()}`}
-      />
+         subheader={ item.title[0].toUpperCase() + item.title.substr(1)}
+        />
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
           {item.body}

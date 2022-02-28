@@ -11,6 +11,7 @@ import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined"
 import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
 import DeleteData from "../../Services/Delete/DeleteData";
 import CreatingVote from "../../Services/Vote/CreatingVote";
+import RecipeReviewCard from "../../components/CardMUI";
 import {
   Boxdiv,
   StyledToolbar,
@@ -19,7 +20,7 @@ import {
   WritePostContainer,
 } from "../FeedPage/Style";
 
-const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
+const CommentCard = ({ item, dataUp, isPost }) => {
   // using this function to lift data from votes -1/1 and delete
   // to update the post page by props using a state in the
   // using useEffect  in <PostPage>
@@ -48,69 +49,73 @@ const CommentCard = ({ commentsToScreen, dataUp, isPost }) => {
   };
 
   return (
-    <Boxdiv>
-      <StyledAppBar color='primary'>
-        <Typography
-          variant='h5'
-          component='h2'
-          // color="primary"
-          align='center'
-        >
-          {isPost ? "Post" : "Comentário"}{" "}
-        </Typography>
-        <StyledToolbar>
-          <IconButton edge='end' color='inherit'>
-            <Typography> {commentsToScreen.username} </Typography>
-          </IconButton>
-        </StyledToolbar>
-        <Typography>
-          {}
-          {new Date(commentsToScreen.createdAt).toLocaleString()}
-        </Typography>
-      </StyledAppBar>
-      <WritePostContainer>
-        <Typography> </Typography>
-        <Typography> {commentsToScreen.username} </Typography>
-        <Typography> {commentsToScreen.commentCount} </Typography>
-        <Typography> {commentsToScreen.body} </Typography>
-      </WritePostContainer>
 
-      <StyledAppBar color='primary'>
-        <Typography>
-          {commentsToScreen.voteSum ? commentsToScreen.voteSum : 0}
-        </Typography>
-        {!isPost ? (
-          <>
-            <StyledToolbar>
-              <IconButton
-                onClick={(e) => onClickHandlerDown(e, commentsToScreen.id)}
-                edge='end'
-                color='inherit'
-              >
-                <ArrowDownwardOutlinedIcon />
-              </IconButton>
-              <IconButton
-                onClick={(e) => onClickHandlerUp(e, commentsToScreen.id)}
-                edge='end'
-                color='inherit'
-              >
-                <ArrowUpwardOutlinedIcon />
-              </IconButton>
-            </StyledToolbar>
+    <RecipeReviewCard
+    item={item}
+    />
+    // <Boxdiv>
+    //   <StyledAppBar color='primary'>
+    //     <Typography
+    //       variant='h5'
+    //       component='h2'
+    //       // color="primary"
+    //       align='center'
+    //     >
+    //       {isPost ? "Post" : "Comentário"}{" "}
+    //     </Typography>
+    //     <StyledToolbar>
+    //       <IconButton edge='end' color='inherit'>
+    //         <Typography> {item.username} </Typography>
+    //       </IconButton>
+    //     </StyledToolbar>
+    //     <Typography>
+    //       {}
+    //       {new Date(item.createdAt).toLocaleString()}
+    //     </Typography>
+    //   </StyledAppBar>
+    //   <WritePostContainer>
+    //     <Typography> </Typography>
+    //     <Typography> {item.username} </Typography>
+    //     <Typography> {item.commentCount} </Typography>
+    //     <Typography> {item.body} </Typography>
+    //   </WritePostContainer>
 
-            <Button
-              name='delete'
-              onClick={() => onClickHandler(commentsToScreen.id)}
-              variant='contained'
-            >
-              Delete comment
-            </Button>
-          </>
-        ) : (
-          ""
-        )}
-      </StyledAppBar>
-    </Boxdiv>
+    //   <StyledAppBar color='primary'>
+    //     <Typography>
+    //       {item.voteSum ? item.voteSum : 0}
+    //     </Typography>
+    //     {!isPost ? (
+    //       <>
+    //         <StyledToolbar>
+    //           <IconButton
+    //             onClick={(e) => onClickHandlerDown(e, item.id)}
+    //             edge='end'
+    //             color='inherit'
+    //           >
+    //             <ArrowDownwardOutlinedIcon />
+    //           </IconButton>
+    //           <IconButton
+    //             onClick={(e) => onClickHandlerUp(e, item.id)}
+    //             edge='end'
+    //             color='inherit'
+    //           >
+    //             <ArrowUpwardOutlinedIcon />
+    //           </IconButton>
+    //         </StyledToolbar>
+
+    //         <Button
+    //           name='delete'
+    //           onClick={() => onClickHandler(item.id)}
+    //           variant='contained'
+    //         >
+    //           Delete comment
+    //         </Button>
+    //       </>
+    //     ) : (
+    //       ""
+    //     )}
+    //   </StyledAppBar>
+    // </Boxdiv>
   );
 };
 
