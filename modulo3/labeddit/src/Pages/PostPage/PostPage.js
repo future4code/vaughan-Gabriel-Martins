@@ -50,8 +50,9 @@ const PostPage = () => {
   }, [postVote, upDateDomDelete, upDateDom2]);
 
   useEffect(() => {
-    //As its been used to Commnents and Post , this urlEntred has
-    // been added as a second paraments and it should be also completed
+    //As its been used to Commnents and Post , this urlEntred has 
+    // been added as
+    //a second paraments and it should be also completed
     // at least with a "" empty string.
     //GetPost Comments {{baseURL}}/posts/:id/comments
     // Get Posts  {{baseURL}}/posts/
