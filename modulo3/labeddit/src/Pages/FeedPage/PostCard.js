@@ -37,6 +37,7 @@ const PostCard = (props) => {
             multiline
             minRows="2"
           />
+
         </WritePostContainer>
         <Button type='submit' 
         variant='contained' 
