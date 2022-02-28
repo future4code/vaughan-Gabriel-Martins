@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 800,
     margin: "10px auto",
+    "&:hover":{
+      cursor:"pointer",    
+    }
   },
   avatar: {
     backgroundColor: red[500],
@@ -38,6 +41,7 @@ export default function RecipeReviewCard({
 
   return (
     <Card
+      
       className={classes.root}
       onClick={() => onClickHandlerGoToPost(item.id)}
     >

@@ -4,13 +4,8 @@ import PostCommnetCard from "./PostCommnetCard";
 import useNotLogedPage from "../../Hooks/useNotLogedPage";
 import CommentCard from "./CommnetCard";
 import CreatePostData from "../../Services/Create/CreatePostData";
-// import {
-//   Boxdiv,
-//   StyledToolbar,
-//   StyledAppBar,
-//   WritePostContainer,
-// } from "../FeedPage/Style";
 import GetData from "../../Services/GetPostComments/GetData";
+import CardMUI from "../../components/CardMUI";
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
@@ -67,13 +62,12 @@ const PostPage = () => {
     posts.length &&
     posts
       .filter((item) => item.id == id)
-      .map((item) => (
-        <CommentCard
-          dataUp={dataUpFromCommentCard}
-          commentsToScreen={item}
-          key={item.createdAt}
-          isPost={true}
+      .map((item) => (<>
+
+        <CardMUI
+        item={item}
         />
+        </>
       ));
 
   return (
