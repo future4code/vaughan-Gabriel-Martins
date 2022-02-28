@@ -30,14 +30,14 @@ const FeedPage = () => {
   const dataUpFromPostCard = (dataIn) => {
     CreatePostData("posts", dataIn, dataOut);
   };
+  const dataOutCreatPostVote = (dataOut) => {
+    setPostVote(dataOut.data);
+  };
 
   const onClickHandlerGoToPost = (id) => {
     goToPost(navigate, id);
   };
 
-  const dataOutCreatPostVote = (dataOut) => {
-    setPostVote(dataOut.data);
-  };
 
   const onClickHandlerUp = (e, id) => {
     e.stopPropagation();

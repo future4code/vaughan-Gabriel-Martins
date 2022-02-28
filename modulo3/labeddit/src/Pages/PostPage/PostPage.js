@@ -5,13 +5,18 @@ import useNotLogedPage from "../../Hooks/useNotLogedPage";
 import CommentCard from "./CommnetCard";
 import CreatePostData from "../../Services/Create/CreatePostData";
 import GetData from "../../Services/GetPostComments/GetData";
-import CardMUI from "../../components/CardMUI";
+import RecipeReviewCard from "../../components/CardMUI";
+import DeleteData from "../../Services/Delete/DeleteData";
+import CreatingVote from "../../Services/Vote/CreatingVote";
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
   const [upDateDom, setUpDateDom] = useState("");
   const [upDateDom2, setUpDateDom2] = useState("oi");
+  const [postVote, setPostVote] = useState("");
+  const [upDateDomDelete, setUpDateDomDelete] = useState("");
+
   const { id } = useParams();
   useNotLogedPage();
 
@@ -20,6 +25,12 @@ const PostPage = () => {
   };
   const dataOut = (data) => {
     setUpDateDom2(data);
+  };
+  const dataOutCreatPostVote = (dataOut) => {
+    setPostVote(dataOut.data);
+  };
+  const responseToUpdateDom = (data) => {
+    setUpDateDomDelete(data.statusText);
   };
 
   const dataUpFromPostCommCard = (data) => {
@@ -35,7 +46,8 @@ const PostPage = () => {
 
   useEffect(() => {
     GetData(saveDataGetPost, "");
-  }, []);
+    setUpDateDomDelete("");
+  }, [postVote, upDateDomDelete, upDateDom2]);
 
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
@@ -57,6 +69,28 @@ const PostPage = () => {
     />
   ));
 
+   
+  const onClickDeleteLikePost = (e, id) => {
+    e.stopPropagation();
+    DeleteData(`posts/${id}`, responseToUpdateDom);
+  };
+  const onClickHandlerDown = (e, id) => {
+    e.stopPropagation();
+    CreatingVote(`posts/${id}`, -1, dataOutCreatPostVote);
+    setPostVote("");
+  };
+  const onClickHandlerUp = (e, id) => {
+    e.stopPropagation();
+    console.log("up");
+    // Post Create Comment Vote  {{baseURL}}/
+    //{{comments/:id}}   /votes  1  - 1
+    // Post Create Post Vote {{baseURL}}/  {{posts/:id}}
+    //votes     1   - 1
+    CreatingVote(`posts/${id}`, 1, dataOutCreatPostVote);
+    setPostVote("");
+  };
+
+
   const postClicked =
     posts &&
     posts.length &&
@@ -64,9 +98,13 @@ const PostPage = () => {
       .filter((item) => item.id == id)
       .map((item) => (<>
 
-        <CardMUI
-        item={item}
-        />
+            <RecipeReviewCard
+            item={item}
+            onClickHandlerUp={onClickHandlerUp}
+            onClickHandlerDown={onClickHandlerDown}
+            onClickDeleteLikePost={onClickDeleteLikePost}
+            key={item.id}
+          />
         </>
       ));
 
