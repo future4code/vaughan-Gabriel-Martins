@@ -21,57 +21,62 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 800,
     margin: "10px auto",
-    "&:hover":{
-      cursor:"pointer",    
-    }
   },
   avatar: {
     backgroundColor: red[500],
+  },
+  commented: {
+    display: "none",
+  },
+  noCommented: {
+    display: "flex",
   },
 }));
 
 export default function RecipeReviewCard({
   item,
-  isComment, 
+  isComment,
   onClickDeleteLikePost,
   onClickHandlerDown,
   onClickHandlerUp,
   onClickHandlerGoToPost,
 }) {
-  const classes = useStyles();
+  let classes = useStyles();
+  item.title = item.title || "Comentário";
 
-
-
-      
-    item.title = item.title  || "Comment"; 
-  
+  const classeToUse = isComment ? "commented" : "noCommented";
+  console.log(classeToUse);
 
   return (
     <Card
-      
       className={classes.root}
       onClick={() => onClickHandlerGoToPost(item.id)}
     >
-      {console.log(item)}
       <CardHeader
         avatar={
           <Avatar aria-label='usuario' className={classes.avatar}>
             {item.username[0].toUpperCase()}
           </Avatar>
         }
-        action={ 
-            <div> 
-          <IconButton aria-label='comments' >
-          { item.commentCount ? ( <ModeCommentIcon style={{ color: "red" }} /> ) : (<ModeCommentOutlinedIcon />)}
-          <Typography>{item.commentCount ? item.commentCount :   isComment || 0 }</Typography> 
-          </IconButton>
-            </div>
+        action={
+          <div>
+            <IconButton aria-label='comments' className={classes[classeToUse]}>
+              {item.commentCount ? (
+                <ModeCommentIcon style={{ color: "red" }} />
+              ) : (
+                <ModeCommentIcon />
+              )}
+              <Typography>
+                {item.commentCount ? item.commentCount : 0}
+              </Typography>
+            </IconButton>
+          </div>
         }
         title={`${
           item.username[0].toUpperCase() + item.username.substr(1)
         } ${new Date(item.createdAt).toLocaleString()}`}
-         subheader={ item.title[0].toUpperCase() + item.title.substr(1)}
-        />
+        subheader={item.title[0].toUpperCase() + item.title.substr(1)}
+      />
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
           {item.body}
@@ -86,7 +91,7 @@ export default function RecipeReviewCard({
         }}
       >
         <div>
-          <IconButton style={{ color: "black" }} aria-label='vote'>
+          <IconButton disabled style={{ color: "black" }} aria-label='vote'>
             {item.voteSum ? item.voteSum : "0"}
           </IconButton>
 
@@ -115,19 +120,12 @@ export default function RecipeReviewCard({
               <ThumbDownAltOutlinedIcon />
             )}
           </IconButton>
-          {/* <Button
-            aria-label='vote'
-            onClick={(e) => onClickDeleteLikePost(e, item.id)}
-            variant='text'
-          >
-            Remove vote
-          </Button> */}
         </div>
 
         <div>
-          <IconButton aria-label='vote'>
+          {/* <IconButton aria-label='vote'>
             <FavoriteIcon />
-          </IconButton>
+          </IconButton> */}
           <IconButton aria-label='share'>
             <ShareIcon />
           </IconButton>

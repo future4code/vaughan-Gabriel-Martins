@@ -49,73 +49,10 @@ const CommentCard = ({ item, dataUp, isPost }) => {
   };
 
   return (
-
     <RecipeReviewCard
     item={item}
+    isComment ={true}
     />
-    // <Boxdiv>
-    //   <StyledAppBar color='primary'>
-    //     <Typography
-    //       variant='h5'
-    //       component='h2'
-    //       // color="primary"
-    //       align='center'
-    //     >
-    //       {isPost ? "Post" : "Comentário"}{" "}
-    //     </Typography>
-    //     <StyledToolbar>
-    //       <IconButton edge='end' color='inherit'>
-    //         <Typography> {item.username} </Typography>
-    //       </IconButton>
-    //     </StyledToolbar>
-    //     <Typography>
-    //       {}
-    //       {new Date(item.createdAt).toLocaleString()}
-    //     </Typography>
-    //   </StyledAppBar>
-    //   <WritePostContainer>
-    //     <Typography> </Typography>
-    //     <Typography> {item.username} </Typography>
-    //     <Typography> {item.commentCount} </Typography>
-    //     <Typography> {item.body} </Typography>
-    //   </WritePostContainer>
-
-    //   <StyledAppBar color='primary'>
-    //     <Typography>
-    //       {item.voteSum ? item.voteSum : 0}
-    //     </Typography>
-    //     {!isPost ? (
-    //       <>
-    //         <StyledToolbar>
-    //           <IconButton
-    //             onClick={(e) => onClickHandlerDown(e, item.id)}
-    //             edge='end'
-    //             color='inherit'
-    //           >
-    //             <ArrowDownwardOutlinedIcon />
-    //           </IconButton>
-    //           <IconButton
-    //             onClick={(e) => onClickHandlerUp(e, item.id)}
-    //             edge='end'
-    //             color='inherit'
-    //           >
-    //             <ArrowUpwardOutlinedIcon />
-    //           </IconButton>
-    //         </StyledToolbar>
-
-    //         <Button
-    //           name='delete'
-    //           onClick={() => onClickHandler(item.id)}
-    //           variant='contained'
-    //         >
-    //           Delete comment
-    //         </Button>
-    //       </>
-    //     ) : (
-    //       ""
-    //     )}
-    //   </StyledAppBar>
-    // </Boxdiv>
   );
 };
 

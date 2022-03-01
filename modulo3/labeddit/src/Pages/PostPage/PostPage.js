@@ -50,7 +50,7 @@ const PostPage = () => {
   }, [postVote, upDateDomDelete, upDateDom2]);
 
   useEffect(() => {
-    //As its been used to Commnents and Post , this urlEntred has 
+    //As its been used to Commnents and Post , this urlEntred has
     // been added as
     //a second paraments and it should be also completed
     // at least with a "" empty string.
@@ -67,11 +67,9 @@ const PostPage = () => {
       dataUp={dataUpFromCommentCard}
       item={item}
       key={item.createdAt}
-   
     />
   ));
 
-   
   const onClickDeleteLikePost = (e, id) => {
     e.stopPropagation();
     DeleteData(`posts/${id}`, responseToUpdateDom);
@@ -92,22 +90,20 @@ const PostPage = () => {
     setPostVote("");
   };
 
-
   const postClicked =
     posts &&
     posts.length &&
     posts
       .filter((item) => item.id == id)
-      .map((item) => (<>
-
-            <RecipeReviewCard
+      .map((item) => (
+        <>
+          <RecipeReviewCard
             item={item}
-            isComment ={true}
+            // isComment ={true}
             onClickHandlerUp={onClickHandlerUp}
             onClickHandlerDown={onClickHandlerDown}
             onClickDeleteLikePost={onClickDeleteLikePost}
             key={item.id}
-            
           />
         </>
       ));
