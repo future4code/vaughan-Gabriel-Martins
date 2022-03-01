@@ -78,7 +78,7 @@ const FeedPage = () => {
     post &&
     post.map((item) => {
       return (
-        <>
+        
           <RecipeReviewCard
             item={item}
             onClickHandlerUp={onClickHandlerUp}
@@ -87,7 +87,7 @@ const FeedPage = () => {
             onClickHandlerGoToPost={onClickHandlerGoToPost}
             key={item.id}
           />
-        </>
+        
       );
     });
 
