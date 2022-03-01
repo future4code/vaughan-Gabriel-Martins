@@ -64,7 +64,7 @@ export default function RecipeReviewCard({
         action={ 
             <div> 
           <IconButton aria-label='comments' className={ classes[classeToUse]}>
-          { item.commentCount ? ( <ModeCommentIcon style={{ color: "red" }} /> ) : <ModeCommentIcon/> }
+          { item.commentCount ? ( <ModeCommentIcon style={{ color: "red" }} /> ) : <ModeCommentOutlinedIcon/> }
           <Typography>{item.commentCount ? item.commentCount :   0 }</Typography> 
           </IconButton>
             </div>
