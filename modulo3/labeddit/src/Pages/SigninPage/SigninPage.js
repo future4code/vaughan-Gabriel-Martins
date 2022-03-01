@@ -1,7 +1,9 @@
+import { Card } from '@material-ui/core';
 import React, { useState } from 'react';
 
 import Form from './Form';
 import FormSignin from './Form';
+import { StyledBox } from "./Style";
 
 
 
@@ -15,7 +17,9 @@ const SigninPage =()=>  {
     }
 
     return ( 
+      <StyledBox>
       <FormSignin/>
+      </StyledBox>
     )
 }
 

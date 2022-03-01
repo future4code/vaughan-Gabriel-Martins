@@ -8,6 +8,7 @@ import GetData from "../../Services/GetPostComments/GetData";
 import RecipeReviewCard from "../../components/CardMUI";
 import DeleteData from "../../Services/Delete/DeleteData";
 import CreatingVote from "../../Services/Vote/CreatingVote";
+import Loading from "../../components/loading/Loading";
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
@@ -110,12 +111,12 @@ const PostPage = () => {
 
   return (
     <>
-      {postClicked}
+      {postClicked ? postClicked : <Loading/>  }
       <PostCommnetCard
         buttonName={"Comentar"}
         dataUp={dataUpFromPostCommCard}
       />
-      {commentsToScreen}
+      {commentsToScreen.length ? commentsToScreen : <Loading/> }
     </>
   );
 };

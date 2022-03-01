@@ -8,6 +8,7 @@ import DeleteData from "../../Services/Delete/DeleteData";
 import RecipeReviewCard from "../../components/CardMUI";
 import GetData from "../../Services/GetPostComments/GetData";
 import { goToPost } from "../../routers/coordenates";
+import Loading from "../../components/loading/Loading";
 
 const FeedPage = () => {
   const navigate = useNavigate();
@@ -93,8 +94,10 @@ const FeedPage = () => {
 
   return (
     <>
-      <PostCard dataUp={dataUpFromPostCard} buttonName={"Postar"} />
-      {Posts}
+   
+   
+     {PostCard && <PostCard dataUp={dataUpFromPostCard} buttonName={"Postar"} /> } 
+      {Posts.length ?  Posts  : <Loading/>  }
     </>
   );
 };
