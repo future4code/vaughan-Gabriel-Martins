@@ -25,58 +25,55 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-  commented: {
+  commented : { 
     display: "none",
-  },
-  noCommented: {
+  }, 
+  noCommented:{ 
     display: "flex",
-  },
+  }
+
 }));
 
 export default function RecipeReviewCard({
   item,
-  isComment,
+  isComment, 
   onClickDeleteLikePost,
   onClickHandlerDown,
   onClickHandlerUp,
   onClickHandlerGoToPost,
 }) {
   let classes = useStyles();
-  item.title = item.title || "Comentário";
+   item.title = item.title  || "Comentário"; 
 
-  const classeToUse = isComment ? "commented" : "noCommented";
-  console.log(classeToUse);
 
+     const classeToUse = isComment ?  "commented" : "noCommented" ;
+     console.log( classeToUse)
+  
   return (
     <Card
+   
       className={classes.root}
       onClick={() => onClickHandlerGoToPost(item.id)}
     >
       <CardHeader
         avatar={
           <Avatar aria-label='usuario' className={classes.avatar}>
-            {item.username[0].toUpperCase()}
+            {item.username[0].toUpperCase()+item.username[1].toLowerCase()}
           </Avatar>
         }
-        action={
-          <div>
-            <IconButton aria-label='comments' className={classes[classeToUse]}>
-              {item.commentCount ? (
-                <ModeCommentIcon style={{ color: "red" }} />
-              ) : (
-                <ModeCommentIcon />
-              )}
-              <Typography>
-                {item.commentCount ? item.commentCount : 0}
-              </Typography>
-            </IconButton>
-          </div>
+        action={ 
+            <div> 
+          <IconButton aria-label='comments' className={ classes[classeToUse]}>
+          { item.commentCount ? ( <ModeCommentIcon style={{ color: "red" }} /> ) : <ModeCommentIcon/> }
+          <Typography>{item.commentCount ? item.commentCount :   0 }</Typography> 
+          </IconButton>
+            </div>
         }
         title={`${
           item.username[0].toUpperCase() + item.username.substr(1)
         } ${new Date(item.createdAt).toLocaleString()}`}
-        subheader={item.title[0].toUpperCase() + item.title.substr(1)}
-      />
+         subheader={ item.title[0].toUpperCase() + item.title.substr(1)}
+        />
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
           {item.body}
@@ -120,7 +117,7 @@ export default function RecipeReviewCard({
               <ThumbDownAltOutlinedIcon />
             )}
           </IconButton>
-        </div>
+              </div>
 
         <div>
           {/* <IconButton aria-label='vote'>
