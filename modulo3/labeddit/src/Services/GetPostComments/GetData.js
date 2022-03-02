@@ -5,23 +5,26 @@ import axios from "axios";
 // been added as a second paraments and it should be also completed
 // at least with a "" empty string.
 
-const GetData = (saveData, urlEntred) => {
-  const url = `${URL_BASE}/posts/${urlEntred}`;
+const GetData = (saveData, urlEntred, setIsLoading ) => {
+  const url = `${URL_BASE}/posts${urlEntred}`;
   const token = localStorage.getItem("token");
+  setIsLoading(true)
 
   const axisConf = { headers: { Authorization: token } };
 
   axios
     .get(url, axisConf)
     .then((res) => {
+      setIsLoading(false)
       saveData(res);
-      console.log(res);
     })
     .catch((err) => { 
-      alert(err.response.data)
       localStorage.removeItem("token")
-      console.log(err.response.data)} 
-      );
+      setIsLoading(false)
+      alert(err.response.data)
+    })
+         
+      
 };
 
 export default GetData;

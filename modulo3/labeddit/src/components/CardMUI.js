@@ -45,7 +45,12 @@ export default function RecipeReviewCard({
   item.title = item.title || "Comentário";
 
   const classeToUse = isComment ? "commented" : "noCommented";
-  console.log(classeToUse);
+    
+  const onClickShare  =(e)=>{ 
+    e.stopPropagation()
+    console.log(window.location.href)
+
+  }
 
   return (
     <Card
@@ -55,7 +60,7 @@ export default function RecipeReviewCard({
       <CardHeader
         avatar={
           <Avatar aria-label='usuario' className={classes.avatar}>
-            {item.username[0].toUpperCase() + item.username[1].toLowerCase()}
+            {item && item.length && item.username[0].toUpperCase() + item.username[1].toLowerCase()}
           </Avatar>
         }
         action={
@@ -116,12 +121,13 @@ export default function RecipeReviewCard({
             </IconButton>
           )}
         </div>
-
+   
         <div>
-          {/* <IconButton aria-label='vote'>
-            <FavoriteIcon />
-          </IconButton> */}
-          <IconButton aria-label='share'>
+        
+          <IconButton 
+          onClick={onClickShare}
+          aria-label='share' 
+          className={classes[classeToUse]}>
             <ShareIcon />
           </IconButton>
         </div>

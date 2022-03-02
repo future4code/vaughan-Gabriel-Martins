@@ -9,6 +9,8 @@ import RecipeReviewCard from "../../components/CardMUI";
 import DeleteData from "../../Services/Delete/DeleteData";
 import CreatingVote from "../../Services/Vote/CreatingVote";
 import Loading from "../../components/loading/Loading";
+import Pagging from '../../components/Pagging/Pagging';
+import { TextField } from "@material-ui/core";
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
@@ -17,6 +19,8 @@ const PostPage = () => {
   const [upDateDom2, setUpDateDom2] = useState("oi");
   const [postVote, setPostVote] = useState("");
   const [upDateDomDelete, setUpDateDomDelete] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingComments , setIsLoadingComments] = useState(false);
 
   const { id } = useParams();
   useNotLogedPage();
@@ -24,6 +28,7 @@ const PostPage = () => {
   const saveData = (data) => {
     setComments(data.data);
   };
+
   const dataOut = (data) => {
     setUpDateDom2(data);
   };
@@ -46,7 +51,7 @@ const PostPage = () => {
   };
 
   useEffect(() => {
-    GetData(saveDataGetPost, "");
+    GetData(saveDataGetPost, `?&size=10000`, setIsLoading );
     setUpDateDomDelete("");
   }, [postVote, upDateDomDelete, upDateDom2]);
 
@@ -58,7 +63,7 @@ const PostPage = () => {
     //GetPost Comments {{baseURL}}/posts/:id/comments
     // Get Posts  {{baseURL}}/posts/
     // !! Getting Post
-    GetData(saveData, `${id}/comments`);
+    GetData(saveData, `/${id}/comments`, setIsLoadingComments);
     setUpDateDom("");
     setUpDateDom2("");
   }, [upDateDom, upDateDom2]);
@@ -97,7 +102,7 @@ const PostPage = () => {
     posts
       .filter((item) => item.id == id)
       .map((item) => (
-        <>
+        
           <RecipeReviewCard
             item={item}
             // isComment ={true}
@@ -106,17 +111,19 @@ const PostPage = () => {
             onClickDeleteLikePost={onClickDeleteLikePost}
             key={item.id}
           />
-        </>
+       
       ));
 
   return (
     <>
-      {postClicked ? postClicked : <Loading/>  }
+  
+     
+      {isLoading ?  <Loading/> : postClicked  }
       <PostCommnetCard
         buttonName={"Comentar"}
         dataUp={dataUpFromPostCommCard}
       />
-      {commentsToScreen.length ? commentsToScreen : <Loading/> }
+      {commentsToScreen}
     </>
   );
 };

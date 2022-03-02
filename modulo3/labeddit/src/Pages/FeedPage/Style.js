@@ -67,3 +67,16 @@ flex-direction: column;
 display: flex;
 width: 3%;
 `;
+
+
+export const StyledSearch = styled.div`
+display: flex;
+box-sizing: border-box;
+margin: 0 auto;
+padding: 4px 12px;
+max-width:800px;
+justify-content:space-between;
+background:white;
+border-radius: 5px;
+box-shadow: 0 0 2px 2px  #CCC;
+`

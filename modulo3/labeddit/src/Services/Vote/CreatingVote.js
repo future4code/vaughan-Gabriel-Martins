@@ -8,7 +8,6 @@ import { URL_BASE } from "../../constants/urls";
 
 const CreatingVote = (urlEntered , bodyNumber , dataOut) => {
   const body = { 'direction' : bodyNumber }
-  console.log(body)
   const url = `${URL_BASE}/${urlEntered}/votes`;
   const axiosConfig = {
     headers: { Authorization: localStorage.getItem("token") },
@@ -18,9 +17,8 @@ const CreatingVote = (urlEntered , bodyNumber , dataOut) => {
     .post(url ,  body,  axiosConfig)
     .then((res) => {
       dataOut(res)
-      console.log(res)
     } )
-    .catch((err) => console.log(err.response));
+    .catch((err) => alert(err.response));
 };
 
 export default CreatingVote;
