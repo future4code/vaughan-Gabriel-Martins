@@ -68,10 +68,13 @@ const FeedPage = () => {
     DeleteData(`posts/${id}`, responseToUpdateDom);
   };
 
+ useEffect(()=>{  setIsLoading(true)}, [] )
+
   useEffect(() => {
     //As its been used to Commnents and Post , this urlEntred has
     // been added as a second paraments and it should be also completed
     // at least with a "" empty string.
+  
     GetData(saveData, `?page=${page}&size=30`, setIsLoading);
     setPostCriado("");
     setUpDateDomDelete("");

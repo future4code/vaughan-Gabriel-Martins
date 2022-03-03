@@ -8,7 +8,7 @@ import axios from "axios";
 const GetData = (saveData, urlEntred, setIsLoading ) => {
   const url = `${URL_BASE}/posts${urlEntred}`;
   const token = localStorage.getItem("token");
-  setIsLoading(true)
+
 
   const axisConf = { headers: { Authorization: token } };
 
