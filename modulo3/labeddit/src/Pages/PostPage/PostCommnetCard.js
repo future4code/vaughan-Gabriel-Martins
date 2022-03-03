@@ -28,6 +28,7 @@ const PostCard = (props) => {
             value={form.body}
             onChange={onChange}
             fullWidth
+            required
             variant="outlined"
             multiline
             rows='2'

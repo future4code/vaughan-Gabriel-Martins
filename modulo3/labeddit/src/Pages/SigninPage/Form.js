@@ -58,7 +58,7 @@ const FormSignin = () => {
         onChange={onChange}
         fullWidth
         variant="outlined"
-        placeholder="Senha"
+        placeholder="Senha caracteres 8-10 "
       />
       </Card>
       <Button

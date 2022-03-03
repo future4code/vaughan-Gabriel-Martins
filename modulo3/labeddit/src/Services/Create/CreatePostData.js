@@ -19,7 +19,11 @@ const CreatePostData = (urlentred, body , dataOut )  => {
   axios
     .post(url, body, axisConf)
     .then(res => dataOut(res.data))
-    .catch(err => console.log(err.response))
+    .catch(err => {
+      console.log(err.response.data)
+      alert( 
+        err.response.data + " " + err.response.data.message  )
+    })
 
 }
 

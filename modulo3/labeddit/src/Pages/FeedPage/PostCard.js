@@ -25,6 +25,7 @@ const PostCard = (props) => {
             onChange={onChange}
             placeholder='Titulo'
             variant="outlined"
+            required
             fullWidth
             />
           <TextField
@@ -34,6 +35,7 @@ const PostCard = (props) => {
             placeholder='Post'
             variant="outlined"
             fullWidth
+            required
             multiline
             minRows="2"
           />
