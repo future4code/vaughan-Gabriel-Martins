@@ -20,7 +20,9 @@ const meuNumero1 : number | string  = 10;
 // `corFavorita`, que é uma string.
 
 // Crie mais três objetos, que também precisam ter apenas os campos definidos acima. 
-// Crie um **tipo** `Pessoa` para garantir que todos os objetos tenham os mesmos campos.
+// Cr
+
+//ie um **tipo** `Pessoa` para garantir que todos os objetos tenham os mesmos campos.
 
 // type pessoa : { nome: string , 
 //     idade: number, 
