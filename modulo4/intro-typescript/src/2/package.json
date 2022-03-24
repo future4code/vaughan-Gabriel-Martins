@@ -1,0 +1,11 @@
+{
+  "name": "exercicio2",
+  "version": "1.0.0",
+  "description": "exercicio2",
+  "main": "index.js",
+  "scripts": {
+    "start":"clear && tsc && node ../../build/exercicio2/Exercicio2.js"
+  },
+  "author": "Gabriel Martins",
+  "license": "ISC"
+}
