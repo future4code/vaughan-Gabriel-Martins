@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsx && ../../build/Exercicio1/exercicio1/js"
+    "start": "tsc && node ../build/exercicio1.js"
   },
   "author": "gabriel",
   "license": "ISC",
