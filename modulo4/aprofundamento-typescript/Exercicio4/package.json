@@ -1,10 +1,10 @@
 {
-  "name": "exercicio3",
+  "name": "exercicio4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ../build/exercicio3.js  &&  node ../../build/exercicio1.js "
+    "start": "clear && tc && node ../build/exer"
   },
   "author": "",
   "license": "ISC"
