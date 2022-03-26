@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "clear && tsc && node ./build/lista.js"
+    "start": "clear && tsc && node ./public/build/lista.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.23"
+  },
+  "dependencies": {
+    "typescript": "^4.6.3"
   }
 }
