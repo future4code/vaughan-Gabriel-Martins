@@ -1,11 +1,14 @@
 {
-  "name": "listatypescript",
+  "name": "lista",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "clear && tsc && node ./build/lista.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.23"
+  }
 }
