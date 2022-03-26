@@ -212,18 +212,74 @@ const entradaEx6 = [
 ]
 type  input  = 	{ cliente: string , saldoTotal: number, debitos: number [] }
 
-const exercicio6 = (entrada : input[] ): string[] => {  
+const exercicio6 = (entrada : input[] ): input[] => {  
     return entrada
 	
 	.filter((usuario )=> {  
 		if (usuario.saldoTotal -  usuario.debitos.reduce((sum, cur)=> sum+cur , 0) >= 0 ) { 
 			return false 
 		}else return true 	
-	}) .map((usuario)=>usuario.cliente )
+	}) 
+	
+	
+	.map((usuario)=> ( { 
+
+	  cliente :	usuario.cliente, 
+	  saldoTotal: usuario.saldoTotal - usuario.debitos.reduce((sum, cur)=> sum+cur , 0) ,
+	  debitos : []
+		
+	} 
+		))
 
 
 }
 
 if(process.argv[2]==="6"){ 
 	console.table(exercicio6(entradaEx6))
+   }
+
+//    - Exercício 7
+    
+//    Você acabou de conseguir um emprego em uma importadora e precisa continuar 
+//    a desenvolver o sistema de organização de estoque da empresa. 
+//    A pessoa desenvolvedora anterior a você chegou a criar uma função que 
+//    ajusta os preços para o formato brasileiro, mas não chegou a implementa-la:
+
+
+const ajustaPreco = (preco :number): string => {
+	const valorAjustado: string = preco.toFixed(2).replace('.', ',')
+	return "R$ "+valorAjustado
+}
+
+// xO seguinte array traz o estoque atual da empresa:
+
+const entradaEx7 = [
+	{ nome: "MacMugffin", quantidade: 37, valorUnitario: 51.040},
+	{ nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0},
+	{ nome: "Laço da verdade", quantidade: 32, valorUnitario: 571.5},
+	{ nome: "O precioso", quantidade: 1, valorUnitario: 9181.923},
+	{ nome: "Caneta de 250 cores", quantidade: 123, valorUnitario: 17},
+	{ nome: "Plumbus", quantidade: 13, valorUnitario: 140.44},
+	{ nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915}
+]
+
+
+type precoAnterior = { nome: string, quantidade: number, valorUnitario: number}
+
+const exercicio7  = (arrayprecoEx7 : precoAnterior[])  =>  {  
+
+	console.table(arrayprecoEx7.map((item)=> ( 
+		{quatidade : item.quantidade    , 
+		 nome : item.nome,	
+		 
+	    valorUnitario : ajustaPreco(item.valorUnitario)
+		}) 
+		)
+		.sort((a,b) => a.quatidade - b.quatidade)
+	)
+
+}
+
+if(process.argv[2]==="7"){ 
+	console.table(exercicio7(entradaEx7))
    }
