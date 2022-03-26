@@ -6,6 +6,7 @@
 
 import { argv } from "process";
 import { stringify } from "querystring";
+import { updateLanguageServiceSourceFile } from "typescript";
 
 type nomedata = { nome : string, data: string }
 
@@ -119,7 +120,7 @@ console.log( "oi exercicio3 sem pontuacao" , exercicio3( "Duna", 2021, GENERO.AC
 // arraycomo parâmetro e retorne apenas as pessoas do setor de marketing 
 // que trabalham presencialmente. 
 
-enum setor { 'marketing', 'vendas' , 'financeiro' }
+enum setor { marketing = 'marketing', vendas ='vendas' , financeiro ='financeiro' }
 
 const arrayEx4 = [
 	{ nome: "Marcos", salario: 2500, setor: setor.marketing, presencial: true },
@@ -133,10 +134,8 @@ const arrayEx4 = [
 
 type objetoEx4 ={ nome:string, salario: number , setor: setor , presencial: boolean}
 
-
 const exercicio4 = (obj: objetoEx4[] ): objetoEx4[]  => {
 
-    
     const empregadoMarkingPresencial =  obj.filter((empregado) =>   {
         if( empregado.presencial === true  && empregado.setor === setor.marketing  ){ 
             return true }
@@ -144,15 +143,46 @@ const exercicio4 = (obj: objetoEx4[] ): objetoEx4[]  => {
     
     })
     return empregadoMarkingPresencial
+}
 
-  
+if(process.argv[2]==="4"){ 
+    console.table(exercicio4(arrayEx4))
+ 
 }
 
 
 
-if(process.argv[2]==="4"){ 
-
-    console.table(exercicio4(arrayEx4))
-
+// - Exercício 5
     
+//Considerando o `array` de usuários abaixo, crie uma função que receba este `array` 
+//como parâmetro e retorne uma lista com apenas os emails dos usuários “admin”.
+
+enum role { user= "user" , admin ="admin" }
+
+const arrayEx5 = [
+	{name: "Rogério", email: "roger@email.com", role: role.user},
+	{name: "Ademir", email: "ademir@email.com", role: role.admin},
+	{name: "Aline", email: "aline@email.com", role: role.user},
+	{name: "Jéssica", email: "jessica@email.com", role: role.user},  
+	{name: "Adilson", email: "adilson@email.com", role: role.user},  
+	{name: "Carina", email: "carina@email.com", role: role.admin}      
+] 
+
+
+type ex5  = { name: string , email: string , role: role }
+
+const exercicio5 = (usuarios: ex5[]) :string[]   => { 
+
+ const array5 = usuarios.filter((item )=>  {
+      if(item.role === role.admin) {
+       return true
+	}
+}).map(item => item.email)
+   return array5
+}
+
+
+if(process.argv[2]==="5"){ 
+ console.table(exercicio5(arrayEx5))
+ 
 }
