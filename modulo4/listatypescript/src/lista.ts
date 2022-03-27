@@ -386,21 +386,21 @@ if (process.argv[2] === "9") {
 
 // Exercicio 10 
 
-const exercicio10 = (cpf: string ): boolean => {
-    
+const exercicio10 = (cpf: string): boolean => {
+
 	const arrayCpf = cpf.split("-")
 	const dig9 = arrayCpf[0].split(".").join("").split("").map((item) => Number(item))
 	const dig2 = arrayCpf[1].split("").map((item) => Number(item))
 
 	let dig11 = [...dig9, ...dig2]
-	const CpfEntrado = dig11.join("") 
+	const CpfEntrado = dig11.join("")
 
-	if (CpfEntrado === '00000000000' || CpfEntrado === '11111111111' || CpfEntrado === '22222222222' || CpfEntrado === '33333333333' || 
-    CpfEntrado === '44444444444' || CpfEntrado === '55555555555' || CpfEntrado === '66666666666' || CpfEntrado === '77777777777' || CpfEntrado === '88888888888' || 
-    CpfEntrado === '99999999999' || CpfEntrado.length !== 11) {
-	  console.log( "CPF invalido , numeros faltando ou todos os numeros são iguais")
-      return false;
-    }
+	if (CpfEntrado === '00000000000' || CpfEntrado === '11111111111' || CpfEntrado === '22222222222' || CpfEntrado === '33333333333' ||
+		CpfEntrado === '44444444444' || CpfEntrado === '55555555555' || CpfEntrado === '66666666666' || CpfEntrado === '77777777777' || CpfEntrado === '88888888888' ||
+		CpfEntrado === '99999999999' || CpfEntrado.length !== 11) {
+		console.log("CPF invalido , numeros faltando ou todos os numeros são iguais")
+		return false;
+	}
 
 	const resp = 11 - (dig9.map((item, index, Array) => item * (10 - index)).reduce((soma, act) => soma = soma + act, 0) % 11)
 
@@ -412,14 +412,10 @@ const exercicio10 = (cpf: string ): boolean => {
 	}
 
 	dig9.push(digV1)
-	console.log(dig9)
-
 
 
 	const resp2 = 11 - (dig9.map((item, index, Array) => item * (11 - index)).reduce((soma, act) => soma = soma + act, 0) % 11)
-	
 
-	console.log("resp2", resp2)
 	let digV2 = 0;
 	if (resp2 >= 10) {
 		digV2 = 0;
@@ -429,12 +425,8 @@ const exercicio10 = (cpf: string ): boolean => {
 
 	dig9.push(digV2)
 
-	console.log("dig9", dig9)
-	console.log("dig11", dig11)
-
-	
 	const CpfVerificado = dig9.join("")
-	console.log(CpfEntrado, CpfVerificado)
+
 
 	return (CpfEntrado === CpfVerificado)
 }
@@ -442,4 +434,5 @@ const exercicio10 = (cpf: string ): boolean => {
 
 if (process.argv[2] === "10") {
 	console.log(exercicio10("111.111.111-11"))
+	console.log(exercicio10("145.382.206-20"))
 }
