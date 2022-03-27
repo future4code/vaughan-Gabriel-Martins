@@ -319,22 +319,22 @@ const exercicio8 = (dataNascimento: string, dataEmissaoCarteira: string): string
 	const tempoDeCarteira = msToYear(Date.parse(Date()) - (Date.parse(dataEmissaoCarteira.split("/").reverse().join("-"))))
 	const idade = msToYear(Date.parse(Date()) - (Date.parse(dataNascimento.split("/").reverse().join("-"))))
 
-    console.log(idade)
+	console.log(idade)
 	console.log("Tempo que carteira foi", tempoDeCarteira)
 
 	//     - Para pessoas com menos de 20 anos, ou exatamente 20 anos, deve ser renovada de 5 em 5 anos (se for exatamente 5 anos, deve ser renovada).
-	         if(idade <= 20 &&  tempoDeCarteira >=5){ 
-				 return  "true 1"
-				} 
-//     - Para pessoas entre 20 e 50 anos, ou exatamente 50, deve ser renovada de 10 em 10 anos (se for exatamente 10 anos, deve ser renovada).
-			if(idade >= 20 &&  idade <=50 && tempoDeCarteira >=10){
-				return  "true 2"
-			} 
-			//     - Para pessoas acima dos 50 anos, deve ser renovada de 15 em 15 anos
-			if(idade >= 50 &&  tempoDeCarteira >= 15){ 
-				return  "true 3"
-			}
-			return "false" 	
+	if (idade <= 20 && tempoDeCarteira >= 5) {
+		return "true 1"
+	}
+	//     - Para pessoas entre 20 e 50 anos, ou exatamente 50, deve ser renovada de 10 em 10 anos (se for exatamente 10 anos, deve ser renovada).
+	if (idade >= 20 && idade <= 50 && tempoDeCarteira >= 10) {
+		return "true 2"
+	}
+	//     - Para pessoas acima dos 50 anos, deve ser renovada de 15 em 15 anos
+	if (idade >= 50 && tempoDeCarteira >= 15) {
+		return "true 3"
+	}
+	return "false"
 
 	// console.log("now", (new Date().getTime()))
 	// console.log("Nascimento", (Date.parse(dataNascimento.split("/").reverse().join("-"))))
@@ -384,3 +384,62 @@ if (process.argv[2] === "9") {
 	console.log(exercicio9("dooooo"))
 }
 
+// Exercicio 10 
+
+const exercicio10 = (cpf: string ): boolean => {
+    
+	const arrayCpf = cpf.split("-")
+	const dig9 = arrayCpf[0].split(".").join("").split("").map((item) => Number(item))
+	const dig2 = arrayCpf[1].split("").map((item) => Number(item))
+
+	let dig11 = [...dig9, ...dig2]
+	const CpfEntrado = dig11.join("") 
+
+	if (CpfEntrado === '00000000000' || CpfEntrado === '11111111111' || CpfEntrado === '22222222222' || CpfEntrado === '33333333333' || 
+    CpfEntrado === '44444444444' || CpfEntrado === '55555555555' || CpfEntrado === '66666666666' || CpfEntrado === '77777777777' || CpfEntrado === '88888888888' || 
+    CpfEntrado === '99999999999' || CpfEntrado.length !== 11) {
+	  console.log( "CPF invalido , numeros faltando ou todos os numeros são iguais")
+      return false;
+    }
+
+	const resp = 11 - (dig9.map((item, index, Array) => item * (10 - index)).reduce((soma, act) => soma = soma + act, 0) % 11)
+
+	let digV1 = 0;
+	if (resp >= 10) {
+		digV1 = 0;
+	} else {
+		digV1 = resp
+	}
+
+	dig9.push(digV1)
+	console.log(dig9)
+
+
+
+	const resp2 = 11 - (dig9.map((item, index, Array) => item * (11 - index)).reduce((soma, act) => soma = soma + act, 0) % 11)
+	
+
+	console.log("resp2", resp2)
+	let digV2 = 0;
+	if (resp2 >= 10) {
+		digV2 = 0;
+	} else {
+		digV2 = resp2
+	}
+
+	dig9.push(digV2)
+
+	console.log("dig9", dig9)
+	console.log("dig11", dig11)
+
+	
+	const CpfVerificado = dig9.join("")
+	console.log(CpfEntrado, CpfVerificado)
+
+	return (CpfEntrado === CpfVerificado)
+}
+
+
+if (process.argv[2] === "10") {
+	console.log(exercicio10("111.111.111-11"))
+}
