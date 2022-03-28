@@ -433,6 +433,131 @@ const exercicio10 = (cpf: string): boolean => {
 
 
 if (process.argv[2] === "10") {
-	console.log(exercicio10("111.111.111-11"))
-	console.log(exercicio10("145.382.206-20"))
+	// console.log(exercicio10("111.111.111-11"))
+	// console.log(exercicio10("145.382.206-20"))
+
+}
+
+
+
+
+// - Exercício 11
+
+//     Escreva uma função para converter de números normais para algarismos romanos (`string`).
+
+//     Os romanos eram bem inteligentes. Eles conquistaram a maior parte da Europa e a governaram por centenas de anos. 
+//Inventaram estradas de concreto e até biquínis. Uma coisa que eles nunca descobriram foi o número zero. Isso tornou a escrita 
+//e a datação de histórias extensas de suas façanhas um pouco mais desafiadoras, mas o sistema de números que eles criaram ainda está em uso hoje. 
+
+//     Os romanos escreviam números usando letras - I, V, X, L, C, D, M. Não há necessidade de converter números maiores que cerca de 3000. (Os próprios romanos não tendiam a ir mais alto)
+
+//     A Wikipedia diz: Os algarismos romanos modernos são escritos expressando cada dígito separadamente, começando com o dígito mais à esquerda e pulando qualquer dígito com valor zero.
+
+//     Para ver isso na prática, considere o exemplo de 1990.
+
+//     Em algarismos romanos 1990 é MCMXC: 1000=M 900=CM 90=XC
+
+
+// const arrayLetras = [
+
+// 	{ letra: "MMM", valor: 3000 },
+// 	{ letra: "MM", valor: 2000 },
+// 	{ letra: "M", valor: 1000 },
+// 	{ letra: "CM", valor: 900 },
+// 	{ letra: "DCCC", valor: 800 },
+// 	{ letra: "DCC", valor: 700 },
+// 	{ letra: "DC", valor: 600 },
+// 	{ letra: "D", valor: 500 },
+// 	{ letra: "CD", valor: 400 },
+// 	{ letra: "CCC", valor: 300 },
+// 	{ letra: "CC", valor: 200 },
+// 	{ letra: "C", valor: 100 },
+// 	{ letra: "XC", valor: 90 },
+// 	{ letra: "LXXX", valor: 80 },
+// 	{ letra: "LXX", valor: 70 },
+// 	{ letra: "LX", valor: 60 },
+// 	{ letra: "L", valor: 50 },
+// 	{ letra: "XL", valor: 40 },
+// 	{ letra: "XXX", valor: 30 },
+// 	{ letra: "XX", valor: 20 },
+// 	{ letra: "X", valor: 10 },
+// 	{ letra: "IX", valor: 9 },
+// 	{ letra: "VIII", valor: 8 },
+// 	{ letra: "VII", valor: 7 },
+// 	{ letra: "VI", valor: 6 },
+// 	{ letra: "V", valor: 5 },
+// 	{ letra: "IV", valor: 4 },
+// 	{ letra: "III", valor: 3 },
+// 	{ letra: "II", valor: 2 },
+// 	{ letra: "I", valor: 1 }
+// ]
+
+// const exercicio11 = (ano: number) => {
+// 	let soma = " ";
+// 	arrayLetras.forEach((item, index) => {
+// 		if (item.valor <= ano) {
+// 			// return
+// 			ano = ano - item.valor
+// 			console.log("item valor else", index, item.valor)
+// 			console.log(ano)
+// 			soma = soma + item.letra
+// 			return
+// 		}
+// 	})
+
+// 	console.log(soma)
+// }
+
+//  const arrayUnit = anoArray.map((numero, index ) => ( Number(numero) *  (10 **((anoArray.length-1 )- index)  )))
+// const anoArray = ano.toString().split("")
+//   const teste  = arrayUnit.map((item)=> { 
+// 	 for (let i = 0 ; i <= arrayLetras11.length ; i++){
+//      if(item === arrayLetras11[i].valor ){ 
+// 		 item = item - arrayLetras11[i].valor
+// 		 return arrayLetras11[i].letra 
+// 	} }
+//  })
+// console.log( anoArray)
+// console.log( arrayUnit)
+// console.log( teste)
+
+const arrayLetras11 = [
+	{letra: "M", valor: 1000},
+	{letra: "CM", valor: 900},
+	{letra: "D", valor: 500},
+	{letra: "CD", valor: 400},
+	{letra: "C", valor: 100},
+	{letra: "XC", valor: 90},
+	{letra: "L", valor: 50},
+	{letra: "XL", valor: 40},
+	{letra: "X", valor: 10},
+	{letra: "IX", valor: 9},
+	{letra: "V", valor: 5},
+	{letra: "IV", valor: 4},
+	{letra: "I", valor: 1}
+]
+
+
+const exercicio11 = (numero: number): string => {  
+	console.log("comecou 1")
+	let romano = "";
+	const resposta11 =  arrayLetras11.map(item => { 
+		
+		while( numero >= item.valor ){ 
+			//  console.log("valor", item.valor )
+			//  console.log("nummero", numero )
+			 numero= numero - item.valor
+			 romano =romano + item.letra
+	
+			}
+
+			return romano
+		}
+	)
+   return resposta11[resposta11.length-1]
+ }
+	
+
+if (process.argv[2] === "11") {
+	console.log(exercicio11(22))
 }
