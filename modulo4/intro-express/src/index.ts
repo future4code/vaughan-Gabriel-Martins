@@ -178,8 +178,12 @@ app.get("/posts", (req,res)=> {
 
 // - Exercício 8
 // Construa um endpoint que retorne os posts de um usuário em particular.
-app.get("/posts/id", (req,res)=> {
-    res.send(posts)
+app.get("/posts/:id", (req,res)=> {
+    const {id} = (req.params)
+    console.log("id", id)
+   const postUser =  posts.filter(item => item.userId === id)
+   console.log("postUser", postUser)
+    res.send(postUser)
 })
 
 
