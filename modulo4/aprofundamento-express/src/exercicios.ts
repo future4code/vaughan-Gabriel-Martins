@@ -149,14 +149,36 @@ app.delete("/todo/:id" , (req, res) => {
 // Exercício 8
 // Construa um endpoint que retorne todos os afazeres de uma determinada id de usuário.
 
-app.get(("/:userid") ,(req, res)=> { 
+// app.get(("/:userid") ,(req, res)=> { 
    
-    console.log("oi")
-    res.status(200).send( arrayUser.filter(item=>item.userId===Number(req.params.userid)))
-})
 
-const server = app.listen(gate, () => {
-    console.log("The server is running at", gate)
-})
+//     res.status(200).send( arrayUser.filter(item=>item.userId===Number(req.params.userid)))
+// })
 
 
+
+// Exercicio 9 https://documenter.getpostman.com/view/19294726/UVypyHDH
+
+
+
+/***** *Desafios*****  
+ Exercício 10
+ 
+ No endpoint do exercício 8, modele o retorno para a seguinte estrutura: */
+
+
+ app.get(("/:userid") ,(req, res)=> { 
+   
+    const userSelected= arrayUser.filter(item=>
+     item.userId===Number(req.params.userid)
+     )
+    const notUserSelected =  arrayUser.filter(item=>
+     item.userId!==Number(req.params.userid)
+     )
+
+    res.status(200).send( { "todos": {    "selectedUser": [userSelected ] , "others": [notUserSelected]  }    })
+    })
+
+    const server = app.listen(gate, () => {
+        console.log("The server is running at", gate)
+    })
