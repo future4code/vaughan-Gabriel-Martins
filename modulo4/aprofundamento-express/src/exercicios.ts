@@ -179,6 +179,31 @@ app.delete("/todo/:id" , (req, res) => {
     res.status(200).send( { "todos": {    "selectedUser": [userSelected ] , "others": [notUserSelected]  }    })
     })
 
+
     const server = app.listen(gate, () => {
         console.log("The server is running at", gate)
     })
+
+
+    const fs = require("fs")
+
+    // fs.readFile("/Users/gdlmartins/Desktop/ti/file/it.txt", "utf8" , (err:any,data: any) => {
+    fs.readFile("/Users/gdlmartins/Desktop/ti/labenu/semana01/codigos/vaughan-Gabriel-Martins/modulo4/aprofundamento-express/src/it.txt", "utf8" , (err:any,data: any) => {
+       if (err){ 
+           console.error(err)
+       }
+       console.log(data)
+     })
+    
+
+     const content =  "oi gabriel" 
+     // Eu ate consigo escrever dentro do arquivo e ler mas so strings
+
+     try {
+    //    fs.writeFileSync("/Users/gdlmartins/Desktop/ti/file/it.txt", content)
+       fs.writeFileSync("/Users/gdlmartins/Desktop/ti/labenu/semana01/codigos/vaughan-Gabriel-Martins/modulo4/aprofundamento-express/src/it.txt", content)
+       //file written successfully
+     } catch (err) {
+       console.error(err)
+     }
+     
