@@ -26,9 +26,9 @@ app.get(("/test"), (req , res )=>{
 
 //Exercicio2 
 
-app.get(("/products"), (req , res )=>{
-    res.status(200).send(data)
-})
+// app.get(("/products"), (req , res )=>{
+//     res.status(200).send(data)
+// })
 
 // - Exercício 3
     
@@ -41,6 +41,66 @@ app.post(("/products"), (req,res)=> {
     const arrayData = [...data,{id:Date.now(), ...req.body}]
     res.status(201).send(arrayData)
 })
+
+
+// - Exercício 4
+
+//     Crie um endpoint que **retorna todos os produtos**.
+
+app.get(("/products"), (req , res )=>{
+    res.status(200).send(data)
+
+})
+
+// - Exercício 5
+
+
+// Crie um endpoint que **edita** **o preço de** 
+// **um determinado produto** e retorna a lista de produtos atualizada.
+
+app.put(("/products"),(req,res)=> { 
+    
+  const dataPriceChanges = data.map(item => {
+       if(Number(item.id) === req.body.id){ 
+           return {...item, price: req.body.price }
+       }else return item 
+  
+  })
+    
+ res.send(dataPriceChanges)
+})
+
+app.delete(("/products"),(req,res) => {
+    const datafiltered = data.filter(item =>  !(Number(item.id )=== req.body.id ))
+   
+    res.status(201).send(datafiltered)
+})
+
+
+
+// - Exercício 7
+    
+//     Refatore o endpoint do exercício 3 (criar produto) para que sejam 
+// implementados fluxos de validação dos dados recebidos (`name` e `price`)
+
+app.post(("/produtos"), (req,res)=> {
+//  erro caso um ou nenhum deles forem recebidos
+    
+    if(req.body.price || req.body.name){ 
+        console.log("recebi os dois")
+    }
+     
+    const arrayData = [...data,{id:Date.now(), ...req.body}]
+    res.status(201).send(arrayData)
+})
+//     - erro caso `name` seja diferente de `string`
+//     - erro caso `price` seja diferente de `number`
+//     - erro caso `price` seja igual ou menor que `0`
+//     - erro caso algo inesperado aconteça
+
+
+
+
 
 const server = app.listen(gate, ()=> { 
    console.log( "The server is running at:", gate)
