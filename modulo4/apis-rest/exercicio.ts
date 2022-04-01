@@ -45,5 +45,18 @@
                 age: 60
             }
         ]
-// a). Qual método HTTP você deve utilizar para isso?
+// a). Qual método HTTP você deve utilizar para isso? 
+
+//   ****  CRUD   *****
 // b). Como você indicaria a **entidade** que está sendo manipulada?
+
+//*****    */  " /users   " 
+
+// - **Exercício 2**
+    
+//     Agora, vamos criar um novo endpoint, que busque todos os usuários que tenham uma propriedade 
+//     `type` específica, recebendo apenas um `type` por vez. Após isso, responda:
+    
+//     a. Como você passou os parâmetros de type para a requisição? Por quê?
+    
+//     b. Você consegue pensar em um jeito de garantir que apenas `types` válidos sejam utilizados?
