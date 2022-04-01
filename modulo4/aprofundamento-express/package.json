@@ -4,10 +4,10 @@
   "description": "Aprofudamento em express na Labenu",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node-dev ./src/exercicios.ts",
-    "start": "tsc && node ./build/exercicios.js",
-    "build": "tsc"
-  },
+    "dev": "ts-node-dev ./src/index.ts",
+    "start": "tsc && node ./build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+},
   "author": "Gabriel Martins",
   "license": "ISC",
   "dependencies": {
