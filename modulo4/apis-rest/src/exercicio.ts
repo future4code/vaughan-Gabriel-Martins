@@ -95,6 +95,7 @@ type users  =  {
 // usei try e catch alem de um if comprando as entrada com a string .toLowerCase() . 
 
 app.get(("/users"), (req : Request , res: Response)=>{
+
     try{
         let type:string = req.query.type as string 
         type =type.toLowerCase().trim()
@@ -102,13 +103,12 @@ app.get(("/users"), (req : Request , res: Response)=>{
         // if(type==="admin" || type ==="normal"  ){
         if(type ==="normal"  || type === "admin"){
             // Usei o query para pesquisar se existia ou nao e devolver 
-            res.send( users.filter(item => {
+            res.status(200).send( users.filter(item => {
                 console.log(item.type ,req.query.type )
                 return  item.type.toLowerCase() === type
             }))
         }
         throw new Error("type invalido")
-
     } 
     catch(error: any){
         switch(error.message){
@@ -118,16 +118,39 @@ app.get(("/users"), (req : Request , res: Response)=>{
             default:
                 res.status(500).send(error.message)
         }
-
     }
-
-
-
 })
     
+// - **Exercício 3**
     
+//     Vamos agora praticar o uso de buscas mais variáveis. 
+//     Faça agora um endpoint de busca que encontre um usuário buscando por nome
+    
+//     a. Qual é o tipo de envio de parâmetro que costuma ser utilizado por aqui?
 
+// Eu queria fazer de novo pelo query posi eh um pesquisa mas nao da pois ja foi usado no exercicio2
+// entào vou usar o params name 
+    
+//     b. Altere este endpoint para que ele devolva uma mensagem de erro caso nenhum 
+//     usuário tenha sido encontrado.
 
+app.get("/users/:name" , (req:Request, res:Response) => {
+    try{
+        const name = req.params.name as string
+        const namefiltered = users.filter(item => item.name.toLowerCase() ===  name.toLowerCase())
+        if(namefiltered.length <=0){
+            throw new Error("Usuario não existe")
+        } 
+        res.status(200).send( users.filter(item => item.name.toLowerCase() ===  name.toLowerCase() ))    
+
+    }
+    
+    catch(e: any ){
+
+        res.status(400).send(e.message)
+       
+    }
+} )
 
 
 
