@@ -107,7 +107,7 @@ const posts = [
 ];
 // Exercicio7 Construa um endpoint que retorne os posts criados no exercício anterior.
 app.get("/posts", (req, res) => {
-    res.send(posts);
+    res.status(200).send(posts);
 });
 // - Exercício 8
 // Construa um endpoint que retorne os posts de um usuário em particular.
@@ -116,7 +116,7 @@ app.get("/posts/:id", (req, res) => {
     console.log("id", id);
     const postUser = posts.filter(item => item.userId === id);
     console.log("postUser", postUser);
-    res.status(201).send(postUser);
+    res.status(200).send(postUser);
 });
 app.listen(3003, () => {
     console.log("Server is running in http://localhost:3003");

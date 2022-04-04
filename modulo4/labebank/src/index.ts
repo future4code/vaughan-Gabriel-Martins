@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 
-
+console.log("teste")
 
 const app = express()
 app.use(express.json())
@@ -168,21 +168,24 @@ app.get("/users" , (req:Request , res: Response)=> {
 
 app.put("/users",  ( req:Request , res:Response)=> { 
     // Entrar com ano mes e dia  aaaa-mm-dd  
-    // 18 anos em ms   567993600000 pelo calculo abaixo 
+    // 18 anos em ms   567993600000 pelo calculo abaixo  18years  coverted in  ms => 568036800000
+
+     
     try{
         const dob = Date.parse(req.body.dob)
         const today = (Date.parse((new Date(Date.now())).toDateString()))
-        const isOver18 = (today - dob) >=  567993600000
+        // const isOver18 = (today - dob) >=  567993600000
+        const isOver18 = (today - dob) >=  568036800000
         if(isOver18){ 
             usuarios.push(req.body)
-            res.send( req.body )
+          return res.status(200).send( usuarios )
         }
          throw new Error("Não tem a idade minima para abrir conta")
     }   
-    catch(error:any)
-    { switch(error.message) { 
+    catch(error:any) { 
+      switch(error.message) { 
         case "Não tem a idade minima para abrir conta":
-             res.send(error.message)
+             res.status(400).send(error.message)
              break;
         default: 
               res.status(500).send(error.message);
@@ -191,14 +194,7 @@ app.put("/users",  ( req:Request , res:Response)=> {
     }
            
     
-
-
-
-    
 } )  
-
-
-
 
 
 
