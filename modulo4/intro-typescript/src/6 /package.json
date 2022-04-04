@@ -1,0 +1,11 @@
+{
+  "name": "6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "clear && tsc && node ../../build/exercicio6/Exercicio6.js"
+  },
+  "author": "Gabriel",
+  "license": "ISC"
+}
