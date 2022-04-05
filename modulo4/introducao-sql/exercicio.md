@@ -136,6 +136,40 @@
 
         nome nao existe, seria name e a resposta seria GLoria Maria.
 
+###Exercício 4 
+
+
+        a)SELECT * FROM Actor  WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000;
+
+        Vai pegar os atores( male/female)  com salario maior que 300.000 e nomes comecados pelas letras A ou J.
+
+        b) Escreva uma query com os atores que não comecem com a letra "A" e tenham o salário maior do que R$350.000,00
+
+        SELECT * FROM Actor 
+        WHERE name NOT LIKE "A%" AND salary > 350000;
+
+
+        c) Escreva uma query com os atores que possuam "G" ou "g" em qualquer parte do nome.
+
+        SELECT * FROM Actor 
+        WHERE name LIKE "G%" or "%g%";
+
+
+        d) Escreva uma query com os atores que tenham a letra "a" ou "A" ou "g" ou "G" no nome e o salário entre R$350.000,00 e R$900.000,00
+
+         Não coloquei a letra maiscula por o workbench na diferencia isso mas o sql sim se fosse em outro lugar talvez deveria fazer isso. 
+
+        SELECT * FROM Actor 
+        WHERE ( name LIKE "%g%" or "%a%") AND salary BETWEEN 350000 AND 900000; 
+        
+
+
+
+
+
+
+
+
 
     
 
