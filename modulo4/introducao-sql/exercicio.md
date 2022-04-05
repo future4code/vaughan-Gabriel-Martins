@@ -6,15 +6,13 @@
     Abaixo está a query que cria essa tabela no MySQL
 
 
-         ``CREATE TABLE Actor (
+         CREATE TABLE Actor (
                id VARCHAR(255) PRIMARY KEY,
                name VARCHAR (255) NOT NULL,
                salary FLOAT NOT NULL,
                birth_date DATE NOT NULL,
                gender VARCHAR(6) NOT NULL
-           );``
-
-
+           );
 
 
        a) Nesta tabela, utilizamos o `FLOAT` para declarar o salário, porque
@@ -104,7 +102,7 @@
         "female"
         );
 
-## Exercicio 3 
+### Exercicio 3 
 
         a) retornar todas a atrizes. 
 
@@ -136,7 +134,7 @@
 
         nome nao existe, seria name e a resposta seria GLoria Maria.
 
-###Exercício 4 
+### Exercício 4 
 
 
         a)SELECT * FROM Actor  WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000;
@@ -162,13 +160,15 @@
         SELECT * FROM Actor 
         WHERE ( name LIKE "%g%" or "%a%") AND salary BETWEEN 350000 AND 900000; 
 
-        - Exercício 5
+### Exercício 5
     
-        Terminamos de fazer um belo estudo sobre a tabela de Atores. Agora, você vai ficar mais independente. Precisamos criar a tabela de Filmes com as informações: id, nome, sinopse, data de lançamento e avaliação (que pode ser de 0 a 10)
+        Terminamos de fazer um belo estudo sobre a tabela de Atores. Agora, você vai ficar mais independente.
+        Precisamos criar a tabela de Filmes com as informações: id, nome, sinopse, data de lançamento e 
+         avaliação (que pode ser de 0 a 10)
 
 
 
-        - Exercício 6
+### Exercício 6
     
         Escreva uma query que:
     
@@ -204,7 +204,8 @@
 
 
         
-        b) Realize a pesquisa de um filme, ou seja: pesquise se o termo de busca está contido no título ou na sinopse. Utilize qualquer `TERMO DE BUSCA` para exemplificar.
+        b) Realize a pesquisa de um filme, ou seja: pesquise se o termo de busca está contido no título 
+        ou na sinopse. Utilize qualquer `TERMO DE BUSCA` para exemplificar.
 
 
            SELECT * FROM Movie 
@@ -219,14 +220,15 @@
             SELECT * FROM Movie 
                WHERE release_Date < CURDATE();
         
-        d) Procure por algum filme que já tenha lançado, com o termo de busca contido no título ou sinopse e com a avaliação maior do que `7`.
+        d) Procure por algum filme que já tenha lançado, com o termo de busca contido no título ou sinopse e 
+        com a avaliaçã maior do que `7`.
 
          
-            SELECT * FROM Movie 
+            ```SELECT * FROM Movie 
             WHERE release_Date < CURDATE() AND 
                        (title LIKE "%dois%"  OR 
                      sinopse LIKE "%dois%") AND 
-                     rating > 7;
+                     rating > 7;```
 
 
 
