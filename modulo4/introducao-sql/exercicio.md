@@ -161,7 +161,79 @@
 
         SELECT * FROM Actor 
         WHERE ( name LIKE "%g%" or "%a%") AND salary BETWEEN 350000 AND 900000; 
+
+        - Exercício 5
+    
+        Terminamos de fazer um belo estudo sobre a tabela de Atores. Agora, você vai ficar mais independente. Precisamos criar a tabela de Filmes com as informações: id, nome, sinopse, data de lançamento e avaliação (que pode ser de 0 a 10)
+
+
+
+        - Exercício 6
+    
+        Escreva uma query que:
+    
+        a) Retorne o id, título e avaliação a partir de um id específico;
+
+         SELECT id, title, rating  FROM Movie 
+         WHERE  id like  001;
+ 
+ 
         
+        b) Retorne um filme a partir de um nome específico;
+
+        SELECT title FROM Movie 
+        WHERE title LIKE "Doce de mãe";
+
+
+        c) Retorne o id, título e sinopse dos filmes com avaliação mínima de `7`
+
+        SELECT id FROM Movie 
+        WHERE rating >=7;
+        
+### Exercício 7
+    
+         Escreva uma query que:
+    
+        a) Retorna um filme cujo título contenha a palavra `vida`
+
+         nenhum filme tem vida no titulo. na sinopse ate tem dois. 
+
+
+            SELECT title FROM Movie 
+            WHERE title LIKE "%vida%";
+
+
+        
+        b) Realize a pesquisa de um filme, ou seja: pesquise se o termo de busca está contido no título ou na sinopse. Utilize qualquer `TERMO DE BUSCA` para exemplificar.
+
+
+           SELECT * FROM Movie 
+              WHERE   title LIKE "%tropa%" OR  
+                      sinopse LIKE "tropa";
+
+
+
+        c) Procure por todos os filmes que já tenham lançado
+
+
+            SELECT * FROM Movie 
+               WHERE release_Date < CURDATE();
+        
+        d) Procure por algum filme que já tenha lançado, com o termo de busca contido no título ou sinopse e com a avaliação maior do que `7`.
+
+         
+            SELECT * FROM Movie 
+            WHERE release_Date < CURDATE() AND 
+                       (title LIKE "%dois%"  OR 
+                     sinopse LIKE "%dois%") AND 
+                     rating > 7;
+
+
+
+
+
+
+
 
 
 
