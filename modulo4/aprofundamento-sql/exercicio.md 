@@ -1,1 +1,33 @@
-#Exercicios
+###Exercicio1
+
+```
+O SQL é um banco relacional e permite realizar queires complexas mais rapidamente do que bancos não relacionais.
+ Uma das coisas que permite isso é o fato das tabelas serem muito bem definidas e com regras bem rigidas. 
+ Só que, às vezes, a gente pode errar ao começar modelando uma tabela: confundir o tipo de alguma coluna; 
+ esquecer de representar alguma informação e outras coisas. É por isso que é possível **alterar** as regras definidas por uma tabela. 
+O comando que faz isso é o `ALTER`. O comando abaixo adiciona uma coluna na tabela de Actor para representar o sabor de sorvete favorito da celebridade
+```
+```
+a) ALTER TABLE Actor DROP COLUMN salary;  
+
+
+**Removeria a coluna salario.**
+
+
+b)ALTER TABLE Actor CHANGE gender sex VARCHAR(6);
+
+**Troca o nome da coluna de gender para sex **
+
+
+c)ALTER TABLE Actor CHANGE gender gender VARCHAR(255);
+
+
+**Troca o tamanhao da memoria reservada para as linhas da coluna gender 255 caracteres.
+
+
+
+d) Agora, altere a coluna gender da tabela ACTOR para que ele aceite strings com até 100 caracteres
+
+ ALTER TABLE Actor 
+ CHANGE gender gender VARCHAR(100)
+``
