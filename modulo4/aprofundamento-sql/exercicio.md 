@@ -268,3 +268,51 @@ Anote o resultado e explique.*
         Rodou mas nada foi alterado. 
 
 ```
+
+## 🏅 Desafios 
+
+## Exercício7
+```
+a) *Quantos filmes em cartaz possuem avaliações maiores do que `7.5`?*
+
+ SELECT * FROM Movie 
+ WHERE rating > 7.5;
+
+b) *Qual a média das avaliações dos filmes?*
+
+SELECT AVG(rating) FROM Movie ; 
+
+
+c) *Qual a quantidade de filmes em cartaz?*
+
+SELECT COUNT(*) FROM Movie;
+
+d) *Qual a quantidade de filmes que ainda irão lançar?*
+
+        SELECT * FROM Movie
+        WHERE CURDATE() < release_Date ; 
+
+e) *Qual a maior nota dos filmes?*
+  
+       SELECT MAX(rating) FROM Movie;
+ 
+f) *Qual a menor nota dos filmes?*
+ 
+       SELECT MIN(rating) FROM Movie;
+
+```
+
+```
+
+## Exercício8
+```
+
+a) *Retorne todos os filmes em ordem alfabética*
+
+b) *Retorne os 5 primerios filmes em ordem descrente alfabética* 
+
+c) *Retorne os 3 filmes mais recentes em cartaz*
+
+d) *Retorne os 3 filmes melhor avalidos*
+
+```
