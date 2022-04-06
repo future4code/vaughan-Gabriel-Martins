@@ -302,17 +302,36 @@ f) *Qual a menor nota dos filmes?*
 
 ```
 
-```
 
 ## Exercício8
 ```
 
 a) *Retorne todos os filmes em ordem alfabética*
 
+        SELECT * FROM Movie 
+        ORDER BY title ASC;
+
+
 b) *Retorne os 5 primerios filmes em ordem descrente alfabética* 
+        
+         SELECT * FROM Movie 
+         ORDER BY title DESC
+         LIMIT 5;
+
 
 c) *Retorne os 3 filmes mais recentes em cartaz*
 
+           SELECT * FROM Movie 
+           ORDER BY release_Date DESC
+           LIMIT 3;
+
+
 d) *Retorne os 3 filmes melhor avalidos*
 
+           SELECT * FROM Movie 
+           ORDER BY rating DESC
+           LIMIT 3;
+
+
+   
 ```
