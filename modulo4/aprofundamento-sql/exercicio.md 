@@ -95,3 +95,65 @@ d) *Escreva uma query em que você tente atualizar um dado da tabela que não ex
         affected Rows matched: 0  Changed: 0  Warnings: 0	0.306 sec
 
 ```
+
+## Exercicio3 
+```
+Para finalizar o CRUD, vamos ver o D: `DELETE`. 
+Esse operador permite deletar toda uma linha de uma tabela, 
+seria como apagar um elemento dela. 
+Por exemplo, se quisermos apagar o ator com o nome `Tony Ramos`
+
+DELETE FROM Actor WHERE name = "Tony Ramos"
+
+```
+
+```
+a) a) *Escreva uma query que apague a atriz com o nome `Fernanda Montenegro`*
+    
+    DELETE FROM Actor
+    WHERE name="Fernanda Montenegro";
+
+    SELECT * FROM Actor;
+   
+```
+```
+b) *Escreva uma query que apague todos os atores (do gênero `male`) 
+com o salário maior do que R$1.000.000,00*
+
+    DELETE FROM  Actor
+    WHERE gender = "male" & salary > 1000000;
+    SELECT * FROM Actor;
+
+```
+
+Exercicio4
+``` 
+   O MySQL permite que façamos queries cujo resultado final é alguma manipulação
+   em relação aos dados salvos. Essa manipulação é dada através de uma 
+   **função MySQL**. O exemplo mais clássico é a função COUNT, que permite contar 
+   a quantidade de elementos. 
+   
+```
+```
+a)  Escreva uma query que pegue o maior salário de todos os atores e atrizes.
+
+SELECT MAX(salary) FROM Actor;
+```
+```
+b) *Escreva uma query que pegue o menor salário das atrizes*
+
+SELECT MIN(salary) FROM Actor
+WHERE gender = "Female";
+
+```
+```
+c) *Escreva uma query que pegue a quantidade de atrizes*
+
+SELECT COUNT(*) FROM Actor
+WHERE gender = "Female";
+```
+```
+d) *Escreva uma query que pegue a soma de todos os salários*
+SELECT SUM(salary) FROM Actor;
+
+```
