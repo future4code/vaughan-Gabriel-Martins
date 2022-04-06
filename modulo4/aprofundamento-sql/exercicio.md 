@@ -154,6 +154,45 @@ WHERE gender = "Female";
 ```
 ```
 d) *Escreva uma query que pegue a soma de todos os salários*
+
 SELECT SUM(salary) FROM Actor;
+
+```
+
+## Exercicio5
+
+```
+a) *Releia a última query. Teste-a. Explique o resultado com as suas palavras*
+     
+     dividiu por genero e me deu a quantidade de pessoas. 
+  
+```
+```
+b) *Faça uma query que retorne somente o id e o nome dos atores em ordem decrescente alfabética*
+      
+    SELECT id, name FROM Actor
+    ORDER BY name ASC;
+ 
+```
+```
+c) *Faça uma query que retorne todos os atores ordenados pelo salário*
+
+        SELECT * FROM Actor 
+        ORDER BY salary ASC;
+````
+```
+d) *Faça uma query que retorne os atores com os três maiores salarios*
+
+            SELECT * FROM Actor 
+            ORDER BY salary ASC
+            LIMIT 3;
+```
+
+```
+e) *Faça uma query que retorne a média de salário por gênero*
+
+            SELECT AVG(salary), gender
+            FROM Actor
+            GROUP BY gender;
 
 ```
