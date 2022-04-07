@@ -3,7 +3,7 @@ import knex from 'knex';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import {AddressInfo} from "net";
-import { send } from 'process';
+import { connected, send } from 'process';
 
 
 dotenv.config(); 
@@ -24,7 +24,6 @@ export const connection = knex({
         port: 3306,
         user: "21712799-gabriel-martins",
         // user:process.env.DB_USER,
-        password: "K23YMm05MI#m2mLagv#q",
         // password:process.env.DB_PASS,
         // database:process.env.DB_NAME,
         database: "vaughan-21712799-gabriel-martins",
@@ -176,7 +175,7 @@ app.get("/actor/:id", async(req:Request, res: Response)=> {
 
  const numeroSexo = async (gender:string): Promise<any> => { 
      const result = await connection("Actor")
-     .count("gender as quantidade" )
+     .count(`gender as ${gender}` )
      .where("gender" , gender)
      return result[0]
  }
@@ -186,6 +185,7 @@ app.get("/actor" ,async (req:Request , res : Response)=> {
    try{ 
     const gender = req.query.gender as string 
     const numeroPorSexoGet  = await numeroSexo(gender)
+    console.log(numeroPorSexoGet)
     res.status(201).send(numeroPorSexoGet)
 
    }
@@ -193,8 +193,6 @@ app.get("/actor" ,async (req:Request , res : Response)=> {
       res.status(400).send({message: e.message })
 
   }
-
-
 
 })
 
@@ -208,5 +206,24 @@ const server = app.listen(process.env.PORT || 3003, ()=>{
 });
 
 
+const atualizaSalario = async (salary:number, id: string): Promise<any> => {
+    const result = await connection("Actor")
+    .update("salary" , salary)
+    .where("id", id)
+}
+
+app.put("/actor" , async (req:Request , res:Response)=>{
+    try{
+    const {id, salary} = req.body;
+    console.log(id, salary)
+    const salarioGet = await atualizaSalario(salary , id )
+    res.status(200).send("Success")
+    }
+    catch(e:any){ 
+        res.status(400).send(e.message)
+
+    }
+
+})
 
 

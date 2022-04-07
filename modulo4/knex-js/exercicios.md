@@ -205,18 +205,11 @@ b) Crie um endpoint agora com as seguintes especificações:
 - Devolver a quantidade de atores/atrizes desse gênero
 ```
 
- const numeroSexo = async (gender:string): Promise<any> => { 
-     const result = await connection("Actor")
-     .count("gender as quantidade" )
-     .where("gender" , gender)
-     return result[0]
- }
-
-
 app.get("/actor" ,async (req:Request , res : Response)=> { 
    try{ 
     const gender = req.query.gender as string 
     const numeroPorSexoGet  = await numeroSexo(gender)
+    console.log(numeroPorSexoGet)
     res.status(201).send(numeroPorSexoGet)
 
    }
@@ -228,8 +221,47 @@ app.get("/actor" ,async (req:Request , res : Response)=> {
 })
 
 
+const server = app.listen(process.env.PORT || 3003, ()=>{
+ if(server){ 
+     const address = server.address() as AddressInfo;
+ }else { 
+     console.log(`Server has failed`)
+ }
+});
+
+
 ```
 
+
+```
+- Exercício 4
+    
+    Para finalizar o estudo, você vai criar mais um endpoint. Só que, antes, queremos dar mais um exemplo. Vamos fazer um endpoint para criar um novo ator. Para isso, deve
+
+```    
+
+```
+const atualizaSalario = async (salary:number, id: string): Promise<any> => {
+    const result = await connection("Actor")
+    .update("salary" , salary)
+    .where("id", id)
+}
+
+app.put("/actor" , async (req:Request , res:Response)=>{
+    try{
+    const {id, salary} = req.body;
+    console.log(id, salary)
+    const salarioGet = await atualizaSalario(salary , id )
+    res.status(200).send("Success")
+    }
+    catch(e:any){ 
+        res.status(400).send(e.message)
+
+    }
+
+})
+
+```
 
 
 
