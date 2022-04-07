@@ -15,19 +15,7 @@ app.use(cors());
 
 
 export const connection = knex({
-    client:"mysql",
-    connection:{
-        // host:process.env.DB_HOST,
-        // host:process.env.DB_HOST,
-        host: "35.226.146.116",
-        // password:process.env.DB_PSS,
-        port: 3306,
-        user: "21712799-gabriel-martins",
-        // user:process.env.DB_USER,
-        // password:process.env.DB_PASS,
-        // database:process.env.DB_NAME,
-        database: "vaughan-21712799-gabriel-martins",
-        multipleStatements: true
+
     }
 });
 
