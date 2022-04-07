@@ -31,15 +31,15 @@ export const connection = knex({
     }
 });
 
-const getActorById = async (id: string) =>{ 
-    const result = await connection.raw(`
-    SELECT * FROM Actor WHERE id = "${id}"
-`)
-return result[0][0]
-}
+// const getActorById = async (gender: string) =>{ 
+//     const result = await connection.raw(`
+//     SELECT COUNT(*) FROM Actor WHERE gender = "${gender}"
+// `)
+// return result[0][0]
+// }
 
 // // Assim a chamada funciona fora dos endpoints com .then()/.catch
-// getActorById("002")
+// getActorById("male")
 // 	.then(result => {
 // 		console.log(result)
 // 	})
@@ -47,17 +47,17 @@ return result[0][0]
 // 		console.log(err)
 // 	});
 
-// Assim a chamada funciona fora dos endpoints com await
-(async () => {
-  console.log("await", await getActorById("002") )
-})()
+// // Assim a chamada funciona fora dos endpoints com await
+// (async () => {
+//   console.log("await", await getActorById("male") )
+// })()
 
 
-// app.get("/users/:id", async (req: Request, res: Response) => {
+// app.get("/users/:gender", async (req: Request, res: Response) => {
 //     try {
-//       const id = req.params.id
+//       const gender = req.params.gender
   
-//       console.log(await getActorById(id))
+//       console.log("postman1", await getActorById(gender))
   
 //       res.end()
 //     } catch (error:any) {
@@ -65,6 +65,7 @@ return result[0][0]
 //       res.status(500).send("Unexpected error")
 //     }
 //   })
+
 
 
 const server = app.listen(process.env.PORT || 3003, ()=>{
