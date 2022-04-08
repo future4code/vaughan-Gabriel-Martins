@@ -1,0 +1,337 @@
+## Exercicio1
+
+```
+O SQL é um banco relacional e permite realizar queires complexas mais rapidamente do que bancos não relacionais.
+ Uma das coisas que permite isso é o fato das tabelas serem muito bem definidas e com regras bem rigidas. 
+ Só que, às vezes, a gente pode errar ao começar modelando uma tabela: confundir o tipo de alguma coluna; 
+ esquecer de representar alguma informação e outras coisas. É por isso que é possível **alterar** as regras definidas por uma tabela. 
+O comando que faz isso é o `ALTER`. O comando abaixo adiciona uma coluna na tabela de Actor para representar o sabor de sorvete favorito da celebridade
+```
+
+a) ALTER TABLE Actor DROP COLUMN salary;  
+
+```
+Removeria a coluna salario.
+```
+
+b)ALTER TABLE Actor CHANGE gender sex VARCHAR(6);
+```
+Troca o nome da coluna de gender para sex 
+```
+
+c)ALTER TABLE Actor CHANGE gender gender VARCHAR(255);
+
+```
+Troca o tamanhao da memoria reservada para as linhas da coluna gender 255 caracteres.
+```
+
+
+d) Agora, altere a coluna gender da tabela ACTOR para que ele aceite strings com até 100 caracteres
+```
+ ALTER TABLE Actor 
+ CHANGE gender gender VARCHAR(100)
+```
+
+##  Exercicio2
+```
+Além de criar e ler as tabelas, é muito importante que entendamos também como atualizar e deletar.
+Inclusive, essas 4 operações têm um nome muito famoso que vocês com certeza irão ouvir 
+no dia a dia do trabalho: CRUD. Quando falamos que vamos fazer um CRUD, queremos dizer que 
+vamos fazer alguma aplicação que cria (Create), lê (Read), atualiza (Update) e deleta (Delete) 
+algum tipo de informação.
+No MySQL, existem mais dois operadores que nos permitiram fazer o CRUD de qualquer coisa. 
+O primeiro deles é o `UPDATE`. A query abaixo muda o nome do ator com id `123` para `Moacyr Franco`:
+ `` 
+  
+                UPDATE Actor
+                SET name = "Moacyr Franco"
+                WHERE id = "123"
+
+````
+a) *Escreva uma query que atualize o nome e a data de nascimento do ator com o id `003`*
+
+``` 
+UPDATE Actor
+
+            SET birth_date= "1983-04-13" , 
+            name="Gabriel Martins",  
+            SET gender = "Male"
+            WHERE id = "003";
+
+```
+b) *Escreva uma query que atualize o nome da atriz `Juliana Paes` para `JULIANA PAES`. 
+Então, escreva outra query para voltar ao nome anterior.*
+
+``` 
+                UPDATE Actor
+                SET name="JULIANA PAES" 
+                WHERE name="Juliana Paes";
+                SELECT * FROM Actor;
+
+
+                UPDATE Actor
+                SET name="Juliana Paes"
+                WHERE name="JULIANA PAES" ;
+                SELECT * FROM Actor;
+
+
+```
+c) *Escreva uma query que atualize todas as informações do ator com o id `005`*
+``` 
+                UPDATE Actor 
+                set name="Joe Doe" , 
+                salary = 100000,
+                birth_date = "1980-01-10",
+                gender = "Male"
+                WHERE id= "005";
+                SELECT * FROM Actor;
+```
+d) *Escreva uma query em que você tente atualizar um dado da tabela que não existe (com um id inválido,
+ por exemplo). Teste, anote e explique o resultado.*
+
+``` 
+        11:14:46
+        UPDATE Actor  set name="Gabriel Martins" WHERE id="008"	0 row(s) 
+        affected Rows matched: 0  Changed: 0  Warnings: 0	0.306 sec
+
+```
+
+## Exercicio3 
+```
+Para finalizar o CRUD, vamos ver o D: `DELETE`. 
+Esse operador permite deletar toda uma linha de uma tabela, 
+seria como apagar um elemento dela. 
+Por exemplo, se quisermos apagar o ator com o nome `Tony Ramos`
+
+DELETE FROM Actor WHERE name = "Tony Ramos"
+
+```
+
+```
+a) a) *Escreva uma query que apague a atriz com o nome `Fernanda Montenegro`*
+    
+    DELETE FROM Actor
+    WHERE name="Fernanda Montenegro";
+
+    SELECT * FROM Actor;
+   
+```
+```
+b) *Escreva uma query que apague todos os atores (do gênero `male`) 
+com o salário maior do que R$1.000.000,00*
+
+    DELETE FROM  Actor
+    WHERE gender = "male" & salary > 1000000;
+    SELECT * FROM Actor;
+
+```
+
+Exercicio4
+``` 
+   O MySQL permite que façamos queries cujo resultado final é alguma manipulação
+   em relação aos dados salvos. Essa manipulação é dada através de uma 
+   **função MySQL**. O exemplo mais clássico é a função COUNT, que permite contar 
+   a quantidade de elementos. 
+   
+```
+```
+a)  Escreva uma query que pegue o maior salário de todos os atores e atrizes.
+
+SELECT MAX(salary) FROM Actor;
+```
+```
+b) *Escreva uma query que pegue o menor salário das atrizes*
+
+SELECT MIN(salary) FROM Actor
+WHERE gender = "Female";
+
+```
+```
+c) *Escreva uma query que pegue a quantidade de atrizes*
+
+SELECT COUNT(*) FROM Actor
+WHERE gender = "Female";
+```
+```
+d) *Escreva uma query que pegue a soma de todos os salários*
+
+SELECT SUM(salary) FROM Actor;
+
+```
+
+## Exercicio5
+
+```
+a) *Releia a última query. Teste-a. Explique o resultado com as suas palavras*
+     
+     dividiu por genero e me deu a quantidade de pessoas. 
+  
+```
+```
+b) *Faça uma query que retorne somente o id e o nome dos atores em ordem decrescente alfabética*
+      
+    SELECT id, name FROM Actor
+    ORDER BY name ASC;
+ 
+```
+```
+c) *Faça uma query que retorne todos os atores ordenados pelo salário*
+
+        SELECT * FROM Actor 
+        ORDER BY salary ASC;
+````
+```
+d) *Faça uma query que retorne os atores com os três maiores salarios*
+
+            SELECT * FROM Actor 
+            ORDER BY salary ASC
+            LIMIT 3;
+```
+
+```
+e) *Faça uma query que retorne a média de salário por gênero*
+
+            SELECT AVG(salary), gender
+            FROM Actor
+            GROUP BY gender;
+
+```
+
+## Exercicio6 
+```
+a) *Altere a tabela de `Movie` e adicione um novo parâmetro: 
+`playing_limit_date` que indique a data limite em que o filme será 
+passado no cinema.* 
+        
+        ALTER TABLE Movie 
+        ADD  playing_limit_date DATE;
+
+      	UPDATE Movie
+        SET playing_limit_date = "2022-05-01"
+        WHERE id="1";
+        UPDATE Movie
+        SET playing_limit_date = "2022-09-01"
+        WHERE id="2";
+        UPDATE Movie
+        SET playing_limit_date = "2022-10-11"
+        WHERE id="3";
+        UPDATE Movie
+        SET playing_limit_date = "2021-012-01"
+        WHERE id="4";
+
+```
+```
+b) *Altere a tabela de `Movie` para que o parâmetro `rating` 
+possa aceitar valores não inteiros, como, por exemplo, uma avaliação `8.5`.*
+            
+           ALTER TABLE Movie 
+           CHANGE rating rating float;
+
+            UPDATE  Movie 
+            SET rating = 8.5 
+            WHERE id="1";
+
+
+```
+```
+c) *Atualize dois filmes de tal forma que tenhamos um que ainda 
+esteja em cartaz e um que já tenha saído*
+
+
+	UPDATE Movie
+        SET playing_limit_date = "2021-05-01"
+        WHERE id="1";
+        UPDATE Movie
+        SET playing_limit_date = "2022-09-01"
+        WHERE id="2";
+        UPDATE Movie
+        SET playing_limit_date = "2022-10-11"
+        WHERE id="3";
+        UPDATE Movie
+        SET playing_limit_date = "2021-12-01"
+        WHERE id="4";
+
+```
+```
+d) *Delete algum dos filmes, mas guarde o id. Tente fazer uma query para
+atualizar a sinopse desse filme que você acabou de deletar (usando o mesmo id).
+Anote o resultado e explique.*
+
+                    
+                        DELETE FROM Movie 
+                        WHERE id= "3";
+                        SELECT * FROM Movie;
+                
+        13:54:43	UPDATE Movie   SET sinopse = "testes"  WHERE id=3	
+        0 row(s) affected Rows matched: 0  Changed: 0  Warnings: 0	0.306 sec
+
+        Rodou mas nada foi alterado. 
+
+```
+
+## 🏅 Desafios 
+
+## Exercício7
+```
+a) *Quantos filmes em cartaz possuem avaliações maiores do que `7.5`?*
+
+ SELECT * FROM Movie 
+ WHERE rating > 7.5;
+
+b) *Qual a média das avaliações dos filmes?*
+
+SELECT AVG(rating) FROM Movie ; 
+
+
+c) *Qual a quantidade de filmes em cartaz?*
+
+SELECT COUNT(*) FROM Movie;
+
+d) *Qual a quantidade de filmes que ainda irão lançar?*
+
+        SELECT * FROM Movie
+        WHERE CURDATE() < release_Date ; 
+
+e) *Qual a maior nota dos filmes?*
+  
+       SELECT MAX(rating) FROM Movie;
+ 
+f) *Qual a menor nota dos filmes?*
+ 
+       SELECT MIN(rating) FROM Movie;
+
+```
+
+
+## Exercício8
+```
+
+a) *Retorne todos os filmes em ordem alfabética*
+
+        SELECT * FROM Movie 
+        ORDER BY title ASC;
+
+
+b) *Retorne os 5 primerios filmes em ordem descrente alfabética* 
+        
+         SELECT * FROM Movie 
+         ORDER BY title DESC
+         LIMIT 5;
+
+
+c) *Retorne os 3 filmes mais recentes em cartaz*
+
+           SELECT * FROM Movie 
+           ORDER BY release_Date DESC
+           LIMIT 3;
+
+
+d) *Retorne os 3 filmes melhor avalidos*
+
+           SELECT * FROM Movie 
+           ORDER BY rating DESC
+           LIMIT 3;
+
+
+   
+```
