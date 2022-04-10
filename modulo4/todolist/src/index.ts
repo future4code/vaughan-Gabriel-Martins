@@ -3,7 +3,7 @@ import express, { Response, Request, response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import knex from "knex";
-import { isTemplateExpression } from "typescript";
+import { idText, isTemplateExpression } from "typescript";
 
 
 
@@ -49,7 +49,7 @@ app.post("/user", async (req: Request, res: Response) => {
             throw new Error("Um ou mais entradas não são validas")
         }
         const id: string = (Date.now().toString())
-        const resultCreating = await creatingUser(id, name,nickname ,email)
+        const resultCreating = await creatingUser(id, name, nickname, email)
         const resultUserId = await getUserById(id);
         // res.status(200).send({ "id": id, name, email, nickname })
         res.status(200).send(resultUserId)
@@ -78,26 +78,26 @@ const getUserById = async (id: string): Promise<any> => {
     return result;
 }
 
-// app.get("/user/:id", async (req: Request, res: Response) => {
-//     try {
-//         const id = req.params.id;
-//         const result = await getUserById(id)
-//         console.log("result", result)
-//         if (result.length > 0) {
-//             res.status(200).send(result);
-//         } else throw new Error("Este usuario não existe!")
-//     }
-//     catch (e: any) {
-//         switch (e.message) {
-//             case "Este usuario não existe!":
-//                 res.status(400).send(e.message)
-//                 break;
-//             default:
-//                 res.status(500).send(e.message);
-//         }
-//     }
-// }
-// )
+app.get("/user/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const result = await getUserById(id)
+        console.log("result", result)
+        if (result.length > 0) {
+            res.status(200).send(result);
+        } else throw new Error("Este usuario não existe!")
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Este usuario não existe!":
+                res.status(400).send(e.message)
+                break;
+            default:
+                res.status(500).send(e.message);
+        }
+    }
+}
+)
 
 
 
@@ -253,21 +253,21 @@ app.get("/user/all", async (req: Request, res: Response) => {
 
 //  7 Pegar todas a tarefas criadas por um usuario 
 
-
+// Pegando os dados do Banco de dados  da tabela de usuario  "TodoListerUser"
 const getAllTaskbyUser = async (id: string): Promise<any> => {
     const result =
         await connection("TodoListTask")
             .select(
-                "TodoListUser.id",
+                "TodoListUser.id",  // Colocando a tabela pos tem  id na outra tabela que juntamos
                 "title",
                 "description",
                 "status",
                 "limit_date",
                 "creator_user_id",
-                { "creatorUserNickname": "nickname"  }
-            ).join("TodoListUser","creator_user_id","TodoListUser.id")
+                { "creatorUserNickname": "nickname" }
+            ).join("TodoListUser", "creator_user_id", "TodoListUser.id")
             .where("creator_user_id", "=", id)
-            
+
     return result;
 }
 
@@ -277,41 +277,78 @@ const getAllTaskbyUser = async (id: string): Promise<any> => {
 //001 d
 
 
-type arrayOut = {   id: string 
-title: string ,
-description: string,
-status:string,
-limit_date: string,
-creator_user_id: string 
-creatorUserNickname: string
+type arrayOut = {
+    id: string
+    title: string,
+    description: string,
+    status: string,
+    limit_date: string,
+    creator_user_id: string
+    creatorUserNickname: string
 }
 
-app.get("/task",async (req: Request, res: Response) => {
-    try{
-        const id = req.query.creatorUserId as string; 
+app.get("/task", async (req: Request, res: Response) => {
+    try {
+        const id = req.query.creatorUserId as string;
 
         const result: arrayOut[] = await getAllTaskbyUser(id);
-        if(result.length >0){
-            const arrayOut:arrayOut[] =  
-            result.map( item =>   { 
-                return  {...item, "limit_date": new Date (item.limit_date).toLocaleDateString()}
-            })
+        if (result.length > 0) {
+            const arrayOut: arrayOut[] =
+                result.map(item => {
+                    return { ...item, "limit_date": new Date(item.limit_date).toLocaleDateString() }
+                })
             res.status(200).send(arrayOut);
-        }else throw new Error("Usuario não encontrado!")
+        } else throw new Error("Usuario não encontrado!")
     }
-    catch(e: any )
-    { switch(e.message){ 
-        case "Usuario não encontrado!":
-            res.status(400).send(e.message);
-            break;
-        default: 
-            res.status(500).send(e.message)
+    catch (e: any) {
+        switch (e.message) {
+            case "Usuario não encontrado!":
+                res.status(400).send(e.message);
+                break;
+            default:
+                res.status(500).send(e.message)
+        }
     }
-
-    }
-
 })
 
+
+//  8 Pesquisar usuário 
+
+
+const getNicknameEmailbyQuery = async (query: string): Promise<any> => {
+    const result
+        = await connection("TodoListUser")
+            .select(
+                "id",
+                "nickname"
+            )
+            .where("nickname", "like", `%${query}%`)
+            .orWhereLike("email", `%${query}%`);
+    return result;
+
+}
+
+app.get(("/user"), async (req: Request, res: Response) => {
+    try {
+        const tester = req.query.query;
+        if (tester && typeof tester === "string") {
+
+            const query = req.query.query as string;
+            const result = await getNicknameEmailbyQuery(query)
+            res.status(200).send(result);
+        } else throw new Error("Entrada invalida!")
+
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Entrada invalida!":
+                res.status(400).send(e.message)
+                break;
+            default:
+                res.status(500).send(e.message);
+        }
+    }
+})
 
 
 // Server 
