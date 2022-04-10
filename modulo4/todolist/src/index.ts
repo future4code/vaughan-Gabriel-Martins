@@ -3,6 +3,7 @@ import express, { Response, Request, response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import knex from "knex";
+import { isTemplateExpression } from "typescript";
 
 
 
@@ -48,7 +49,7 @@ app.post("/user", async (req: Request, res: Response) => {
             throw new Error("Um ou mais entradas não são validas")
         }
         const id: string = (Date.now().toString())
-        const resultCreating = await creatingUser(id, name, email, nickname)
+        const resultCreating = await creatingUser(id, name,nickname ,email)
         const resultUserId = await getUserById(id);
         // res.status(200).send({ "id": id, name, email, nickname })
         res.status(200).send(resultUserId)
@@ -250,9 +251,66 @@ app.get("/user/all", async (req: Request, res: Response) => {
 
 
 
+//  7 Pegar todas a tarefas criadas por um usuario 
 
 
+const getAllTaskbyUser = async (id: string): Promise<any> => {
+    const result =
+        await connection("TodoListTask")
+            .select(
+                "TodoListUser.id",
+                "title",
+                "description",
+                "status",
+                "limit_date",
+                "creator_user_id",
+                { "creatorUserNickname": "nickname"  }
+            ).join("TodoListUser","creator_user_id","TodoListUser.id")
+            .where("creator_user_id", "=", id)
+            
+    return result;
+}
 
+// Usuarios cadastrados 
+// 1649570635804 nickname :dev  
+// 1649570763679 zeze
+//001 d
+
+
+type arrayOut = {   id: string 
+title: string ,
+description: string,
+status:string,
+limit_date: string,
+creator_user_id: string 
+creatorUserNickname: string
+}
+
+app.get("/task",async (req: Request, res: Response) => {
+    try{
+        const id = req.query.creatorUserId as string; 
+
+        const result: arrayOut[] = await getAllTaskbyUser(id);
+        if(result.length >0){
+            const arrayOut:arrayOut[] =  
+            result.map( item =>   { 
+                return  {...item, "limit_date": new Date (item.limit_date).toLocaleDateString()}
+            })
+            res.status(200).send(arrayOut);
+        }else throw new Error("Usuario não encontrado!")
+    }
+    catch(e: any )
+    { switch(e.message){ 
+        case "Usuario não encontrado!":
+            res.status(400).send(e.message);
+            break;
+        default: 
+            res.status(500).send(e.message)
+    }
+
+    }
+
+})
 
 
 
