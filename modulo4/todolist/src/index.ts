@@ -420,11 +420,37 @@ const getSignedUserToTaskById = async (taskId:string): Promise<any> => {
 
 }
 
-var patt = 
-
 
 app.get("/task/:id/responsible",async (req: Request, res: Response) => {
     try {// Não preciso testar para vazio pois daria erro 404 e endereço nao existente.
+         const tester = req.params.id 
+        if(tester !== "" && tester ){ 
+            const taskId = req.params.id as string;
+            const result = await getSignedUserToTaskById(taskId);
+            if(result.length > 0){
+            res.status(200).send({users: result})
+            }else throw new Error("Task não encontrada!")
+        }else throw new Error("Entrada vazia!")
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Entrada vazia!":
+                res.status(400).send(e.message);
+                break;
+            case "Task não encontrada!":
+                res.status(422).send(e.message);
+                break;
+            default:
+                res.status(500).send(e.message);
+        }
+    }
+})
+
+// 11. Pegar tarefa pelo id
+
+
+app.get("/task/:id",async (req: Request, res: Response) => {
+    try {
          const tester = req.params.id 
         if(tester !== "" && tester ){ 
             const taskId = req.params.id as string;
@@ -444,6 +470,15 @@ app.get("/task/:id/responsible",async (req: Request, res: Response) => {
         }
     }
 })
+
+
+
+
+
+
+
+
+
 
 // Server 
 const server = app.listen(3003, () => {
