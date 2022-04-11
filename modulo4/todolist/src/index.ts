@@ -350,6 +350,61 @@ app.get(("/user"), async (req: Request, res: Response) => {
     }
 })
 
+// 9 Atribuir um usuario responsavel a um tarefa. 
+
+
+// Populei o banco de dados com  a tablela TodoListResponsibleUserIdTaskId 
+// Tabela para ajudar na  M:N 
+//  User id ***  Task id 
+// ('001','1649560975482'  ),
+// ('001','1649576952156' ),
+// ('1649584141492','1649560243173' ),
+// ('1649584141492','1649576952156' ),
+// ('1649584041374','1649560243173' ),
+// ('1649584041374','1649560975482' ), 
+// ('1649570635804','1649576952156' ),
+// (1649570635804, 1649561592504);
+
+// Na verdade nao preciso mto deste retorno já q é somente [0] ou nada
+// mas colocando para treinar o use de async e await e acho que tb vou usar o 
+// retorno na api somente pra mostrar um ok ou algo do genero.
+const signTaskByUserId =async  (taskId:string , userId:string ): Promise<any> => { 
+    const result = await connection("TodoListResponsibleUserIdTaskId")
+                  .insert([{"task_id" : taskId , "responsible_user_id": userId  }])
+    
+    return result 
+}
+// const ver = async ()=> {
+//     const teste = await signTaskByUserId( "a1" , "001" )
+//     console.log(teste)
+//  }
+
+//  ver()
+
+type ex9type = { taskId: string  , userId: string  }
+
+app.post("/task/responsible" , async (req:Request , res: Response): Promise<void> => { 
+   try {
+    const {taskId , userId}: ex9type = req.body; 
+
+    if(taskId && userId){
+    // a variavel result for um [0] significa que foi alterado no banco de dados 
+    // const result = await signTaskByUserId( taskId  , userId ) 
+     await signTaskByUserId( taskId  , userId ) 
+    res.status(201).send("Criado")
+    } else throw new Error("Uma ou mais entradas não são validas!")
+    } 
+    catch(e:any){ 
+        switch(e.message){ 
+                case "Uma ou mais entradas não são validas!":
+                    res.status(400).send(e.message); 
+                    break;
+                default: 
+                    res.status(500).send(e.message);
+        }
+    }
+})
+
 
 // Server 
 const server = app.listen(3003, () => {
