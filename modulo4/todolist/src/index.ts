@@ -368,11 +368,11 @@ app.get(("/user"), async (req: Request, res: Response) => {
 // Na verdade nao preciso mto deste retorno já q é somente [0] ou nada
 // mas colocando para treinar o use de async e await e acho que tb vou usar o 
 // retorno na api somente pra mostrar um ok ou algo do genero.
-const signTaskByUserId =async  (taskId:string , userId:string ): Promise<any> => { 
+const signTaskByUserId = async (taskId: string, userId: string): Promise<any> => {
     const result = await connection("TodoListResponsibleUserIdTaskId")
-                  .insert([{"task_id" : taskId , "responsible_user_id": userId  }])
-    
-    return result 
+        .insert([{ "task_id": taskId, "responsible_user_id": userId }])
+
+    return result
 }
 // const ver = async ()=> {
 //     const teste = await signTaskByUserId( "a1" , "001" )
@@ -381,30 +381,69 @@ const signTaskByUserId =async  (taskId:string , userId:string ): Promise<any> =>
 
 //  ver()
 
-type ex9type = { taskId: string  , userId: string  }
+type ex9type = { taskId: string, userId: string }
 
-app.post("/task/responsible" , async (req:Request , res: Response): Promise<void> => { 
-   try {
-    const {taskId , userId}: ex9type = req.body; 
+app.post("/task/responsible", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { taskId, userId }: ex9type = req.body;
 
-    if(taskId && userId){
-    // a variavel result for um [0] significa que foi alterado no banco de dados 
-    // const result = await signTaskByUserId( taskId  , userId ) 
-     await signTaskByUserId( taskId  , userId ) 
-    res.status(201).send("Criado")
-    } else throw new Error("Uma ou mais entradas não são validas!")
-    } 
-    catch(e:any){ 
-        switch(e.message){ 
-                case "Uma ou mais entradas não são validas!":
-                    res.status(400).send(e.message); 
-                    break;
-                default: 
-                    res.status(500).send(e.message);
+        if (taskId && userId) {
+            // a variavel result for um [0] significa que foi alterado no banco de dados 
+            // const result = await signTaskByUserId( taskId  , userId ) 
+            await signTaskByUserId(taskId, userId)
+            res.status(201).send("Criado")
+        } else throw new Error("Uma ou mais entradas não são validas!")
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Uma ou mais entradas não são validas!":
+                res.status(400).send(e.message);
+                break;
+            default:
+                res.status(500).send(e.message);
         }
     }
 })
 
+
+// 10. Pegar usuários responsáveis por uma tarefa
+
+const getSignedUserToTaskById = async (taskId:string): Promise<any> => {
+    const result =
+        await connection("TodoListResponsibleUserIdTaskId")
+            .join("TodoListUser", "TodoListUser.id"  ,"responsible_user_id")
+            .select("id","nickname")
+            .where("task_id", "=" , taskId)
+            console.log("resultDB", result)
+     
+    return result;
+
+}
+
+var patt = 
+
+
+app.get("/task/:id/responsible",async (req: Request, res: Response) => {
+    try {// Não preciso testar para vazio pois daria erro 404 e endereço nao existente.
+         const tester = req.params.id 
+        if(tester !== "" && tester ){ 
+            const taskId = req.params.id as string;
+            const result = await getSignedUserToTaskById(taskId);
+            if(result.length > 0){
+            res.status(200).send({users: result})
+            }else throw new Error("Task não encontrada!")
+        }else throw new Error("Entrada vazia!")
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Entrada vazia!":
+                res.status(422).send(e.message);
+                break;
+            default:
+                res.status(500).send(e.message);
+        }
+    }
+})
 
 // Server 
 const server = app.listen(3003, () => {
