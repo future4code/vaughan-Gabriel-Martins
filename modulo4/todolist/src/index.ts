@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import knex from "knex";
 import { idText, isTemplateExpression } from "typescript";
 
-
+// post man https://documenter.getpostman.com/view/19294726/UVyysssD  
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ const connection = knex({
     }
 });
 
-
+// https://documenter.getpostman.com/view/19294726/UVyysssD
 
 //1  CREATING AN USER 
 type body1 = { name: string, nickname: string, email: string }
@@ -488,21 +488,21 @@ const chagingTaskStatusbyId = async (taskId: string, status: string): Promise<vo
         await connection("TodoListTask")
             .where("id", taskId)
             .update("status", status)
-            .select("id","status")
-    
-       
+            .select("id", "status")
+
+
 }
 
 
-app.put("/task/status/:id/", async (req: Request, res: Response):Promise<void> => {
+app.put("/task/status/:id/", async (req: Request, res: Response): Promise<void> => {
     try {
 
         const id: string = req.params.id;
         const status: string = req.body.status;
-        if( id && status && id != "" && status != "" ){
-        // chamando a funcao entrando com id da task e o status desejado. 
-        const result = chagingTaskStatusbyId(id, status)
-        res.end();
+        if (id && status && id != "" && status != "") {
+            // chamando a funcao entrando com id da task e o status desejado. 
+            const result = chagingTaskStatusbyId(id, status)
+            res.status(201).end();
         } else throw new Error("Uma ou mais entradas não são validas!")
     }
     catch (e: any) {
@@ -516,8 +516,51 @@ app.put("/task/status/:id/", async (req: Request, res: Response):Promise<void> =
     }
 })
 
+// 13. Pegar todas as tarefas por status 
+// commentar exercicio 7 
+
+const getAllTaskbyStatus = async (status: string): Promise<any> => {
+    const result = await connection("TodoListResponsibleUserIdTaskId")
+        .join("TodoListUser", "responsible_user_id", "TodoListUser.id")
+        .join("TodoListTask", "TodoListTask.id", "task_id")
+        .where("status", "=", status)
+        .select(
+            "task_id as  taskId",
+            "title",
+            "description",
+            "limit_date as limitDate",
+            "creator_user_id as creatorUserId",
+            "nickname as creatorUserNickname"
+        )
+
+    return result;
 
 
+}
+
+// commentar o exercicio 7  pois tem o mesmo endpoint 
+
+app.get(("/task"), async (req: Request, res: Response): Promise<any> => {
+    try {
+
+        const status = req.query.status as string;
+        if (status) {
+
+            let result: any[] = await getAllTaskbyStatus(status)
+            result = result.map(item => { return ({ ...item, limitDate: item.limitDate.toLocaleDateString() }) })
+            res.send({ tasks: result });
+        } else throw new Error("Não é um status valido!");
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Não é um status valido!":
+                res.status(422).send(e.message);
+                break;
+            default:
+                res.status(500).send(e.message);
+        }
+    }
+})
 
 
 
