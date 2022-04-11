@@ -82,7 +82,7 @@ app.get("/user/:id", async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const result = await getUserById(id)
-        console.log("result", result)
+
         if (result.length > 0) {
             res.status(200).send(result);
         } else throw new Error("Este usuario não existe!")
@@ -203,25 +203,25 @@ const getTaskbyId = async (id: string): Promise<any> => {
     return result;
 }
 
-// app.get("/task/:id", async (req: Request, res: Response) => {
-//     try {
-//         const id = req.params.id;
-//         const result = await getTaskbyId(id);
-//         console.log("result5", result)
-//         if (id && result.length > 0) {
-//             res.status(200).send(result[0]);
-//         } else throw new Error("Esta id não foi encontada!")
-//     }
-//     catch (e: any) {
-//         switch (e.message) {
-//             case "Esta id não foi encontada!":
-//                 res.status(400).send(e.message)
-//                 break;
-//             default:
-//                 res.status(500).send(e.message)
-//         }
-//     }
-// })
+app.get("/task/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const result = await getTaskbyId(id);
+
+        if (id && result.length > 0) {
+            res.status(200).send(result[0]);
+        } else throw new Error("Esta id não foi encontada!")
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Esta id não foi encontada!":
+                res.status(400).send(e.message)
+                break;
+            default:
+                res.status(500).send(e.message)
+        }
+    }
+})
 
 
 //  *** Desafios 
@@ -241,7 +241,7 @@ const getAllUser = async (): Promise<any> => {
 
 app.get("/user/all", async (req: Request, res: Response) => {
     const result = await getAllUser();
-    console.log(result);
+
     if (result.length > 0) {
         res.send({ users: result })
         // Pelo que eu entendi quer um array  []   e se fosse so {users : []} 
@@ -374,12 +374,7 @@ const signTaskByUserId = async (taskId: string, userId: string): Promise<any> =>
 
     return result
 }
-// const ver = async ()=> {
-//     const teste = await signTaskByUserId( "a1" , "001" )
-//     console.log(teste)
-//  }
 
-//  ver()
 
 type ex9type = { taskId: string, userId: string }
 
@@ -485,6 +480,41 @@ app.get("/task/:id", async (req: Request, res: Response) => {
 })
 
 
+// 12. Atualizar o status da tarefa pelo id 
+
+// mdoficando o status 
+const chagingTaskStatusbyId = async (taskId: string, status: string): Promise<void> => {
+    const result =
+        await connection("TodoListTask")
+            .where("id", taskId)
+            .update("status", status)
+            .select("id","status")
+    
+       
+}
+
+
+app.put("/task/status/:id/", async (req: Request, res: Response):Promise<void> => {
+    try {
+
+        const id: string = req.params.id;
+        const status: string = req.body.status;
+        if( id && status && id != "" && status != "" ){
+        // chamando a funcao entrando com id da task e o status desejado. 
+        const result = chagingTaskStatusbyId(id, status)
+        res.end();
+        } else throw new Error("Uma ou mais entradas não são validas!")
+    }
+    catch (e: any) {
+        switch (e.message) {
+            case "Uma ou mais entradas não são validas!":
+                res.status(400).send(e.message)
+                break;
+            default:
+                res.status(500).send(e.message)
+        }
+    }
+})
 
 
 
