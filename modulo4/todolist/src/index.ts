@@ -203,25 +203,25 @@ const getTaskbyId = async (id: string): Promise<any> => {
     return result;
 }
 
-app.get("/task/:id", async (req: Request, res: Response) => {
-    try {
-        const id = req.params.id;
-        const result = await getTaskbyId(id);
-        console.log("result5", result)
-        if (id && result.length > 0) {
-            res.status(200).send(result[0]);
-        } else throw new Error("Esta id não foi encontada!")
-    }
-    catch (e: any) {
-        switch (e.message) {
-            case "Esta id não foi encontada!":
-                res.status(400).send(e.message)
-                break;
-            default:
-                res.status(500).send(e.message)
-        }
-    }
-})
+// app.get("/task/:id", async (req: Request, res: Response) => {
+//     try {
+//         const id = req.params.id;
+//         const result = await getTaskbyId(id);
+//         console.log("result5", result)
+//         if (id && result.length > 0) {
+//             res.status(200).send(result[0]);
+//         } else throw new Error("Esta id não foi encontada!")
+//     }
+//     catch (e: any) {
+//         switch (e.message) {
+//             case "Esta id não foi encontada!":
+//                 res.status(400).send(e.message)
+//                 break;
+//             default:
+//                 res.status(500).send(e.message)
+//         }
+//     }
+// })
 
 
 //  *** Desafios 
@@ -408,29 +408,28 @@ app.post("/task/responsible", async (req: Request, res: Response): Promise<void>
 
 // 10. Pegar usuários responsáveis por uma tarefa
 
-const getSignedUserToTaskById = async (taskId:string): Promise<any> => {
+const getSignedUserToTaskById = async (taskId: string): Promise<any> => {
     const result =
         await connection("TodoListResponsibleUserIdTaskId")
-            .join("TodoListUser", "TodoListUser.id"  ,"responsible_user_id")
-            .select("id","nickname")
-            .where("task_id", "=" , taskId)
-            console.log("resultDB", result)
-     
+            .join("TodoListUser", "TodoListUser.id", "responsible_user_id")
+            .select("id", "nickname")
+            .where("task_id", "=", taskId)
+
     return result;
 
 }
 
 
-app.get("/task/:id/responsible",async (req: Request, res: Response) => {
+app.get("/task/:id/responsible", async (req: Request, res: Response) => {
     try {// Não preciso testar para vazio pois daria erro 404 e endereço nao existente.
-         const tester = req.params.id 
-        if(tester !== "" && tester ){ 
+        const tester = req.params.id
+        if (tester !== "" && tester) {
             const taskId = req.params.id as string;
             const result = await getSignedUserToTaskById(taskId);
-            if(result.length > 0){
-            res.status(200).send({users: result})
-            }else throw new Error("Task não encontrada!")
-        }else throw new Error("Entrada vazia!")
+            if (result.length > 0) {
+                res.status(200).send({ users: result })
+            } else throw new Error("Task não encontrada!")
+        } else throw new Error("Entrada vazia!")
     }
     catch (e: any) {
         switch (e.message) {
@@ -449,27 +448,42 @@ app.get("/task/:id/responsible",async (req: Request, res: Response) => {
 // 11. Pegar tarefa pelo id
 
 
-app.get("/task/:id",async (req: Request, res: Response) => {
+
+const getTaskbyId11 = async (id: string): Promise<any> => {
+    const result = await connection("TodoListResponsibleUserIdTaskId")
+        .join("TodoListUser", "responsible_user_id", "TodoListUser.id")
+        .join("TodoListTask", "TodoListTask.id", "task_id")
+        .where("task_id", "=", id)
+
+    return result;
+}
+
+// Get endpoint do numero 5  commentar para o exercicio 5
+app.get("/task/:id", async (req: Request, res: Response) => {
     try {
-         const tester = req.params.id 
-        if(tester !== "" && tester ){ 
-            const taskId = req.params.id as string;
-            const result = await getSignedUserToTaskById(taskId);
-            if(result.length > 0){
-            res.status(200).send({users: result})
-            }else throw new Error("Task não encontrada!")
-        }else throw new Error("Entrada vazia!")
+        const id = req.params.id;
+        let result: any[] = await getTaskbyId11(id);
+        if (id && result.length > 0) {
+            const resultado = result.map(item => {
+                return {
+                    ...item, limit_date: item.limit_date.toLocaleDateString()
+                    , responsible_user_id: [{ id: item.id, nickname: item.nickname }]
+                }
+            })
+            res.status(200).send(resultado);
+        } else throw new Error("Esta id não foi encontada!")
     }
     catch (e: any) {
         switch (e.message) {
-            case "Entrada vazia!":
-                res.status(422).send(e.message);
+            case "Esta id não foi encontada!":
+                res.status(400).send(e.message)
                 break;
             default:
-                res.status(500).send(e.message);
+                res.status(500).send(e.message)
         }
     }
 })
+
 
 
 
