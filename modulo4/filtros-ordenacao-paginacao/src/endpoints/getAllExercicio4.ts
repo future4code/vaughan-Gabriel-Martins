@@ -37,12 +37,12 @@ export const getAllExercicio4 = async (req: Request , res: Response): Promise<vo
          const result  = await selectAllUsers(name , input , Number(page)  );
          if(result.length >0){
         res.status(200).send(result);
-         }else throw new Error("Nome inexistente!")
+         }else throw new Error("erro!")
         
     }
      catch(e:any){
          switch(e.message){ 
-             case "Nome inexistente!":
+             case "erro!":
              res.status(422).send(e.message); 
              break;
          default: 
