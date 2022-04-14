@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+		"dev": "ts-node-dev ./src/index.ts",
+		"start": "ts && node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,4 +25,5 @@
     "express": "^4.17.3",
     "mysql": "^2.18.1"
   }
+  
 }
