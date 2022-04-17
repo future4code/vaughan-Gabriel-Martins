@@ -24,3 +24,16 @@ name VARCHAR(255) NOT NULL ,
 price INT NOT NULL UNIQUE,
 image_url VARCHAR(255) NOT NULL
 );
+
+
+##  Purchases
+
+CREATE TABLE labecommerce_purchases( 
+id VARCHAR(255) PRIMARY KEY, 
+user_id VARCHAR(255),  
+product_id VARCHAR(255), 
+quantity INT, 
+total_price INT,
+FOREIGN KEY (product_id) REFERENCES labecommerce_products(id),
+FOREIGN KEY (user_id) REFERENCES labecommerce_users(id)
+);

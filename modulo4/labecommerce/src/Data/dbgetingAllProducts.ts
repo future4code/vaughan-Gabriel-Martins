@@ -6,7 +6,7 @@ export const dbGetingAllProducts = async (): Promise<productDB[]> => {
     const response =
         await connection(`labecommerce_products`)
             .select("*")
-    console.log(response)
+    // console.log(response)
     return response
 }
 

@@ -29,4 +29,20 @@
 #  }
 
 
-GET http://localhost:3003/products HTTP/1.1
+# GET http://localhost:3003/products HTTP/1.1
+
+
+
+POST http://localhost:3003/purchases HTTP/1.1
+content-type: application/json
+
+{ 
+    "userId": "rewew" ,
+    "productId": "1650180907247" ,
+    "quantity": 1,    
+}   
+
+
+
+    # "productId": "1650180734999" ,
+    # "productId": "1650180771222" ,
