@@ -1,0 +1,48 @@
+
+
+# POST http://localhost:3003/users  
+# content-type: application/json
+
+# {
+#     "name": "taio",
+#     "email": "taio@gmail.com", 
+#     "password" :  "fdsklfjdklsjfl;dksfds"
+#  }
+
+
+
+
+ 
+# # // Pegando tos os usuarios 
+# GET  http://localhost:3003/users
+
+
+
+
+# POST http://localhost:3003/products HTTP/1.1
+# content-type: application/json
+
+# {
+#     "name": "maçã",
+#     "price": 1,
+#     "imageUrl" : "https://picsum.photos/200/300"
+#  }
+
+
+# GET http://localhost:3003/products HTTP/1.1
+
+
+
+POST http://localhost:3003/purchases HTTP/1.1
+content-type: application/json
+
+{ 
+    "userId": "rewew" ,
+    "productId": "1650180907247" ,
+    "quantity": 1,    
+}   
+
+
+
+    # "productId": "1650180734999" ,
+    # "productId": "1650180771222" ,
