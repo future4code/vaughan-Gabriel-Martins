@@ -1,9 +1,9 @@
-import {Request , Response} from "express"
+import { Request, Response } from "express"
 import { allUser } from "../Data/dbgetingUsers";
 
 
-export async function getAllUsers(req:Request, res: Response):Promise<void> {
- 
+export async function getAllUsers(req: Request, res: Response): Promise<void> {
+
   const response = await allUser()
 
   console.log(response)

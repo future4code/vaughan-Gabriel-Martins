@@ -1,14 +1,13 @@
 
-import {users} from "../types";
+import { users } from "../types";
 import { connection } from "../connection"
 
-export const allUser = async ():Promise<users[]> => {
-    const response = 
+export const allUser = async (): Promise<users[]> => {
+    const response =
         await connection(`labecommerce_users`)
-        .select("*")
+            .select("*")
     console.log(response)
     return response
 }
 
-   
-   
+

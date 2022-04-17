@@ -13,9 +13,20 @@
 
 
  
-# // Pegando tos os usuarios 
-GET  http://localhost:3003/users
+# # // Pegando tos os usuarios 
+# GET  http://localhost:3003/users
 
 
 
 
+# POST http://localhost:3003/products HTTP/1.1
+# content-type: application/json
+
+# {
+#     "name": "maçã",
+#     "price": 1,
+#     "imageUrl" : "https://picsum.photos/200/300"
+#  }
+
+
+GET http://localhost:3003/products HTTP/1.1
