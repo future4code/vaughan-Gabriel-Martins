@@ -1,0 +1,21 @@
+
+
+# POST http://localhost:3003/users  
+# content-type: application/json
+
+# {
+#     "name": "taio",
+#     "email": "taio@gmail.com", 
+#     "password" :  "fdsklfjdklsjfl;dksfds"
+#  }
+
+
+
+
+ 
+# // Pegando tos os usuarios 
+GET  http://localhost:3003/users
+
+
+
+
