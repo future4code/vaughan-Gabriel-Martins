@@ -263,5 +263,18 @@ app.put("/actor" , async (req:Request , res:Response)=>{
 
 ```
 
+```
+const deletarAtor = async(id:string): Promise<any> =>{ 
+    const result = await connection("Actor").
+}
+
+app.delete("/users" , (req:Request , res: Response)=> {
+     const id = req.body.id;
+     console.log(req.body.id)
+     deleteAtor(id)
+     res.status(200).send(`Deletado`)
+
+})
 
 
+```
