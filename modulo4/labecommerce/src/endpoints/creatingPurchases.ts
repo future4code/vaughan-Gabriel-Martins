@@ -10,7 +10,9 @@ import { creatingUser } from "./creatingUser";
 
 const creatingPurchases = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { userId, productId, quantity } = req.body
+        const { userId, productId, quantity } :
+         { userId : string , productId : string , quantity : number } 
+           = req.body  
 
         console.log(userId, productId, quantity)
         if (userId && productId && quantity) {

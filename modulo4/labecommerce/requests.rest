@@ -1,48 +1,51 @@
 
 
-# POST http://localhost:3003/users  
-# content-type: application/json
+POST http://localhost:3003/users  
+content-type: application/json
 
-# {
-#     "name": "taio",
-#     "email": "taio@gmail.com", 
-#     "password" :  "fdsklfjdklsjfl;dksfds"
-#  }
+{
+    "name": "taio",
+    "email": "taio@gmail.com", 
+    "password" :  "fdsklfjdklsjfl;dksfds"
+ }
 
+###
 
+ // Pegando tos os usuarios 
+GET  http://localhost:3003/users
 
+###
 
- 
-# # // Pegando tos os usuarios 
-# GET  http://localhost:3003/users
+POST http://localhost:3003/products HTTP/1.1
+content-type: application/json
 
+{
+    "name": "banana",
+    "price": 2,
+    "imageUrl" : "https://picsum.photos/200/300"
+ }
 
+###  // Cadastro de produto
+GET http://localhost:3003/products HTTP/1.1
 
+###
 
-# POST http://localhost:3003/products HTTP/1.1
-# content-type: application/json
-
-# {
-#     "name": "maçã",
-#     "price": 1,
-#     "imageUrl" : "https://picsum.photos/200/300"
-#  }
-
-
-# GET http://localhost:3003/products HTTP/1.1
-
+//Registro de compra
 
 POST http://localhost:3003/purchases HTTP/1.1
-content-type: application/json;
+content-type: application/json
 
+{
+   "userId" :  "009",
+   "productId": "1650180907247", 
+   "quantity" : 2
 
-{ 
-    "userId": "004" ,
-    "productId": "1650180907247" ,
-    "quantity": 22,    
-}   
+}
 
+###
 
+// Compras do usuario 
+GET http://localhost:3003/users/001/purchases HTTP/1.1
+content-type: application/json
 
-    # "productId": "1650180734999" ,
-    # "productId": "1650180771222" ,
+###

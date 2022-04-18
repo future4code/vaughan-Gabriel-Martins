@@ -31,4 +31,25 @@ export type purchasesDB = {
     quantity: number, 
     total_price: number 
 }
-
+export type dbHistoricoUser  = { 
+    id:string,
+    user_id:string,
+    product_id:string,
+    quantity:number,
+    name: string,
+    email: string,
+    password: string, 
+    price: number,
+    image_url: string
+}
+export type historicoUser  = { 
+    id:string,
+    userId:string,
+    productId:string,
+    quantity:number,
+    name: string,
+    email: string,
+    password: string, 
+    price: number,
+    imageUrl: string
+}
