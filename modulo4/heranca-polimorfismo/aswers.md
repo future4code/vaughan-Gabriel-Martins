@@ -129,3 +129,73 @@ a) *Mesmo sabendo que não é possível, tente criar uma instância dessa classe
 
 b) *Pense e responda: o que precisaríamos fazer para conseguir efetivamente criar uma instância dessa classe?*
 
+  
+
+
+
+
+
+
+### Exercício 4
+    
+    Agora, você vai começar a colocar a mão na massa!
+    
+    Crie uma classe para representar um Cliente Residencial (`ResidentialClient`). Ela deve possuir uma propriedade de CPF, que será privada, uma vez que o CPF não pode mudar e não teremos uma classe filha da `ResidentialClient` (assim, `protected` não faz sentido). Crie o getter também.
+    
+    Essa classe deve ser **filha** da classe `Residence` e implementar a classe `Client`. Lembre-se que a classe deve implementar todos métodos e atribuir valores a todas as propriedades que herda da interface. No caso das residências, o valor da conta é **(quantidade de energia) x 0.75.**
+    
+    a) *Que métodos e propriedades essa classe possui? Por quê?*
+
+class ClientResidencialOutroExemploMaisSimples  extends Residence implements Client{ 
+    constructor(
+       private cpf:string , 
+       public name:string, 
+       public registrationNumber:number, 
+       public consumedEnergy: number , 
+       public cep:string, 
+       public residentsQuantity:number 
+    ){
+    super(residentsQuantity , cep)
+    }
+    getCep= ()=> { 
+        return this.cpf
+    }
+    calculateBill =() => { 
+        return this.consumedEnergy * 0.75;
+    }
+}
+
+    const residencia1Teste  =new ClientResidencialOutroExemploMaisSimples( "1", "Gabriel", 2323 , 1000, "00323", 2 )
+    console.log(residencia1Teste.calculateBill())
+
+
+## Exercício 5
+    
+    Crie a classe `CommercialClient` para representar o Cliente Comercial. Ele deve possuir um CNPJ (privado). Crie os getter dela.
+    
+    Essa classe deve ser **filha** da classe `Commerce` e implementar a interface `Client`. Nesse caso, o valor da conta é **(quantidade de energia) x 0.53.**
+    
+    a) *Quais as semelhanças dessa classe com a `ResidentialClient`?*
+    
+    b) *Quais as diferenças dessa classe com a `ResidentialClient`?*
+
+
+                            class CommercialClient extends Commerce implements Client {
+                            constructor(
+                                public name: string,
+                                public registrationNumber: number,
+                                public consumedEnergy: number,
+                                private cnpj: string,
+                                floorsQuantity: number,
+                                cep: string
+                            ) {
+                                super(cep, floorsQuantity);
+                            }
+                            getCnpj(): string {
+                                return this.cnpj;
+                            }
+                            }
+                            calculateBill(): number {
+                                return this.consumedEnergy * 0.53;
+                            }
+

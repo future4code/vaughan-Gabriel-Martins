@@ -146,8 +146,8 @@ export class Residence extends Place {
   }
 
 
-  const minhaCasa = new Residence(200, "24200-00")
-  console.log(minhaCasa.getResidentsQuantity())
+//   const minhaCasa = new Residence(200, "24200-00")
+//   console.log(minhaCasa.getResidentsQuantity())
     
 
   export class Commerce extends Place {
@@ -168,14 +168,11 @@ export class Residence extends Place {
     constructor(
       protected machinesQuantity: number, 
       // Refere-se à quantidade de máquinas do local 
-      
       cep: string
           ) 
           {
           super(cep);
         }
-    
-    
        public getmachineryQuantity = ():number => { 
             return this.machinesQuantity
         }
@@ -183,7 +180,94 @@ export class Residence extends Place {
   
 
   
+     
+  abstract class Humano {
+      constructor(protected name: string ) {
+          
+      }
+      public getName (): string { 
+          return this.name
+      }
+  }  
+
+ class Gabriel extends Humano { 
+     name: string;
+
+     constructor(protected nacionalidade: string,    name: string){ 
+         super(name);
+         this.name = name;
+     }
+     getNacionalidade():string{ 
+         return this.nacionalidade
+     }
+ }
 
 
+//  const Gabriel1  = new Gabriel("Brasil", "gabriel")
+//  console.log(Gabriel1.getNacionalidade())
+//  console.log(Gabriel1.name)
   
+
+//  Exercicio 4 
+
+
+// export interface Client {
+//     name: string;
+//     registrationNumber: number;
+//     consumedEnergy: number;
+//     calculateBill(): number;
+//   }
   
+
+
+class ClientResidencial  extends Residence  implements Client { 
+    public name: string;
+    private cpf : string;
+    public registrationNumber: number;
+    public consumedEnergy: number;
+
+    constructor(cpf:string , name:string, registrationNumber:number, consumedEnergy: number , cep:string, residentsQuantity:number ){ 
+        super(residentsQuantity ,cep)
+        this.cpf = cpf;
+        this.name = name;
+        this.consumedEnergy = consumedEnergy;
+        this.residentsQuantity = residentsQuantity;
+        this.registrationNumber = registrationNumber;
+    }
+    getCpf = (): string => { 
+        return this.cpf
+    }
+    calculateBill = ():number=> {
+        return this.consumedEnergy * 0.75
+    }
+
+}
+
+
+// OUtra forma de fazer 
+
+class ClientResidencialOutroExemploMaisSimples  extends Residence implements Client{ 
+    constructor(
+       private cpf:string , 
+       public name:string, 
+       public registrationNumber:number, 
+       public consumedEnergy: number , 
+       public cep:string, 
+       public residentsQuantity:number 
+    ){
+    super(residentsQuantity , cep)
+    }
+    getCep= ()=> { 
+        return this.cpf
+    }
+    calculateBill =() => { 
+        return this.consumedEnergy * 0.75;
+    }
+}
+
+    const residencia1Teste  =new ClientResidencialOutroExemploMaisSimples( "1", "Gabriel", 2323 , 1000, "00323", 2 )
+    console.log(residencia1Teste.calculateBill())
+
+
+
+
