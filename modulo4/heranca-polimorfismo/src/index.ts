@@ -68,10 +68,122 @@ class User {
   }
 
   const customer1 = new Customer("001", "customer1@gmail.com", "zacarias" , "654321", "mastercard")
-  console.log(customer1)
+//   console.log(customer1)
   //   console.log(customer1.getCreditCard())
   //   console.log(customer1.getEmail())
   //   console.log(customer1.getId())
   //   console.log(customer1.getName())
   //   console.log(customer1.password) nao existe esta possilidade 
-  console.log(customer1.introduceYourself())
+//   console.log(customer1.introduceYourself())
+
+
+
+
+  ///  Polimorfismo 
+
+
+
+export interface Client {
+  name: string;
+  // Refere-se ao nome do cliente
+
+  registrationNumber: number;
+  // Refere-se ao número de cadastro do cliente na concessionária
+	// como se fosse um id
+
+  consumedEnergy: number;
+  // Refere-se à energia consumida pelo cliente no mês
+
+  calculateBill(): number;
+  // Retorna o valor da conta em reais
+
+}
+
+
+
+
+const client1 : Client = {
+    name: "Gabriel",
+    registrationNumber: 123456,
+    consumedEnergy: 150,
+    calculateBill: function (): number {
+        return 2;
+    }
+}
+
+// console.log(client1.calculateBill())
+// console.log(client1.consumedEnergy)
+// console.log(client1.registrationNumber)
+// console.log(client1.name)
+
+
+
+// Exercicio2 
+
+export abstract class Place {
+    constructor(protected cep: string) {}
+  
+      public getCep(): string {
+          return this.cep;
+    }
+  }
+
+// Exercicio 3 
+
+
+export class Residence extends Place {
+    constructor(
+        // Refere-se ao número de moradores da casa
+      protected residentsQuantity: number,
+  
+      cep: string
+    ) {
+      super(cep);
+    }
+    public getResidentsQuantity = ():number => {
+          return this.residentsQuantity;
+    }
+  }
+
+
+  const minhaCasa = new Residence(200, "24200-00")
+  console.log(minhaCasa.getResidentsQuantity())
+    
+
+  export class Commerce extends Place {
+    constructor(
+        // Refere-se à quantidade de andares do lugar
+      protected floorsQuantity: number,
+  
+      cep: string
+    ) {
+      super(cep);
+    }
+      getFloorsQuantity =(): number => { 
+        return this.floorsQuantity
+    }
+  }
+
+  export class Industry extends Place {
+    constructor(
+      protected machinesQuantity: number, 
+      // Refere-se à quantidade de máquinas do local 
+      
+      cep: string
+          ) 
+          {
+          super(cep);
+        }
+    
+    
+       public getmachineryQuantity = ():number => { 
+            return this.machinesQuantity
+        }
+    }
+  
+
+  
+
+
+  
+  

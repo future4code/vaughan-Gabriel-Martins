@@ -79,9 +79,53 @@
                     }
 
 
-
+  
 ## Polimorfismo**
     
     Para o exercício de prática de polimorfismo vamos fazer um sistema para auxiliar o cálculo de contas de energia elétrica para uma concessionária famosa. Basicamente, o custeamento depende do tipo do cliente. O valor base de cada kWh (unidade de consumo de energia) é R$0.75. O **Cliente Residencial** paga a tarifa cheia (ou seja, R$0.75). O **Cliente Comercial** possui um desconto de 30% do valor total (ou seja, paga R$0.53). Por fim, para o **Cliente Industrial,** há um desconto de 40% do valor total (ou seja, paga R$0.45) mais um valor fixo de R$100,00 por máquina usada na fábrica.
     
     Já deixamos prontos 5 entidades desse sistema: **Place**, **Client**, **Industry**, **Commerce** e **Residence**.
+
+
+    Comece criando um objeto dessa interface, colocando a tipagem correta. Perceba que você terá que dar uma implementação para o método `calculateBill()`. Por enquanto, implemente de tal forma que sempre retorne `2` (ou qualquer outro número). Imprima todas as informações que forem possíveis no terminal.
+
+     
+                        console.log(client1.calculateBill())
+                        console.log(client1.consumedEnergy)
+                        console.log(client1.registrationNumber)
+                        console.log(client1.name)
+
+
+
+a) *Quais propriedades você conseguiu imprimir? Teve alguma que não foi possível? Por que isso aconteceu?*  
+
+
+todas 
+
+
+## 2 
+
+export abstract class Place {
+  constructor(protected cep: string) {}
+
+	public getCep(): string {
+		return this.cep;
+  }
+}
+
+
+Essa classe é abstrata porque está representando um tipo de informação que simplesmente **abstrai** e **armazena** as características em comum de um conjunto de outras classes. Por ser abstrata, não podemos criar uma instância dela. Essa é uma regra da Programação Orientada a Objetos e válida para todas as linguagens.
+
+a) *Mesmo sabendo que não é possível, tente criar uma instância dessa classe (ou seja: `new Place(...)`). Qual foi o erro que o Typescript gerou?*
+      
+      
+      const tryNeWPlace = new Place("2")
+
+
+        src/index.ts:133:1 - error TS1128: Declaration or statement expected.
+        
+        Cannot create a instance of an abstracr class 
+
+
+b) *Pense e responda: o que precisaríamos fazer para conseguir efetivamente criar uma instância dessa classe?*
+
