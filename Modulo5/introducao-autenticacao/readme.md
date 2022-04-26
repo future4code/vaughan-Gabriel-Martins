@@ -167,3 +167,25 @@ c) *Altere o seu endpoint para ele só aceitar uma senha com 6 caracteres ou mai
 a) *Crie o endpoint que realize isso, com as funções que você implementou anteriormente*
 
 b) *Altere o seu endpoint para ele não aceitar um email vazio ou que não possua um `"@"`*
+
+
+### Exercício 7
+    
+    Ufa, agora temos toda a nossa base pronta para identificar o usuário. Antes de prosseguir, precisamos criar uma função que recebe o token e devolve as informações do usuário salvas nele. Veja o exemplo abaixo:
+    
+
+    const expiresIn = "1min";
+    
+    const getData = (token: string): AuthenticationData => {
+      const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
+      const result = {
+        id: payload.id,
+      };
+      return result;
+    };
+
+    
+    a) *O que a linha `as any` faz? Por que precisamos usá-la ali?*
+    
+    
+    b) *Crie uma função que realize a mesma funcionalidade da função acima*

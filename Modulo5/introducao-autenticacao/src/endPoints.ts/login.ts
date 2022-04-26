@@ -6,7 +6,7 @@ import { generateToken } from "../services/tokenGenerate";
 
 
 
-const userLogin =async (req: Request, res:Response)=> { 
+export const userLogin =async (req: Request, res:Response)=> { 
    try{
     const  email = req.body.email; 
     const  password =  req.body.password; 
