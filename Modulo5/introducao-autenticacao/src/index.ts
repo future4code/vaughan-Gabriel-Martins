@@ -1,4 +1,4 @@
-import { gennerateId } from "./services/idGenerate";
+import { app } from  "./app";
+import { userSignup } from "./endPoints.ts/userSignup";
 
-
-console.log(gennerateId());
+app.post("/user/signup" , userSignup)

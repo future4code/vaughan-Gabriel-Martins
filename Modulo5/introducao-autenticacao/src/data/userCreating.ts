@@ -1,6 +1,6 @@
 import { connection } from "../connection";
 
-export const creatingUsers =
+export const userCreating =
 async(id:string, email: string, password: string):Promise<void> => 
 {
    await connection("USER")
