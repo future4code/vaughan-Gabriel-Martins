@@ -2,10 +2,10 @@ import { connection } from "../connection";
 
 
 
-const getUserByEmail = async(email: string): Promise<any> => {
+export const getUserByEmail = async(email: string): Promise<any> => {
     const result = await connection("USER")
         .select()
-        .where("email", email );
+        .where({email} );
 
     return result[0];
 }
