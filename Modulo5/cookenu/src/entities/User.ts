@@ -1,13 +1,15 @@
+import { ROLE } from "../types"
 
 
 
-export abstract class User  { 
+export class User  { 
 
     constructor(
         private id:string,
         private nome: string, 
         private email:string,
-        private password: string 
+        private password: string ,
+        private role: ROLE 
         )
     {}
     getId () { 
@@ -21,5 +23,12 @@ export abstract class User  {
     }
     getPassword () { 
         return this.password
+    }
+    getRole () { 
+        return this.role
+    }
+
+    static toUserModel(data:any):User{ 
+        return new User(data.id, data.name , data.email, data.password, data.ROLE )
     }
 }

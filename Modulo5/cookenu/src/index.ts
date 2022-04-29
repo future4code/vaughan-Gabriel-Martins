@@ -1,7 +1,10 @@
 import {app} from "./app";
+import { signup } from "./endpoints/signup";
 
 
-app.get("/")
+app.post("/", signup)
+
+
 
 
 
