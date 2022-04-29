@@ -7,6 +7,6 @@ export type inputUserFront =
 
 
 export enum ROLE  { 
-    ADMIN = "admin",
-    NORMAL = "normal",
+    ADMIN = "ADMIN",
+    NORMAL = "NORMAL",
 }

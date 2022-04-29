@@ -6,7 +6,7 @@ export class User  {
 
     constructor(
         private id:string,
-        private nome: string, 
+        private name: string, 
         private email:string,
         private password: string ,
         private role: ROLE 
@@ -16,7 +16,7 @@ export class User  {
         return this.id
     }
     getNome () { 
-        return this.nome
+        return this.name
     }
     getEmail () { 
         return this.email

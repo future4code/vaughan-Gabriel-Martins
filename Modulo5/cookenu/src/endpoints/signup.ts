@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
-import { UserByEmailDB } from "../data/userByEmailDB";
+import { UserByEmailDB } from "../data/userDB";
+import { User } from "../entities/User";
+import { HarshManager } from "../services/HashManager";
 import { GeneratorId } from "../services/idGenenator";
-import { inputUserFront } from "../types";
+import { inputUserFront, ROLE } from "../types";
 
 
 
@@ -22,6 +24,13 @@ export async function signup  (req: Request, res: Response) {
 
     const idGenenator = new GeneratorId();
     const id = idGenerate.generator()
+    
+    const harshManager = new HarshManager()
+    const passwordHash = await  harshManager.hash(password)
+
+    const newUser = new User( id , name, email , passwordHash , ROLE.ADMIN)
+
+
 
 
 
