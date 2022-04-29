@@ -1,4 +1,4 @@
-import  * as bcryptsjs  from "bcryptjs";
+import  * as bcryptsjs from "bcryptjs"
 
 
 export class HarshManager { 

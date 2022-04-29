@@ -12,20 +12,14 @@ export class UserByEmailDB extends BaseDataBase {
                                 .select()
         // console.log("UserDB", user[0])
         return User.toUserModel(user[0])
-
      } catch (error: any ) {
-         
         throw new Error(error.sqlMessage || error.message );
-        
      }
-     
  }
-
    public async creatingUser(user:User): Promise<void> { 
       try {
            await BaseDataBase.connection("USER")
                 .insert(user)
-         
       } catch (error: any ) {
          throw new Error(error.sqlMessage || error.message);
          
