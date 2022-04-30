@@ -6,20 +6,22 @@ import {Authenticator} from "../services/Authenticator";
 
 export const  GettingUserInfo = async (req: Request , res: Response)=> { 
    try{ 
+
     const token = req.headers.authorization as string;
 
+    if(!token){ 
+
+        throw new Error("Token ausente") //(404)  
+    }
+
     const authenticator = new Authenticator();
-   
-    console.log(token)
-
     const tokenData   =  authenticator.getTokeData(token)
-
-    console.log( tokenData.id)
-
 
     const userDB = new UserDB();
     const user = await userDB.finderUserById(tokenData.id)
-
+    if (!user) {
+        throw new Error("Usuario nao encontrado!");
+    }
 
     res.status(200).send({
         id: user.getId(),

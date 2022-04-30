@@ -1,7 +1,6 @@
 import { ROLE } from "../types"
 
 
-
 export class User  { 
 
     constructor(

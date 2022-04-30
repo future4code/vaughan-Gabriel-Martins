@@ -1,5 +1,5 @@
 import e, {Request , Response } from "express"
-import { UserByEmailDB } from "../data/userDB";
+import { UserDB } from "../data/userDB";
 import { User } from "../entities/User";
 import { Authenticator } from "../services/Authenticator";
 import { HarshManager } from "../services/HashManager";
@@ -12,7 +12,7 @@ export const login = async  (req: Request , res: Response):Promise<void>  => {
         if( !email || !password) { 
             throw new Error("Uma ou mais entrada invalidas!"); 
         }
-        const userDB = new UserByEmailDB()
+        const userDB = new UserDB()
         const user : User = await userDB.finderUserByEmail(email);
         if(!user) { 
             throw new Error("Usuario inexistente!");
