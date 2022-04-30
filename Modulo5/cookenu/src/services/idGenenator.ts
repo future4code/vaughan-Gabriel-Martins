@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 
 export class GeneratorId {
 
-    generator() {
+    public generator() {
         return v4();
     }
 }

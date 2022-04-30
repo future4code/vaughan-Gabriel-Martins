@@ -1,6 +1,6 @@
 
 export type inputUserFront = 
-{ name : string, email: string , password: string }
+{ name : string, email: string , password: string  , role: ROLE}
 
 
 export enum ROLE  { 
