@@ -15,9 +15,15 @@ export class Authenticator {
         });
         return token;
     }
+
+     
+    public getTokeData( token: string ): Authentication {
+
+    const data = jwt.verify(token , process.env.JWT_KEY as string )
+    return data as Authentication
+    }
 }
 
-const teste = new Authenticator()
-export const teste2 = teste.generate({id:"ou" , role:ROLE.ADMIN })
+ 
 
 
