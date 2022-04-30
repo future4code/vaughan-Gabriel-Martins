@@ -13,7 +13,7 @@ export const login = async  (req: Request , res: Response):Promise<void>  => {
             throw new Error("Uma ou mais entrada invalidas!"); 
         }
         const userDB = new UserByEmailDB()
-        const user = await userDB.finderUserByEmail(email);
+        const user : User = await userDB.finderUserByEmail(email);
         if(!user) { 
             throw new Error("Usuario inexistente!");
         }
@@ -22,7 +22,7 @@ export const login = async  (req: Request , res: Response):Promise<void>  => {
         const authenticator = new Authenticator();
 
         const isPasswordRight  = await hashManager.compare(password , user.getPassword())
-        if ( !isPasswordRight){ 
+        if (!isPasswordRight){ 
             throw new Error("Senha invalida! ");
         }
         const token =  authenticator.generateToken({id: user.getId()})

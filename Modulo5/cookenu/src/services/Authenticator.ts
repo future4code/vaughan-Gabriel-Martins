@@ -15,7 +15,7 @@ export class Authenticator {
         });
         return token;
     }
-    public getTokeData( token: string ): Authentication {
+    public getTokeData( token: string ): Authentication  {
 
     const data = jwt.verify(token , process.env.JWT_KEY as string )
     return data as Authentication

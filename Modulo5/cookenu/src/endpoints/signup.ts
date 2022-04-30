@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserByEmailDB } from "../data/userDB";
+import { UserDB } from "../data/userDB";
 import { User } from "../entities/User";
 import { Authenticator } from "../services/Authenticator";
 import { HarshManager } from "../services/HashManager";
@@ -18,7 +18,7 @@ export async function signup  (req: Request, res: Response) {
         throw new Error("Um ou mais entradas sao invalidas! ") // 404
     }
     const id = idGenerate.generator()
-    const userbyEmail = new UserByEmailDB()
+    const userbyEmail = new UserDB()
     const user = await userbyEmail.finderUserByEmail(email)
 
     if(user  && user.getEmail() !== undefined ){
@@ -37,9 +37,7 @@ export async function signup  (req: Request, res: Response) {
     const token = authenticator.generateToken({id})
 
     res.status(201).send({messagem:"Usuario Criado" , token  })
-    
     }
-
     catch( error: any) { 
 
         res.status(404).send(error.message)
