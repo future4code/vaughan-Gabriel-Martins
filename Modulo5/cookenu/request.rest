@@ -1,5 +1,5 @@
 
-
+// Signup 
 POST http://localhost:3003/signup HTTP/1.1
 Content-Type: application/json
 
@@ -11,6 +11,8 @@ Content-Type: application/json
 }
 
 ###
+
+// Login 
 POST http://localhost:3003/login HTTP/1.1
 Content-Type: application/json
 
@@ -21,22 +23,22 @@ Content-Type: application/json
 
 
 ### 
-GET http://localhost:3003/user HTTP/1.1
+//Getttin profile 
+GET http://localhost:3003/user/profile HTTP/1.1
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
 
 
 ### 
-Post http://localhost:3003/user HTTP/1.1
+// Seguir user 
+Post http://localhost:3003/user/d5f0dd65-6cc5-40ff-bce3-e19e40d772ac HTTP/1.1
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
 
-{  
-    "followedUserId": "d5f0dd65-6cc5-40ff-bce3-e19e40d772ac"
-}
-###
 
-POST http://localhost:3003/recipes HTTP/1.1
+###
+// Criar receita 
+POST http://localhost:3003/recipe HTTP/1.1
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
 
@@ -46,14 +48,21 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtN
 }
 
 ###
-
+// Pegar feeding de usarios seguidos. 
 GET http://localhost:3003/feed HTTP/1.1
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxYTU4OTQ1LTJjMjUtNGY3My05MGY0LTYzNTg0Mjk4YzFmYyIsImlhdCI6MTY1MTM4MDg1NiwiZXhwIjoxNjUxOTg1NjU2fQ.U0S6O2yUWhCqMAg6mJhOcxWQdyd9ZIJd3lVrvcjnjTc
 
 
-
 ####
 # Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
+
+### 
+// Pegar Receita por Id 
+
+GET http://localhost:3003/recipe/5c4513d9-5819-45d1-9841-1749244148cd HTTP/1.1
+Content-Type: application/json
+
+
 
 
