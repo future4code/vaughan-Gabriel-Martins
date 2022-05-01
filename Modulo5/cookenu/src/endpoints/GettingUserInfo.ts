@@ -25,6 +25,7 @@ export const  GettingUserInfo = async (req: Request , res: Response)=> {
 
     res.status(200).send({
         id: user.getId(),
+        name: user.getNome(),
         email: user.getEmail()
     })
 

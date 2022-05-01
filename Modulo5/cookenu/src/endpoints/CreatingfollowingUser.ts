@@ -8,7 +8,7 @@ import { GeneratorId } from "../services/idGenenator";
 export const  CreatingFollowingUser  = async (req : Request , res:Response ):  Promise<void>=> { 
     try {
  
-        const followedUserId = req.body.followedUserId as string; 
+        const followedUserId = req.params.id as string; 
         const token = req.headers.authorization as string; 
 
         if(!followedUserId || !token) {  
@@ -17,6 +17,8 @@ export const  CreatingFollowingUser  = async (req : Request , res:Response ):  P
         const authenticator  = new Authenticator(); 
         const tokenData = authenticator.getTokeData(token)
         const fingId = tokenData.id;
+
+    
 
         const generatorId =  new GeneratorId(); 
         const id = generatorId.generator();
