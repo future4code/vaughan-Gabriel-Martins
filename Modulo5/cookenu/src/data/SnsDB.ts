@@ -14,11 +14,11 @@ export class SnsDB extends BaseDataBase {
             throw new Error(error.sqlmessage || error.message);
         }
     }
-    public async unfollowingDB(followedUserId: string , followingId: string ): Promise<void> {
+    public async unfollowingDB(followedUserId: string, followingId: string): Promise<void> {
         try {
             await BaseDataBase.connection("USER_SNS")
                 .where("fed_id", followedUserId)  // fed  = followed Id  
-                .andWhere("fing_id", followingId )   // fing = folling Id 
+                .andWhere("fing_id", followingId)   // fing = folling Id 
                 .del()
 
         } catch (error: any) {

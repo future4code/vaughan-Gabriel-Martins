@@ -10,16 +10,17 @@ export const  GettingUserInfo = async (req: Request , res: Response)=> {
     const token = req.headers.authorization as string;
 
     if(!token){ 
-
+        res.statusCode = 404;
         throw new Error("Token ausente") //(404)  
     }
 
     const authenticator = new Authenticator();
-    const tokenData   =  authenticator.getTokeData(token)
+    const tokenData  =  authenticator.getTokeData(token)
 
     const userDB = new UserDB();
     const user = await userDB.finderUserById(tokenData.id)
     if (!user) {
+        res.statusCode = 422; 
         throw new Error("Usuario nao encontrado!");
     }
 
@@ -30,9 +31,15 @@ export const  GettingUserInfo = async (req: Request , res: Response)=> {
     })
 
    } 
-   catch(error: any ){ 
-       res.status(400).send(error.message)
-   }
+   catch( error: any) { 
+        
+    if(res.statusCode === 200) { 
+      
+        res.status(500).send("internal server error! ")
+
+    } else res.send(error.message)
+    
+}
 
 
    
