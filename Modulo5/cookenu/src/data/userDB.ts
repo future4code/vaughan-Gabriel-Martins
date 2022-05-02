@@ -2,7 +2,6 @@ import { User } from "../entities/User";
 import { BaseDataBase } from "./BaseDataBase";
 
 
-
 export class UserDB extends BaseDataBase { 
    public async finderUserByEmail(email: string ): Promise<User> { 
      try {

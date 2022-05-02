@@ -20,7 +20,6 @@ export class SnsDB extends BaseDataBase {
                 .where("fed_id", followedUserId)  // fed  = followed Id  
                 .andWhere("fing_id", followingId )   // fing = folling Id 
                 .del()
-    
 
         } catch (error: any) {
             throw new Error(error.sqlmessage || error.message);
