@@ -21,3 +21,9 @@ Content-Type: application/json
     "password": "123456"
 }
 
+###
+
+GET http://localhost:3003/users HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkOWQ4YjkzLTc3OTYtNDhjZC1iMWVjLWViNTVlYzA4ODJiNiIsImlhdCI6MTY1MTU3Mjg5NSwiZXhwIjoxNjUxNjA4ODk1fQ.gymlKtVhCZef2vC8ho-xmuhosE1kZpwEUeOy44zzHFk
+

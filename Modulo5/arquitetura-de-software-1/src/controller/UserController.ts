@@ -35,4 +35,17 @@ export class UserController {
             res.status(400).send(error.sqlmessage || error.message)
         }
     }
+    public async getAllUsers(req: Request, res: Response) {
+        try {
+            const token : string | undefined  = req.headers.authorization;
+
+            const allUsers = await userBusiness.getAllUser(token)
+
+            res.status(200).send(allUsers)
+       
+
+        } catch (error: any) {
+            res.status(400).send(error.sqlmessage || error.message)
+        }
+    }
 }

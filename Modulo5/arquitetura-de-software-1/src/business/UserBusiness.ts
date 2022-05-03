@@ -55,4 +55,18 @@ export class UserBusiness {
         return token;
 
     }
+    public async getAllUser (tokenUser: string | undefined){ 
+        
+         if(!tokenUser){    
+             throw new Error("Token inexistente! ");
+             
+        }
+        authenticator.retrieveDataToken(tokenUser as string)
+
+        const usersDb = await userDataBase.getAllUsers()
+
+        return usersDb;
+       
+
+    }
 }

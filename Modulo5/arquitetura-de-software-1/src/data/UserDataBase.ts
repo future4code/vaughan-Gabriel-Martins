@@ -28,4 +28,13 @@ export class UserDataBase extends BaseDataBase {
             throw new Error(error.sqlmessage || error.message);
         }
     }
+    public async getAllUsers (): Promise<UserDB[]> {
+        try {
+            return  BaseDataBase.connection("USER")
+                    
+                
+        } catch (error: any) {
+            throw new Error(error.sqlmessage || error.message);
+        }
+    }
 }

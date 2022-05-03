@@ -3,6 +3,8 @@ import { authenticator } from "../types/autenticatorTypes";
 
 
 
+
+
 export class Authenticator {
 
     public generateToken = (input: authenticator): string => {
