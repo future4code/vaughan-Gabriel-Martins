@@ -19,4 +19,13 @@ export class UserDataBase extends BaseDataBase {
             throw new Error(error.sqlmessage || error.message);
         }
     }
+    public async getUserByEmail(email: string ): Promise<UserDB[]> {
+        try {
+            return  BaseDataBase.connection("USER")
+                 .where({email}).select()
+                
+        } catch (error: any) {
+            throw new Error(error.sqlmessage || error.message);
+        }
+    }
 }

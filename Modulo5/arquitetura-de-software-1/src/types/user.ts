@@ -27,25 +27,29 @@ export class User {
 
 export class UserDB  { 
     constructor(
-        private id: string,
-        private name: string, 
-        private email: string, 
-        private password: string, 
-        private role: ROLE 
+        public id: string,
+        public name: string, 
+        public email: string, 
+        public password: string, 
+        public role: ROLE 
          ){}
-         public getId () { 
+         public getId() { 
              return this.id
          }
-         public getname () { 
+         public getname() { 
              return this.name
          }
-         public getEmail () { 
+         public getEmail() { 
              return this.email
          }
-         public getPassword () { 
+         public getPassword() { 
              return this.password
          }
-         public getRole () { 
+         public getRole() { 
              return this.role
          }
+}
+
+export type userLogin = {
+    email: string, password: string
 }

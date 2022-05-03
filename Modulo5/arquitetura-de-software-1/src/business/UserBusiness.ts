@@ -1,9 +1,10 @@
+import { hash } from "bcryptjs";
 import { UserDataBase } from "../data/UserDataBase";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { authenticator } from "../types/autenticatorTypes";
-import { ROLE, User, UserDB } from "../types/user";
+import { ROLE, User, UserDB, userLogin } from "../types/user";
 
 
 const userDataBase = new UserDataBase();
@@ -31,6 +32,25 @@ export class UserBusiness {
         await userDataBase.createUser(userDB)
         
         const input: authenticator = {id , role: user.getRole()} 
+        const token = authenticator.generateToken(input)
+        return token;
+
+    }
+    public async login(userLogin : userLogin): Promise<string>{ 
+        
+        if(!userLogin.email|| !userLogin.password){
+            throw new Error("Uma ou mais entradas não é valida");
+        }
+              
+        const [user] = await userDataBase.getUserByEmail(userLogin.email)
+
+        const isValid :boolean = await hashManager.compare(userLogin.password, user.password )
+  
+        if(!isValid){ 
+            throw new Error("Senha invalida!");
+            
+        }
+        const input: authenticator = {id: user.id as string , role: user.role }  
         const token = authenticator.generateToken(input)
         return token;
 

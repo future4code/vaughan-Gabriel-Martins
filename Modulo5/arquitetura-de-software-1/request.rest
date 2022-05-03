@@ -10,3 +10,14 @@ Content-Type: application/json
     "password": "123456"
 }
 
+###
+
+POST http://localhost:3003/login HTTP/1.1
+Content-Type: application/json
+
+{ 
+
+    "email": "jieuewns@gmail" ,
+    "password": "123456"
+}
+
