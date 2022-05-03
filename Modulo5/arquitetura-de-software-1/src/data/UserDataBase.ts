@@ -9,11 +9,11 @@ export class UserDataBase extends BaseDataBase {
         try {
             await BaseDataBase.connection("USER")
                 .insert({
-                    id: user.getId, 
-                    name: user.getname, 
-                    email: user.getEmail, 
-                    role: user.getRole,
-                    password: user.getPassword 
+                    id: user.getId(), 
+                    name: user.getname(), 
+                    email: user.getEmail(), 
+                    role: user.getRole(),
+                    password: user.getPassword() 
                 })
         } catch (error: any) {
             throw new Error(error.sqlmessage || error.message);

@@ -3,20 +3,18 @@ import { authenticator } from "../types/autenticatorTypes";
 
 
 
-export class Authenticator { 
+export class Authenticator {
 
-    public generateToke = (input:authenticator): string => { 
-       
+    public generateToken = (input: authenticator): string => {
+
         const generateToken = jwt.sign(
-            input, process.env.JWT_SECRET as string, { 
-                expiresIn : process.env.JWT_EXPIRESIN
-            }
+            input, process.env.JWT_SECRET as string, {
+            expiresIn: process.env.JWT_EXPIRESIN
+        }
         );
-        return  generateToken;
+        return generateToken;
     }
-
-    public retrieveDataToken(token: string): authenticator{ 
-
-        return jwt.verify(token, process.env.JWT_KEY as string ) as authenticator
+    public retrieveDataToken(token: string): authenticator {
+        return jwt.verify(token, process.env.JWT_KEY as string) as authenticator
     }
-} 
+}

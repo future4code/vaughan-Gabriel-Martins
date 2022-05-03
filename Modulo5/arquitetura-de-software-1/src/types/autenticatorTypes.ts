@@ -1,6 +1,7 @@
+import { ROLE } from "./user";
 
 
 export type authenticator = { 
     id: string, 
-    role: string
+    role: ROLE
 }

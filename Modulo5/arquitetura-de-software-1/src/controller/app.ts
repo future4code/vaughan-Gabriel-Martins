@@ -3,7 +3,7 @@ import cors from "cors";
 
 
 
-const app: Express = express();
+export const app: Express = express();
 
 
 app.use(express.json());

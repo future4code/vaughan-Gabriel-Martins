@@ -1,18 +1,21 @@
 import { UserDataBase } from "../data/UserDataBase";
+import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
-import { User, UserDB } from "../types/user";
+import { authenticator } from "../types/autenticatorTypes";
+import { ROLE, User, UserDB } from "../types/user";
 
 
 const userDataBase = new UserDataBase();
 const idGenerator  = new IdGenerator();
 const hashManager = new HashManager();
+const authenticator = new Authenticator();
 
 export class UserBusiness { 
 
-    public async createUser(user: User){ 
+    public async signup(user: User): Promise<string>{ 
         
-        if(!user.getEmail() || !user.getRole() || user.getPassword()|| user.getname()){
+        if(!user.getEmail() || !user.getRole() || !user.getPassword()|| !user.getname()){
             throw new Error("Uma ou mais entradas não é valida");
         }
         
@@ -25,6 +28,11 @@ export class UserBusiness {
             hash,
             user.getRole()            
         )
-     const newUserDB = await userDataBase.createUser(userDB)
+        await userDataBase.createUser(userDB)
+        
+        const input: authenticator = {id , role: user.getRole()} 
+        const token = authenticator.generateToken(input)
+        return token;
+
     }
 }
