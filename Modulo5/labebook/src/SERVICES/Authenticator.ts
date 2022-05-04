@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 
 
 export class Authenticator { 
- 
 
     static generator (payload : AuthenticatorPayload){ 
        const token: string  =  jwt.sign(payload , process.env.JWT_KEY  as string, 

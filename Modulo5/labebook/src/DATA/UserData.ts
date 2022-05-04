@@ -1,23 +1,30 @@
-import { User } from "../Types/user";
+import User from "../Model/user";
 import { BaseDataBase } from "./BaseDateBase";
 
 
 
+export class  UserData  extends BaseDataBase { 
 
-
-
-export class  UserDataBase  extends BaseDataBase { 
-
-    public insertUser = async (user:User ): Promise<void> => { 
+    public  insertUser = async (user:User ): Promise<void> => { 
          try{ 
-             await BaseDataBase.connetion("USERS_lb").insert(user)
+             await BaseDataBase.connetion("USER").insert(user)
 
-         }catch(error:any){ 
+            }catch(error:any){ 
              throw new Error(
                  error.sqlmessage || error.message || "Unexpected error at DB!"
              );
-             
          }
+    }
+    public  userByEmail = async (email: string): Promise<User[]> => { 
+        try {
+             return BaseDataBase.connetion("USER").where({email})
 
+            
+        } catch (error: any) {
+            throw new Error(
+                error.sqlmessage || error.message || "Unexpected error at DB!"
+            );
+        }
+        
     }
 }
