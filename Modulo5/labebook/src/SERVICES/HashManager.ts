@@ -1,24 +1,17 @@
 import * as bcryptjs from "bcryptjs";
-
-
-
-
-
-
-
+import { IdGenerator } from "./IdGenerator";
 
 
 
 export class HashManager { 
  
-    protected static async hash  (text:string ){ 
+    static async hash  (text:string ){ 
         const rounds = Number(process.env.HASH_COST)
         const salt = await bcryptjs.genSalt(Number(rounds))
         return bcryptjs.hash(text, salt)
     }
 
-    protected static async compare(text:string, hashDB: string):Promise<boolean>  {
+    static async compare(text:string, hashDB: string):Promise<boolean>  {
            return  bcryptjs.compare(text , hashDB )
-    }   
-    
+    }    
 }

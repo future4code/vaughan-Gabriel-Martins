@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 
 
 export class IdGenerator{ 
-    protected static generate (){ 
+     static generate (){ 
         return v4();
     }
 }
