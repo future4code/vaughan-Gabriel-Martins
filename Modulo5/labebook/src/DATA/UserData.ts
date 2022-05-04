@@ -25,6 +25,5 @@ export class  UserData  extends BaseDataBase {
                 error.sqlmessage || error.message || "Unexpected error at DB!"
             );
         }
-        
     }
 }

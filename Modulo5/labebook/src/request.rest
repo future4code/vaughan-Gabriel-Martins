@@ -1,4 +1,4 @@
-POST http://localhost:3003/signup HTTP/1.1
+POST http://localhost:3003/user/signup HTTP/1.1
 Content-Type: application/json
 
 { 
@@ -8,3 +8,13 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3003/user/login HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "email": "marcela@gmail.com", 
+    "password":"123456"
+}
+
+###
+

@@ -4,6 +4,7 @@ import { Authenticator } from "../SERVICES/Authenticator";
 import { HashManager } from "../SERVICES/HashManager";
 import { IdGenerator } from "../SERVICES/IdGenerator";
 import { AuthenticatorPayload } from "../Types/authenticator";
+import { loginInputUserDto } from "../Types/loginInputUserDto";
 import { SignupInputUserDTO } from "../Types/signupInputUserDto";
  
 
@@ -30,16 +31,34 @@ export class UserBusiness   {
 
         const payload: AuthenticatorPayload = {id} 
         
-        const userDB = new User(
-            id,
-            user.name,
-            user.email,
-            hash
-            )
-            userData.insertUser(userDB)
-            
+   
         
-            
+            const token = Authenticator.generator(payload)
+            return token
+        }
+
+    public static login = async (user: loginInputUserDto):Promise<string> => { 
+
+        if(!user.email || !user.password){
+            throw new Error("Uma ou mais entradas não são validas!");
+        }
+    
+         // getting user from DB 
+        const [userByEmail] = await userData.userByEmail(user.email)
+
+        if(!userByEmail){ 
+            throw new Error("Usuario não existe!");
+        }
+        
+        // Comparing password  
+        const isPasswordRight  = await HashManager.compare(user.password, userByEmail.password )
+        if(!isPasswordRight){ 
+        throw new Error("Senha ou usuario estão errados!");
+        
+        }
+
+        const payload: AuthenticatorPayload = {id: userByEmail.id} 
+        
             const token = Authenticator.generator(payload)
             return token
         }
