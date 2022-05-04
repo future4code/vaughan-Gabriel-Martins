@@ -5,5 +5,4 @@ export class IdGenerator{
     protected static generate (){ 
         return v4();
     }
-
 }
