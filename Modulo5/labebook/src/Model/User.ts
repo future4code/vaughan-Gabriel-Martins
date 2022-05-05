@@ -4,7 +4,7 @@ export enum ROLE {
 }
 
 
-export default  class User { 
+export default  class UserDBDTO { 
     constructor( 
         public id:string,
         public name: string, 

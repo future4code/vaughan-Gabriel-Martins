@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import { UserBusiness } from "../BUSINESS/UserBusiness";
-import { loginInputUserDto } from "../Types/loginInputUserDto";
+import { LoginInputUserDto } from "../Types/loginInputUserDto";
 import { SignupInputUserDTO } from "../Types/signupInputUserDto";
 
 
@@ -8,7 +8,11 @@ import { SignupInputUserDTO } from "../Types/signupInputUserDto";
 
 export class UserController { 
 
-    public  static signup  = async (request :Request , response: Response): Promise<void> => { 
+    constructor ( 
+        private userBusiness : UserBusiness
+        ){}
+
+    public   signup  = async (request :Request , response: Response): Promise<void> => { 
       try{ 
         
         const { name, email,  password } = request.body;
@@ -18,25 +22,25 @@ export class UserController {
             email, 
             password
         }
-        const token = await UserBusiness.signup(userInput)
-        response.send(token)
+        const token = await this.userBusiness.signup(userInput)
+        response.status(201).send({message:"Success!", token})
     }
     catch(error:any){ 
         response.status(400).send(error.message || "Unexepcted error!")
     }
     }
 
-    public  static login  = async (request :Request , response: Response): Promise<void> => { 
+    public   login  = async (request :Request , response: Response): Promise<void> => { 
       try{ 
         
         const {email,  password } = request.body;
 
-        const userInput :loginInputUserDto = { 
+        const userInput :LoginInputUserDto = { 
             email, 
             password
         }
-        const token = await UserBusiness.login(userInput)
-        response.send(token)
+        const token = await this.userBusiness.login(userInput)
+        response.send({message: "Messagem logado!", token})
     }
     catch(error:any){ 
         response.status(400).send(error.message || "Unexepcted error!")

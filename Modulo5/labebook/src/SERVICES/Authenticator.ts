@@ -5,13 +5,13 @@ import dotenv from "dotenv";
 
 export class Authenticator { 
 
-    static generator (payload : AuthenticatorPayload){ 
+    public generator (payload : AuthenticatorPayload){ 
        const token: string  =  jwt.sign(payload , process.env.JWT_KEY  as string, 
             { expiresIn: process.env.JWT_EXPIRES_IN}
          )
        return token; 
     }
-    static tokenData (token : string){ 
+    public tokenData (token : string){ 
         const  tokenData = jwt.verify(token , process.env.JWT_KEY as string )
         return tokenData as AuthenticatorPayload;
     }
