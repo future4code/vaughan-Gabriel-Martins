@@ -7,7 +7,7 @@ import { IdGenerator } from "../SERVICES/IdGenerator";
 export class PostBusiness{ 
 
     constructor(
-        private authenticator: Authenticator,
+   
         private idGenerator: IdGenerator, 
         private hashManager: HashManager
     ){}
@@ -17,13 +17,10 @@ export class PostBusiness{
         if(!post.picture || !post.description || !post.type){ 
              throw new Error("Uma ou mais entradas não são validas!");
         }
-
         const id = this.idGenerator.generate();
 
-        const createdAt = Date.now();
-
-        console.log(createdAt)
-
+        const createdAt = (new Date()).toISOString().split("T")[0]
+        
     }
 
 }
