@@ -9,7 +9,6 @@ export enum TYPE {
 export  type PostInputDTO = { 
     picture: string, 
     description: string, 
-    createdAt: string, 
     type: TYPE
     
 }
@@ -18,7 +17,7 @@ export  type PostDBDTO = {
 
     picture: string, 
     description: string, 
-    createdAt: string, 
-    type: TYPE
+    type: TYPE,
+    createdAt: string
     
 }

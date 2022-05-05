@@ -3,9 +3,6 @@ import { PostBusiness } from "../BUSINESS/PostBusiness";
 import {PostInputDTO } from "../Model/Post";
 
 
-
-
-
 export class PostData { 
   
     constructor(private postBusiness:PostBusiness){}
@@ -17,30 +14,12 @@ export class PostData {
         const post: PostInputDTO = { 
             picture, 
             description, 
-            createdAt,
             type
         }
-
-        await this.postBusiness.createPost(post)
-
+         this.postBusiness.createPost(post)
     } catch(error: any){ 
         response.status(400).end(error.message || error.sqlmessage || "Unexpected server error!")
     }
-
-
-
-
-
     }
-
-
-
-
-
-
-
 }
-
-
-
 
