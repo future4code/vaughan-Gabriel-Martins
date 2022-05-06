@@ -51,4 +51,11 @@ app.post("/user/signup" , userController.signup)
 // login user 
 app.post("/user/login" , userController.login)
 
+// new post 
 app.post("/post/new" , postController.createPost)
+
+// get post by id 
+app.get("/post", postController.getPostById)
+
+
+

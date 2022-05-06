@@ -8,7 +8,7 @@ export class  UserData  extends BaseDataBase {
          try{ 
 
  
-             await BaseDataBase.connetion("USER").insert(user)
+             await BaseDataBase.connection("USER").insert(user)
 
 
             }catch(error:any){ 
@@ -19,7 +19,7 @@ export class  UserData  extends BaseDataBase {
     }
     public  userByEmail = async (email: string): Promise<UserDBDTO[]> => { 
         try {
-             return BaseDataBase.connetion("USER").where({email})
+             return BaseDataBase.connection("USER").where({email})
 
             
         } catch (error: any) {

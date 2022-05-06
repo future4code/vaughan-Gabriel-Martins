@@ -22,3 +22,19 @@ export  type PostDBDTO = {
     created_at: string
     
 }
+export  interface PostOutDTO  { 
+
+    id: string,
+    picture: string, 
+    description: string, 
+    type: TYPE,
+    created_at: Date
+    
+}
+
+export interface PostByIdInputDTO { 
+    id: string
+}
+export interface PostByIdDTO { 
+    id: string
+}

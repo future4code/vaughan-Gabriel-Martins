@@ -21,7 +21,12 @@ POST http://localhost:3003/post/new  HTTP/1.1
 Content-Type: application/json
 
 { 
-     "picture" : "www.qq.0112",
-    "description":"foto formatura 001 ",
+    "picture" : "wwfdsfdsw.qq.0112",
+    "description":"fotfdsfo formatura 001 ",
     "type": "normal"
 }
+### 
+
+GET http://localhost:3003/post?id=4f835b3e-7c8a-4138-a6fd-302395723206  HTTP/1.1
+Content-Type: application/json
+

@@ -3,20 +3,14 @@ import { UserBusiness } from "../BUSINESS/UserBusiness";
 import { LoginInputUserDto } from "../Types/loginInputUserDto";
 import { SignupInputUserDTO } from "../Types/signupInputUserDto";
 
-
-
-
 export class UserController { 
 
     constructor ( 
         private userBusiness : UserBusiness
         ){}
-
     public   signup  = async (request :Request , response: Response): Promise<void> => { 
       try{ 
-        
         const { name, email,  password } = request.body;
-
         const userInput :SignupInputUserDTO = { 
             name, 
             email, 
@@ -29,12 +23,9 @@ export class UserController {
         response.status(400).send(error.message || "Unexepcted error!")
     }
     }
-
     public   login  = async (request :Request , response: Response): Promise<void> => { 
       try{ 
-        
         const {email,  password } = request.body;
-
         const userInput :LoginInputUserDto = { 
             email, 
             password
