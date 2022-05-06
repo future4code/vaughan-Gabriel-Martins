@@ -1,7 +1,9 @@
 import { PostBusiness } from "./BUSINESS/PostBusiness"
 import { UserBusiness } from "./BUSINESS/UserBusiness"
 import { app} from "./CONTROLLER/app"
+import { PostController } from "./CONTROLLER/PostController"
 import { UserController } from "./CONTROLLER/UserController"
+import { PostData } from "./DATA/PostData"
 import { UserData } from "./DATA/UserData"
 import { PostInputDTO, TYPE } from "./Model/Post"
 import { Authenticator } from "./SERVICES/Authenticator"
@@ -16,26 +18,31 @@ const userBussiness  = new UserBusiness(
     new HashManager(), 
     new Authenticator()
 )
+  
 
 const userController  = new UserController(
     userBussiness
 )
 
+///   Post 
 const postBusiness =new PostBusiness( 
+    new PostData(),
     new IdGenerator(),
     new HashManager(), 
-
 )
 
-const postTeste: PostInputDTO ={ 
-    picture:"www.foto.com.br",
-    description:"Foto minha" ,
-    type: TYPE.EVENTO
-}
-
-postBusiness.createPost(postTeste)
+const postController = new PostController(
+    postBusiness
+)
 
 
+
+// const postTeste: PostInputDTO ={ 
+//     picture:"www.foto.com.br",
+//     description:"Foto minha" ,
+//     type: TYPE.EVENTO
+// }
+// postBusiness.createPost(postTeste)
 
 
 //sign up user 
@@ -43,3 +50,5 @@ app.post("/user/signup" , userController.signup)
 
 // login user 
 app.post("/user/login" , userController.login)
+
+app.post("/post/new" , postController.createPost)

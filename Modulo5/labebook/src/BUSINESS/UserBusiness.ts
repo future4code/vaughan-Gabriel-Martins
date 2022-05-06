@@ -8,8 +8,6 @@ import { LoginInputUserDto } from "../Types/loginInputUserDto";
 import { SignupInputUserDTO } from "../Types/signupInputUserDto";
  
 
-
-
 export class UserBusiness   { 
     constructor(
         private userData: UserData,
@@ -70,9 +68,7 @@ export class UserBusiness   {
         throw new Error("Senha ou usuario estão errados!");
         
         }
-
         const payload: AuthenticatorPayload = {id: userByEmail.id} 
-        
             const token = this.authenticator.generator(payload)
             return token
     }

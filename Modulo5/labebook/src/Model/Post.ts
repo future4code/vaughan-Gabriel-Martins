@@ -15,9 +15,10 @@ export  type PostInputDTO = {
 
 export  type PostDBDTO = { 
 
+    id: string,
     picture: string, 
     description: string, 
     type: TYPE,
-    createdAt: string
+    created_at: string
     
 }
