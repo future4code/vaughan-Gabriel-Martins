@@ -36,7 +36,9 @@ export class PostBusiness {
     public getPostById = async (id: PostByIdInputDTO, token: string | undefined): Promise<any> => {
 
         console.log("id 2", id)
-        if (!id.id) { throw new Error("Entrada errada"); }
+        if (!id.id) { 
+            
+            throw new Error("Entrada invalida!"); }
         if (!token) { throw new Error("Não está authenticado"); }
 
       

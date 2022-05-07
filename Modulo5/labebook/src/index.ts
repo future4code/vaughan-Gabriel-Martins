@@ -1,15 +1,17 @@
+import { FriendShipBusiness } from "./BUSINESS/FriendShipBusiness"
 import { PostBusiness } from "./BUSINESS/PostBusiness"
 import { UserBusiness } from "./BUSINESS/UserBusiness"
 import { app} from "./CONTROLLER/app"
+import { FriendShipController } from "./CONTROLLER/FriendshipController"
 import { PostController } from "./CONTROLLER/PostController"
 import { UserController } from "./CONTROLLER/UserController"
+import { FriendShipData } from "./DATA/FriendShipData"
 import { PostData } from "./DATA/PostData"
 import { UserData } from "./DATA/UserData"
 import { PostInputDTO, TYPE } from "./Model/Post"
 import { Authenticator } from "./SERVICES/Authenticator"
 import { HashManager } from "./SERVICES/HashManager"
 import { IdGenerator } from "./SERVICES/IdGenerator"
-import { User } from "./Types/user"
 
 
 const userBussiness  = new UserBusiness(
@@ -37,14 +39,17 @@ const postController = new PostController(
 )
 
 
+// FriendShip  
 
-// const postTeste: PostInputDTO ={ 
-//     picture:"www.foto.com.br",
-//     description:"Foto minha" ,
-//     type: TYPE.EVENTO
-// }
-// postBusiness.createPost(postTeste)
+const friendShipBusiness = new FriendShipBusiness(
+    new Authenticator(),
+    new IdGenerator(),
+    new FriendShipData()
+)
 
+const friendShipController = new FriendShipController(
+     friendShipBusiness
+)
 
 //sign up user 
 app.post("/user/signup" , userController.signup)
@@ -57,6 +62,11 @@ app.post("/post/new" , postController.createPost)
 
 // get post by id 
 app.get("/post", postController.getPostById)
+
+
+//Making friends 
+
+app.post("/user/friendship", friendShipController.makeFriend)
 
 
 

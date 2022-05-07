@@ -13,7 +13,7 @@ export class PostData extends BaseDataBase{
     public getPostById = async (id:PostByIdInputDTO): Promise<PostDBDTO[]>=>{
         try {
              const post : PostDBDTO[] = await BaseDataBase
-                            .connection("LABOOK_POST").where(id)
+                            .connection("LABOOK_POS").where(id)
              return post
         } catch (error:any) {
             throw new Error(error.message || error.sqlmessage);

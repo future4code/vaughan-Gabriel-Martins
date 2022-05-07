@@ -5,7 +5,6 @@ import {PostByIdInputDTO, PostInputDTO } from "../Model/Post";
 export class PostController { 
   
     constructor(private postBusiness:PostBusiness){}
-
     public createPost = async(request: Request , response: Response): Promise<void> => {
       try{
         const {picture, description, type} = request.body;
@@ -17,8 +16,13 @@ export class PostController {
          this.postBusiness.createPost(post)
          response.status(201).send({message : "Foto cadastrada com sucesso!"})
          
-    } catch(error: any){ 
-        response.status(400).end(error.message || error.sqlmessage || "Unexpected server error!")
+    } catch (error: any) {
+        if (error instanceof Error) {
+            response.status(400).end(error.message || "Unexpected server error!")
+
+             return;
+        }
+        response.status(500).send("Erro no getPostById")
     }
     }
     public getPostById =async  (request: Request , response: Response): Promise<void> => { 
@@ -32,7 +36,11 @@ export class PostController {
             response.status(200).send(post)
             
         } catch (error: any) {
-           response.status(400).send(error.message)
+            if (error instanceof Error) {
+                response.status(400).end(error.message || "Unexpected server error!")
+                 return;
+            }
+            response.status(500).send("Erro no getPostById")
         }
     }
 }     

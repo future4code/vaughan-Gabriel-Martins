@@ -21,14 +21,21 @@ POST http://localhost:3003/post/new  HTTP/1.1
 Content-Type: application/json
 
 { 
-    "picture" : "casamento 1",
+    "picture" : "casamento 1 ",
     "description":"casamento 001",
     "type": "evento"
 }
 ### 
-
 GET http://localhost:3003/post?id=4f835b3e-7c8a-4138-a6fd-302395723206  HTTP/1.1
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MTg4NDczOSwiZXhwIjoxNjUxOTIwNzM5fQ.XkSkwDvkdu_Vz_5gDEkhHfFo22gs2_QoSMjHYTThVXU
 
+###
 
+POST http://localhost:3003/user/friendship  HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MTkyMDkzOCwiZXhwIjoxNjUxOTU2OTM4fQ.uaRLMTXMaH2KFutEx9fd1yfirENqojez3_XXOlW4_jA
+
+{ 
+    "idFriend": "1e961e0b-1f76-4dcc-9d0f-41d8bcc098b0"
+}
