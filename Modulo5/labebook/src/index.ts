@@ -29,6 +29,7 @@ const postBusiness =new PostBusiness(
     new PostData(),
     new IdGenerator(),
     new HashManager(), 
+    new Authenticator()
 )
 
 const postController = new PostController(

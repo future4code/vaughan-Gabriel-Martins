@@ -12,10 +12,8 @@ export class PostData extends BaseDataBase{
     }
     public getPostById = async (id:PostByIdInputDTO): Promise<PostDBDTO[]>=>{
         try {
-            console.log("id 3", id)
              const post : PostDBDTO[] = await BaseDataBase
                             .connection("LABOOK_POST").where(id)
-                            console.log(post)
              return post
         } catch (error:any) {
             throw new Error(error.message || error.sqlmessage);

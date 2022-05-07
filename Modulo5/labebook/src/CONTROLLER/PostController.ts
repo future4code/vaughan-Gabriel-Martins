@@ -2,7 +2,6 @@ import {request, Request , Response} from "express";
 import { PostBusiness } from "../BUSINESS/PostBusiness";
 import {PostByIdInputDTO, PostInputDTO } from "../Model/Post";
 
-
 export class PostController { 
   
     constructor(private postBusiness:PostBusiness){}
@@ -25,17 +24,15 @@ export class PostController {
     public getPostById =async  (request: Request , response: Response): Promise<void> => { 
         try {
             const id   = request.query.id  as string;
+            const token = request.headers.authorization;
 
             const input : PostByIdInputDTO  = {id};
-            const post = await this.postBusiness.getPostById(input)
-
-            console.log("Controlller:",post)
+            const post = await this.postBusiness.getPostById(input, token)
 
             response.status(200).send(post)
-            console.log("id 1 ", id)
             
         } catch (error: any) {
-           response.status(400).send(error)
+           response.status(400).send(error.message)
         }
     }
 }     
