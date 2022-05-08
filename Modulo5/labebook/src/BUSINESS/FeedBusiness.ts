@@ -1,5 +1,5 @@
 import { FeedData } from "../DATA/FeedData";
-import { feedInputDTO, FeedUser } from "../Model/Feed";
+import { feedInputDTO, FeedUser, inputDTO } from "../Model/Feed";
 import { Authenticator } from "../SERVICES/Authenticator";
 
 
@@ -13,11 +13,12 @@ export class FeedBusiness {
     public getPostFriends  = async(userInput: feedInputDTO)=> { 
          
         if(!userInput.token){ 
-            throw new Error("Sem Token");
+            throw new Error("O Token não está presente!");
         }
         const tokenData = this.authentication.tokenData(userInput.token)
+        // I wont throw an error for [] empty. That's not a error. It can be empty. 
         const feed = await this.feedData.getFeed(tokenData.id)
-
+         
         const FeedUser  = feed.map( item => {return {
             idPost : item.id,
             idUser:item.id_user,
@@ -28,7 +29,22 @@ export class FeedBusiness {
             postUserID:item.post_user_id,
         }})
         
-        console.log(FeedUser)
+
         return FeedUser;
+    }
+    public getFeedType = async(userInputByType: inputDTO) => {
+        
+        if(!userInputByType.token || ! userInputByType.type){ 
+            throw new Error("Um ou mais entradas não são validas!");
+            
+        }
+        const token : feedInputDTO = {token : userInputByType.token};
+        const type = userInputByType.type
+        const feedByType = await this.getPostFriends(token)
+
+        const result = feedByType.filter(item => item.type.toLowerCase() === type.toLowerCase())
+       
+        return result
+
     }
 }

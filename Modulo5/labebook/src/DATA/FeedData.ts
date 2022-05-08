@@ -1,4 +1,4 @@
-import { feedInputDBDTO, FeedUser } from "../Model/Feed";
+import {FeedUser } from "../Model/Feed";
 import { BaseDataBase } from "./BaseDateBase";
 
 export class FeedData  extends BaseDataBase { 

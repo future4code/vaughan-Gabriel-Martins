@@ -87,3 +87,6 @@ app.delete("/user/friendship", friendShipController.unFriend)
 
 app.get("/user/feed" , feedController.getfeed)
 
+
+app.get("/user/feed/type" , feedController.feedbyType)
+
