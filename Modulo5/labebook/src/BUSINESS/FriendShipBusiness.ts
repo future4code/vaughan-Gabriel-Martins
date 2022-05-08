@@ -27,9 +27,7 @@ export class FriendShipBusiness {
     public makeFriend = async(makeFriendInput : friendShipInputDTO): Promise<void>=> {
         
         const{tokenData , idFriend } = this.validation(makeFriendInput)
-
         const id = this.idGenerator.generate()
-
         await this.userExistsById(idFriend)
 
         const makeFriendInput2DB : friendShipDBOutputtDTO ={ 
@@ -46,7 +44,6 @@ export class FriendShipBusiness {
         console.log()
          //cheking is users exists at User tables
          await this.userExistsById(idFriend)
-         
          //cheking is users friendships existe -  at User tables
         await this.userFriendTableById(idFriend)
 
