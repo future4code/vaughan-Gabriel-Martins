@@ -42,13 +42,11 @@ export class UserBusiness   {
           }
 
         await this.userData.insertUser(userDB)
-
         const payload: AuthenticatorPayload = {id} 
         
             const token = this.authenticator.generator(payload)
             return token
     }
-
     public  login = async (user: LoginInputUserDto):Promise<string> => { 
 
         if(!user.email || !user.password){

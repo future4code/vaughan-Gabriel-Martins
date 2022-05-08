@@ -13,3 +13,11 @@ export default  class UserDBDTO {
     ){}
 
 }
+export   interface  UserOutputDBDTO  { 
+
+       id:string,
+       name: string, 
+       email: string, 
+       password: string
+
+}

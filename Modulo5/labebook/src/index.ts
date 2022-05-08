@@ -44,7 +44,8 @@ const postController = new PostController(
 const friendShipBusiness = new FriendShipBusiness(
     new Authenticator(),
     new IdGenerator(),
-    new FriendShipData()
+    new FriendShipData(),
+    new UserData()
 )
 
 const friendShipController = new FriendShipController(
@@ -67,6 +68,9 @@ app.get("/post", postController.getPostById)
 //Making friends 
 
 app.post("/user/friendship", friendShipController.makeFriend)
+
+
+app.delete("/user/friendship", friendShipController.unFriend)
 
 
 

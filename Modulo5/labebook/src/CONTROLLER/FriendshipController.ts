@@ -11,21 +11,15 @@ export class FriendShipController {
 
     public makeFriend = async (request: Request, response: Response): Promise<void> => {
         try {
+            
+            const makeFriendInput = await this.getData(request , response)
 
-            const token = request.headers.authorization;
-            const idFriend = request.body.idFriend;
-
-            const makeFriendInput: friendShipInputDTO = {
-                id: idFriend,
-                token: token as string
-            }
             await this.friendShipBusiness.makeFriend(makeFriendInput)
-
             response.status(201).send("Nova amizade adicionada!")
+            
         } catch (error: any) {
             if (error instanceof Error) {
                 response.status(400).send(error.message || "Unexpected server error!")
-
                 return;
             }
             response.status(500).send("Erro no getPostById")
@@ -34,17 +28,28 @@ export class FriendShipController {
     }
     public unFriend = async(request : Request , response : Response): Promise<void> => { 
         try {
-            const token = request.headers.authorization;
-            const idFriend = request.body.idFriend;
+       
+            const unFriendInput = await this.getData(request , response)
+            await this.friendShipBusiness.unFriend(unFriendInput)
+            response.status(201).send("Amizade desfeita!")
             
         } catch (error: any) {
             if ( error instanceof Error) { 
                 response.status(400).send(error.message || "Unexpected server error!")
                 return; 
             }
-            response.status(500).send("Erro no unFriend! ")
-            
+            response.status(500).send("Erro no unFriend! ")            
         }
-
     }
+    public getData = async(request : Request , response : Response) :Promise<friendShipInputDTO> =>  { 
+        const token = request.headers.authorization;
+        const idFriend = request.body.idFriend;
+
+        const data: friendShipInputDTO = {
+            id: idFriend,
+            token: token as string
+        }
+        return data;
+    }
+
 }
