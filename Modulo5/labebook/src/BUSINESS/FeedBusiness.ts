@@ -34,16 +34,14 @@ export class FeedBusiness {
     }
     public getFeedType = async(userInputByType: inputDTO) => {
         
-        if(!userInputByType.token || ! userInputByType.type){ 
+        if(!userInputByType.token || (userInputByType.type.toLowerCase().trim() !== "normal" && userInputByType.type.toLowerCase().trim() !== "evento")){ 
             throw new Error("Um ou mais entradas não são validas!");
-            
         }
         const token : feedInputDTO = {token : userInputByType.token};
         const type = userInputByType.type
         const feedByType = await this.getPostFriends(token)
 
         const result = feedByType.filter(item => item.type.toLowerCase() === type.toLowerCase())
-       
         return result
 
     }
