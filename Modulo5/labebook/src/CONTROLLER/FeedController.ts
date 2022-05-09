@@ -13,12 +13,13 @@ export class FeedController {
     public getfeed = async( request:Request ,response:Response )=> {
        try{
        const token = request.headers.authorization as string;
+       const page = request.body.page as number;
 
        const input : feedInputDTO = { 
            token
         }
     
-        const feed = await this.feedBusiness.getPostFriends(input)
+        const feed = await this.feedBusiness.getPostFriends(input , page )
         response.send(feed)
         return 
 
@@ -35,6 +36,7 @@ export class FeedController {
 
             const token = request.headers.authorization as string;
             const type = request.query.type as string;
+            const page = request.body.page as number;
 
             console.log(token, type)
             
@@ -43,7 +45,7 @@ export class FeedController {
                 type : type
             }
 
-           const feedByType =await this.feedBusiness.getFeedType(input)
+           const feedByType =await this.feedBusiness.getFeedType(input , page)
            console.log(feedByType)
            response.status(200).send(feedByType)
            

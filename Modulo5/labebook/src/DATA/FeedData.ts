@@ -3,7 +3,7 @@ import { BaseDataBase } from "./BaseDateBase";
 
 export class FeedData  extends BaseDataBase { 
 
-   public getFeed = async(userId: string) : Promise<FeedUser[]> => { 
+   public getFeed = async(userId: string , page : number ) : Promise<FeedUser[]> => { 
       try{ 
        const posts: FeedUser[] = await BaseDataBase.connection("USER")
            .join("LABOOK_FRIENDSHIP" , {"LABOOK_FRIENDSHIP.id_friend":"USER.id"} )
@@ -18,6 +18,9 @@ export class FeedData  extends BaseDataBase {
            "created_at" ,
            "type" ,
            "post_user_id" )
+           .limit(5)
+           .offset(5*(page-1))
+                       
 
         return posts
       }
@@ -26,3 +29,4 @@ export class FeedData  extends BaseDataBase {
       }
    }
 }
+
