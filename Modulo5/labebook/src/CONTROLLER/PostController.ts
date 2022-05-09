@@ -8,10 +8,12 @@ export class PostController {
     public createPost = async(request: Request , response: Response): Promise<void> => {
       try{
         const {picture, description, type} = request.body;
+        const token = request.headers.authorization as string;
         const post: PostInputDTO = { 
             picture, 
             description, 
-            type
+            type, 
+            token
         }
          this.postBusiness.createPost(post)
          response.status(201).send({message : "Foto cadastrada com sucesso!"})

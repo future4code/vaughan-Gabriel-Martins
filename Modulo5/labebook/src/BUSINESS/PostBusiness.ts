@@ -15,29 +15,32 @@ export class PostBusiness {
         private authenticator: Authenticator
     ) { }
 
+    
+
     public createPost = (post: PostInputDTO) => {
 
-        if (!post.picture || !post.description || (post.type.toLowerCase() !== "normal" && post.type.toLowerCase() !== "evento")) {
+        if (!post.token || !post.picture || !post.description || (post.type.toLowerCase() !== "normal" && post.type.toLowerCase() !== "evento")) {
             throw new Error("Uma ou mais entradas não são validas!");
         }
-
+      
         const id = this.idGenerator.generate();
         const createdAt = (new Date()).toISOString().split("T")[0]
+        const tokenData = this.authenticator.tokenData(post.token)
 
         const postToDB: PostDBDTO = {
             id: id,
             picture: post.picture,
             description: post.description,
             type: post.type,
-            created_at: createdAt
+            created_at: createdAt, 
+            post_user_id: tokenData.id
         }
+
         this.postData.createPost(postToDB)
     }
     public getPostById = async (id: PostByIdInputDTO, token: string | undefined): Promise<any> => {
 
-        console.log("id 2", id)
         if (!id.id) { 
-            
             throw new Error("Entrada invalida!"); }
         if (!token) { throw new Error("Não está authenticado"); }
 
@@ -56,8 +59,6 @@ export class PostBusiness {
         if (post.length === 0 || !post) { throw new Error("Este post não existe"); }
         return post;
     }
-
-
 
 
 }

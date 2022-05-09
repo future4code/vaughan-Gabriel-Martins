@@ -9,7 +9,8 @@ export enum TYPE {
 export  type PostInputDTO = { 
     picture: string, 
     description: string, 
-    type: TYPE
+    type: TYPE, 
+    token: string
     
 }
 
@@ -20,6 +21,7 @@ export  type PostDBDTO = {
     description: string, 
     type: TYPE,
     created_at: string
+    post_user_id: string 
     
 }
 export  interface PostOutDTO  { 
@@ -29,6 +31,7 @@ export  interface PostOutDTO  {
     description: string, 
     type: TYPE,
     created_at: Date
+    post_user_id: string
     
 }
 
