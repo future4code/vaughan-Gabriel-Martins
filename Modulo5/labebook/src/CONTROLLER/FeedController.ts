@@ -1,4 +1,4 @@
-import { Request , response, Response } from "express";
+import { Request , Response } from "express";
 import { FeedBusiness } from "../BUSINESS/FeedBusiness";
 import { feedInputDTO, inputDTO } from "../Model/Feed";
 
@@ -56,5 +56,4 @@ export class FeedController {
             response.status(500).send("Erro no getPostById")
         }
     }
-
 }

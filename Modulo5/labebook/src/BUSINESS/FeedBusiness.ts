@@ -3,7 +3,6 @@ import { feedInputDTO, FeedUser, inputDTO } from "../Model/Feed";
 import { Authenticator } from "../SERVICES/Authenticator";
 
 
-
 export class FeedBusiness { 
     constructor (
      private authentication : Authenticator,
@@ -28,7 +27,6 @@ export class FeedBusiness {
             type:item.type,
             postUserID:item.post_user_id,
         }})
-        
 
         return FeedUser;
     }

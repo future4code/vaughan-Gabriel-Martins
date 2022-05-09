@@ -59,3 +59,13 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM3NzM4YzQ3LWE1YjEtN
 GET http://localhost:3003/user/feed/type?type=evento HTTP/1.1
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjAxODQzMCwiZXhwIjoxNjUyMDU0NDMwfQ.tP0IyELtUBtouBgI1zrryCNE8aBSlzNDBf_NWz6gn8s
+
+
+### 
+POST http://localhost:3003/user/post HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA2NjcxNywiZXhwIjoxNjUyMTAyNzE3fQ.kKZekgqxjCFhQqv26x4lot9tSHC9Tc_u5MEn0nIZWqw
+
+{
+    "postId":"14bf11a4-cafe-40ce-b72d-1e60c6fec343"
+}
