@@ -67,5 +67,23 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA2NjcxNywiZXhwIjoxNjUyMTAyNzE3fQ.kKZekgqxjCFhQqv26x4lot9tSHC9Tc_u5MEn0nIZWqw
 
 {
-    "postId":"14bf11a4-cafe-40ce-b72d-1e60c6fec343"
+    "postId":"feebc604-e13c-44f5-a012-eeb7640d0de1"
+}
+
+###
+# {
+#     "postId":"1bf11a4-cafe-40ce-b72d-1e60c6fec343"
+# }
+
+### 
+   
+
+  
+### 
+DELETE  http://localhost:3003/user/post HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA2NjcxNywiZXhwIjoxNjUyMTAyNzE3fQ.kKZekgqxjCFhQqv26x4lot9tSHC9Tc_u5MEn0nIZWqw
+
+{
+   "postId":"14bf11a4-cafe-40ce-b72d-1e60c6fec343"
 }

@@ -99,3 +99,6 @@ app.get("/post", postController.getPostById)
 // Like a post  
 app.post("/user/post" , likesController.likeIt)
 
+// Like a post  
+app.delete("/user/post" , likesController.dislikeIt)
+
