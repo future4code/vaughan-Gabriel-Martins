@@ -15,8 +15,10 @@ export class PostData extends BaseDataBase{
              const post : PostDBDTO[] = await BaseDataBase
                             .connection("LABOOK_POST").where(id)
              return post
-        } catch (error:any) {
-            throw new Error(error.message || error.sqlmessage);
+        }catch (error: any) {
+            throw new Error(
+                error.sqlmessage || error.message || "Unexpected error at DB!"
+            );
         }
     }
 }

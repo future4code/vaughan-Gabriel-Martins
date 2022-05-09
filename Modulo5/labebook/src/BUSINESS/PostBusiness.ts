@@ -15,14 +15,14 @@ export class PostBusiness {
         private authenticator: Authenticator
     ) { }
 
-    
+
 
     public createPost = (post: PostInputDTO) => {
 
         if (!post.token || !post.picture || !post.description || (post.type.toLowerCase() !== "normal" && post.type.toLowerCase() !== "evento")) {
             throw new Error("Uma ou mais entradas não são validas!");
         }
-      
+
         const id = this.idGenerator.generate();
         const createdAt = (new Date()).toISOString().split("T")[0]
         const tokenData = this.authenticator.tokenData(post.token)
@@ -32,7 +32,7 @@ export class PostBusiness {
             picture: post.picture,
             description: post.description,
             type: post.type,
-            created_at: createdAt, 
+            created_at: createdAt,
             post_user_id: tokenData.id
         }
 
@@ -40,17 +40,18 @@ export class PostBusiness {
     }
     public getPostById = async (id: PostByIdInputDTO, token: string | undefined): Promise<any> => {
 
-        if (!id.id) { 
-            throw new Error("Entrada invalida!"); }
+        if (!id.id) {
+            throw new Error("Entrada invalida!");
+        }
         if (!token) { throw new Error("Não está authenticado"); }
 
-      
+
         // Retrieving data from token as well as testing toke is valid. 
         const isTokenValid = this.authenticator.tokenData(token)
 
         console.log(isTokenValid)
-        
-        const idUser  = isTokenValid.id;
+
+        const idUser = isTokenValid.id;
 
         const idPost: PostByIdInputDTO = id;
         const post: PostDBDTO[] = await this.postData.getPostById(idPost);

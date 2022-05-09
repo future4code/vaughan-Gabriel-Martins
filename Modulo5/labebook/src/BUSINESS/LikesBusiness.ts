@@ -35,17 +35,17 @@ export class LikesBusiness {
             user_id: userId,
             post_id: postId
         }
-        
+
         // Testing if post exists 
         const isPostExist = await this.likesData.postExists(inputDB)
         if (isPostExist.length === 0) {
             throw new Error("Este post não existe!");
         }
         // testing if was liked before
-       const isLiked = await this.likesData.postLiked(inputDB)
-       if(isLiked.length > 0){
-           throw new Error("Este post já foi liked!");
-       }
+        const isLiked = await this.likesData.postLiked(inputDB)
+        if (isLiked.length > 0) {
+            throw new Error("Este post já foi liked!");
+        }
 
         const result = await this.likesData.insertLikeIt(inputDB)
         return result;
@@ -62,20 +62,19 @@ export class LikesBusiness {
             user_id: userId,
             post_id: postId
         }
-        
+
         const isPostExist = await this.likesData.postExists(inputDB)
         if (isPostExist.length === 0) {
             throw new Error("Este post não existe!");
         }
         // testing if was liked before
-       const isLiked = await this.likesData.postLiked(inputDB)
-       if(isLiked.length > 0){ 
+        const isLiked = await this.likesData.postLiked(inputDB)
+        if (isLiked.length > 0) {
 
-        const result = await this.likesData.deleteLikeIt(inputDB)
-        return result;
-       }
+            const result = await this.likesData.deleteLikeIt(inputDB)
+            return result;
+        }
 
-        // Testing if post exists 
     }
 
 }

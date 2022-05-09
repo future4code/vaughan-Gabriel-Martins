@@ -24,9 +24,11 @@ export class FeedData  extends BaseDataBase {
 
         return posts
       }
-      catch(error: any){ 
-          throw new Error(error.sqlmessage || error.message );
-      }
+      catch (error: any) {
+         throw new Error(
+             error.sqlmessage || error.message || "Unexpected error at DB!"
+         );
+     }
    }
 }
 

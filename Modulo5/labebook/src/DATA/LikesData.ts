@@ -42,7 +42,9 @@ export class LikesData extends BaseDataBase {
                 .select()
         }
         catch (error: any) {
-            throw new Error(error.sqlmessage || error.message);
+            throw new Error(
+                error.sqlmessage || error.message || "Unexpected error at DB!"
+            );
         }
     }
 }

@@ -41,6 +41,8 @@ export class FriendShipController {
             response.status(500).send("Erro no unFriend! ")            
         }
     }
+ 
+    // to be reused on the other methods 
     public getData = async(request : Request , response : Response) :Promise<friendShipInputDTO> =>  { 
         const token = request.headers.authorization;
         const idFriend = request.body.idFriend;

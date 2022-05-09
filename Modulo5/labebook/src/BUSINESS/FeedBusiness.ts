@@ -3,43 +3,44 @@ import { feedInputDTO, FeedUser, inputDTO } from "../Model/Feed";
 import { Authenticator } from "../SERVICES/Authenticator";
 
 
-export class FeedBusiness { 
-    constructor (
-     private authentication : Authenticator,
-      private feedData : FeedData
-    ) {}
+export class FeedBusiness {
+    constructor(
+        private authentication: Authenticator,
+        private feedData: FeedData
+    ) { }
 
-    public getPostFriends  = async(userInput: feedInputDTO , page: number)=> { 
-         
-        if(!userInput.token){ 
+    public getPostFriends = async (userInput: feedInputDTO, page: number) => {
+
+        if (!userInput.token) {
             throw new Error("O Token não está presente!");
         }
-      
+
         const tokenData = this.authentication.tokenData(userInput.token)
         // I wont throw an error for [] empty. That's not a error. It can be empty. 
-        const feed = await this.feedData.getFeed(tokenData.id , page )
-         
-        const FeedUser  = feed.map( item => {return {
-            idPost : item.id,
-            idUser:item.id_user,
-            picture:item.picture,
-            description:item.description,
-            createdAt:(item.created_at),
-            type:item.type,
-            postUserID:item.post_user_id,
-        }})
+        const feed = await this.feedData.getFeed(tokenData.id, page)
+
+        const FeedUser = feed.map(item => {
+            return {
+                idPost: item.id,
+                idUser: item.id_user,
+                picture: item.picture,
+                description: item.description,
+                createdAt: (item.created_at),
+                type: item.type,
+                postUserID: item.post_user_id,
+            }
+        })
 
         return FeedUser;
     }
-    public getFeedType = async(userInputByType: inputDTO , page : number ) => {
-        
-        if(!userInputByType.token || (userInputByType.type.toLowerCase().trim() !== "normal" && userInputByType.type.toLowerCase().trim() !== "evento")){ 
+    public getFeedType = async (userInputByType: inputDTO, page: number) => {
+
+        if (!userInputByType.token || (userInputByType.type.toLowerCase().trim() !== "normal" && userInputByType.type.toLowerCase().trim() !== "evento")) {
             throw new Error("Um ou mais entradas não são validas!");
         }
-        const token : feedInputDTO = {token : userInputByType.token};
+        const token: feedInputDTO = { token: userInputByType.token };
         const type = userInputByType.type
-        const feedByType = await this.getPostFriends(token , page )
-
+        const feedByType = await this.getPostFriends(token, page)
         const result = feedByType.filter(item => item.type.toLowerCase() === type.toLowerCase())
         return result
 
