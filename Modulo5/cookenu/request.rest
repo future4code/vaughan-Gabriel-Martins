@@ -1,0 +1,82 @@
+
+// Signup 
+POST http://localhost:3003/signup HTTP/1.1
+Content-Type: application/json
+
+{   
+    "name": "Marceloose",
+    "email":"Marcelom@gmail.com",
+    "password": "123456",
+    "role":"normal"
+}
+
+###
+
+// Login 
+POST http://localhost:3003/login HTTP/1.1
+Content-Type: application/json
+
+{   
+    "email":"Marcelom@gmail.com",
+    "password": "123456"
+}
+
+
+### 
+//Getttin profile 
+GET http://localhost:3003/user/profile HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
+
+
+// Criar receita 
+POST http://localhost:3003/recipe HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
+
+{   
+   "title":" abobaora ", 
+   "description":"pedacos de abororas"
+}
+
+###
+// Pegar feeding de usarios seguidos. 
+GET http://localhost:3003/feed HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxYTU4OTQ1LTJjMjUtNGY3My05MGY0LTYzNTg0Mjk4YzFmYyIsImlhdCI6MTY1MTM4MDg1NiwiZXhwIjoxNjUxOTg1NjU2fQ.U0S6O2yUWhCqMAg6mJhOcxWQdyd9ZIJd3lVrvcjnjTc
+
+
+####
+# Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
+
+### 
+// Pegar Receita por Id 
+
+GET http://localhost:3003/recipe/5c4513d9-5819-45d1-9841-1749244148cd HTTP/1.1
+Content-Type: application/json
+
+
+
+
+### 
+// Seguir user 
+Post http://localhost:3003/user/follow HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTMxODExMiwiZXhwIjoxNjUxOTIyOTEyfQ.1dYgYg2qQievEmNDwNdxnsaWaI4PtW_XWRVFm0ED20I
+
+{ 
+    "followedUserId": "1e961e0b-1f76-4dcc-9d0f-41d8bcc098b0"
+}
+
+
+###
+### 
+// DEixar de Seguir user 
+Post http://localhost:3003/user/unfollow HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ZjBkZDY1LTZjYzUtNDBmZi1iY2UzLWUxOWU0MGQ3NzJhYyIsImlhdCI6MTY1MTQxMTMwOSwiZXhwIjoxNjUyMDE2MTA5fQ.iK5CeHV6E5ddPwBbKFAPelJQkxeq2bRlTgiNz27f_4o
+
+{ 
+    "followedUserId": "d5f0dd65-6cc5-40ff-bce3-e19e40d772ac"
+}
+###
