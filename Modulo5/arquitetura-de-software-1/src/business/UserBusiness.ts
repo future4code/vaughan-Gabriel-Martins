@@ -69,4 +69,18 @@ export class UserBusiness {
        
 
     }
+
+    public async deleteUser( id: string  , token : string ) { 
+
+        const tokenData = authenticator.retrieveDataToken(token)
+
+        if (tokenData.role === "ADMIN"){ 
+            throw new Error("Só adminstradores podem deletar users");
+            
+        }
+         
+        await userDataBase.deleteUser(id);
+        
+
+    }
 }
