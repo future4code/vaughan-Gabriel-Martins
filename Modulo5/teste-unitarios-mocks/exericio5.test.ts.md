@@ -49,8 +49,8 @@ test("Should perform attack", () => {
 
     const defender: Personagem = {
         nome: "",
-        vida: -100,
-        defesa: -100,
+        vida: 100,
+        defesa: 100,
         forca: 800,
     };
 
