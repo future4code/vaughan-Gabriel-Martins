@@ -7,7 +7,6 @@ export class UserBusiness {
         private userData: UserData,
     ) { }
 
-
     public getUserById = async (input: GetUserByIdInputDTO): Promise<any> => {
 
         if (!input.id) {
@@ -17,5 +16,6 @@ export class UserBusiness {
 
         const result = await this.userData.getUserById(inputDB)
 
+        return result;         
     }
 }

@@ -16,6 +16,7 @@ export interface User {
     email: string;
     role: ROLE;
 }
+
 export interface UserOutputDTO {
     id: string;
     name: string;

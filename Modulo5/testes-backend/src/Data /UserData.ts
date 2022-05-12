@@ -1,4 +1,3 @@
-import { request } from "express";
 import { GetUserByIdDBDTO, User, UserOutputDTO } from "../models/user";
 import { BaseDataBase } from "./BaseDataBase";
 
@@ -6,10 +5,11 @@ import { BaseDataBase } from "./BaseDataBase";
 export class UserData extends BaseDataBase {
 
     public getUserById = async (input: GetUserByIdDBDTO): Promise<User> => {
+        try{
 
         const id = input.id
         const [result]: UserOutputDTO[] = await BaseDataBase
-            .connection("Table").where({ id })
+            .connection("User_Arq").where({ id })
 
         const user: User =
         {
@@ -19,5 +19,8 @@ export class UserData extends BaseDataBase {
             role: result.role
         }
         return user
+    }catch(error: any){ 
+        throw new Error(error.sqlmessage || error.message);
+    }
     }
 }
