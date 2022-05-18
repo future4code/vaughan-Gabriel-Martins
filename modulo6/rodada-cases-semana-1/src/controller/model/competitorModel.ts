@@ -1,7 +1,10 @@
-export interface CompetitorDTO { 
+export interface CompetitorInputDTO { 
     competition: string
     name: string
     value: number
+}
+export interface CompetitorOutputDTO extends CompetitorInputDTO { 
+    id:string
 }
 
 export class Competitor { 
