@@ -1,6 +1,7 @@
 import {Request, Response } from "express"; 
-import { CompetitorBusiness } from "../business/CompetitorBusiness";
-import { CompetitorInputDTO } from "./model/competitorModel";
+import { CompetitionBusiness } from "../business/CompetitionBusiness";
+import { CompetitionInputDTO } from "./model/competitionModel";
+
 
 
 
@@ -14,29 +15,22 @@ import { CompetitorInputDTO } from "./model/competitorModel";
 //   }
 
 
- export class CompetitorController { 
+ export class CompetitionController { 
      constructor(
-         private competitorBusiness : CompetitorBusiness
+         private competitionBusiness : CompetitionBusiness
      ){}
 
     //  public creating = async (request: Request, response: Response): Promise<void> => { 
      public creating =  (request: Request, response: Response): void => { 
          try{ 
-
-             
              const input = request.body;
              
-             //    console.log(input)
-             
-             const competitor : CompetitorInputDTO = { 
-                 competition: input.competition,
-                 name: input.name, 
-                 value: input.value
+             const competition : CompetitionInputDTO = { 
+                competitionName: input.competitionName,
+                 status: input.status
                 }
-                
-                
-                //    await this.competitorBusiness.creating(competitor) 
-                this.competitorBusiness.creating(competitor) 
+                //    await this.competitionBusiness.creating(competition) 
+                this.competitionBusiness.creating(competition) 
             }catch(error: any){ 
                 response.status(400).send(error.message)
             }

@@ -1,7 +1,10 @@
 import { app } from "./app";
+import { CompetitionBusiness } from "./business/CompetitionBusiness";
 import { CompetitorBusiness } from "./business/CompetitorBusiness";
 import { idGenerator } from "./business/services/IdGenerator";
-import {CompetitorController} from "./controller/CompetitionController"
+import { CompetitionController } from "./controller/CompetitionController";
+import {CompetitorController} from "./controller/CompetitorController"
+import { CompetitionDatabase } from "./database/CompetitionDatabase ";
 import { CompetitorDatabase } from "./database/CompetitorDatabase";
 
 
@@ -15,5 +18,17 @@ const competitorController = new CompetitorController(
     competitorBusiness
 )
 
+const competitionBusiness = new CompetitionBusiness(
+    new idGenerator(),
+    new CompetitionDatabase()
+)
+
+const competitionController = new CompetitionController(
+    competitionBusiness
+)
+
 
 app.post("/competitor", competitorController.creating)
+
+
+app.post("/competition", competitionController.creating)
