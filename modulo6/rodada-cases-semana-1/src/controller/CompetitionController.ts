@@ -20,8 +20,7 @@ import { CompetitionInputDTO } from "./model/competitionModel";
          private competitionBusiness : CompetitionBusiness
      ){}
 
-    //  public creating = async (request: Request, response: Response): Promise<void> => { 
-     public creating =  (request: Request, response: Response): void => { 
+     public creating = async (request: Request, response: Response): Promise<void> => { 
          try{ 
              const input = request.body;
              
@@ -29,8 +28,21 @@ import { CompetitionInputDTO } from "./model/competitionModel";
                 competitionName: input.competitionName,
                  status: input.status
                 }
-                //    await this.competitionBusiness.creating(competition) 
-                this.competitionBusiness.creating(competition) 
+                   await this.competitionBusiness.startingCompetition(competition) 
+                this.competitionBusiness.startingCompetition(competition) 
+            }catch(error: any){ 
+                response.status(400).send(error.message)
+            }
+     }
+     public closing = async (request: Request, response: Response): Promise<void> => { 
+         try{ 
+             const input = request.body;
+             
+             const competition : CompetitionInputDTO = { 
+                competitionName: input.competitionName,
+                 status: input.status
+                }
+                   await this.competitionBusiness.closingCompetition(competition) 
             }catch(error: any){ 
                 response.status(400).send(error.message)
             }

@@ -1,9 +1,4 @@
 
-export enum  Unit  {
-    "s"= "s",
-    "m"= "m"
-}
-
 
 export class Competitors { 
     constructor(

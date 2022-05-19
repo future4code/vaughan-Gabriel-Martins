@@ -1,5 +1,7 @@
 import { CompetitorInputDTO } from "../controller/model/competitorModel";
 import { CompetitorDatabase } from "../database/CompetitorDatabase";
+import { CompetitionBusiness } from "./CompetitionBusiness";
+import { Competition } from "./entities/Competitions";
 import { Competitors } from "./entities/Competitors";
 
 
@@ -9,11 +11,13 @@ import { idGenerator } from "./services/IdGenerator";
 export class CompetitorBusiness { 
     constructor(
         private idGenerator: idGenerator,
-        private competitorDatabase : CompetitorDatabase
+        private competitorDatabase : CompetitorDatabase, 
+        private competitionBusiness :CompetitionBusiness
+
      ){}
  
     // public creating = async (input:CompetitorInputDTO ): Promise<void> => { 
-    public creating = (input:CompetitorInputDTO ): void => { 
+    public creating = async (input:CompetitorInputDTO ): Promise<void> => { 
          const {competition , name, value}  = input;
 
         if(!competition ||  !name||  !value)
@@ -22,12 +26,17 @@ export class CompetitorBusiness {
         }
 
         // Also needs a test if the competitions exists and/or is actually is happing.
-        
-        // { 
-        //     "competition": "lorem", 
-        //     "status": "open"
-        // }
 
+        const competitionExistOnDB: Competition | undefined = await this.competitionBusiness.getCompetition(competition)
+
+        if (!competitionExistOnDB) {
+            throw new Error("There is no register of this competition!");
+        }
+        
+        if(competitionExistOnDB.status === "close"){ 
+          throw new Error("The competition is closed!");
+        }
+      
         const id = this.idGenerator.createId();
 
         const competitor: Competitors = { 
@@ -37,9 +46,9 @@ export class CompetitorBusiness {
         value,
         }
 
-
-       this.competitorDatabase.inserting(competitor) 
-        // await this.competitorDatabase.inserting(competitor) 
+        console.log(competition)
+  
+        await this.competitorDatabase.inserting(competitor) 
 
     }
 }

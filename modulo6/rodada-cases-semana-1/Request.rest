@@ -4,12 +4,10 @@ POST http://localhost:3003/competitor HTTP/1.1
 Content-Type: application/json
 
 { 
-        "competition":  "100m",
-               "name": "Gabriel12",
-               "value": 10, 
+        "competition":  "100m primeira ",
+               "name": "Gabriel3",
+               "value": 3
 }
-
-
 
 ###
 
@@ -21,13 +19,23 @@ Content-Type: application/json
         "status": "open"
 }
 
-###
+### Creating competition and status
 
 POST http://localhost:3003/competition HTTP/1.1
 Content-Type: application/json
 
 { 
-        "competitionName":"100m",
+        "competitionName":"100m primeira ",
+        "status": "open"
+}
+
+### Open and closing competition 
+
+POST http://localhost:3003/competition/status HTTP/1.1
+Content-Type: application/json
+
+{ 
+        "competitionName":"100m primeira ",
         "status": "open"
 }
 

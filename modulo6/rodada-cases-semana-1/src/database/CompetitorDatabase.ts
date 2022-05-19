@@ -1,25 +1,22 @@
 import { Competitors } from "../business/entities/Competitors";
 import { CompetitorOutputDTO } from "../controller/model/competitorModel";
+import { BaseDatabase } from "./BaseDatabase";
 
 
-let competitors : Competitors[] =  [] 
+let competitors: Competitors[] = []
 
-export class CompetitorDatabase { 
-    public inserting =(input:Competitors )=> { 
+export class CompetitorDatabase extends BaseDatabase {
+    public inserting = async (input: Competitors): Promise<void> => {
 
-        const competitor : CompetitorOutputDTO ={ 
+        const table_name = "case_1_competitors"
 
+        const competitor: CompetitorOutputDTO = {
             id: input.id,
             competition: input.competition,
-            name: input.name, 
+            name: input.name,
             value: input.value
-
         }
-
-        competitors.push(competitor)
-        console.log("competitors1",  competitors)
-       
-    } 
-
-
-}    
+        await BaseDatabase.connection(table_name)
+            .insert(competitor)
+    }
+}
