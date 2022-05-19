@@ -14,6 +14,9 @@ export class CompetitionDatabase {
             competitionName: input.competitionName,
         }
 
+        const teste = [competitions.find((item) => item.competitionName === "1" )].map(item =>{ return {...item}})
+        console.log("teste", teste)
+
         competitions.push(competition)
         console.log("competitionsDATABASE",  competitions)
 

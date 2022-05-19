@@ -17,6 +17,16 @@ POST http://localhost:3003/competition HTTP/1.1
 Content-Type: application/json
 
 { 
+        "competitionName":"darts",
+        "status": "open"
+}
+
+###
+
+POST http://localhost:3003/competition HTTP/1.1
+Content-Type: application/json
+
+{ 
         "competitionName":"100m",
         "status": "open"
 }
