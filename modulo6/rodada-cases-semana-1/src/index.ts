@@ -38,6 +38,8 @@ app.post("/competition", competitionController.creating)
 
 app.post("/competition/status", competitionController.closing)
 
+app.get("/competitor/racking", competitorController.gettingRacking)
+
 // Pra criar as tabelas é só descomentar as linhas abaixo e dar npm run start/dev!
 // Migrations.creatingTables()
 //     .finally(BaseDatabase.closeConnection)

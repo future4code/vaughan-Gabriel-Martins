@@ -16,7 +16,7 @@ export class Migrations extends BaseDatabase {
             CREATE TABLE IF NOT EXISTS case_1_competitors (
                 id VARCHAR(100) PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
-                value VARCHAR(255) NOT NULL,
+                value FLOAT NOT NULL,
                 competition VARCHAR(255) NOT NULL,
                 FOREIGN KEY (competition) REFERENCES case_1_competition(competition_Name)
             );

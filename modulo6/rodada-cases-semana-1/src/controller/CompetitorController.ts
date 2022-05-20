@@ -36,7 +36,16 @@ export class CompetitorController {
             response.status(400).send(error.message)
         }
     }
-
-
-
+    public gettingRacking = async (request: Request, response: Response): Promise<void> => { 
+        try{ 
+            const input = request.body;
+            
+            const competition = { 
+               competitionName: input.competition,
+               }
+                 const result =  await this.competitorBusiness.gettingRacking(competition) 
+           }catch(error: any){ 
+               response.status(400).send(error.message)
+           }
+    }
 }
