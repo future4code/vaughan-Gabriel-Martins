@@ -44,6 +44,7 @@ export class CompetitorController {
                competitionName: input.competition,
                }
                  const result =  await this.competitorBusiness.gettingRacking(competition) 
+                 response.status(201).send(result)
            }catch(error: any){ 
                response.status(400).send(error.message)
            }

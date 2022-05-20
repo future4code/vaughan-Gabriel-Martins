@@ -3,12 +3,11 @@ import { CompetitionBusiness } from "./business/CompetitionBusiness";
 import { CompetitorBusiness } from "./business/CompetitorBusiness";
 import { idGenerator } from "./business/services/IdGenerator";
 import { CompetitionController } from "./controller/CompetitionController";
-import {CompetitorController} from "./controller/CompetitorController"
+import { CompetitorController } from "./controller/CompetitorController"
 import { CompetitionDatabase } from "./database/CompetitionDatabase ";
 import { CompetitorDatabase } from "./database/CompetitorDatabase";
 import { Migrations } from "./database/migrations";
 import { BaseDatabase } from "./database/BaseDatabase";
-
 
 
 const competitionBusiness = new CompetitionBusiness(
@@ -18,9 +17,8 @@ const competitionBusiness = new CompetitionBusiness(
 
 const competitorBusiness = new CompetitorBusiness(
     new idGenerator(),
-    new CompetitorDatabase(), 
+    new CompetitorDatabase(),
     competitionBusiness
-
 )
 
 const competitorController = new CompetitorController(
@@ -36,9 +34,11 @@ app.post("/competitor", competitorController.creating)
 
 app.post("/competition", competitionController.creating)
 
-app.post("/competition/status", competitionController.closing)
+app.put("/competition/status", competitionController.closing)
 
 app.get("/competitor/racking", competitorController.gettingRacking)
+
+
 
 // Pra criar as tabelas é só descomentar as linhas abaixo e dar npm run start/dev!
 // Migrations.creatingTables()

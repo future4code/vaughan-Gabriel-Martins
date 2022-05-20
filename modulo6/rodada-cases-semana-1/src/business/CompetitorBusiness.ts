@@ -36,17 +36,34 @@ export class CompetitorBusiness {
     }
 
     const id = this.idGenerator.createId();
+    const times = 1; 
 
     const competitor: Competitors = {
       id,
       competition,
       name,
       value,
+      times: times
     };
 
-    console.log(competition);
+    
+    if (competition.toLowerCase().includes("darts")) {
+      const competitorDb = await this.competitorDatabase.gettingCompetitorByName(name)
+      if(competitorDb){ 
+          if(competitorDb.times >=3){ throw new Error("This competitor has already finshed!")}
 
-    await this.competitorDatabase.inserting(competitor);
+         if(competitorDb.value <  competitor.value ) {
+           competitorDb.value = competitor.value 
+           competitorDb.times++;  
+          }       
+         await  this.competitorDatabase.insertingNewValue(competitorDb) 
+         return;
+      }
+    }
+    
+    
+     await this.competitorDatabase.inserting(competitor);
+  
   };
   public gettingRacking = async (input: RackingInputDTO): Promise<void> => {
     const { competitionName } = input;
@@ -58,7 +75,7 @@ export class CompetitorBusiness {
     const competitionExistOnDB: Competition | undefined =
       await this.competitionBusiness.getCompetition(competitionName);
     if (!competitionExistOnDB) {
-      throw new Error("There is no register of this competition!");
+      throw new Error("This competition is not in our Data Base!");
     }
 
     const competition = {
@@ -66,11 +83,12 @@ export class CompetitorBusiness {
     };
 
     if (competitionName.toLowerCase().includes("100m")) {
-      await this.competitorDatabase.gettingRacking(competition);
+      return this.competitorDatabase.gettingRanking(competition);
     }
 
-    // if (competition.competitionName.includes("darts")) {
-    //   await this.competitorDatabase.gettingRackingDarts(competition);
-    // }
+    if (competition.competitionName.includes("darts")) {
+     const result = await this.competitorDatabase.gettingRanking(competition);
+     return result.reverse()
+    }
   };
 }

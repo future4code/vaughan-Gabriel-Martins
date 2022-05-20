@@ -5,6 +5,7 @@ export class Competitors {
         public  id: string,
         public  competition: string,
         public  name: string,
-        public  value: number     
+        public  value: number,     
+        public  times: number     
     ){}
 }

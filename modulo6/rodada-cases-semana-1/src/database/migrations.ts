@@ -17,6 +17,7 @@ export class Migrations extends BaseDatabase {
                 id VARCHAR(100) PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
                 value FLOAT NOT NULL,
+                times int DEFAULT 0, 
                 competition VARCHAR(255) NOT NULL,
                 FOREIGN KEY (competition) REFERENCES case_1_competition(competition_Name)
             );

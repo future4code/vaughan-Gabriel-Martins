@@ -20,7 +20,6 @@ export class CompetitionBusiness {
 
         const competitionExistOnDB = await this.getCompetition(competitionName)
 
-        console.log(competitionExistOnDB)
 
         if (competitionExistOnDB) {
             throw new Error("This name has alread been used!");
@@ -42,9 +41,9 @@ export class CompetitionBusiness {
             competition: competitionName,
             unit
         }
-        console.log(competitiontoDB)
 
-        // await this.CompetitionDatabase.inserting(competitiontoDB)
+
+        await this.CompetitionDatabase.inserting(competitiontoDB)
 
     }
     public closingCompetition = async (input: CompetitionInputDTO): Promise<void> => {
@@ -71,7 +70,7 @@ export class CompetitionBusiness {
 
         // await funcao that will get 
 
-        console.log("competitionTocloseDB", competitionTocloseDB)
+      
 
 
         await this.CompetitionDatabase.insertingStatus(competitionTocloseDB)

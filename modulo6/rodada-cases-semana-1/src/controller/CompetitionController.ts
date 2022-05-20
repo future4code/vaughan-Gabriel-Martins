@@ -3,18 +3,6 @@ import { CompetitionBusiness } from "../business/CompetitionBusiness";
 import { CompetitionInputDTO } from "./model/competitionModel";
 
 
-
-
-
-
-// {
-//     "competicao": "100m classificatoria 1", 
-//     "atleta": "Joao das Neves", 
-//     "value": "10.234", 
-//     "unidade": "s"
-//   }
-
-
  export class CompetitionController { 
      constructor(
          private competitionBusiness : CompetitionBusiness
@@ -28,8 +16,9 @@ import { CompetitionInputDTO } from "./model/competitionModel";
                 competitionName: input.competitionName,
                  status: input.status
                 }
-                   await this.competitionBusiness.startingCompetition(competition) 
-                this.competitionBusiness.startingCompetition(competition) 
+                   await this.competitionBusiness.startingCompetition(competition)
+                   response.status(201).end("Success")
+                   
             }catch(error: any){ 
                 response.status(400).send(error.message)
             }
@@ -42,7 +31,8 @@ import { CompetitionInputDTO } from "./model/competitionModel";
                 competitionName: input.competitionName,
                  status: input.status
                 }
-                   await this.competitionBusiness.closingCompetition(competition) 
+                   await this.competitionBusiness.closingCompetition(competition)
+                   response.status(200).send("Success!")
             }catch(error: any){ 
                 response.status(400).send(error.message)
             }
