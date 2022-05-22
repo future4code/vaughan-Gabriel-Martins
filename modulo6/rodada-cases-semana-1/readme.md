@@ -26,6 +26,10 @@ Return the competition ranking, displaying the final position of each athlete. D
 
 <br/>  
 
+Surge fiz para praticar um pouco o front e consumir a api.
+
+
+https://cob_case1_gabriel_martins.surge.sh/competitor/ranking
 
 PostMan 
 
