@@ -1,0 +1,89 @@
+POST http://localhost:3003/user/signup HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "email": "CLaudio@gmail.com", 
+    "name": "CLaudio", 
+    "password":"123456"
+}
+
+###
+POST http://localhost:3003/user/login HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "email": "marcela@gmail.com", 
+    "password":"123456"
+}
+###
+
+POST http://localhost:3003/post/new  HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA4NzI2OSwiZXhwIjoxNjUyMTIzMjY5fQ.kPZkE8FzE5BpvjzRGytxfP1qSCj2gG40VrjMIImEReE
+
+{ 
+    "picture" : "casamento 1 ",
+    "description":"casamento 001",
+    "type": "evento"
+}
+### 
+GET http://localhost:3003/post?id=4f835b3e-7c8a-4138-a6fd-302395723206  HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MTg4NDczOSwiZXhwIjoxNjUxOTIwNzM5fQ.XkSkwDvkdu_Vz_5gDEkhHfFo22gs2_QoSMjHYTThVXU
+###
+
+POST http://localhost:3003/user/friendship  HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MTk3OTI4OSwiZXhwIjoxNjUyMDE1Mjg5fQ.337EjycN5y5PLKqme1ynVThaL7xzNlfi9lFH-PSb7Aw
+
+{ 
+    "idFriend": "6041af18-6c97-4de0-98de-1dd4f64c6a12"
+}
+
+###
+DELETE http://localhost:3003/user/friendship  HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MTk3OTI4OSwiZXhwIjoxNjUyMDE1Mjg5fQ.337EjycN5y5PLKqme1ynVThaL7xzNlfi9lFH-PSb7Aw
+
+{ 
+    "idFriend": "14bf11a4-cafe-40ce-b72d-1e60c6fec343"
+}
+
+
+### 
+GET http://localhost:3003/user/feed HTTP/1.1
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA4OTI2NywiZXhwIjoxNjUyMTI1MjY3fQ.ruFt7aoz02F2c9Xxs53Nt9ygHvhyXn3AkTF7jNNxRTQ
+###
+
+GET http://localhost:3003/user/feed/type?type=evento HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjAxODQzMCwiZXhwIjoxNjUyMDU0NDMwfQ.tP0IyELtUBtouBgI1zrryCNE8aBSlzNDBf_NWz6gn8s
+
+
+### 
+POST http://localhost:3003/user/post HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA2NjcxNywiZXhwIjoxNjUyMTAyNzE3fQ.kKZekgqxjCFhQqv26x4lot9tSHC9Tc_u5MEn0nIZWqw
+
+{
+    "postId":"5a9eb7ee-8884-4712-ac2d-6d2b432cf2d7"
+}
+
+###
+# {
+#     "postId":"1bf11a4-cafe-40ce-b72d-1e60c6fec343"
+# }
+
+### 
+   
+
+  
+### 
+DELETE  http://localhost:3003/user/post HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2E2ZjU4LWY3ODctNGQ1OS1iM2M1LWU2YmY3Zjg1MzcxOCIsImlhdCI6MTY1MjA2NjcxNywiZXhwIjoxNjUyMTAyNzE3fQ.kKZekgqxjCFhQqv26x4lot9tSHC9Tc_u5MEn0nIZWqw
+
+{
+   "postId":"14bf11a4-cafe-40ce-b72d-1e60c6fec343"
+}
